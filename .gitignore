@@ -1,0 +1,10 @@
+.idea/
+*.iml
+.vscode/
+.swp
+*.log
+.DS_Store
+.AppleDouble
+.LSOverride
+.directory
+*.tmp
