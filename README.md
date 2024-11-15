@@ -34,7 +34,9 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
   This parent is mostly used jEAP-internally by jEAP libraries.
 
 - **[jeap-spring-boot-parent](https://github.com/jeap-admin-ch/jeap-spring-boot-parent)**  
-  A Maven parent inheriting from `jeap-internal-spring-boot-parent`,
+  A Maven parent inheriting from `jeap-internal-spring-boot-parent`. Its main purpose is managing the versions of jEAP
+  dependencies such as jEAP Starters, jEAP Messaging and jEAP Crypto. This is the Maven parent applications based on jEAP
+  should use.
 
 - **[jeap-spring-boot-starters](https://github.com/jeap-admin-ch/jeap-spring-boot-starters)**  
   Contains various Spring Boot starters to simplify application setup and configuration.
@@ -52,7 +54,7 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
   A Maven plugin for generating Java trust stores, making it easy to handle certificate management.
 
 - **[jeap-message-type-registry](https://github.com/jeap-admin-ch/jeap-message-type-registry)**  
-  Defines a standardized message types used by jEAP libraries and products.
+  Defines standardized message types used by jEAP libraries and products.
 
 - **[jeap-test-message-type-registry](https://github.com/jeap-admin-ch/jeap-test-message-type-registry)**  
   Message type registry used internally by jEAP for testing purposes.
