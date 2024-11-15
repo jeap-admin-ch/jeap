@@ -1,6 +1,6 @@
 # Contributing to jEAP
 
-jEAP source code is open source software released under the Apache 2.0 license.
+jEAP source code is open source software released under the [Apache License 2.0](./LICENSE).
 
 ## External contributions cannot be accepted currently
 
