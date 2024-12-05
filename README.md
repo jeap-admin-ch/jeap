@@ -36,7 +36,7 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
 
 - **[jeap-spring-boot-starters](https://github.com/jeap-admin-ch/jeap-spring-boot-starters)**  
   Contains various Spring Boot starters to simplify application setup and configuration.
-  See [jeap-spring-boot-starters/README.md](https://github.com/jeap-admin-ch/jeap-spring-boot-starters/README.md)
+  See [jeap-spring-boot-starters/README.md](https://github.com/jeap-admin-ch/jeap-spring-boot-starters/blob/main/README.md)
   for a full list of the provided starters.
 
 - **[jeap-messaging](https://github.com/jeap-admin-ch/jeap-messaging)**  
