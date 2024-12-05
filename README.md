@@ -16,13 +16,9 @@ functionality, with jEAP providing solutions for the reusable cross-functional a
 This umbrella repository is a guide to the individual components of the jEAP suite. We recommend exploring each
 repository to understand how it can be applied to your projects.
 
----
-
 ## License
 
 This repository is Open Source Software licensed under the [Apache License 2.0](./LICENSE).
-
----
 
 ## Repository List
 
@@ -64,14 +60,10 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
   the [Maven License Plugin](https://www.mojohaus.org/license-maven-plugin/aggregate-add-third-party-mojo.html) to
   generate a markdown file listing third-party dependency licenses.
 
----
-
 ## Reporting Security Vulnerabilities
 
 If you would like to report a potential security issue in a jEAP repository, please follow the procedure described in
 [SECURITY.md](./SECURITY.md).
-
----
 
 ## External contributions cannot be accepted currently
 
@@ -80,8 +72,6 @@ At this point in time, jEAP is released as open source software based on the
 
 We do not currently accept external contributions. Please refrain from providing code changes or pull requests as we are
 unable to accept them.
-
----
 
 ## Contact
 
