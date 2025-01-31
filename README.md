@@ -55,6 +55,12 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
 - **[jeap-test-message-type-registry](https://github.com/jeap-admin-ch/jeap-test-message-type-registry)**  
   Message type registry used internally by jEAP for testing purposes.
 
+- **[jeap-bptestagent-api](https://github.com/jeap-admin-ch/jeap-bptestagent-api)**  
+  TestAgent API for Business Process Tests
+
+- **[jeap-bptest-orchestrator](https://github.com/jeap-admin-ch/jeap-bptest-orchestrator)**  
+  Basic Library for implementing a Business Process Test Orchestrator
+
 - **[jeap-license-template](https://github.com/jeap-admin-ch/jeap-license-template)**  
   Provides a template for
   the [Maven License Plugin](https://www.mojohaus.org/license-maven-plugin/aggregate-add-third-party-mojo.html) to
