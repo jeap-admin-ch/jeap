@@ -43,6 +43,9 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
   Supports applications by providing messaging functionality based on Avro and Spring Kafka. Also eases integration of
   different Kafka authenthication mechanism, and implements the Transactional Outbox pattern in a re-usable library.
 
+- **[jeap-oauth-mock-server](https://github.com/jeap-admin-ch/jeap-oauth-mock-server)**  
+  The jEAP OAuth Mock Server provides a configurable OAuth2/OpenID-Connect server for local development and testing.
+
 - **[jeap-crypto](https://github.com/jeap-admin-ch/jeap-crypto)**  
   Provides utilities for client-side encryption of data-at-rest.
 
