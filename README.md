@@ -39,9 +39,17 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
   See [jeap-spring-boot-starters/README.md](https://github.com/jeap-admin-ch/jeap-spring-boot-starters/blob/main/README.md)
   for a full list of the provided starters.
 
+- **[jeap-error-handling](https://github.com/jeap-admin-ch/jeap-error-handling)**  
+  Error Handling Service supports error handling patterns for errors, i.e. retry for temporary issues, 
+  persistence and retry/handling for permanent errors.
+
 - **[jeap-messaging](https://github.com/jeap-admin-ch/jeap-messaging)**  
   Supports applications by providing messaging functionality based on Avro and Spring Kafka. Also eases integration of
   different Kafka authenthication mechanism, and implements the Transactional Outbox pattern in a re-usable library.
+
+- **[jeap-message-contract-service](https://github.com/jeap-admin-ch/jeap-message-contract-service)**  
+  Service to manage messaging contracts used in compatibility checks upon deployment of a service, 
+  similar to consumer-driven contract testing.
 
 - **[jeap-oauth-mock-server](https://github.com/jeap-admin-ch/jeap-oauth-mock-server)**  
   The jEAP OAuth Mock Server provides a configurable OAuth2/OpenID-Connect server for local development and testing.
@@ -64,8 +72,21 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
 - **[jeap-bptest-orchestrator](https://github.com/jeap-admin-ch/jeap-bptest-orchestrator)**  
   Basic Library for implementing a Business Process Test Orchestrator
 
+- **[jeap-initializer](https://github.com/jeap-admin-ch/jeap-initializer)**  
+  This library enables to generate ready-to-use codebases for bootstrapping projects. 
+  Unlike other initializer-type tools, it creates code based on existing projects (referred to as templates) 
+  hosted in Git repositories.
+
+- **[jeap-deploymentlog-service](https://github.com/jeap-admin-ch/jeap-deploymentlog-service)**  
+  Service to trace the deployments of microservice on stages
+
+- **[jeap-process-archive-reader](https://github.com/jeap-admin-ch/jeap-process-archive-reader)**  
+  This library can be used to retrieve an object from the process archive (S3) and convert it directly into the target object.
+
+
 - **[jeap-license-template](https://github.com/jeap-admin-ch/jeap-license-template)**  
   Provides a template for
+
   the [Maven License Plugin](https://www.mojohaus.org/license-maven-plugin/aggregate-add-third-party-mojo.html) to
   generate a markdown file listing third-party dependency licenses.
 
