@@ -51,6 +51,9 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
   Service to manage messaging contracts used in compatibility checks upon deployment of a service, 
   similar to consumer-driven contract testing.
 
+- **[jeap-message-exchange-service](https://github.com/jeap-admin-ch/jeap-message-exchange-service)**  
+  Service for exchanging incoming and outgoing messages with external parties, using an HTTP-based messagebox API. 
+
 - **[jeap-oauth-mock-server](https://github.com/jeap-admin-ch/jeap-oauth-mock-server)**  
   The jEAP OAuth Mock Server provides a configurable OAuth2/OpenID-Connect server for local development and testing.
 
@@ -70,19 +73,17 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
   TestAgent API for Business Process Tests
 
 - **[jeap-bptest-orchestrator](https://github.com/jeap-admin-ch/jeap-bptest-orchestrator)**  
-  Basic Library for implementing a Business Process Test Orchestrator
+  Service providing an orchestrator for business process tests
 
 - **[jeap-initializer](https://github.com/jeap-admin-ch/jeap-initializer)**  
-  This library enables to generate ready-to-use codebases for bootstrapping projects. 
-  Unlike other initializer-type tools, it creates code based on existing projects (referred to as templates) 
-  hosted in Git repositories.
+  This library enables generating ready-to-use codebases for bootstrapping projects. It creates code based on existing,
+- working and tested project templates hosted in Git repositories.
 
 - **[jeap-deploymentlog-service](https://github.com/jeap-admin-ch/jeap-deploymentlog-service)**  
   Service to trace the deployments of microservice on stages
 
 - **[jeap-process-archive-reader](https://github.com/jeap-admin-ch/jeap-process-archive-reader)**  
   This library can be used to retrieve an object from the process archive (S3) and convert it directly into the target object.
-
 
 - **[jeap-license-template](https://github.com/jeap-admin-ch/jeap-license-template)**  
   Provides a template for
