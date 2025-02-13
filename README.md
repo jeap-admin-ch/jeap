@@ -91,6 +91,35 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
   the [Maven License Plugin](https://www.mojohaus.org/license-maven-plugin/aggregate-add-third-party-mojo.html) to
   generate a markdown file listing third-party dependency licenses.
 
+## Building jEAP
+
+To build jEAP libraries from source, you will usually be able to start a build using the provided Apache Maven Wrapper
+script in the repository. The following command will build the project, run all tests and install the library
+in your local Apache Maven repository:
+
+```shell
+./mvnw install
+```
+Note that jEAP libraries may have additional build requirements, such as specific Java versions. Please refer to the
+individual repository's README.md or pom.xml for more information.
+
+### Confluent Maven Repository
+
+jeap-messaging libraries that serialize/deserialize Kafka records using a Confluent Avro Schema Registry require 
+dependencies from the Confluent Maven Repository. To build these libraries, you need to configure the Confluent 
+repository either in your Maven settings.xml or locally in the repository's pom.xml. For more information, please refer 
+to the [Maven documentation](https://maven.apache.org/guides/mini/guide-multiple-repositories.html) and the
+[Confluent Java Client documentation](https://docs.confluent.io/kafka-clients/java/current/overview.html#java-installation).
+
+```xml
+<repositories>
+        <repository>
+            <id>confluent</id>
+            <url>https://packages.confluent.io/maven/</url>
+        </repository>
+</repositories>
+```
+
 ## Reporting Security Vulnerabilities
 
 If you would like to report a potential security issue in a jEAP repository, please follow the procedure described in
