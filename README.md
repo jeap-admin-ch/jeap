@@ -82,6 +82,10 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
 - **[jeap-deploymentlog-service](https://github.com/jeap-admin-ch/jeap-deploymentlog-service)**  
   Service to trace the deployments of microservice on stages
 
+- **[jeap-process-archive-service](https://github.com/jeap-admin-ch/jeap-process-archive-service)**  
+  The jEAP Process Archive Service (PAS) is a service template library that provides a way to archive artifacts pertaining
+  to a process. Such artifacts might be required to be archived for audit purposes or due to business requirements.
+
 - **[jeap-process-archive-reader](https://github.com/jeap-admin-ch/jeap-process-archive-reader)**  
   This library can be used to retrieve an object from the process archive (S3) and convert it directly into the target object.
 
