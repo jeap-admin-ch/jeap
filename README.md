@@ -24,76 +24,84 @@ This repository is Open Source Software licensed under the [Apache License 2.0](
 
 Here is a list of all the repositories in the jEAP umbrella, along with a brief description of their purpose:
 
-- **[jeap-internal-spring-boot-parent](https://github.com/jeap-admin-ch/jeap-internal-spring-boot-parent)**  
+- **[jeap-archrepo-service](https://github.com/jeap-admin-ch/jeap-archrepo-service)**
+  The `jeap-archrepo-service` is a service template library designed to be integrated into applications through simple 
+  dependency configuration. This library provides a centralized system for automatically managing and documenting the 
+  application architecture inventory.
+
+- **[jeap-bptest-orchestrator](https://github.com/jeap-admin-ch/jeap-bptest-orchestrator)**
+  Service providing an orchestrator for business process tests
+
+- **[jeap-bptestagent-api](https://github.com/jeap-admin-ch/jeap-bptestagent-api)**
+  TestAgent API for Business Process Tests
+
+- **[jeap-crypto](https://github.com/jeap-admin-ch/jeap-crypto)**
+  Provides utilities for client-side encryption of data-at-rest.
+
+- **[jeap-deploymentlog-service](https://github.com/jeap-admin-ch/jeap-deploymentlog-service)**
+  Service to trace the deployments of microservice on stages
+
+- **[jeap-error-handling](https://github.com/jeap-admin-ch/jeap-error-handling)**
+  Error Handling Service supports error handling patterns for errors, i.e. retry for temporary issues,
+  persistence and retry/handling for permanent errors.
+
+- **[jeap-initializer](https://github.com/jeap-admin-ch/jeap-initializer)**
+  This library enables generating ready-to-use codebases for bootstrapping projects. It creates code based on existing,
+  working and tested project templates hosted in Git repositories.
+
+- **[jeap-internal-spring-boot-parent](https://github.com/jeap-admin-ch/jeap-internal-spring-boot-parent)**
   Internal Spring Boot parent project for jEAP. Manages the Spring Boot version and inherits dependency management for
   common dependencies from Spring Boot. Also provides common Maven Plugin pre-configuration to streamline project setup.
   This parent is mostly used jEAP-internally by jEAP libraries.
 
-- **[jeap-spring-boot-parent](https://github.com/jeap-admin-ch/jeap-spring-boot-parent)**  
+- **[jeap-license-template](https://github.com/jeap-admin-ch/jeap-license-template)**
+  Provides a template for the [Maven License Plugin](https://www.mojohaus.org/license-maven-plugin/aggregate-add-third-party-mojo.html) to
+  generate a markdown file listing third-party dependency licenses.
+
+- **[jeap-message-contract-service](https://github.com/jeap-admin-ch/jeap-message-contract-service)**
+  Service to manage messaging contracts used in compatibility checks upon deployment of a service,
+  similar to consumer-driven contract testing.
+
+- **[jeap-message-exchange-service](https://github.com/jeap-admin-ch/jeap-message-exchange-service)**
+  Service for exchanging incoming and outgoing messages with external parties, using an HTTP-based messagebox API.
+
+- **[jeap-message-type-registry](https://github.com/jeap-admin-ch/jeap-message-type-registry)**
+  Defines standardized message types used by jEAP libraries and products.
+
+- **[jeap-messaging](https://github.com/jeap-admin-ch/jeap-messaging)**
+  Supports applications by providing messaging functionality based on Avro and Spring Kafka. Also eases integration of
+  different Kafka authenthication mechanism, and implements the Transactional Outbox pattern in a re-usable library.
+
+- **[jeap-oauth-mock-server](https://github.com/jeap-admin-ch/jeap-oauth-mock-server)**
+  The jEAP OAuth Mock Server provides a configurable OAuth2/OpenID-Connect server for local development and testing.
+
+- **[jeap-process-archive-reader](https://github.com/jeap-admin-ch/jeap-process-archive-reader)**
+  This library can be used to retrieve an object from the process archive (S3) and convert it directly into the target object.
+
+- **[jeap-process-archive-service](https://github.com/jeap-admin-ch/jeap-process-archive-service)**
+  The jEAP Process Archive Service (PAS) is a service template library that provides a way to archive artifacts pertaining
+  to a process. Such artifacts might be required to be archived for audit purposes or due to business requirements.
+
+- **[jeap-process-context-service](https://github.com/jeap-admin-ch/jeap-process-context-service)**
+  The jEAP Process Context Service (PCS) is a service template library that provides a way to store and retrieve context 
+  information pertaining to a process. This context information might be required to be stored for audit purposes or due
+  to business requirements.
+
+- **[jeap-spring-boot-parent](https://github.com/jeap-admin-ch/jeap-spring-boot-parent)**
   A Maven parent inheriting from `jeap-internal-spring-boot-parent`. Its main purpose is managing the versions of jEAP
   dependencies such as jEAP Starters, jEAP Messaging and jEAP Crypto. This is the Maven parent applications based on jEAP
   should use.
 
-- **[jeap-spring-boot-starters](https://github.com/jeap-admin-ch/jeap-spring-boot-starters)**  
+- **[jeap-spring-boot-starters](https://github.com/jeap-admin-ch/jeap-spring-boot-starters)**
   Contains various Spring Boot starters to simplify application setup and configuration.
   See [jeap-spring-boot-starters/README.md](https://github.com/jeap-admin-ch/jeap-spring-boot-starters/blob/main/README.md)
   for a full list of the provided starters.
 
-- **[jeap-error-handling](https://github.com/jeap-admin-ch/jeap-error-handling)**  
-  Error Handling Service supports error handling patterns for errors, i.e. retry for temporary issues, 
-  persistence and retry/handling for permanent errors.
-
-- **[jeap-messaging](https://github.com/jeap-admin-ch/jeap-messaging)**  
-  Supports applications by providing messaging functionality based on Avro and Spring Kafka. Also eases integration of
-  different Kafka authenthication mechanism, and implements the Transactional Outbox pattern in a re-usable library.
-
-- **[jeap-message-contract-service](https://github.com/jeap-admin-ch/jeap-message-contract-service)**  
-  Service to manage messaging contracts used in compatibility checks upon deployment of a service, 
-  similar to consumer-driven contract testing.
-
-- **[jeap-message-exchange-service](https://github.com/jeap-admin-ch/jeap-message-exchange-service)**  
-  Service for exchanging incoming and outgoing messages with external parties, using an HTTP-based messagebox API. 
-
-- **[jeap-oauth-mock-server](https://github.com/jeap-admin-ch/jeap-oauth-mock-server)**  
-  The jEAP OAuth Mock Server provides a configurable OAuth2/OpenID-Connect server for local development and testing.
-
-- **[jeap-crypto](https://github.com/jeap-admin-ch/jeap-crypto)**  
-  Provides utilities for client-side encryption of data-at-rest.
-
-- **[jeap-truststore-maven-plugin](https://github.com/jeap-admin-ch/jeap-truststore-maven-plugin)**  
-  A Maven plugin for generating Java trust stores, making it easy to handle certificate management.
-
-- **[jeap-message-type-registry](https://github.com/jeap-admin-ch/jeap-message-type-registry)**  
-  Defines standardized message types used by jEAP libraries and products.
-
-- **[jeap-test-message-type-registry](https://github.com/jeap-admin-ch/jeap-test-message-type-registry)**  
+- **[jeap-test-message-type-registry](https://github.com/jeap-admin-ch/jeap-test-message-type-registry)**
   Message type registry used internally by jEAP for testing purposes.
 
-- **[jeap-bptestagent-api](https://github.com/jeap-admin-ch/jeap-bptestagent-api)**  
-  TestAgent API for Business Process Tests
-
-- **[jeap-bptest-orchestrator](https://github.com/jeap-admin-ch/jeap-bptest-orchestrator)**  
-  Service providing an orchestrator for business process tests
-
-- **[jeap-initializer](https://github.com/jeap-admin-ch/jeap-initializer)**  
-  This library enables generating ready-to-use codebases for bootstrapping projects. It creates code based on existing,
-- working and tested project templates hosted in Git repositories.
-
-- **[jeap-deploymentlog-service](https://github.com/jeap-admin-ch/jeap-deploymentlog-service)**  
-  Service to trace the deployments of microservice on stages
-
-- **[jeap-process-archive-service](https://github.com/jeap-admin-ch/jeap-process-archive-service)**  
-  The jEAP Process Archive Service (PAS) is a service template library that provides a way to archive artifacts pertaining
-  to a process. Such artifacts might be required to be archived for audit purposes or due to business requirements.
-
-- **[jeap-process-archive-reader](https://github.com/jeap-admin-ch/jeap-process-archive-reader)**  
-  This library can be used to retrieve an object from the process archive (S3) and convert it directly into the target object.
-
-- **[jeap-license-template](https://github.com/jeap-admin-ch/jeap-license-template)**  
-  Provides a template for
-
-  the [Maven License Plugin](https://www.mojohaus.org/license-maven-plugin/aggregate-add-third-party-mojo.html) to
-  generate a markdown file listing third-party dependency licenses.
+- **[jeap-truststore-maven-plugin](https://github.com/jeap-admin-ch/jeap-truststore-maven-plugin)**
+  A Maven plugin for generating Java trust stores, making it easy to handle certificate management.
 
 ## Building jEAP
 
