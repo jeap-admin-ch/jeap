@@ -87,6 +87,12 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
   information pertaining to a process. This context information might be required to be stored for audit purposes or due
   to business requirements.
 
+- **[jeap-spring-boot-config-aws-starter](https://github.com/jeap-admin-ch/jeap-spring-boot-config-aws-starter)**
+  Integrates with AWS AppConfig and AWS Secrets Manager.
+
+- **[jeap-spring-boot-db-migration-starter](https://github.com/jeap-admin-ch/jeap-spring-boot-db-migration-starter)**
+  Spring Boot starter for running DB migrations as separate jobs (i.e. on k8s).
+
 - **[jeap-spring-boot-parent](https://github.com/jeap-admin-ch/jeap-spring-boot-parent)**
   A Maven parent inheriting from `jeap-internal-spring-boot-parent`. Its main purpose is managing the versions of jEAP
   dependencies such as jEAP Starters, jEAP Messaging and jEAP Crypto. This is the Maven parent applications based on jEAP
@@ -96,6 +102,10 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
   Contains various Spring Boot starters to simplify application setup and configuration.
   See [jeap-spring-boot-starters/README.md](https://github.com/jeap-admin-ch/jeap-spring-boot-starters/blob/main/README.md)
   for a full list of the provided starters.
+
+- **[jeap-spring-boot-tls-starter](https://github.com/jeap-admin-ch/jeap-spring-boot-tls-starter)**
+  Activates TLS on the Spring Boot webserver, and provides the option to generate a certificate at startup (suitable for 
+  encrytion beetn AWS ALB and the Spring Boot app).
 
 - **[jeap-test-message-type-registry](https://github.com/jeap-admin-ch/jeap-test-message-type-registry)**
   Message type registry used internally by jEAP for testing purposes.
