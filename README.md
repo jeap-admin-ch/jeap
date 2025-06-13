@@ -72,6 +72,12 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
   Supports applications by providing messaging functionality based on Avro and Spring Kafka. Also eases integration of
   different Kafka authenthication mechanism, and implements the Transactional Outbox pattern in a re-usable library.
 
+- **[jeap-messaging-outbox](https://github.com/jeap-admin-ch/jeap-messaging-outbox)**
+  jEAP Messaging outbox is an implementation of the [Transactional outbox pattern](https://microservices.io/patterns/data/transactional-outbox.html)
+
+- **[jeap-messaging-sequential-inbox](https://github.com/jeap-admin-ch/jeap-messaging-sequential-inbox)**
+  The jEAP Sequential Inbox Library allows to configure the order in which messages will be processed in a microservice, which may be different from the order in which the messages were received.
+
 - **[jeap-oauth-mock-server](https://github.com/jeap-admin-ch/jeap-oauth-mock-server)**
   The jEAP OAuth Mock Server provides a configurable OAuth2/OpenID-Connect server for local development and testing.
 
