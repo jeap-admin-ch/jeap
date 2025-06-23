@@ -93,6 +93,11 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
   information pertaining to a process. This context information might be required to be stored for audit purposes or due
   to business requirements.
 
+- **[jeap-server-sent-events](https://github.com/jeap-admin-ch/jeap-server-sent-events)**
+  jEAP server sent events is a library that provides a way to send real-time events from the server to the client using
+  Server-Sent Events (SSE). It allows for efficient and scalable communication between the server and the client, enabling    
+  real-time updates and notifications.
+
 - **[jeap-spring-boot-config-aws-starter](https://github.com/jeap-admin-ch/jeap-spring-boot-config-aws-starter)**
   Integrates with AWS AppConfig and AWS Secrets Manager.
 
