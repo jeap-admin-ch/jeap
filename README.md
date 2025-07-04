@@ -38,6 +38,10 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
 - **[jeap-crypto](https://github.com/jeap-admin-ch/jeap-crypto)**
   Provides utilities for client-side encryption of data-at-rest.
 
+- **[jeap-db-schema-publisher](https://github.com/jeap-admin-ch/jeap-error-handling)**  
+  Publishes database schemas to the Architecture Repository at startup of a Spring Boot application. This is useful for
+  documenting DB schema definitions and creating data catalogs.
+
 - **[jeap-deploymentlog-service](https://github.com/jeap-admin-ch/jeap-deploymentlog-service)**
   Service to trace the deployments of microservice on stages
 
