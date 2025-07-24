@@ -122,6 +122,10 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
   Activates TLS on the Spring Boot webserver, and provides the option to generate a certificate at startup (suitable for 
   encrytion beetn AWS ALB and the Spring Boot app).
 
+- **[jeap-spring-boot-roles-anywhere-starter](https://github.com/jeap-admin-ch/jeap-spring-boot-roles-anywhere-starter)**
+  Java library for seamless integration with AWS IAM Roles Anywhere in Spring Boot. 
+  Enables secure, certificate-based credentials without external helper tools.
+
 - **[jeap-test-message-type-registry](https://github.com/jeap-admin-ch/jeap-test-message-type-registry)**
   Message type registry used internally by jEAP for testing purposes.
 
