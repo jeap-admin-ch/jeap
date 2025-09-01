@@ -92,7 +92,7 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
   The jEAP Process Archive Service (PAS) is a service template library that provides a way to archive artifacts pertaining
   to a process. Such artifacts might be required to be archived for audit purposes or due to business requirements.
 
-- **[jeap-archive-type-registry](https://github.com/jeap-admin-ch/jeap-test-message-type-registry)**
+- **[jeap-archive-type-registry](https://github.com/jeap-admin-ch/jeap-archive-type-registry)**
   Archive type registry used internally by jEAP libraries and products. Contains for example the definition of the
   Process Snapshot archive type.
 
