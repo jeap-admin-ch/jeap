@@ -85,6 +85,10 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
 - **[jeap-oauth-mock-server](https://github.com/jeap-admin-ch/jeap-oauth-mock-server)**
   The jEAP OAuth Mock Server provides a configurable OAuth2/OpenID-Connect server for local development and testing.
 
+- **[jeap-open-api-publisher-starter](https://github.com/jeap-admin-ch/jeap-open-api-publisher-starter)**
+  Publishes OpenAPI specifications to the Architecture Repository at startup of a Spring Boot application. This is useful for
+  documenting API specifications of microservices.
+
 - **[jeap-process-archive-reader](https://github.com/jeap-admin-ch/jeap-process-archive-reader)**
   This library can be used to retrieve an object from the process archive (S3) and convert it directly into the target object.
 
