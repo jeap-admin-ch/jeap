@@ -29,6 +29,12 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
   dependency configuration. This library provides a centralized system for automatically managing and documenting the 
   application architecture inventory.
 
+- **[jeap-audit](https://github.com/jeap-admin-ch/jeap-audit)**
+  This library simplifies the process of creating and dispatching audit records by offering a fluent builder API
+  for the CreateAuditRecordCommand, ensuring consistent audit record structure across all jEAP-based services.
+  The library supports reliable audit record delivery through integration with the messaging-outbox pattern,
+  guaranteeing that audit commands are persistently stored and eventually delivered even in the face of system failures.
+
 - **[jeap-bptest-orchestrator](https://github.com/jeap-admin-ch/jeap-bptest-orchestrator)**
   Service providing an orchestrator for business process tests
 
