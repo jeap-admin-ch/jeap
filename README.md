@@ -35,6 +35,10 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
 - **[jeap-bptestagent-api](https://github.com/jeap-admin-ch/jeap-bptestagent-api)**
   TestAgent API for Business Process Tests
 
+- **[jeap-cli](https://github.com/jeap-admin-ch/jeap-cli)**
+  A command-line interface (CLI) tool for interacting with source code repositories using jEAP. Automates tasks such 
+  as updating dependencies and migrating to new Java or Spring Boot versions.
+
 - **[jeap-crypto](https://github.com/jeap-admin-ch/jeap-crypto)**
   Provides utilities for client-side encryption of data-at-rest.
 
