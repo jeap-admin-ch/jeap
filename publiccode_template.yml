@@ -11,6 +11,9 @@ categories:
   - application-development
 developmentStatus: stable
 softwareType: library
+organisation:
+  uri: https://ld.admin.ch/office/V.1.7
+  name: Federal Office of Information Technology, Systems and Telecommunication
 description:
   en:
     localisedName: TODO_repoName
