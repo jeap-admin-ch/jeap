@@ -59,6 +59,9 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
   Error Handling Service supports error handling patterns for errors, i.e. retry for temporary issues,
   persistence and retry/handling for permanent errors.
 
+- **[jeap-governance-service](https://github.com/jeap-admin-ch/jeap-governance-service)**
+  A jEAP service and library which provides a quick overview of system and service compliance with defined policies.
+
 - **[jeap-initializer](https://github.com/jeap-admin-ch/jeap-initializer)**
   This library enables generating ready-to-use codebases for bootstrapping projects. It creates code based on existing,
   working and tested project templates hosted in Git repositories.
