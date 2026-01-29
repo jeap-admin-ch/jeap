@@ -25,9 +25,9 @@ This repository is Open Source Software licensed under the [Apache License 2.0](
 Here is a list of all the repositories in the jEAP umbrella, along with a brief description of their purpose:
 
 - **[jeap-archrepo-service](https://github.com/jeap-admin-ch/jeap-archrepo-service)**
-  The `jeap-archrepo-service` is a service template library designed to be integrated into applications through simple 
-  dependency configuration. This library provides a centralized system for automatically managing and documenting the 
-  application architecture inventory.
+  Service template which provides a centralized system for automatically managing and documenting the 
+  application architecture inventory. A service instance can be created by depending on this template, then adding 
+  specific configuration.
 
 - **[jeap-audit](https://github.com/jeap-admin-ch/jeap-audit)**
   This library simplifies the process of creating and dispatching audit records by offering a fluent builder API
@@ -53,14 +53,18 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
   documenting DB schema definitions and creating data catalogs.
 
 - **[jeap-deploymentlog-service](https://github.com/jeap-admin-ch/jeap-deploymentlog-service)**
-  Service to trace the deployments of microservice on stages
+  Service template to trace the deployments of microservice on stages. A service instance can be created by depending on 
+  this template, then adding specific configuration.
 
 - **[jeap-error-handling](https://github.com/jeap-admin-ch/jeap-error-handling)**
-  Error Handling Service supports error handling patterns for errors, i.e. retry for temporary issues,
-  persistence and retry/handling for permanent errors.
+  Service template to support error handling patterns for errors, i.e. retry for temporary issues,
+  persistence and retry/handling for permanent errors. A service instance can be created by depending on this template, 
+  then adding specific configuration.
 
 - **[jeap-governance-service](https://github.com/jeap-admin-ch/jeap-governance-service)**
-  A jEAP service and library which provides a quick overview of system and service compliance with defined policies.
+  Service template to provide a quick overview of system and service compliance with defined policies. A service 
+  instance can be created by depending on this template,then adding specific configuration and extending it with plugin 
+  implementations.
 
 - **[jeap-initializer](https://github.com/jeap-admin-ch/jeap-initializer)**
   This library enables generating ready-to-use codebases for bootstrapping projects. It creates code based on existing,
@@ -76,11 +80,13 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
   generate a markdown file listing third-party dependency licenses.
 
 - **[jeap-message-contract-service](https://github.com/jeap-admin-ch/jeap-message-contract-service)**
-  Service to manage messaging contracts used in compatibility checks upon deployment of a service,
-  similar to consumer-driven contract testing.
+  Service template to manage messaging contracts used in compatibility checks upon deployment of a service,
+  similar to consumer-driven contract testing. A service instance can be created by depending on this template, then 
+  adding specific configuration.
 
 - **[jeap-message-exchange-service](https://github.com/jeap-admin-ch/jeap-message-exchange-service)**
-  Service for exchanging incoming and outgoing messages with external parties, using an HTTP-based messagebox API.
+  Service template for exchanging incoming and outgoing messages with external parties, using an HTTP-based messagebox API.
+  A service instance can be created by depending on this template, then adding specific configuration.
 
 - **[jeap-message-type-registry](https://github.com/jeap-admin-ch/jeap-message-type-registry)**
   Defines standardized message types used by jEAP libraries and products.
@@ -90,34 +96,36 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
   different Kafka authenthication mechanism, and implements the Transactional Outbox pattern in a re-usable library.
 
 - **[jeap-messaging-outbox](https://github.com/jeap-admin-ch/jeap-messaging-outbox)**
-  jEAP Messaging outbox is an implementation of the [Transactional outbox pattern](https://microservices.io/patterns/data/transactional-outbox.html)
+  This library is an implementation of the [Transactional outbox pattern](https://microservices.io/patterns/data/transactional-outbox.html)
 
 - **[jeap-messaging-sequential-inbox](https://github.com/jeap-admin-ch/jeap-messaging-sequential-inbox)**
-  The jEAP Sequential Inbox Library allows to configure the order in which messages will be processed in a microservice, which may be different from the order in which the messages were received.
+  This library allows to configure the order in which messages will be processed in a microservice, which may be 
+  different from the order in which the messages were received.
 
 - **[jeap-oauth-mock-server](https://github.com/jeap-admin-ch/jeap-oauth-mock-server)**
-  The jEAP OAuth Mock Server provides a configurable OAuth2/OpenID-Connect server for local development and testing.
+  Service which provides a configurable OAuth2/OpenID-Connect server for local development and testing.
 
 - **[jeap-process-archive-reader](https://github.com/jeap-admin-ch/jeap-process-archive-reader)**
   This library can be used to retrieve an object from the process archive (S3) and convert it directly into the target object.
 
 - **[jeap-process-archive-service](https://github.com/jeap-admin-ch/jeap-process-archive-service)**
-  The jEAP Process Archive Service (PAS) is a service template library that provides a way to archive artifacts pertaining
-  to a process. Such artifacts might be required to be archived for audit purposes or due to business requirements.
+  Service template that provides a way to archive artifacts pertaining to a process. Such artifacts might be required to be 
+  archived for audit purposes or due to business requirements. A service instance can be created by depending on this 
+  template,then adding specific configuration and extending it with plugin implementations.
 
 - **[jeap-archive-type-registry](https://github.com/jeap-admin-ch/jeap-archive-type-registry)**
   Archive type registry used internally by jEAP libraries and products. Contains for example the definition of the
   Process Snapshot archive type.
 
 - **[jeap-process-context-service](https://github.com/jeap-admin-ch/jeap-process-context-service)**
-  The jEAP Process Context Service (PCS) is a service template library that provides a way to store and retrieve context 
-  information pertaining to a process. This context information might be required to be stored for audit purposes or due
-  to business requirements.
+  Service template that provides a way to store and retrieve context information pertaining to a process. This context 
+  information might be required to be stored for audit purposes or due to business requirements. A service instance can 
+  be created by depending on this template,then adding specific configuration and extending it with plugin implementations.
 
 - **[jeap-server-sent-events](https://github.com/jeap-admin-ch/jeap-server-sent-events)**
-  jEAP server sent events is a library that provides a way to send real-time events from the server to the client using
-  Server-Sent Events (SSE). It allows for efficient and scalable communication between the server and the client, enabling    
-  real-time updates and notifications.
+  This library provides a way to send real-time events from the server to the client using Server-Sent Events (SSE). 
+  It allows for efficient and scalable communication between the server and the client, enabling real-time updates 
+  and notifications.
 
 - **[jeap-spring-boot-config-aws-starter](https://github.com/jeap-admin-ch/jeap-spring-boot-config-aws-starter)**
   Integrates with AWS AppConfig and AWS Secrets Manager.
@@ -136,11 +144,11 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
   for a full list of the provided starters.
 
 - **[jeap-spring-boot-tls-starter](https://github.com/jeap-admin-ch/jeap-spring-boot-tls-starter)**
-  Activates TLS on the Spring Boot webserver, and provides the option to generate a certificate at startup (suitable for 
-  encrytion beetn AWS ALB and the Spring Boot app).
+  This library enables TLS on the Spring Boot web server and optionally generates a certificate at startup, suitable 
+  for encrypted communication between an AWS ALB and the Spring Boot application.
 
 - **[jeap-spring-boot-roles-anywhere-starter](https://github.com/jeap-admin-ch/jeap-spring-boot-roles-anywhere-starter)**
-  Java library for seamless integration with AWS IAM Roles Anywhere in Spring Boot. 
+  This library provides seamless integration with AWS IAM Roles Anywhere in Spring Boot. 
   Enables secure, certificate-based credentials without external helper tools.
 
 - **[jeap-test-message-type-registry](https://github.com/jeap-admin-ch/jeap-test-message-type-registry)**
