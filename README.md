@@ -122,6 +122,10 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
   information might be required to be stored for audit purposes or due to business requirements. A service instance can 
   be created by depending on this template,then adding specific configuration and extending it with plugin implementations.
 
+- **[jeap-rewrite-recipes](https://github.com/jeap-admin-ch/jeap-rewrite-recipes)**
+  Recipes for migrating apps based on the jEAP Blueprint Microservices. Used by the jEAP CLI to
+  automated Spring Boot and Spring Framework version migrations, as well as other code refactorings.
+
 - **[jeap-server-sent-events](https://github.com/jeap-admin-ch/jeap-server-sent-events)**
   This library provides a way to send real-time events from the server to the client using Server-Sent Events (SSE). 
   It allows for efficient and scalable communication between the server and the client, enabling real-time updates 
