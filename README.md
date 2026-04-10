@@ -105,6 +105,9 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
 - **[jeap-oauth-mock-server](https://github.com/jeap-admin-ch/jeap-oauth-mock-server)**
   Service which provides a configurable OAuth2/OpenID-Connect server for local development and testing.
 
+- **[jeap-opensearch-index-writer-service](https://github.com/jeap-admin-ch/jeap-opensearch-index-writer-service)**
+  Service template to provide event-driven indexing of search items into OpenSearch.
+
 - **[jeap-process-archive-reader](https://github.com/jeap-admin-ch/jeap-process-archive-reader)**
   This library can be used to retrieve an object from the process archive (S3) and convert it directly into the target object.
 
