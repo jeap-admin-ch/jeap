@@ -140,6 +140,9 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
 - **[jeap-spring-boot-db-migration-starter](https://github.com/jeap-admin-ch/jeap-spring-boot-db-migration-starter)**
   Spring Boot starter for running DB migrations as separate jobs (i.e. on k8s).
 
+- **[jeap-spring-boot-jwe-starter](https://github.com/jeap-admin-ch/jeap-spring-boot-jwe-starter)**
+  A Spring Boot starter providing transparent JSON Web Encryption for HTTP APIs
+
 - **[jeap-spring-boot-parent](https://github.com/jeap-admin-ch/jeap-spring-boot-parent)**
   A Maven parent inheriting from `jeap-internal-spring-boot-parent`. Its main purpose is managing the versions of jEAP
   dependencies such as jEAP Starters, jEAP Messaging and jEAP Crypto. This is the Maven parent applications based on jEAP
