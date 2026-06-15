@@ -105,8 +105,27 @@ Here is a list of all the repositories in the jEAP umbrella, along with a brief 
 - **[jeap-oauth-mock-server](https://github.com/jeap-admin-ch/jeap-oauth-mock-server)**
   Service which provides a configurable OAuth2/OpenID-Connect server for local development and testing.
 
+- **[jeap-opensearch-client-starter](https://github.com/jeap-admin-ch/jeap-opensearch-client-starter)**
+  Spring Boot starter for type-safe, authorization-aware read access to OpenSearch indices in jEAP applications.
+  Auto-configures an OpenSearchClient and a SearchItemClient for querying indices defined by IndexType descriptors,
+  with support for both Apache HTTP and AWS-signed transports and role-based access control.
+
+- **[jeap-opensearch-index-type](https://github.com/jeap-admin-ch/jeap-opensearch-index-type)**
+  Core domain model defining the IndexType and SearchItem contracts shared by jEAP OpenSearch index writers,
+  search clients, and the index type registry Maven plugin. Zero infrastructure dependencies — pure domain model.
+
+- **[jeap-opensearch-index-type-registry-maven-plugin](https://github.com/jeap-admin-ch/jeap-opensearch-index-type-registry-maven-plugin)**
+  Maven plugin for managing an OpenSearch Index Type Registry. Validates registry structure and mapping schemas,
+  enforces immutability of existing mappings, and generates per-index-type Maven artifacts containing typed Java
+  records, IndexType singletons, and mapping files.
+
 - **[jeap-opensearch-index-writer-service](https://github.com/jeap-admin-ch/jeap-opensearch-index-writer-service)**
   Service template to provide event-driven indexing of search items into OpenSearch.
+
+- **[jeap-opensearch-searchitem-api](https://github.com/jeap-admin-ch/jeap-opensearch-searchitem-api)**
+  Spring MVC REST API and model for exposing indexed search items from OpenSearch in jEAP applications.
+  Provides the SearchItemContainer model and a ready-to-use SearchItemsController endpoint, with a
+  SearchItemsProvider interface for application-specific item lookup.
 
 - **[jeap-process-archive-reader](https://github.com/jeap-admin-ch/jeap-process-archive-reader)**
   This library can be used to retrieve an object from the process archive (S3) and convert it directly into the target object.
