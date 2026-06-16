@@ -1,0 +1,14 @@
+# Curated top-level sidebar order for the jEAP documentation site.
+#
+# One entry per line, in the order entries should appear in the sidebar. Lines
+# starting with '#' and blank lines are ignored. Each entry names a top-level
+# file or folder under docs/; its line number becomes the sidebar position.
+# An optional '| Label' sets a folder's sidebar category label.
+#
+# This manifest is consumed at publish time by scripts/prepare-docs.sh in the
+# jeap-admin-ch.github.io site repo, so the sidebar order lives here with the
+# content: to add a section, add its file/folder and a line below — no change
+# is needed in the site repo. (Docusaurus ignores this '_'-prefixed file.)
+what-is-jeap
+using-jeap
+building-blocks | App Building Blocks
