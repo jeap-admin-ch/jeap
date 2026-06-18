@@ -1,0 +1,85 @@
+# _categories — route auto-discovered repo doc sections into the App Building
+# Blocks subcategories, and define those subcategories' sidebar order + labels.
+#
+# This manifest lives WITH the content (like _order); it is consumed at publish
+# time by scripts/prepare-docs.sh in the jeap-admin-ch.github.io site repo, so
+# bucketing a repo needs no change in the site repo. (Docusaurus ignores this
+# '_'-prefixed file as a route.)
+#
+# Two kinds of lines (blank lines and '#' comments are ignored):
+#
+#   Category line   <folder> | <Label>
+#                   Defines an App Building Blocks subcategory. The order of the
+#                   category lines is the sidebar order of the subcategories.
+#                   <folder> is the folder under docs/building-blocks/.
+#
+#   Routing line    <repo> = <folder-or-alias>
+#                   Assigns an auto-discovered repo's doc section to a category.
+#
+# Aliases accepted on routing lines:
+#   library -> libraries            starter    -> spring-boot-starters
+#   tool    -> tooling              reusablems -> reusable-microservices
+#
+# Defaults for any auto-discovered repo without a routing line:
+#   - repo name contains "starter"  -> spring-boot-starters
+#   - otherwise                     -> libraries
+#
+# So an uncategorized repo lands under Libraries (where it can be triaged), and
+# anything named *starter* lands under Spring Boot Starters automatically.
+#
+# Every documented building block is pre-routed below, so each repo lands in the
+# right place as its docs come online one by one. Add new building blocks here.
+
+# Subcategories, in sidebar order:
+libraries              | Libraries
+spring-boot-starters   | Spring Boot Starters
+reusable-microservices | Reusable Microservices
+tooling                | Tooling & Registries
+
+# --- Libraries -------------------------------------------------------------
+jeap-audit                                       = library
+jeap-crypto                                      = library
+jeap-db-schema-publisher                         = library
+jeap-initializer                                 = library
+jeap-messaging                                   = library
+jeap-messaging-outbox                            = library
+jeap-messaging-sequential-inbox                  = library
+jeap-opensearch-index-type                       = library
+jeap-opensearch-searchitem-api                   = library
+jeap-process-archive-reader                      = library
+jeap-server-sent-events                          = library
+
+# --- Spring Boot Starters and Parents ---------------------------------------
+jeap-spring-boot-parent                          = starter
+jeap-internal-spring-boot-parent                 = starter
+jeap-spring-boot-starters                        = starter
+jeap-spring-boot-config-aws-starter              = starter
+jeap-spring-boot-db-migration-starter            = starter
+jeap-spring-boot-tls-starter                     = starter
+jeap-spring-boot-roles-anywhere-starter          = starter
+jeap-spring-boot-jwe-starter                     = starter
+jeap-opensearch-client-starter                   = starter
+
+# --- Reusable Microservices ------------------------------------------------
+jeap-error-handling                              = reusablems
+jeap-process-context-service                     = reusablems
+jeap-process-archive-service                     = reusablems
+jeap-message-exchange-service                    = reusablems
+jeap-message-contract-service                    = reusablems
+jeap-archrepo-service                            = reusablems
+jeap-deploymentlog-service                       = reusablems
+jeap-governance-service                          = reusablems
+jeap-opensearch-index-writer-service             = reusablems
+jeap-oauth-mock-server                           = reusablems
+jeap-bptest-orchestrator                         = reusablems
+jeap-bptestagent-api                             = reusablems
+
+# --- Tooling & Registries --------------------------------------------------
+jeap-cli                                         = tool
+jeap-truststore-maven-plugin                     = tool
+jeap-opensearch-index-type-registry-maven-plugin = tool
+jeap-rewrite-recipes                             = tool
+jeap-license-template                            = tool
+jeap-message-type-registry                       = tool
+jeap-archive-type-registry                       = tool
+jeap-test-message-type-registry                  = tool

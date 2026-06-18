@@ -2,8 +2,8 @@
 
 General-purpose jEAP libraries you add as dependencies to solve a specific concern inside
 your own Spring Boot application. For the Maven parents and auto-configuring starters see
-[Spring Boot Starters](spring-boot-starters.md); for deployable service templates see
-[Reusable Microservices](reusable-microservices.md).
+[Spring Boot Starters](../spring-boot-starters/index.md); for deployable service templates see
+[Reusable Microservices](../reusable-microservices/index.md).
 
 | Library | Purpose | Source |
 |---|---|---|
@@ -22,7 +22,7 @@ your own Spring Boot application. For the Maven parents and auto-configuring sta
 ## Related
 
 - The OpenSearch building blocks span categories: the read-access
-  [jeap-opensearch-client-starter](spring-boot-starters.md), the event-driven
-  [jeap-opensearch-index-writer-service](reusable-microservices.md), and the
-  [index-type-registry Maven plugin](tooling.md).
-- [App Building Blocks](index.md) — overview of all categories.
+  [jeap-opensearch-client-starter](../spring-boot-starters/index.md), the event-driven
+  [jeap-opensearch-index-writer-service](../reusable-microservices/index.md), and the
+  [index-type-registry Maven plugin](../tooling/index.md).
+- [App Building Blocks](../index.md) — overview of all categories.
