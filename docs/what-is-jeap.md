@@ -64,14 +64,21 @@ is actually spent:
 | Ordered message processing                                    | jeap-messaging-sequential-inbox                                                           |
 | Audit records                                                 | jeap-audit                                                                                |
 | Client-side encryption of data-at-rest                        | jeap-crypto                                                                               |
+| Transparent JWE encryption of HTTP API payloads               | jeap-spring-boot-jwe-starter                                                              |
+| Certificate-based AWS credentials (IAM Roles Anywhere)        | jeap-spring-boot-roles-anywhere-starter                                                   |
 | Real-time server→client events (SSE)                          | jeap-server-sent-events                                                                   |
 | Search / OpenSearch indexing & querying                       | jeap-opensearch-* building blocks                                                         |
 | Application setup, logging, monitoring, security, persistence | [Spring Boot Starters](building-blocks/spring-boot-starters.md)                           |
 | Secrets, DB migration & pooling, object storage, TLS          | Spring Boot Starters                                                                      |
 | Error handling of faulty messages                             | [Reusable Microservices](building-blocks/reusable-microservices.md) — jeap-error-handling |
+| Message exchange with external parties (HTTP messagebox)      | jeap-message-exchange-service                                                             |
 | Process context & process archive                             | jeap-process-context-service, jeap-process-archive-service                                |
 | Architecture inventory & deployment logging                   | jeap-archrepo-service, jeap-deploymentlog-service                                         |
+| Policy compliance & governance checks                         | jeap-governance-service                                                                   |
+| DB schema publishing to the architecture repository           | jeap-db-schema-publisher                                                                  |
 | Message contracts & business-process tests                    | jeap-message-contract-service, jeap-bptest-orchestrator                                   |
+| OAuth2/OIDC mock for local development & testing              | jeap-oauth-mock-server                                                                    |
+| Project bootstrapping & codebase generation                   | jeap-initializer                                                                          |
 | Developer tooling, registries, Maven plugins                  | [Tooling & Registries](building-blocks/tooling.md)                                        |
 
 ```mermaid
