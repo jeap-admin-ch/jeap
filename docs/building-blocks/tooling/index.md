@@ -36,5 +36,5 @@ products.
 
 ## Related
 
-- [App Building Blocks](index.md) — overview of all categories.
-- [Using jEAP](../using-jeap.md) — the CLI and recipes support dependency and version migrations.
+- [App Building Blocks](../index.md) — overview of all categories.
+- [Using jEAP](../../using-jeap.md) — the CLI and recipes support dependency and version migrations.

@@ -2,7 +2,7 @@
 
 The jEAP Maven **parents** and the auto-configuring **Spring Boot starters** that provide
 application setup and cross-functional defaults. For how the parents fit together and the
-dependency-management model, see [Using jEAP](../using-jeap.md).
+dependency-management model, see [Using jEAP](../../using-jeap.md).
 
 ## Maven parents
 
@@ -44,5 +44,5 @@ for the authoritative list; it currently includes:
 
 ## Related
 
-- [Using jEAP](../using-jeap.md) — parent hierarchy and dependency management.
-- [App Building Blocks](index.md) — overview of all categories.
+- [Using jEAP](../../using-jeap.md) — parent hierarchy and dependency management.
+- [App Building Blocks](../index.md) — overview of all categories.
