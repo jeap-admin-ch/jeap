@@ -25,6 +25,8 @@ Start here to understand and use jEAP:
 
 The building-block pages list every jEAP repository with a short description and a link to its source on GitHub.
 
+Contributing documentation? See [Documenting jEAP](docs/documenting-jeap.md) - how jEAP docs are written, structured, and published to the documentation site.
+
 ## License
 
 This repository is Open Source Software licensed under the [Apache License 2.0](./LICENSE).
