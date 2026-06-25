@@ -22,6 +22,7 @@ CLI, Maven plugins, migration recipes, and the message/archive type registries.
 |---|---|---|
 | jeap-rewrite-recipes | OpenRewrite recipes for migrating apps based on the jEAP Blueprint Microservices. Used by the [jEAP CLI](https://jeap-admin-ch.github.io/docs/jeap-cli/) to automate Spring Boot / Spring Framework version migrations and other refactorings. | [GitHub](https://github.com/jeap-admin-ch/jeap-rewrite-recipes) |
 | jeap-license-template | Template for the Maven License Plugin to generate a Markdown file listing third-party dependency licenses. | [GitHub](https://github.com/jeap-admin-ch/jeap-license-template) |
+| jeap-devops-tools | Supporting tools and documentation for developing, maintaining and operating jEAP-based applications. | [GitHub](https://github.com/jeap-admin-ch/jeap-devops-tools) |
 
 ## Message & archive type registries
 
