@@ -17,6 +17,7 @@ your own Spring Boot application. For the Maven parents and auto-configuring sta
 | jeap-opensearch-index-type | Core domain model defining the `IndexType` and `SearchItem` contracts shared by the jEAP OpenSearch building blocks. Pure domain model, zero infrastructure dependencies. | [GitHub](https://github.com/jeap-admin-ch/jeap-opensearch-index-type) |
 | jeap-opensearch-searchitem-api | Spring MVC REST API and model exposing indexed search items from OpenSearch (`SearchItemContainer`, `SearchItemsController`, `SearchItemsProvider`). | [GitHub](https://github.com/jeap-admin-ch/jeap-opensearch-searchitem-api) |
 | jeap-process-archive-reader | Retrieve an object from the process archive (S3) and convert it directly into the target object. | [GitHub](https://github.com/jeap-admin-ch/jeap-process-archive-reader) |
+| jeap-reaction-observer | Detects and tracks how a service reacts to incoming events and commands: hooks into jEAP Messaging to record, per consumed message, which messages the service produces in response, and publishes the observed reactions as Kafka events for automated system-behaviour documentation. | [GitHub](https://github.com/jeap-admin-ch/jeap-reaction-observer) |
 | jeap-server-sent-events | Send real-time events from server to client using Server-Sent Events (SSE). | [GitHub](https://github.com/jeap-admin-ch/jeap-server-sent-events) |
 
 ## Related
