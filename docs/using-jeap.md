@@ -23,8 +23,9 @@ flowchart TD
   pins the Spring Boot version, inherits Spring Boot's dependency management for common
   third-party dependencies, and pre-configures common Maven plugins. It is the parent of the
   jEAP libraries themselves and is not meant to be used directly by applications. Keeping the
-  libraries on a separate parent lets `jeap-spring-boot-parent` manage their versions without
-  introducing a cyclic dependency.
+  libraries on a separate parent lets
+  [`jeap-spring-boot-parent`](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-parent/)
+  manage their versions without introducing a cyclic dependency.
 - **[jeap-spring-boot-parent](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-parent/)**
   inherits from the internal parent and manages the versions of the jEAP dependencies
   (starters, messaging, crypto, …). **This is the parent that applications based on jEAP
@@ -32,10 +33,12 @@ flowchart TD
 
 ## Dependency management
 
-Because `jeap-spring-boot-parent` carries BOM-style dependency management, an application
+Because [`jeap-spring-boot-parent`](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-parent/)
+carries BOM-style dependency management, an application
 declares jEAP dependencies **without a version** — the parent aligns all jEAP and Spring
 versions to a tested, mutually compatible set. Do not pin individual jEAP library versions
-in your application; upgrade by bumping the `jeap-spring-boot-parent` version instead.
+in your application; upgrade by bumping the
+[`jeap-spring-boot-parent`](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-parent/) version instead.
 
 ```xml
 <parent>
@@ -46,8 +49,9 @@ in your application; upgrade by bumping the `jeap-spring-boot-parent` version in
 ```
 
 The current jEAP parent version and the resulting managed versions of the jEAP libraries,
-Spring dependencies and selected third-party dependencies are published in a generated
-**version overview** — refer to it rather than hard-coding versions here.
+Spring dependencies and selected third-party dependencies are summarized in the parent's
+**[dependency management](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-parent/dependency-management)**
+documentation — refer to it rather than hard-coding versions here.
 
 ## Module dependency graph
 
@@ -106,10 +110,13 @@ flowchart TD
 ```
 
 The internal parent is the parent of all jEAP libraries and pins the Spring (and other
-third-party) versions; `jeap-spring-boot-parent` inherits from it and re-publishes those
+third-party) versions;
+[`jeap-spring-boot-parent`](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-parent/)
+inherits from it and re-publishes those
 libraries as managed versions for applications. jEAP product libraries (e.g.
-`jeap-error-handling`) also build on `jeap-spring-boot-parent` and act as an intermediate
-parent for applications based on them.
+`jeap-error-handling`) also build on
+[`jeap-spring-boot-parent`](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-parent/)
+and act as an intermediate parent for applications based on them.
 
 ## Building from source
 
