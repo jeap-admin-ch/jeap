@@ -13,8 +13,8 @@ CLI, Maven plugins, migration recipes, and the message/archive type registries.
 
 | Plugin | Purpose | Source |
 |---|---|---|
-| jeap-truststore-maven-plugin | Generates Java trust stores, simplifying certificate management. | [GitHub](https://github.com/jeap-admin-ch/jeap-truststore-maven-plugin) |
-| jeap-opensearch-index-type-registry-maven-plugin | Manages an OpenSearch Index Type Registry: validates registry structure and mapping schemas, enforces immutability of existing mappings, and generates per-index-type artifacts (typed Java records, `IndexType` singletons, mapping files). | [GitHub](https://github.com/jeap-admin-ch/jeap-opensearch-index-type-registry-maven-plugin) |
+| [jeap-truststore-maven-plugin](https://jeap-admin-ch.github.io/docs/jeap-truststore-maven-plugin/) | Generates Java trust stores, simplifying certificate management. | [GitHub](https://github.com/jeap-admin-ch/jeap-truststore-maven-plugin) |
+| [jeap-opensearch-index-type-registry-maven-plugin](https://jeap-admin-ch.github.io/docs/jeap-opensearch-index-type-registry-maven-plugin/) | Manages an OpenSearch Index Type Registry: validates registry structure and mapping schemas, enforces immutability of existing mappings, and generates per-index-type artifacts (typed Java records, `IndexType` singletons, mapping files). | [GitHub](https://github.com/jeap-admin-ch/jeap-opensearch-index-type-registry-maven-plugin) |
 
 ## Auxiliary
 
@@ -30,7 +30,7 @@ products.
 
 | Registry | Purpose | Source |
 |---|---|---|
-| jeap-message-type-registry | Defines standardized message types used by jEAP libraries and products. | [GitHub](https://github.com/jeap-admin-ch/jeap-message-type-registry) |
+| [jeap-message-type-registry](https://jeap-admin-ch.github.io/docs/jeap-message-type-registry/) | Defines standardized message types used by jEAP libraries and products. | [GitHub](https://github.com/jeap-admin-ch/jeap-message-type-registry) |
 | jeap-archive-type-registry | Archive type registry used internally (e.g. the Process Snapshot archive type definition). | [GitHub](https://github.com/jeap-admin-ch/jeap-archive-type-registry) |
 | jeap-test-message-type-registry | Message type registry used internally by jEAP for testing purposes. | [GitHub](https://github.com/jeap-admin-ch/jeap-test-message-type-registry) |
 

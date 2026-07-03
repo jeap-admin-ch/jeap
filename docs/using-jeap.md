@@ -19,13 +19,13 @@ flowchart TD
   Parent -->|parent| App["Your application's pom.xml"]
 ```
 
-- **[jeap-internal-spring-boot-parent](https://github.com/jeap-admin-ch/jeap-internal-spring-boot-parent)**
+- **[jeap-internal-spring-boot-parent](https://jeap-admin-ch.github.io/docs/jeap-internal-spring-boot-parent/)**
   pins the Spring Boot version, inherits Spring Boot's dependency management for common
   third-party dependencies, and pre-configures common Maven plugins. It is the parent of the
   jEAP libraries themselves and is not meant to be used directly by applications. Keeping the
   libraries on a separate parent lets `jeap-spring-boot-parent` manage their versions without
   introducing a cyclic dependency.
-- **[jeap-spring-boot-parent](https://github.com/jeap-admin-ch/jeap-spring-boot-parent)**
+- **[jeap-spring-boot-parent](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-parent/)**
   inherits from the internal parent and manages the versions of the jEAP dependencies
   (starters, messaging, crypto, …). **This is the parent that applications based on jEAP
   should inherit from.**

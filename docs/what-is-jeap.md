@@ -25,8 +25,10 @@ reusable way, so that application teams can focus on their business logic.
   for running on Kubernetes/OpenShift and AWS — configuration management, secrets
   management, object storage, TLS, and more.
 - **First-class support for event-driven architecture** EDA a first-class, well-supported
-  capability in jEAP: asynchronous messaging is built on Apache Kafka and Avro, with reliable
-  delivery via the Transactional Outbox pattern and ordered consumption using the jEAP Sequential Inbox.
+  capability in jEAP: [asynchronous messaging](https://jeap-admin-ch.github.io/docs/jeap-messaging/) is
+  built on Apache Kafka and Avro, with reliable delivery via the
+  [Transactional Outbox pattern](https://jeap-admin-ch.github.io/docs/jeap-messaging-outbox/) and ordered
+  consumption using the [jEAP Sequential Inbox](https://jeap-admin-ch.github.io/docs/jeap-messaging-sequential-inbox/).
 
 ## Value proposition
 
@@ -59,23 +61,23 @@ is actually spent:
 
 | Concern                                                       | Provided by                                                                               |
 |---------------------------------------------------------------|-------------------------------------------------------------------------------------------|
-| Asynchronous messaging (Kafka/Avro)                           | [Libraries](building-blocks/libraries/index.md) — jeap-messaging                                |
-| Reliable message delivery (Transactional Outbox)              | jeap-messaging-outbox                                                                     |
-| Ordered message processing                                    | jeap-messaging-sequential-inbox                                                           |
-| Audit records                                                 | jeap-audit                                                                                |
-| Client-side encryption of data-at-rest                        | jeap-crypto                                                                               |
-| Transparent JWE encryption of HTTP API payloads               | jeap-spring-boot-jwe-starter                                                              |
-| Certificate-based AWS credentials (IAM Roles Anywhere)        | jeap-spring-boot-roles-anywhere-starter                                                   |
-| Real-time server→client events (SSE)                          | jeap-server-sent-events                                                                   |
-| Search / OpenSearch indexing & querying                       | jeap-opensearch-* building blocks                                                         |
+| Asynchronous messaging (Kafka/Avro)                           | [Libraries](building-blocks/libraries/index.md) — [jeap-messaging](https://jeap-admin-ch.github.io/docs/jeap-messaging/) |
+| Reliable message delivery (Transactional Outbox)              | [jeap-messaging-outbox](https://jeap-admin-ch.github.io/docs/jeap-messaging-outbox/)      |
+| Ordered message processing                                    | [jeap-messaging-sequential-inbox](https://jeap-admin-ch.github.io/docs/jeap-messaging-sequential-inbox/) |
+| Audit records                                                 | [jeap-audit](https://jeap-admin-ch.github.io/docs/jeap-audit/)                            |
+| Client-side encryption of data-at-rest                        | [jeap-crypto](https://jeap-admin-ch.github.io/docs/jeap-crypto/)                          |
+| Transparent JWE encryption of HTTP API payloads               | [jeap-spring-boot-jwe-starter](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-jwe-starter/) |
+| Certificate-based AWS credentials (IAM Roles Anywhere)        | [jeap-spring-boot-roles-anywhere-starter](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-roles-anywhere-starter/) |
+| Real-time server→client events (SSE)                          | [jeap-server-sent-events](https://jeap-admin-ch.github.io/docs/jeap-server-sent-events/)  |
+| Search / OpenSearch indexing & querying                       | [jeap-opensearch-* building blocks](building-blocks/libraries/index.md)                   |
 | Application setup, logging, monitoring, security, persistence | [Spring Boot Starters](building-blocks/spring-boot-starters/index.md)                           |
 | Secrets, DB migration & pooling, object storage, TLS          | Spring Boot Starters                                                                      |
 | Error handling of faulty messages                             | [Reusable Microservices](building-blocks/reusable-microservices/index.md) — jeap-error-handling |
 | Message exchange with external parties (HTTP messagebox)      | jeap-message-exchange-service                                                             |
-| Process context & process archive                             | jeap-process-context-service, jeap-process-archive-service                                |
+| Process context & process archive                             | jeap-process-context-service, [jeap-process-archive-service](https://jeap-admin-ch.github.io/docs/jeap-process-archive-service/) |
 | Architecture inventory & deployment logging                   | jeap-archrepo-service, jeap-deploymentlog-service                                         |
 | Policy compliance & governance checks                         | jeap-governance-service                                                                   |
-| DB schema publishing to the architecture repository           | jeap-db-schema-publisher                                                                  |
+| DB schema publishing to the architecture repository           | [jeap-db-schema-publisher](https://jeap-admin-ch.github.io/docs/jeap-db-schema-publisher/) |
 | Message contracts & business-process tests                    | jeap-message-contract-service, jeap-bptest-orchestrator                                   |
 | OAuth2/OIDC mock for local development & testing              | jeap-oauth-mock-server                                                                    |
 | Project bootstrapping & codebase generation                   | jeap-initializer                                                                          |
