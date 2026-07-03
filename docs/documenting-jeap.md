@@ -122,8 +122,11 @@ docs/
   resolve correctly on GitHub and, because the publish step preserves the directory
   structure 1:1, on the doc site too.
 - **To another repository's docs: use the public site URL**
-  (`https://jeap-admin-ch.github.io/<repo>/<page>`) or the public GitHub URL — never
-  a relative path that escapes the current repository.
+  (`https://jeap-admin-ch.github.io/docs/<repo>/` for the repo's section,
+  `https://jeap-admin-ch.github.io/docs/<repo>/<page>` for a specific page) or the
+  public GitHub URL — never a relative path that escapes the current repository.
+  The publish step folds these into site-internal links, so they are validated by
+  the site build and follow the section if the repo is re-categorized.
 - A folder's landing page is its **`index.md`** — link to the folder and that page is
   shown. See [Landing pages: `index.md`](#landing-pages-indexmd).
 
