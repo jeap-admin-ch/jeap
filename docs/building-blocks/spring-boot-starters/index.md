@@ -20,7 +20,7 @@ for the authoritative list; it currently includes:
 
 | Starter | Purpose |
 |---|---|
-| [jeap-spring-boot-application-starter](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-starters/jeap-spring-boot-application-starter) | Frontend route handling and DB pooling defaults; includes the logging starter. |
+| [jeap-spring-boot-application-starter](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-starters/jeap-spring-boot-application-starter) | Frontend route handling and DB pooling defaults; includes the [logging starter](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-starters/jeap-spring-boot-logging-starter). |
 | [jeap-spring-boot-logging-starter](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-starters/jeap-spring-boot-logging-starter) | Structured JSON logging including tracing information. |
 | [jeap-spring-boot-monitoring-starter](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-starters/jeap-spring-boot-monitoring-starter) | Monitoring with Prometheus / Micrometer. |
 | [jeap-spring-boot-security-starter](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-starters/jeap-spring-boot-security-starter) | Secure HTTP/REST APIs using OAuth2; configuration for OAuth2 clients. |
@@ -40,7 +40,7 @@ for the authoritative list; it currently includes:
 | [jeap-spring-boot-tls-starter](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-tls-starter/) | Enables TLS on the Spring Boot web server, optionally generating a certificate at startup (suitable for AWS ALB ↔ application). | [GitHub](https://github.com/jeap-admin-ch/jeap-spring-boot-tls-starter) |
 | [jeap-spring-boot-roles-anywhere-starter](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-roles-anywhere-starter/) | Integration with AWS IAM Roles Anywhere — secure, certificate-based credentials without external helper tools. | [GitHub](https://github.com/jeap-admin-ch/jeap-spring-boot-roles-anywhere-starter) |
 | [jeap-spring-boot-jwe-starter](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-jwe-starter/) | Transparent JSON Web Encryption (JWE) for HTTP APIs. | [GitHub](https://github.com/jeap-admin-ch/jeap-spring-boot-jwe-starter) |
-| [jeap-opensearch-client-starter](https://jeap-admin-ch.github.io/docs/jeap-opensearch-client-starter/) | Type-safe, authorization-aware read access to OpenSearch indices. Auto-configures an `OpenSearchClient` and `SearchItemClient` for indices defined by `IndexType` descriptors, over Apache HTTP or AWS-signed transports with role-based access control. | [GitHub](https://github.com/jeap-admin-ch/jeap-opensearch-client-starter) |
+| [jeap-opensearch-client-starter](https://jeap-admin-ch.github.io/docs/jeap-opensearch-client-starter/) | Type-safe, authorization-aware read access to OpenSearch indices. Auto-configures an `OpenSearchClient` and `SearchItemClient` for indices defined by [`IndexType`](https://jeap-admin-ch.github.io/docs/jeap-opensearch-index-type/) descriptors, over Apache HTTP or AWS-signed transports with role-based access control. | [GitHub](https://github.com/jeap-admin-ch/jeap-opensearch-client-starter) |
 
 ## Related
 

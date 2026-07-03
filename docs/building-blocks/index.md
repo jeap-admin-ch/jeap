@@ -6,14 +6,19 @@ following categories — start here and drill down into the category that fits y
 ## Categories
 
 - **[Libraries](libraries/index.md)** — general-purpose libraries you add as
-  dependencies to solve a specific concern (messaging, audit, crypto, SSE, …).
+  dependencies to solve a specific concern
+  ([messaging](https://jeap-admin-ch.github.io/docs/jeap-messaging/),
+  [audit](https://jeap-admin-ch.github.io/docs/jeap-audit/),
+  [crypto](https://jeap-admin-ch.github.io/docs/jeap-crypto/),
+  [SSE](https://jeap-admin-ch.github.io/docs/jeap-server-sent-events/), …).
 - **[Spring Boot Starters](spring-boot-starters/index.md)** — the jEAP Maven
   parents and the autoconfiguration starters for application setup, logging, monitoring,
   security, persistence, secrets, TLS and more.
 - **[Reusable Microservices](reusable-microservices/index.md)** — ready-made
   service templates you deploy as their own application by depending on the template and
   adding configuration (error handling, process context/archive, message exchange, …).
-- **[Tooling & Registries](tooling/index.md)** — the jEAP CLI, Maven plugins,
+- **[Tooling & Registries](tooling/index.md)** — the
+  [jEAP CLI](https://jeap-admin-ch.github.io/docs/jeap-cli/), Maven plugins,
   migration recipes and the message/archive type registries.
 
 ## See also
