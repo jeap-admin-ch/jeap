@@ -90,6 +90,7 @@ docs/
     spring-boot-starters/index.md
     reusable-microservices/index.md
     tooling/index.md
+  jeap-version-overview.md        # versions of jEAP libraries, starters, and products
 ```
 
 ### Source Code Repositiories
@@ -202,3 +203,4 @@ and how to preview locally — see the site repository's
   manifests.
 - [jeap-admin-ch.github.io](https://github.com/jeap-admin-ch/jeap-admin-ch.github.io) — the site repository and full
   pipeline reference.
+- [jEAP version overview](jeap-version-overview.md) — the versions of jEAP libraries, starters, and products.
