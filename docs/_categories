@@ -83,3 +83,4 @@ jeap-license-template                            = tool
 jeap-message-type-registry                       = tool
 jeap-archive-type-registry                       = tool
 jeap-test-message-type-registry                  = tool
+jeap-devops-tools                                = tool
