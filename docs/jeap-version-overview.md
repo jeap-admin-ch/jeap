@@ -43,17 +43,17 @@ Managed Versions of Spring dependencies:
 
 | Component | Current Version | Required jEAP Parent Version | Changelog |
 | --- | --- | --- | --- |
-| jeap-archrepo-service |`7.7.4` |`36.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-archrepo-service/blob/v7.7.4/CHANGELOG.md) |
-| jeap-bptest-orchestrator |`8.4.0` |`36.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptest-orchestrator/blob/v8.4.0/CHANGELOG.md) |
-| jeap-bptestagent-api |`5.4.0` |`36.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptestagent-api/blob/v5.4.0/CHANGELOG.md) |
-| jeap-deploymentlog-service |`7.5.0` |`36.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-deploymentlog-service/blob/v7.5.0/CHANGELOG.md) |
+| jeap-archrepo-service |`7.8.0` |`36.10.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-archrepo-service/blob/v7.8.0/CHANGELOG.md) |
+| jeap-bptest-orchestrator |`8.5.0` |`36.10.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptest-orchestrator/blob/v8.5.0/CHANGELOG.md) |
+| jeap-bptestagent-api |`5.5.0` |`36.10.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptestagent-api/blob/v5.5.0/CHANGELOG.md) |
+| jeap-deploymentlog-service |`7.6.0` |`36.10.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-deploymentlog-service/blob/v7.6.0/CHANGELOG.md) |
 | jeap-error-handling |`18.6.0` |`36.7.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-error-handling/blob/v18.6.0/CHANGELOG.md) |
-| jeap-governance-service |`4.4.0` |`36.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-governance-service/blob/v4.4.0/CHANGELOG.md) |
-| jeap-initializer |`5.4.0` |`36.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-initializer/blob/v5.4.0/CHANGELOG.md) |
-| jeap-message-contract-service |`7.4.0` |`36.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-contract-service/blob/v7.4.0/CHANGELOG.md) |
+| jeap-governance-service |`4.5.0` |`36.10.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-governance-service/blob/v4.5.0/CHANGELOG.md) |
+| jeap-initializer |`5.5.0` |`36.10.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-initializer/blob/v5.5.0/CHANGELOG.md) |
+| jeap-message-contract-service |`7.5.0` |`36.10.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-contract-service/blob/v7.5.0/CHANGELOG.md) |
 | jeap-message-exchange-service |`10.3.0` |`36.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-exchange-service/blob/v10.3.0/CHANGELOG.md) |
-| jeap-oauth-mock-server |`6.6.1` |`36.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-oauth-mock-server/blob/v6.6.1/CHANGELOG.md) |
-| jeap-process-archive-reader |`4.4.0` |`36.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-reader/blob/v4.4.0/CHANGELOG.md) |
+| jeap-oauth-mock-server |`6.7.0` |`36.10.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-oauth-mock-server/blob/v6.7.0/CHANGELOG.md) |
+| jeap-process-archive-reader |`4.5.0` |`36.10.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-reader/blob/v4.5.0/CHANGELOG.md) |
 | jeap-process-archive-service |`16.7.0` |`36.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-service/blob/v16.7.0/CHANGELOG.md) |
 | jeap-process-context-service |`22.4.0` |`36.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-context-service/blob/v22.4.0/CHANGELOG.md) |
 | jeap-reaction-observer-service |`5.4.0` |`36.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-reaction-observer-service/blob/v5.4.0/CHANGELOG.md) |
