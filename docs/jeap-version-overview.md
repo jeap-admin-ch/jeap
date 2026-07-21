@@ -56,7 +56,7 @@ Managed Versions of Spring dependencies:
 | jeap-process-archive-reader |`5.0.0` |`37.0.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-reader/blob/v5.0.0/CHANGELOG.md) |
 | jeap-process-archive-service |`17.2.0` |`37.0.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-service/blob/v17.2.0/CHANGELOG.md) |
 | jeap-process-context-service |`22.5.0` |`36.10.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-context-service/blob/v22.5.0/CHANGELOG.md) |
-| jeap-reaction-observer-service |`5.5.0` |`36.10.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-reaction-observer-service/blob/v5.5.0/CHANGELOG.md) |
+| jeap-reaction-observer-service |`6.0.0` |`37.0.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-reaction-observer-service/blob/v6.0.0/CHANGELOG.md) |
 
 ## Managed 3rd Party Versions
 Managed Versions of selected 3rd party dependencies:
