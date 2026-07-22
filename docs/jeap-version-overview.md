@@ -51,7 +51,7 @@ Managed Versions of Spring dependencies:
 | jeap-governance-service |`5.1.0` |`37.0.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-governance-service/blob/v5.1.0/CHANGELOG.md) |
 | jeap-initializer |`6.0.0` |`37.0.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-initializer/blob/v6.0.0/CHANGELOG.md) |
 | jeap-message-contract-service |`8.0.0` |`37.0.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-contract-service/blob/v8.0.0/CHANGELOG.md) |
-| jeap-message-exchange-service |`12.0.0` |`37.0.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-exchange-service/blob/v12.0.0/CHANGELOG.md) |
+| jeap-message-exchange-service |`12.1.0` |`37.2.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-exchange-service/blob/v12.1.0/CHANGELOG.md) |
 | jeap-oauth-mock-server |`7.0.0` |`37.0.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-oauth-mock-server/blob/v7.0.0/CHANGELOG.md) |
 | jeap-process-archive-reader |`5.0.0` |`37.0.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-reader/blob/v5.0.0/CHANGELOG.md) |
 | jeap-process-archive-service |`17.2.0` |`37.0.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-service/blob/v17.2.0/CHANGELOG.md) |
