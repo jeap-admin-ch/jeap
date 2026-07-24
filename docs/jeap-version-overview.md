@@ -54,7 +54,7 @@ Managed Versions of Spring dependencies:
 | jeap-message-exchange-service |`12.3.0` |`37.4.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-exchange-service/blob/v12.3.0/CHANGELOG.md) |
 | jeap-oauth-mock-server |`7.2.0` |`37.4.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-oauth-mock-server/blob/v7.2.0/CHANGELOG.md) |
 | jeap-process-archive-reader |`5.2.0` |`37.4.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-reader/blob/v5.2.0/CHANGELOG.md) |
-| jeap-process-archive-service |`18.2.0` |`37.4.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-service/blob/v18.2.0/CHANGELOG.md) |
+| jeap-process-archive-service |`18.3.0` |`37.4.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-service/blob/v18.3.0/CHANGELOG.md) |
 | jeap-process-context-service |`23.1.0` |`37.4.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-context-service/blob/v23.1.0/CHANGELOG.md) |
 | jeap-reaction-observer-service |`6.2.0` |`37.4.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-reaction-observer-service/blob/v6.2.0/CHANGELOG.md) |
 
