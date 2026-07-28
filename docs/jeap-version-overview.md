@@ -20,12 +20,12 @@ Current Version: `37.6.0` ([Changelog](https://github.com/jeap-admin-ch/jeap-spr
 | jeap-open-api-publisher | `7.4.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-open-api-publisher/blob/v7.4.0/CHANGELOG.md) |
 | jeap-opensearch-client-starter | `2.3.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-opensearch-client-starter/blob/v2.3.0/CHANGELOG.md) |
 | jeap-opensearch-index-type | `1.10.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-opensearch-index-type/blob/v1.10.0/CHANGELOG.md) |
-| jeap-opensearch-searchitem | `2.3.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-opensearch-searchitem/blob/v2.3.0/CHANGELOG.md) |
+| jeap-opensearch-searchitem-api | `2.3.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-opensearch-searchitem-api/blob/v2.3.0/CHANGELOG.md) |
 | jeap-reaction-observer | `10.1.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-reaction-observer/blob/v10.1.0/CHANGELOG.md) |
 | jeap-server-sent-events | `12.1.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-server-sent-events/blob/v12.1.0/CHANGELOG.md) |
 | jeap-spring-boot-jwe-starter | `1.7.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-jwe-starter/blob/v1.7.0/CHANGELOG.md) |
 | jeap-spring-boot-roles-anywhere-starter | `3.14.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-roles-anywhere-starter/blob/v3.14.0/CHANGELOG.md) |
-| jeap-starter | `24.3.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-starters/blob/v24.3.0/CHANGELOG.md) |
+| jeap-spring-boot-starters | `24.3.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-starters/blob/v24.3.0/CHANGELOG.md) |
 | jeap-tls-starter | `19.13.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-tls-starter/blob/v19.13.0/CHANGELOG.md) |
 
 ## Spring Versions
