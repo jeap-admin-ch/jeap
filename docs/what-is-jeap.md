@@ -19,30 +19,30 @@ reusable way, so that application teams can focus on their business logic.
   aligned dependency versions and sensible default configuration. See
   [Using jEAP](using-jeap.md).
 - **Reuse cross-functional concerns.** Each concern
-  ([logging](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-starters/jeap-spring-boot-logging-starter),
-  [monitoring](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-starters/jeap-spring-boot-monitoring-starter),
-  [messaging](https://jeap-admin-ch.github.io/docs/jeap-messaging/),
-  [security](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-starters/jeap-spring-boot-security-starter), …)
+  ([logging](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-starters/jeap-spring-boot-logging-starter),
+  [monitoring](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-starters/jeap-spring-boot-monitoring-starter),
+  [messaging](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-messaging/),
+  [security](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-starters/jeap-spring-boot-security-starter), …)
   is solved in a dedicated, independently versioned library or starter.
 - **Secure by default.**
-  [OAuth2/OIDC resource-server security](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-starters/jeap-spring-boot-security-starter),
-  [client-side encryption of data-at-rest](https://jeap-admin-ch.github.io/docs/jeap-crypto/),
-  [TLS](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-tls-starter/), and
-  [certificate-based AWS credentials](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-roles-anywhere-starter/)
+  [OAuth2/OIDC resource-server security](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-starters/jeap-spring-boot-security-starter),
+  [client-side encryption of data-at-rest](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-crypto/),
+  [TLS](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-tls-starter/), and
+  [certificate-based AWS credentials](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-roles-anywhere-starter/)
   are provided out of the box.
 - **Platform-agnostic core, cloud-native ready.** The jEAP core does not depend on a specific runtime
   platform, so business logic stays portable. Dedicated
   [starters](building-blocks/spring-boot-starters/index.md) add first-class support
   for running on Kubernetes/OpenShift and AWS —
-  [configuration management](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-config-aws-starter/),
-  [secrets management](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-starters/jeap-spring-boot-vault-starter),
-  [object storage](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-starters/jeap-spring-boot-object-storage-starter),
-  [TLS](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-tls-starter/), and more.
+  [configuration management](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-config-aws-starter/),
+  [secrets management](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-starters/jeap-spring-boot-vault-starter),
+  [object storage](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-starters/jeap-spring-boot-object-storage-starter),
+  [TLS](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-tls-starter/), and more.
 - **First-class support for event-driven architecture** EDA a first-class, well-supported
-  capability in jEAP: [asynchronous messaging](https://jeap-admin-ch.github.io/docs/jeap-messaging/) is
+  capability in jEAP: [asynchronous messaging](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-messaging/) is
   built on Apache Kafka and Avro, with reliable delivery via the
-  [Transactional Outbox pattern](https://jeap-admin-ch.github.io/docs/jeap-messaging-outbox/) and ordered
-  consumption using the [jEAP Sequential Inbox](https://jeap-admin-ch.github.io/docs/jeap-messaging-sequential-inbox/).
+  [Transactional Outbox pattern](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-messaging-outbox/) and ordered
+  consumption using the [jEAP Sequential Inbox](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-messaging-sequential-inbox/).
 
 ## Value proposition
 
@@ -61,16 +61,16 @@ The value extends well beyond initial development, where most of an application'
 is actually spent:
 
 - **Faster, safer delivery.** Opinionated CI/CD, automated regression testing and
-  [feature-flag-based releases](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-starters/jeap-spring-boot-featureflag-starter)
+  [feature-flag-based releases](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-starters/jeap-spring-boot-featureflag-starter)
   shorten the path from commit to production.
 - **Secure and compliant by default.**
-  [Zero-trust messaging](https://jeap-admin-ch.github.io/docs/jeap-messaging/),
-  [data-at-rest encryption](https://jeap-admin-ch.github.io/docs/jeap-crypto/) and
+  [Zero-trust messaging](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-messaging/),
+  [data-at-rest encryption](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-crypto/) and
   automated governance checks make compliance largely a by-product of using the platform.
 - **Self-documenting applications.**
-  [OpenAPI specs](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-starters/jeap-spring-boot-swagger-starter),
+  [OpenAPI specs](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-starters/jeap-spring-boot-swagger-starter),
   message and consumer contracts,
-  [DB schemas](https://jeap-admin-ch.github.io/docs/jeap-db-schema-publisher/) and deployments
+  [DB schemas](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-db-schema-publisher/) and deployments
   are published automatically to the architecture repository.
 - **Cloud portability.** Business logic stays platform-agnostic, providing a proven
   cloud-exit strategy and low-effort migration between cloud and on-premises platforms.
@@ -81,23 +81,23 @@ is actually spent:
 
 | Concern                                                       | Provided by                                                                               |
 |---------------------------------------------------------------|-------------------------------------------------------------------------------------------|
-| Asynchronous messaging (Kafka/Avro)                           | [Libraries](building-blocks/libraries/index.md) — [jeap-messaging](https://jeap-admin-ch.github.io/docs/jeap-messaging/) |
-| Reliable message delivery (Transactional Outbox)              | [jeap-messaging-outbox](https://jeap-admin-ch.github.io/docs/jeap-messaging-outbox/)      |
-| Ordered message processing                                    | [jeap-messaging-sequential-inbox](https://jeap-admin-ch.github.io/docs/jeap-messaging-sequential-inbox/) |
-| Audit records                                                 | [jeap-audit](https://jeap-admin-ch.github.io/docs/jeap-audit/)                            |
-| Client-side encryption of data-at-rest                        | [jeap-crypto](https://jeap-admin-ch.github.io/docs/jeap-crypto/)                          |
-| Transparent JWE encryption of HTTP API payloads               | [jeap-spring-boot-jwe-starter](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-jwe-starter/) |
-| Certificate-based AWS credentials (IAM Roles Anywhere)        | [jeap-spring-boot-roles-anywhere-starter](https://jeap-admin-ch.github.io/docs/jeap-spring-boot-roles-anywhere-starter/) |
-| Real-time server→client events (SSE)                          | [jeap-server-sent-events](https://jeap-admin-ch.github.io/docs/jeap-server-sent-events/)  |
+| Asynchronous messaging (Kafka/Avro)                           | [Libraries](building-blocks/libraries/index.md) — [jeap-messaging](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-messaging/) |
+| Reliable message delivery (Transactional Outbox)              | [jeap-messaging-outbox](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-messaging-outbox/)      |
+| Ordered message processing                                    | [jeap-messaging-sequential-inbox](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-messaging-sequential-inbox/) |
+| Audit records                                                 | [jeap-audit](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-audit/)                            |
+| Client-side encryption of data-at-rest                        | [jeap-crypto](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-crypto/)                          |
+| Transparent JWE encryption of HTTP API payloads               | [jeap-spring-boot-jwe-starter](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-jwe-starter/) |
+| Certificate-based AWS credentials (IAM Roles Anywhere)        | [jeap-spring-boot-roles-anywhere-starter](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-roles-anywhere-starter/) |
+| Real-time server→client events (SSE)                          | [jeap-server-sent-events](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-server-sent-events/)  |
 | Search / OpenSearch indexing & querying                       | [jeap-opensearch-* building blocks](building-blocks/libraries/index.md)                   |
 | Application setup, logging, monitoring, security, persistence | [Spring Boot Starters](building-blocks/spring-boot-starters/index.md)                           |
 | Secrets, DB migration & pooling, object storage, TLS          | [Spring Boot Starters](building-blocks/spring-boot-starters/index.md)                     |
 | Error handling of faulty messages                             | [Reusable Microservices](building-blocks/reusable-microservices/index.md) — jeap-error-handling |
 | Message exchange with external parties (HTTP messagebox)      | jeap-message-exchange-service                                                             |
-| Process context & process archive                             | jeap-process-context-service, [jeap-process-archive-service](https://jeap-admin-ch.github.io/docs/jeap-process-archive-service/) |
+| Process context & process archive                             | jeap-process-context-service, [jeap-process-archive-service](https://jeap-admin-ch.github.io/docs/building-blocks/reusable-microservices/jeap-process-archive-service/) |
 | Architecture inventory & deployment logging                   | jeap-archrepo-service, jeap-deploymentlog-service                                         |
 | Policy compliance & governance checks                         | jeap-governance-service                                                                   |
-| DB schema publishing to the architecture repository           | [jeap-db-schema-publisher](https://jeap-admin-ch.github.io/docs/jeap-db-schema-publisher/) |
+| DB schema publishing to the architecture repository           | [jeap-db-schema-publisher](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-db-schema-publisher/) |
 | Message contracts & business-process tests                    | jeap-message-contract-service, jeap-bptest-orchestrator                                   |
 | OAuth2/OIDC mock for local development & testing              | jeap-oauth-mock-server                                                                    |
 | Project bootstrapping & codebase generation                   | jeap-initializer                                                                          |

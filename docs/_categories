@@ -41,12 +41,14 @@ jeap-audit                                       = library
 jeap-crypto                                      = library
 jeap-db-schema-publisher                         = library
 jeap-initializer                                 = library
+jeap-jwe-client                                  = library
 jeap-messaging                                   = library
 jeap-messaging-outbox                            = library
 jeap-messaging-sequential-inbox                  = library
 jeap-opensearch-index-type                       = library
 jeap-opensearch-searchitem-api                   = library
 jeap-process-archive-reader                      = library
+jeap-reaction-observer                           = library
 jeap-server-sent-events                          = library
 
 # --- Spring Boot Starters and Parents ---------------------------------------
@@ -59,6 +61,7 @@ jeap-spring-boot-tls-starter                     = starter
 jeap-spring-boot-roles-anywhere-starter          = starter
 jeap-spring-boot-jwe-starter                     = starter
 jeap-opensearch-client-starter                   = starter
+jeap-open-api-publisher-starter                  = starter
 
 # --- Reusable Microservices ------------------------------------------------
 jeap-error-handling                              = reusablems
@@ -73,10 +76,14 @@ jeap-opensearch-index-writer-service             = reusablems
 jeap-oauth-mock-server                           = reusablems
 jeap-bptest-orchestrator                         = reusablems
 jeap-bptestagent-api                             = reusablems
+jeap-reaction-observer-service                   = reusablems
 
 # --- Tooling & Registries --------------------------------------------------
 jeap-cli                                         = tool
+jeap-renovate-presets                            = tool
+jeap-python-pipeline-lib                         = tool
 jeap-truststore-maven-plugin                     = tool
+jeap-central-publishing-maven-plugin             = tool
 jeap-opensearch-index-type-registry-maven-plugin = tool
 jeap-rewrite-recipes                             = tool
 jeap-license-template                            = tool

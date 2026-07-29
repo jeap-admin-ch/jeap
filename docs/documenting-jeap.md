@@ -122,12 +122,16 @@ docs/
   from a README, `[Architecture](architecture.md)` between sibling pages). These
   resolve correctly on GitHub and, because the publish step preserves the directory
   structure 1:1, on the doc site too.
-- **To another repository's docs: use the public site URL**
-  (`https://jeap-admin-ch.github.io/docs/<repo>/` for the repo's section,
-  `https://jeap-admin-ch.github.io/docs/<repo>/<page>` for a specific page) or the
-  public GitHub URL — never a relative path that escapes the current repository.
-  The publish step folds these into site-internal links, so they are validated by
-  the site build and follow the section if the repo is re-categorized.
+- **To another repository's docs: use the public site URL.** A repo's doc section is
+  published **under its building-block category**, so the URL is
+  `https://jeap-admin-ch.github.io/docs/building-blocks/<category>/<repo>/` for the
+  section and `…/<repo>/<page>` for a specific page, where `<category>` is the folder
+  the repo is routed to in [`_categories`](#publishing) (`libraries`,
+  `spring-boot-starters`, `reusable-microservices` or `tooling`) — e.g.
+  `https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-audit/getting-started`.
+  Alternatively use the public GitHub URL — but never a relative path that escapes the
+  current repository. The publish step folds these into site-internal links, so they are
+  validated by the site build and follow the section if the repo is re-categorized.
 - A folder's landing page is its **`index.md`** — link to the folder and that page is
   shown. See [Landing pages: `index.md`](#landing-pages-indexmd).
 
