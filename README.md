@@ -18,10 +18,10 @@ Start here to understand and use jEAP:
 - [What is jEAP?](docs/what-is-jeap.md) — definition, core principles, value, and the problems jEAP solves.
 - [Using jEAP](docs/using-jeap.md) — the Maven parents and dependency management.
 - [App Building Blocks](docs/building-blocks/index.md) — the libraries, starters and microservices you compose from:
-  - [Libraries](docs/building-blocks/libraries.md)
-  - [Spring Boot Starters](docs/building-blocks/spring-boot-starters.md)
-  - [Reusable Microservices](docs/building-blocks/reusable-microservices.md)
-  - [Tooling & Registries](docs/building-blocks/tooling.md)
+  - [Libraries](docs/building-blocks/libraries/index.md)
+  - [Spring Boot Starters](docs/building-blocks/spring-boot-starters/index.md)
+  - [Reusable Microservices](docs/building-blocks/reusable-microservices/index.md)
+  - [Tooling & Registries](docs/building-blocks/tooling/index.md)
 
 The building-block pages list every jEAP repository with a short description and a link to its source on GitHub.
 
