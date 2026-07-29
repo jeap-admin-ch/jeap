@@ -17,6 +17,7 @@ you add inside your own service, see [Libraries](../libraries/index.md).
 | jeap-governance-service              | Quick overview of system and service compliance with defined policies. Extensible via plugin implementations.                                                 | [GitHub](https://github.com/jeap-admin-ch/jeap-governance-service)              |
 | [jeap-opensearch-index-writer-service](https://jeap-admin-ch.github.io/docs/jeap-opensearch-index-writer-service/) | Event-driven indexing of search items into OpenSearch.                                                                                                        | [GitHub](https://github.com/jeap-admin-ch/jeap-opensearch-index-writer-service) |
 | jeap-oauth-mock-server               | Configurable OAuth2/OpenID-Connect server for local development and testing.                                                                                  | [GitHub](https://github.com/jeap-admin-ch/jeap-oauth-mock-server)               |
+| jeap-reaction-observer-service       | The jEAP Reaction Observation Service records and aggregates triggers, actions, and reactions from events                                                     | [GitHub](https://github.com/jeap-admin-ch/jeap-reaction-observer-service)               |
 
 ## Business process testing
 
