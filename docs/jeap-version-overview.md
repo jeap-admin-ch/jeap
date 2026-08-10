@@ -2,31 +2,31 @@
 
 ## jEAP Parent
 
-Current Version: `38.2.0` ([Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-parent/blob/v38.2.0/CHANGELOG.md))
+Current Version: `38.3.0` ([Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-parent/blob/v38.3.0/CHANGELOG.md))
 
 ## jEAP Library Versions
 
 | Component | Current Version | Changelog |
 | --- | --- | --- |
-| jeap-audit | `10.7.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-audit/blob/v10.7.0/CHANGELOG.md) |
-| jeap-crypto | `10.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-crypto/blob/v10.9.0/CHANGELOG.md) |
-| jeap-db-schema-publisher | `3.19.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-db-schema-publisher/blob/v3.19.0/CHANGELOG.md) |
+| jeap-audit | `10.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-audit/blob/v10.8.0/CHANGELOG.md) |
+| jeap-crypto | `10.10.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-crypto/blob/v10.10.0/CHANGELOG.md) |
+| jeap-db-schema-publisher | `3.20.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-db-schema-publisher/blob/v3.20.0/CHANGELOG.md) |
 | jeap-license-template | `1.0.3` | [Changelog](https://github.com/jeap-admin-ch/jeap-license-template/blob/v1.0.3/CHANGELOG.md) |
-| jeap-messaging | `17.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-messaging/blob/v17.8.0/CHANGELOG.md) |
-| jeap-messaging-outbox | `17.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-messaging-outbox/blob/v17.8.0/CHANGELOG.md) |
-| jeap-messaging-sequential-inbox | `20.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-messaging-sequential-inbox/blob/v20.8.0/CHANGELOG.md) |
-| jeap-open-api-publisher-starter | `7.10.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-open-api-publisher-starter/blob/v7.10.0/CHANGELOG.md) |
-| jeap-opensearch-client-starter | `2.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-opensearch-client-starter/blob/v2.9.0/CHANGELOG.md) |
-| jeap-opensearch-index-type | `1.15.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-opensearch-index-type/blob/v1.15.0/CHANGELOG.md) |
-| jeap-opensearch-searchitem-api | `2.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-opensearch-searchitem-api/blob/v2.9.0/CHANGELOG.md) |
-| jeap-reaction-observer | `10.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-reaction-observer/blob/v10.8.0/CHANGELOG.md) |
-| jeap-server-sent-events | `12.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-server-sent-events/blob/v12.8.0/CHANGELOG.md) |
-| jeap-spring-boot-config-aws-starter | `19.19.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-config-aws-starter/blob/v19.19.0/CHANGELOG.md) |
-| jeap-spring-boot-db-migration-starter | `19.18.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-db-migration-starter/blob/v19.18.0/CHANGELOG.md) |
-| jeap-spring-boot-jwe-starter | `1.12.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-jwe-starter/blob/v1.12.0/CHANGELOG.md) |
-| jeap-spring-boot-roles-anywhere-starter | `3.20.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-roles-anywhere-starter/blob/v3.20.0/CHANGELOG.md) |
-| jeap-spring-boot-starters | `24.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-starters/blob/v24.9.0/CHANGELOG.md) |
-| jeap-spring-boot-tls-starter | `19.18.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-tls-starter/blob/v19.18.0/CHANGELOG.md) |
+| jeap-messaging | `17.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-messaging/blob/v17.9.0/CHANGELOG.md) |
+| jeap-messaging-outbox | `17.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-messaging-outbox/blob/v17.9.0/CHANGELOG.md) |
+| jeap-messaging-sequential-inbox | `20.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-messaging-sequential-inbox/blob/v20.9.0/CHANGELOG.md) |
+| jeap-open-api-publisher-starter | `7.11.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-open-api-publisher-starter/blob/v7.11.0/CHANGELOG.md) |
+| jeap-opensearch-client-starter | `2.10.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-opensearch-client-starter/blob/v2.10.0/CHANGELOG.md) |
+| jeap-opensearch-index-type | `1.16.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-opensearch-index-type/blob/v1.16.0/CHANGELOG.md) |
+| jeap-opensearch-searchitem-api | `2.10.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-opensearch-searchitem-api/blob/v2.10.0/CHANGELOG.md) |
+| jeap-reaction-observer | `10.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-reaction-observer/blob/v10.9.0/CHANGELOG.md) |
+| jeap-server-sent-events | `12.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-server-sent-events/blob/v12.9.0/CHANGELOG.md) |
+| jeap-spring-boot-config-aws-starter | `19.20.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-config-aws-starter/blob/v19.20.0/CHANGELOG.md) |
+| jeap-spring-boot-db-migration-starter | `19.19.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-db-migration-starter/blob/v19.19.0/CHANGELOG.md) |
+| jeap-spring-boot-jwe-starter | `1.13.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-jwe-starter/blob/v1.13.0/CHANGELOG.md) |
+| jeap-spring-boot-roles-anywhere-starter | `3.21.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-roles-anywhere-starter/blob/v3.21.0/CHANGELOG.md) |
+| jeap-spring-boot-starters | `24.10.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-starters/blob/v24.10.0/CHANGELOG.md) |
+| jeap-spring-boot-tls-starter | `19.19.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-tls-starter/blob/v19.19.0/CHANGELOG.md) |
 
 ## Spring Versions
 Managed Versions of Spring dependencies:
@@ -70,6 +70,6 @@ Managed Versions of selected 3rd party dependencies:
 | java | `25` |
 | junit-jupiter | `6.0.3` |
 | lombok | `1.18.46` |
-| pact-jvm | `4.7.4` |
+| pact-jvm | `4.7.5` |
 | shedlock | `7.7.0` |
 | togglz | `4.6.2` |
