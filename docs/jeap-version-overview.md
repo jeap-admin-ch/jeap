@@ -47,15 +47,15 @@ Managed Versions of Spring dependencies:
 | jeap-bptest-orchestrator |`12.4.0` |`38.3.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptest-orchestrator/blob/v12.4.0/CHANGELOG.md) |
 | jeap-bptestagent-api |`7.3.0` |`38.3.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptestagent-api/blob/v7.3.0/CHANGELOG.md) |
 | jeap-deploymentlog-service |`9.3.0` |`38.3.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-deploymentlog-service/blob/v9.3.0/CHANGELOG.md) |
-| jeap-error-handling |`20.0.1` |`38.1.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-error-handling/blob/v20.0.1/CHANGELOG.md) |
+| jeap-error-handling |`20.1.0` |`38.2.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-error-handling/blob/v20.1.0/CHANGELOG.md) |
 | jeap-governance-service |`6.2.0` |`38.1.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-governance-service/blob/v6.2.0/CHANGELOG.md) |
 | jeap-initializer |`7.3.0` |`38.3.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-initializer/blob/v7.3.0/CHANGELOG.md) |
 | jeap-message-contract-service |`9.3.0` |`38.3.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-contract-service/blob/v9.3.0/CHANGELOG.md) |
-| jeap-message-exchange-service |`13.1.0` |`38.1.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-exchange-service/blob/v13.1.0/CHANGELOG.md) |
+| jeap-message-exchange-service |`13.2.0` |`38.2.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-exchange-service/blob/v13.2.0/CHANGELOG.md) |
 | jeap-oauth-mock-server |`8.4.0` |`38.3.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-oauth-mock-server/blob/v8.4.0/CHANGELOG.md) |
 | jeap-process-archive-reader |`6.3.0` |`38.3.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-reader/blob/v6.3.0/CHANGELOG.md) |
 | jeap-process-archive-service |`20.4.0` |`38.3.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-service/blob/v20.4.0/CHANGELOG.md) |
-| jeap-process-context-service |`25.0.0` |`38.1.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-context-service/blob/v25.0.0/CHANGELOG.md) |
+| jeap-process-context-service |`25.1.0` |`38.3.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-context-service/blob/v25.1.0/CHANGELOG.md) |
 | jeap-reaction-observer-service |`7.3.0` |`38.3.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-reaction-observer-service/blob/v7.3.0/CHANGELOG.md) |
 
 ## Managed 3rd Party Versions
