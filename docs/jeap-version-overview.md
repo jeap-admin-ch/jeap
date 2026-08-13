@@ -2,7 +2,7 @@
 
 ## jEAP Parent
 
-Current Version: `38.6.1` ([Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-parent/blob/v38.6.1/CHANGELOG.md))
+Current Version: `39.0.0` ([Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-parent/blob/v39.0.0/CHANGELOG.md))
 
 ## jEAP Library Versions
 
@@ -50,7 +50,7 @@ Managed Versions of Spring dependencies:
 | jeap-error-handling |`20.2.0` |`38.6.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-error-handling/blob/v20.2.0/CHANGELOG.md) |
 | jeap-governance-service |`6.3.0` |`38.6.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-governance-service/blob/v6.3.0/CHANGELOG.md) |
 | jeap-initializer |`7.5.0` |`38.6.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-initializer/blob/v7.5.0/CHANGELOG.md) |
-| jeap-message-contract-service |`9.3.0` |`38.3.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-contract-service/blob/v9.3.0/CHANGELOG.md) |
+| jeap-message-contract-service |`9.4.0` |`38.6.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-contract-service/blob/v9.4.0/CHANGELOG.md) |
 | jeap-message-exchange-service |`13.3.0` |`38.6.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-exchange-service/blob/v13.3.0/CHANGELOG.md) |
 | jeap-oauth-mock-server |`8.6.0` |`38.6.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-oauth-mock-server/blob/v8.6.0/CHANGELOG.md) |
 | jeap-process-archive-reader |`6.5.0` |`38.6.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-reader/blob/v6.5.0/CHANGELOG.md) |
