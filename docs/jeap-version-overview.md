@@ -2,7 +2,7 @@
 
 ## jEAP Parent
 
-Current Version: `39.0.0` ([Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-parent/blob/v39.0.0/CHANGELOG.md))
+Current Version: `39.0.1` ([Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-parent/blob/v39.0.1/CHANGELOG.md))
 
 ## jEAP Library Versions
 
