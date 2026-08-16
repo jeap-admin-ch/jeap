@@ -43,20 +43,20 @@ Managed Versions of Spring dependencies:
 
 | Component | Current Version | Required jEAP Parent Version | Changelog |
 | --- | --- | --- | --- |
-| jeap-archrepo-service |`8.4.0` |`38.6.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-archrepo-service/blob/v8.4.0/CHANGELOG.md) |
-| jeap-bptest-orchestrator |`12.8.0` |`38.6.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptest-orchestrator/blob/v12.8.0/CHANGELOG.md) |
-| jeap-bptestagent-api |`7.5.0` |`38.6.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptestagent-api/blob/v7.5.0/CHANGELOG.md) |
+| jeap-archrepo-service |`9.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-archrepo-service/blob/v9.0.0/CHANGELOG.md) |
+| jeap-bptest-orchestrator |`13.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptest-orchestrator/blob/v13.0.0/CHANGELOG.md) |
+| jeap-bptestagent-api |`8.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptestagent-api/blob/v8.0.0/CHANGELOG.md) |
 | jeap-deploymentlog-service |`9.5.0` |`38.6.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-deploymentlog-service/blob/v9.5.0/CHANGELOG.md) |
-| jeap-error-handling |`20.2.0` |`38.6.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-error-handling/blob/v20.2.0/CHANGELOG.md) |
-| jeap-governance-service |`6.3.0` |`38.6.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-governance-service/blob/v6.3.0/CHANGELOG.md) |
-| jeap-initializer |`7.5.0` |`38.6.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-initializer/blob/v7.5.0/CHANGELOG.md) |
-| jeap-message-contract-service |`9.4.0` |`38.6.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-contract-service/blob/v9.4.0/CHANGELOG.md) |
-| jeap-message-exchange-service |`13.3.0` |`38.6.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-exchange-service/blob/v13.3.0/CHANGELOG.md) |
-| jeap-oauth-mock-server |`8.6.0` |`38.6.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-oauth-mock-server/blob/v8.6.0/CHANGELOG.md) |
-| jeap-process-archive-reader |`6.5.0` |`38.6.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-reader/blob/v6.5.0/CHANGELOG.md) |
-| jeap-process-archive-service |`20.6.0` |`38.6.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-service/blob/v20.6.0/CHANGELOG.md) |
+| jeap-error-handling |`21.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-error-handling/blob/v21.0.0/CHANGELOG.md) |
+| jeap-governance-service |`7.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-governance-service/blob/v7.0.0/CHANGELOG.md) |
+| jeap-initializer |`8.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-initializer/blob/v8.0.0/CHANGELOG.md) |
+| jeap-message-contract-service |`10.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-contract-service/blob/v10.0.0/CHANGELOG.md) |
+| jeap-message-exchange-service |`14.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-exchange-service/blob/v14.0.0/CHANGELOG.md) |
+| jeap-oauth-mock-server |`9.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-oauth-mock-server/blob/v9.0.0/CHANGELOG.md) |
+| jeap-process-archive-reader |`7.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-reader/blob/v7.0.0/CHANGELOG.md) |
+| jeap-process-archive-service |`21.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-service/blob/v21.0.0/CHANGELOG.md) |
 | jeap-process-context-service |`26.0.0` |`39.0.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-context-service/blob/v26.0.0/CHANGELOG.md) |
-| jeap-reaction-observer-service |`7.4.0` |`38.6.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-reaction-observer-service/blob/v7.4.0/CHANGELOG.md) |
+| jeap-reaction-observer-service |`8.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-reaction-observer-service/blob/v8.0.0/CHANGELOG.md) |
 
 ## Managed 3rd Party Versions
 Managed Versions of selected 3rd party dependencies:
