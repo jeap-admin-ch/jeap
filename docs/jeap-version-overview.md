@@ -55,7 +55,7 @@ Managed Versions of Spring dependencies:
 | jeap-oauth-mock-server |`9.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-oauth-mock-server/blob/v9.0.0/CHANGELOG.md) |
 | jeap-process-archive-reader |`7.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-reader/blob/v7.0.0/CHANGELOG.md) |
 | jeap-process-archive-service |`21.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-service/blob/v21.0.0/CHANGELOG.md) |
-| jeap-process-context-service |`26.0.0` |`39.0.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-context-service/blob/v26.0.0/CHANGELOG.md) |
+| jeap-process-context-service |`26.1.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-context-service/blob/v26.1.0/CHANGELOG.md) |
 | jeap-reaction-observer-service |`8.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-reaction-observer-service/blob/v8.0.0/CHANGELOG.md) |
 
 ## Managed 3rd Party Versions
