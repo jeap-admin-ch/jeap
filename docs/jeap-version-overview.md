@@ -2,7 +2,7 @@
 
 ## jEAP Parent
 
-Current Version: `39.2.1` ([Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-parent/blob/v39.2.1/CHANGELOG.md))
+Current Version: `39.3.0` ([Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-parent/blob/v39.3.0/CHANGELOG.md))
 
 ## jEAP Library Versions
 
@@ -23,7 +23,7 @@ Current Version: `39.2.1` ([Changelog](https://github.com/jeap-admin-ch/jeap-spr
 | jeap-server-sent-events | `12.14.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-server-sent-events/blob/v12.14.0/CHANGELOG.md) |
 | jeap-spring-boot-config-aws-starter | `19.25.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-config-aws-starter/blob/v19.25.0/CHANGELOG.md) |
 | jeap-spring-boot-db-migration-starter | `19.24.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-db-migration-starter/blob/v19.24.0/CHANGELOG.md) |
-| jeap-spring-boot-jwe-starter | `1.18.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-jwe-starter/blob/v1.18.0/CHANGELOG.md) |
+| jeap-spring-boot-jwe-starter | `1.19.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-jwe-starter/blob/v1.19.0/CHANGELOG.md) |
 | jeap-spring-boot-roles-anywhere-starter | `3.26.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-roles-anywhere-starter/blob/v3.26.0/CHANGELOG.md) |
 | jeap-spring-boot-starters | `24.16.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-starters/blob/v24.16.0/CHANGELOG.md) |
 | jeap-spring-boot-tls-starter | `19.24.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-tls-starter/blob/v19.24.0/CHANGELOG.md) |
