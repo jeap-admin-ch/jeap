@@ -2,7 +2,7 @@
 
 ## jEAP Parent
 
-Current Version: `39.2.0` ([Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-parent/blob/v39.2.0/CHANGELOG.md))
+Current Version: `39.2.1` ([Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-parent/blob/v39.2.1/CHANGELOG.md))
 
 ## jEAP Library Versions
 
@@ -10,7 +10,7 @@ Current Version: `39.2.0` ([Changelog](https://github.com/jeap-admin-ch/jeap-spr
 | --- | --- | --- |
 | jeap-audit | `10.13.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-audit/blob/v10.13.0/CHANGELOG.md) |
 | jeap-crypto | `10.15.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-crypto/blob/v10.15.0/CHANGELOG.md) |
-| jeap-db-schema-publisher | `3.25.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-db-schema-publisher/blob/v3.25.0/CHANGELOG.md) |
+| jeap-db-schema-publisher | `3.25.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-db-schema-publisher/blob/v3.25.1/CHANGELOG.md) |
 | jeap-license-template | `1.0.3` | [Changelog](https://github.com/jeap-admin-ch/jeap-license-template/blob/v1.0.3/CHANGELOG.md) |
 | jeap-messaging | `17.14.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-messaging/blob/v17.14.0/CHANGELOG.md) |
 | jeap-messaging-outbox | `17.14.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-messaging-outbox/blob/v17.14.0/CHANGELOG.md) |
