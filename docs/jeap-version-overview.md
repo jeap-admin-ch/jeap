@@ -47,7 +47,7 @@ Managed Versions of Spring dependencies:
 | jeap-bptest-orchestrator |`13.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptest-orchestrator/blob/v13.0.0/CHANGELOG.md) |
 | jeap-bptestagent-api |`8.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptestagent-api/blob/v8.0.0/CHANGELOG.md) |
 | jeap-deploymentlog-service |`10.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-deploymentlog-service/blob/v10.0.0/CHANGELOG.md) |
-| jeap-error-handling |`21.0.1` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-error-handling/blob/v21.0.1/CHANGELOG.md) |
+| jeap-error-handling |`21.0.2` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-error-handling/blob/v21.0.2/CHANGELOG.md) |
 | jeap-governance-service |`7.2.1` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-governance-service/blob/v7.2.1/CHANGELOG.md) |
 | jeap-initializer |`8.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-initializer/blob/v8.0.0/CHANGELOG.md) |
 | jeap-message-contract-service |`10.1.2` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-contract-service/blob/v10.1.2/CHANGELOG.md) |
@@ -55,7 +55,7 @@ Managed Versions of Spring dependencies:
 | jeap-oauth-mock-server |`9.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-oauth-mock-server/blob/v9.0.0/CHANGELOG.md) |
 | jeap-process-archive-reader |`7.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-reader/blob/v7.0.0/CHANGELOG.md) |
 | jeap-process-archive-service |`21.0.1` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-service/blob/v21.0.1/CHANGELOG.md) |
-| jeap-process-context-service |`26.1.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-context-service/blob/v26.1.0/CHANGELOG.md) |
+| jeap-process-context-service |`26.1.1` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-context-service/blob/v26.1.1/CHANGELOG.md) |
 | jeap-reaction-observer-service |`8.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-reaction-observer-service/blob/v8.0.0/CHANGELOG.md) |
 
 ## Managed 3rd Party Versions
