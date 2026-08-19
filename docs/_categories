@@ -87,6 +87,7 @@ jeap-central-publishing-maven-plugin             = tool
 jeap-opensearch-index-type-registry-maven-plugin = tool
 jeap-rewrite-recipes                             = tool
 jeap-license-template                            = tool
+jeap-frontend-license-checker                    = tool
 jeap-message-type-registry                       = tool
 jeap-archive-type-registry                       = tool
 jeap-test-message-type-registry                  = tool
