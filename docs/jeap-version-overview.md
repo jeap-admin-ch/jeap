@@ -53,6 +53,7 @@ Managed Versions of Spring dependencies:
 | jeap-message-contract-service |`10.1.2` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-contract-service/blob/v10.1.2/CHANGELOG.md) |
 | jeap-message-exchange-service |`14.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-exchange-service/blob/v14.0.0/CHANGELOG.md) |
 | jeap-oauth-mock-server |`9.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-oauth-mock-server/blob/v9.0.0/CHANGELOG.md) |
+| jeap-opensearch-index-writer-service |`4.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-opensearch-index-writer-service/blob/v4.0.0/CHANGELOG.md) |
 | jeap-process-archive-reader |`7.0.0` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-reader/blob/v7.0.0/CHANGELOG.md) |
 | jeap-process-archive-service |`21.0.1` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-service/blob/v21.0.1/CHANGELOG.md) |
 | jeap-process-context-service |`26.1.1` |`39.0.1` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-context-service/blob/v26.1.1/CHANGELOG.md) |
