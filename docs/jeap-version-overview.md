@@ -56,7 +56,7 @@ Managed Versions of Spring dependencies:
 | jeap-opensearch-index-writer-service |`4.1.0` |`39.5.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-opensearch-index-writer-service/blob/v4.1.0/CHANGELOG.md) |
 | jeap-process-archive-reader |`7.1.0` |`39.5.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-reader/blob/v7.1.0/CHANGELOG.md) |
 | jeap-process-archive-service |`22.0.0` |`39.5.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-service/blob/v22.0.0/CHANGELOG.md) |
-| jeap-process-context-service |`26.2.0` |`39.5.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-context-service/blob/v26.2.0/CHANGELOG.md) |
+| jeap-process-context-service |`26.3.0` |`39.5.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-context-service/blob/v26.3.0/CHANGELOG.md) |
 | jeap-reaction-observer-service |`8.1.0` |`39.5.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-reaction-observer-service/blob/v8.1.0/CHANGELOG.md) |
 
 ## Managed 3rd Party Versions
