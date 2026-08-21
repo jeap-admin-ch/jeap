@@ -47,7 +47,7 @@ Managed Versions of Spring dependencies:
 | jeap-bptest-orchestrator |`15.0.0` |`40.0.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptest-orchestrator/blob/v15.0.0/CHANGELOG.md) |
 | jeap-bptestagent-api |`9.0.0` |`40.0.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptestagent-api/blob/v9.0.0/CHANGELOG.md) |
 | jeap-deploymentlog-service |`11.0.0` |`40.0.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-deploymentlog-service/blob/v11.0.0/CHANGELOG.md) |
-| jeap-error-handling |`21.2.0` |`39.5.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-error-handling/blob/v21.2.0/CHANGELOG.md) |
+| jeap-error-handling |`22.0.0` |`40.0.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-error-handling/blob/v22.0.0/CHANGELOG.md) |
 | jeap-governance-service |`8.0.0` |`40.0.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-governance-service/blob/v8.0.0/CHANGELOG.md) |
 | jeap-initializer |`9.0.0` |`40.0.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-initializer/blob/v9.0.0/CHANGELOG.md) |
 | jeap-message-contract-service |`11.0.0` |`40.0.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-contract-service/blob/v11.0.0/CHANGELOG.md) |
