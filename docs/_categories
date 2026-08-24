@@ -71,6 +71,7 @@ jeap-message-exchange-service                    = reusablems
 jeap-message-contract-service                    = reusablems
 jeap-archrepo-service                            = reusablems
 jeap-deploymentlog-service                       = reusablems
+jeap-doc-service                                 = reusablems
 jeap-governance-service                          = reusablems
 jeap-opensearch-index-writer-service             = reusablems
 jeap-oauth-mock-server                           = reusablems
