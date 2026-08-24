@@ -13,7 +13,9 @@ functionality, with jEAP providing solutions for the reusable cross-functional a
 
 ## Documentation
 
-Start here to understand and use jEAP:
+The full documentation is published at [jeap-admin-ch.github.io/docs/what-is-jeap](https://jeap-admin-ch.github.io/docs/what-is-jeap). Read the latest updates on the [jEAP blog](https://jeap-admin-ch.github.io/blog).
+
+The same content as Markdown, if you prefer to stay on GitHub:
 
 - [What is jEAP?](docs/what-is-jeap.md) — definition, core principles, value, and the problems jEAP solves.
 - [Using jEAP](docs/using-jeap.md) — the Maven parents and dependency management.
