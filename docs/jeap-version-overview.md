@@ -2,7 +2,7 @@
 
 ## jEAP Parent
 
-Current Version: `40.1.0` ([Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-parent/blob/v40.1.0/CHANGELOG.md))
+Current Version: `40.2.0` ([Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-parent/blob/v40.2.0/CHANGELOG.md))
 
 ## jEAP Library Versions
 
@@ -16,7 +16,7 @@ Current Version: `40.1.0` ([Changelog](https://github.com/jeap-admin-ch/jeap-spr
 | jeap-messaging-outbox | `17.18.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-messaging-outbox/blob/v17.18.0/CHANGELOG.md) |
 | jeap-messaging-sequential-inbox | `20.18.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-messaging-sequential-inbox/blob/v20.18.0/CHANGELOG.md) |
 | jeap-open-api-publisher-starter | `7.20.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-open-api-publisher-starter/blob/v7.20.0/CHANGELOG.md) |
-| jeap-opensearch-client-starter | `2.19.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-opensearch-client-starter/blob/v2.19.0/CHANGELOG.md) |
+| jeap-opensearch-client-starter | `2.20.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-opensearch-client-starter/blob/v2.20.0/CHANGELOG.md) |
 | jeap-opensearch-index-type | `1.25.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-opensearch-index-type/blob/v1.25.0/CHANGELOG.md) |
 | jeap-opensearch-searchitem-api | `2.19.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-opensearch-searchitem-api/blob/v2.19.0/CHANGELOG.md) |
 | jeap-reaction-observer | `10.18.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-reaction-observer/blob/v10.18.0/CHANGELOG.md) |
