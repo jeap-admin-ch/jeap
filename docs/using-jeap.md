@@ -133,3 +133,5 @@ version) — see the respective repository's `README.md` or `pom.xml`.
 
 - [App Building Blocks](building-blocks/index.md) — what to compose into your application.
 - [What is jEAP?](what-is-jeap.md) — principles and the problems jEAP solves.
+- [jEAP and Maven Dependencies FAQ](maven-dependencies-faq.md) — common questions about
+  jEAP versions and dependency management.
