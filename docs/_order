@@ -11,6 +11,7 @@
 # is needed in the site repo. (Docusaurus ignores this '_'-prefixed file.)
 what-is-jeap
 using-jeap
+maven-dependencies-faq
 building-blocks | App Building Blocks
 documenting-jeap
 jeap-version-overview
