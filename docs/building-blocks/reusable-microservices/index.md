@@ -22,10 +22,10 @@ you add inside your own service, see [Libraries](../libraries/index.md).
 
 ## Business process testing
 
-| Building block           | Purpose                                                                                                                           | Source                                                              |
-|--------------------------|-----------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
-| jeap-bptest-orchestrator | Orchestrator for automated business process tests (the top of the test pyramid: testing the interaction of several applications). | [GitHub](https://github.com/jeap-admin-ch/jeap-bptest-orchestrator) |
-| [jeap-bptestagent-api](https://jeap-admin-ch.github.io/docs/building-blocks/reusable-microservices/jeap-bptestagent-api/)     | TestAgent API used by the business-process-test orchestrator.                                                                     | [GitHub](https://github.com/jeap-admin-ch/jeap-bptestagent-api)     |
+| Building block                                                                                                                    | Purpose                                                                                                                           | Source                                                              |
+|-----------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| [jeap-bptest-orchestrator](https://jeap-admin-ch.github.io/docs/building-blocks/reusable-microservices/jeap-bptest-orchestrator/) | Orchestrator for automated business process tests (the top of the test pyramid: testing the interaction of several applications). | [GitHub](https://github.com/jeap-admin-ch/jeap-bptest-orchestrator) |
+| [jeap-bptestagent-api](https://jeap-admin-ch.github.io/docs/building-blocks/reusable-microservices/jeap-bptestagent-api/)         | TestAgent API used by the business-process-test orchestrator.                                                                     | [GitHub](https://github.com/jeap-admin-ch/jeap-bptestagent-api)     |
 
 ## Related
 
