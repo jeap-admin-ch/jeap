@@ -44,7 +44,7 @@ Managed Versions of Spring dependencies:
 
 | Component | Current Version | Required jEAP Parent Version | Changelog |
 | --- | --- | --- | --- |
-| jeap-archrepo-service |`12.3.0` |`40.5.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-archrepo-service/blob/v12.3.0/CHANGELOG.md) |
+| jeap-archrepo-service |`12.4.0` |`40.5.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-archrepo-service/blob/v12.4.0/CHANGELOG.md) |
 | jeap-bptest-orchestrator |`16.6.0` |`40.5.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptest-orchestrator/blob/v16.6.0/CHANGELOG.md) |
 | jeap-bptestagent-api |`9.4.0` |`40.5.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptestagent-api/blob/v9.4.0/CHANGELOG.md) |
 | jeap-deploymentlog-service |`12.4.0` |`40.5.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-deploymentlog-service/blob/v12.4.0/CHANGELOG.md) |
