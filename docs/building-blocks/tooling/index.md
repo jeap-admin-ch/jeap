@@ -11,7 +11,7 @@ type registries.
 | [jeap-cli](https://jeap-admin-ch.github.io/docs/building-blocks/tooling/jeap-cli/) | Command-line tool for interacting with jEAP source-code repositories. Automates tasks such as updating dependencies and migrating to new Java or Spring Boot versions. | [GitHub](https://github.com/jeap-admin-ch/jeap-cli) |
 | [jeap-devops-tools](https://jeap-admin-ch.github.io/docs/building-blocks/tooling/jeap-devops-tools/) | Supporting tools and documentation for developing, maintaining and operating jEAP-based applications (e.g. OAuth2 login from the command line). | [GitHub](https://github.com/jeap-admin-ch/jeap-devops-tools) |
 | [jeap-renovate-presets](https://jeap-admin-ch.github.io/docs/building-blocks/tooling/jeap-renovate-presets/) | Composable [Renovate](https://docs.renovatebot.com/) presets for jEAP-based projects, standardizing grouping, approval, versioning, changelog and automerge behaviour for Maven, Docker, npm and GitHub Actions dependencies. | [GitHub](https://github.com/jeap-admin-ch/jeap-renovate-presets) |
-| jeap-python-pipeline-lib | Reusable Python modules for CI/CD pipeline operations in a jEAP context. | [GitHub](https://github.com/jeap-admin-ch/jeap-python-pipeline-lib) |
+| [jeap-python-pipeline-lib](https://jeap-admin-ch.github.io/docs/building-blocks/tooling/jeap-python-pipeline-lib/) | Reusable Python modules for CI/CD pipeline operations in a jEAP context (ECS deployment checks, Deployment Log, Pact, message contracts, test orchestration). | [GitHub](https://github.com/jeap-admin-ch/jeap-python-pipeline-lib) |
 
 ## Maven plugins
 
