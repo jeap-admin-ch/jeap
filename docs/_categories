@@ -60,6 +60,7 @@ jeap-spring-boot-db-migration-starter            = starter
 jeap-spring-boot-tls-starter                     = starter
 jeap-spring-boot-roles-anywhere-starter          = starter
 jeap-spring-boot-jwe-starter                     = starter
+jeap-spring-modulith-error-handling-starter      = starter
 jeap-opensearch-client-starter                   = starter
 jeap-open-api-publisher-starter                  = starter
 
