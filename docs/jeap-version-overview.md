@@ -2,7 +2,7 @@
 
 ## jEAP Parent
 
-Current Version: `40.5.1` ([Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-parent/blob/v40.5.1/CHANGELOG.md))
+Current Version: `40.6.0` ([Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-parent/blob/v40.6.0/CHANGELOG.md))
 
 ## jEAP Library Versions
 
@@ -27,6 +27,7 @@ Current Version: `40.5.1` ([Changelog](https://github.com/jeap-admin-ch/jeap-spr
 | jeap-spring-boot-roles-anywhere-starter | `3.34.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-roles-anywhere-starter/blob/v3.34.0/CHANGELOG.md) |
 | jeap-spring-boot-starters | `24.24.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-starters/blob/v24.24.0/CHANGELOG.md) |
 | jeap-spring-boot-tls-starter | `19.32.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-tls-starter/blob/v19.32.0/CHANGELOG.md) |
+| jeap-spring-modulith-error-handling-starter | `1.0.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-modulith-error-handling-starter/blob/v1.0.0/CHANGELOG.md) |
 
 ## Spring Versions
 Managed Versions of Spring dependencies:
