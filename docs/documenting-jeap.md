@@ -201,6 +201,7 @@ and how to preview locally — see the site repository's
 ## See also
 
 - [What is jEAP?](what-is-jeap.md) — definition, principles, and the problems jEAP solves.
+- [Naming Conventions](naming-conventions.md) — how deployables, message types, repositories and infrastructure are named.
 - [App Building Blocks](building-blocks/index.md) — the catalogue this documentation describes.
 - [`docs/_order`](https://github.com/jeap-admin-ch/jeap/blob/main/docs/_order) and [
   `docs/_categories`](https://github.com/jeap-admin-ch/jeap/blob/main/docs/_categories) — the sidebar/category
