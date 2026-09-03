@@ -1,0 +1,21 @@
+name: Update jEAP versions
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: update-jeap-versions
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  update-versions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
