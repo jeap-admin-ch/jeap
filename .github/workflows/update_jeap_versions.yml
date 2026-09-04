@@ -589,9 +589,15 @@ jobs:
         if: steps.publish.outputs.markdown_published == 'true'
         shell: bash
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.JEAP_TRIGGER_WEBSITE_DEPLOYMENT }}
         run: |
           set -euo pipefail
+          
+          if [[ -z "${GH_TOKEN}" ]]; then
+            echo "::error::Missing secret JEAP_TRIGGER_WEBSITE_DEPLOYMENT"
+            exit 1
+          fi
+          
           gh api "repos/jeap-admin-ch/jeap-admin-ch.github.io/actions/workflows/deploy.yml/dispatches" \
             --method POST \
             --field ref=main
