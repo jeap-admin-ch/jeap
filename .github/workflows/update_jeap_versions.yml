@@ -588,6 +588,8 @@ jobs:
       - name: Trigger website deployment
         if: steps.publish.outputs.markdown_published == 'true'
         shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           gh api "repos/jeap-admin-ch/jeap-admin-ch.github.io/actions/workflows/deploy.yml/dispatches" \
