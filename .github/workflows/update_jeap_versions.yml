@@ -1,8 +1,8 @@
 name: Update jEAP versions
 
 on:
-  #  schedule:
-  #    - cron: "0 * * * *"
+  schedule:
+    - cron: "0 * * * *"
 
   workflow_dispatch:
     inputs:
@@ -380,13 +380,17 @@ jobs:
                parse_pom_versions(repo)
            )
           
-           project_version = resolve_properties(
-               project_version,
-               properties,
+           project_version = trim_snapshot_suffix(
+               resolve_properties(
+                   project_version,
+                   properties,
+               )
            )
-           product_parent_version = resolve_properties(
-               product_parent_version,
-               properties,
+           product_parent_version = trim_snapshot_suffix(
+               resolve_properties(
+                   product_parent_version,
+                   properties,
+               )
            )
           
            if not project_version or not product_parent_version:
@@ -545,13 +549,6 @@ jobs:
             echo "versions_changed=true" >> "$GITHUB_OUTPUT"
             echo "Version changes detected."
           fi
-
-      - name: Print generated markdown
-        shell: bash
-        run: |
-          set -euo pipefail
-          
-          cat -- "generated-jeap-versions.md"
 
       - name: Publish markdown
         id: publish
