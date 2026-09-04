@@ -9,7 +9,7 @@ on:
       version_markdown_path:
         description: Path of the generated version markdown file
         required: false
-        default: docs/jeap-version-overview_temp.md
+        default: docs/jeap-version-overview.md
         type: string
 
 concurrency:
@@ -25,7 +25,7 @@ jobs:
     timeout-minutes: 10
 
     env:
-      VERSION_MARKDOWN_PATH: ${{ inputs.version_markdown_path || 'docs/jeap-version-overview_temp.md' }}
+      VERSION_MARKDOWN_PATH: ${{ inputs.version_markdown_path || 'docs/jeap-version-overview.md' }}
       JEAP_ORG: jeap-admin-ch
 
       PRODUCT_REPOSITORIES_JSON: >-
@@ -554,6 +554,7 @@ jobs:
           cat -- "generated-jeap-versions.md"
 
       - name: Publish markdown
+        id: publish
         if: steps.compare.outputs.versions_changed == 'true'
         shell: bash
         run: |
@@ -571,6 +572,7 @@ jobs:
           git add -- "$target_file"
           
           if git diff --cached --quiet; then
+            echo "markdown_published=false" >> "$GITHUB_OUTPUT"
             echo "No staged changes after copying generated file."
             exit 0
           fi
@@ -579,8 +581,18 @@ jobs:
             --message "chore: Update jEAP versions overview"
           
           git push origin "HEAD:${target_branch}"
+          echo "markdown_published=true" >> "$GITHUB_OUTPUT"
           
           echo "Markdown published successfully."
+
+      - name: Trigger website deployment
+        if: steps.publish.outputs.markdown_published == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api "repos/jeap-admin-ch/jeap-admin-ch.github.io/actions/workflows/deploy.yml/dispatches" \
+            --method POST \
+            --field ref=main
 
       - name: Cleanup
         if: always()
@@ -590,14 +602,3 @@ jobs:
           
           rm -rf -- "_tmp_repos"
           rm -f -- "generated-jeap-versions.md"
-
-#      - name: Trigger website deployment
-#        if: steps.compare.outputs.versions_changed == 'true' && env.markdown_published == 'true'
-#        shell: bash
-#        env:
-#          GH_TOKEN: ${{ steps.token.outputs.value }}
-#        run: |
-#          set -euo pipefail
-#          gh api "repos/${DEPLOY_WORKFLOW_REPO}/actions/workflows/${DEPLOY_WORKFLOW_FILE}/dispatches" \
-#            --method POST \
-#            --field ref=main
