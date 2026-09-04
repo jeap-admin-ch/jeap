@@ -2,7 +2,7 @@
 
 ## jEAP Parent
 
-Current Version: `40.9.0` ([Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-parent/blob/v40.9.0/CHANGELOG.md))
+Current Version: `40.9.1` ([Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-parent/blob/v40.9.1/CHANGELOG.md))
 
 ## jEAP Library Versions
 
@@ -20,7 +20,7 @@ Current Version: `40.9.0` ([Changelog](https://github.com/jeap-admin-ch/jeap-spr
 | jeap-opensearch-index-type | `1.31.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-opensearch-index-type/blob/v1.31.0/CHANGELOG.md) |
 | jeap-opensearch-searchitem-api | `2.26.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-opensearch-searchitem-api/blob/v2.26.0/CHANGELOG.md) |
 | jeap-reaction-observer | `10.26.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-reaction-observer/blob/v10.26.0/CHANGELOG.md) |
-| jeap-server-sent-events | `12.26.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-server-sent-events/blob/v12.26.0/CHANGELOG.md) |
+| jeap-server-sent-events | `12.26.2` | [Changelog](https://github.com/jeap-admin-ch/jeap-server-sent-events/blob/v12.26.2/CHANGELOG.md) |
 | jeap-spring-boot-config-aws-starter | `19.36.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-config-aws-starter/blob/v19.36.0/CHANGELOG.md) |
 | jeap-spring-boot-db-migration-starter | `19.34.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-db-migration-starter/blob/v19.34.0/CHANGELOG.md) |
 | jeap-spring-boot-jwe-starter | `1.29.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-spring-boot-jwe-starter/blob/v1.29.0/CHANGELOG.md) |
@@ -58,7 +58,7 @@ Managed Versions of Spring dependencies:
 | jeap-opensearch-index-writer-service |`5.6.0` |`40.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-opensearch-index-writer-service/blob/v5.6.0/CHANGELOG.md) |
 | jeap-process-archive-reader |`8.6.0` |`40.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-reader/blob/v8.6.0/CHANGELOG.md) |
 | jeap-process-archive-service |`23.8.0` |`40.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-service/blob/v23.8.0/CHANGELOG.md) |
-| jeap-process-context-service |`27.3.0` |`40.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-context-service/blob/v27.3.0/CHANGELOG.md) |
+| jeap-process-context-service |`27.3.1` |`40.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-context-service/blob/v27.3.1/CHANGELOG.md) |
 | jeap-reaction-observer-service |`10.2.0` |`40.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-reaction-observer-service/blob/v10.2.0/CHANGELOG.md) |
 
 ## Managed 3rd Party Versions
