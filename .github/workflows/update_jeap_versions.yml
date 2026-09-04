@@ -1,7 +1,16 @@
 name: Update jEAP versions
 
 on:
+  schedule:
+    - cron: "0 8,12,16 * * 1-5"
+
   workflow_dispatch:
+    inputs:
+      version_markdown_path:
+        description: Path of the generated version markdown file
+        required: false
+        default: docs/jeap-version-overview.md
+        type: string
 
 concurrency:
   group: update-jeap-versions
@@ -9,13 +18,132 @@ concurrency:
 
 permissions:
   contents: write
-  actions: write
 
 jobs:
   update-versions:
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
+    env:
+      VERSION_MARKDOWN_PATH: ${{ inputs.version_markdown_path || 'docs/jeap-version-overview.md' }}
+      JEAP_ORG: jeap-admin-ch
+
+      PRODUCT_REPOSITORIES_JSON: >-
+        ["jeap-bptest-orchestrator","jeap-deploymentlog-service","jeap-doc-service","jeap-error-handling","jeap-message-contract-service","jeap-message-exchange-service","jeap-oauth-mock-server","jeap-opensearch-index-writer-service","jeap-process-context-service","jeap-process-archive-service","jeap-bptestagent-api","jeap-process-archive-reader","jeap-archrepo-service","jeap-initializer","jeap-reaction-observer-service","jeap-governance-service"]
+
+      SPRING_DEPENDENCIES_JSON: >-
+        ["spring-boot","spring-cloud","spring-framework","spring-kafka","spring-security"]
+
+      THIRD_PARTY_DEPENDENCIES_JSON: >-
+        ["shedlock","aws.sdk","flyway","hibernate","hikaricp","java","junit-jupiter","lombok","togglz","pact-jvm"]
+
+      REPOSITORIES_BY_COMPONENT_JSON: >-
+        {"jeap-config-aws-starter":"jeap-spring-boot-config-aws-starter","jeap-db-migration-starter":"jeap-spring-boot-db-migration-starter","jeap-open-api-publisher":"jeap-open-api-publisher-starter","jeap-opensearch-searchitem":"jeap-opensearch-searchitem-api","jeap-starter":"jeap-spring-boot-starters","jeap-tls-starter":"jeap-spring-boot-tls-starter"}
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Validate configuration
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          target_file="${VERSION_MARKDOWN_PATH}"
+
+          case "$target_file" in
+            docs/*.md)
+              ;;
+            *)
+              echo "::error::VERSION_MARKDOWN_PATH must point to a Markdown file under docs/: $target_file"
+              exit 1
+              ;;
+          esac
+
+          if [[ "$target_file" == */../* || "$target_file" == ../* || "$target_file" == *"/.." ]]; then
+            echo "::error::VERSION_MARKDOWN_PATH must not contain path traversal: $target_file"
+            exit 1
+          fi
+
+          echo "Target file: $target_file"
+
+      - name: Fetch versions and generate markdown
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/generate_jeap_versions.py
+
+      - name: Compare with current markdown
+        id: compare
+        shell: bash
+        run: |
+          set -euo pipefail
+          
+          target_file="${VERSION_MARKDOWN_PATH}"
+          
+          if [[ -f "$target_file" ]] &&
+             cmp -s "generated-jeap-versions.md" "$target_file"; then
+            echo "versions_changed=false" >> "$GITHUB_OUTPUT"
+            echo "No version changes detected."
+          else
+            echo "versions_changed=true" >> "$GITHUB_OUTPUT"
+            echo "Version changes detected."
+          fi
+
+      - name: Publish markdown
+        id: publish
+        if: steps.compare.outputs.versions_changed == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          
+          target_file="${VERSION_MARKDOWN_PATH}"
+          target_branch="${GITHUB_REF_NAME}"
+          
+          mkdir -p "$(dirname "$target_file")"
+          cp -- "generated-jeap-versions.md" "$target_file"
+          
+          git config user.name "jeap-bot"
+          git config user.email "jeap-community@bit.admin.ch"
+          
+          git add -- "$target_file"
+          
+          if git diff --cached --quiet; then
+            echo "markdown_published=false" >> "$GITHUB_OUTPUT"
+            echo "No staged changes after copying generated file."
+            exit 0
+          fi
+          
+          git commit \
+            --message "chore: Update jEAP versions overview"
+          
+          git push origin "HEAD:${target_branch}"
+          echo "markdown_published=true" >> "$GITHUB_OUTPUT"
+          
+          echo "Markdown published successfully."
+
+      - name: Trigger website deployment
+        if: steps.publish.outputs.markdown_published == 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.JEAP_TRIGGER_WEBSITE_DEPLOYMENT }}
+        run: |
+          set -euo pipefail
+          
+          if [[ -z "${GH_TOKEN}" ]]; then
+            echo "::error::Missing secret JEAP_TRIGGER_WEBSITE_DEPLOYMENT"
+            exit 1
+          fi
+          
+          gh api "repos/jeap-admin-ch/jeap-admin-ch.github.io/actions/workflows/deploy.yml/dispatches" \
+            --method POST \
+            --field ref=main
+
+      - name: Cleanup
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          
+          rm -rf -- "_tmp_repos"
+          rm -f -- "generated-jeap-versions.md"
