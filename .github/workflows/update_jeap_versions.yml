@@ -1,7 +1,16 @@
 name: Update jEAP versions
 
 on:
+  #  schedule:
+  #    - cron: "0 * * * *"
+
   workflow_dispatch:
+    inputs:
+      version_markdown_path:
+        description: Path of the generated version markdown file
+        required: false
+        default: docs/jeap-version-overview_temp.md
+        type: string
 
 concurrency:
   group: update-jeap-versions
@@ -9,13 +18,586 @@ concurrency:
 
 permissions:
   contents: write
-  actions: write
 
 jobs:
   update-versions:
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
+    env:
+      VERSION_MARKDOWN_PATH: ${{ inputs.version_markdown_path || 'docs/jeap-version-overview_temp.md' }}
+      JEAP_ORG: jeap-admin-ch
+
+      PRODUCT_REPOSITORIES_JSON: >-
+        ["jeap-bptest-orchestrator","jeap-deploymentlog-service","jeap-doc-service","jeap-error-handling","jeap-message-contract-service","jeap-message-exchange-service","jeap-oauth-mock-server","jeap-opensearch-index-writer-service","jeap-process-context-service","jeap-process-archive-service","jeap-bptestagent-api","jeap-process-archive-reader","jeap-archrepo-service","jeap-initializer","jeap-reaction-observer-service","jeap-governance-service"]
+
+      SPRING_DEPENDENCIES_JSON: >-
+        ["spring-boot","spring-cloud","spring-framework","spring-kafka","spring-security"]
+
+      THIRD_PARTY_DEPENDENCIES_JSON: >-
+        ["shedlock","aws.sdk","flyway","hibernate","hikaricp","java","junit-jupiter","lombok","togglz","pact-jvm"]
+
+      REPOSITORIES_BY_COMPONENT_JSON: >-
+        {"jeap-config-aws-starter":"jeap-spring-boot-config-aws-starter","jeap-db-migration-starter":"jeap-spring-boot-db-migration-starter","jeap-open-api-publisher":"jeap-open-api-publisher-starter","jeap-opensearch-searchitem":"jeap-opensearch-searchitem-api","jeap-starter":"jeap-spring-boot-starters","jeap-tls-starter":"jeap-spring-boot-tls-starter"}
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Validate configuration
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          target_file="${VERSION_MARKDOWN_PATH}"
+
+          case "$target_file" in
+            docs/*.md)
+              ;;
+            *)
+              echo "::error::VERSION_MARKDOWN_PATH must point to a Markdown file under docs/: $target_file"
+              exit 1
+              ;;
+          esac
+
+          if [[ "$target_file" == */../* || "$target_file" == ../* || "$target_file" == *"/.." ]]; then
+            echo "::error::VERSION_MARKDOWN_PATH must not contain path traversal: $target_file"
+            exit 1
+          fi
+
+          echo "Target file: $target_file"
+
+      - name: Fetch versions and generate markdown
+        shell: bash
+        run: |
+          set -euo pipefail
+          
+          python3 <<'PY'
+          import json
+          import os
+          import re
+          import subprocess
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+          
+          workspace = Path(os.environ["GITHUB_WORKSPACE"])
+          org = os.environ["JEAP_ORG"]
+          
+          product_repositories = json.loads(
+           os.environ["PRODUCT_REPOSITORIES_JSON"]
+          )
+          spring_dependencies = set(
+           json.loads(os.environ["SPRING_DEPENDENCIES_JSON"])
+          )
+          third_party_dependencies = set(
+           json.loads(os.environ["THIRD_PARTY_DEPENDENCIES_JSON"])
+          )
+          repositories_by_component = json.loads(
+           os.environ["REPOSITORIES_BY_COMPONENT_JSON"]
+          )
+          
+          tmp_repos = workspace / "_tmp_repos"
+          tmp_repos.mkdir(exist_ok=True)
+          
+          
+          def run(*args, cwd=None):
+           subprocess.run(
+               args,
+               check=True,
+               cwd=cwd,
+           )
+
+
+          def run_capture(*args, cwd=None):
+           completed = subprocess.run(
+               args,
+               check=True,
+               cwd=cwd,
+               capture_output=True,
+               text=True,
+           )
+           return completed.stdout
+           
+           
+          def parse_pom_root(root):
+           if root.tag.startswith("{"):
+               namespace = root.tag[1:root.tag.find("}")]
+               ns = {"m": namespace}
+               pref = "m:"
+           else:
+               ns = {}
+               pref = ""
+          
+           def find_text(xpath):
+               node = (
+                   root.find(xpath, ns)
+                   if ns
+                   else root.find(xpath)
+               )
+               return (
+                   (node.text or "").strip()
+                   if node is not None
+                   else ""
+               )
+           
+           group_id = find_text(f"{pref}groupId")
+           if not group_id:
+               group_id = find_text(f"{pref}parent/{pref}groupId")
+           
+           artifact_id = find_text(f"{pref}artifactId")
+           project_version = find_text(f"{pref}version")
+           
+           if not project_version:
+               project_version = find_text(
+                   f"{pref}parent/{pref}version"
+               )
+          
+           parent_version = find_text(
+               f"{pref}parent/{pref}version"
+           )
+           
+           parent_group_id = find_text(
+               f"{pref}parent/{pref}groupId"
+           )
+           parent_artifact_id = find_text(
+               f"{pref}parent/{pref}artifactId"
+           )
+           
+           properties = {}
+           
+           properties_node = (
+               root.find(f"{pref}properties", ns)
+               if ns
+               else root.find("properties")
+           )
+          
+           if properties_node is not None:
+               for child in list(properties_node):
+                   key = child.tag.split("}")[-1]
+                   properties[key] = (child.text or "").strip()
+           
+           return {
+               "group_id": group_id,
+               "artifact_id": artifact_id,
+               "project_version": project_version,
+               "parent_group_id": parent_group_id,
+               "parent_artifact_id": parent_artifact_id,
+               "parent_version": parent_version,
+               "properties": properties,
+           }
+           
+           
+          def parse_pom_file(path):
+           if not path.is_file():
+               raise RuntimeError(f"Missing POM: {path}")
+           
+           return parse_pom_root(ET.parse(path).getroot())
+           
+           
+          def parse_pom_versions(repo_name):
+           pom_path = tmp_repos / repo_name / "pom.xml"
+           parsed = parse_pom_file(pom_path)
+           
+           return (
+               parsed["project_version"],
+               parsed["parent_version"],
+               parsed["properties"],
+           )
+            
+            
+          def trim_snapshot_suffix(version):
+           return version.split("-", 1)[0] if version else version
+           
+           
+          def fetch_published_pom(group_id, artifact_id, version):
+           group_path = group_id.replace(".", "/")
+           url = (
+               "https://repo.maven.apache.org/maven2/"
+               f"{group_path}/{artifact_id}/{version}/"
+               f"{artifact_id}-{version}.pom"
+           )
+           return run_capture("curl", "-fsSL", url)
+           
+           
+          def collect_parent_properties(parent_descriptor, seen=None):
+           if seen is None:
+               seen = set()
+           
+           if not all(parent_descriptor.values()):
+               return {}
+           
+           parent_key = (
+               parent_descriptor["group_id"],
+               parent_descriptor["artifact_id"],
+               parent_descriptor["version"],
+           )
+           if parent_key in seen:
+               raise RuntimeError(
+                   "Detected cyclic parent POM reference: "
+                   f"{parent_key}"
+               )
+           
+           seen.add(parent_key)
+           pom_xml = fetch_published_pom(*parent_key)
+           parent_data = parse_pom_root(ET.fromstring(pom_xml))
+           
+           properties = collect_parent_properties(
+               {
+                   "group_id": parent_data["parent_group_id"],
+                   "artifact_id": parent_data["parent_artifact_id"],
+                   "version": parent_data["parent_version"],
+               },
+               seen,
+           )
+           properties.update(parent_data["properties"])
+           return properties
+           
+           
+          def collect_dependency_properties(repo_name):
+           parsed = parse_pom_file(tmp_repos / repo_name / "pom.xml")
+           parent_properties = collect_parent_properties(
+               {
+                   "group_id": parsed["parent_group_id"],
+                   "artifact_id": parsed["parent_artifact_id"],
+                   "version": parsed["parent_version"],
+               }
+           )
+           parent_properties.update(parsed["properties"])
+           return parent_properties
+           
+           
+          def resolve_properties(value, properties):
+           if not value:
+               return value
+          
+           pattern = re.compile(r"\$\{([^}]+)\}")
+          
+           for _ in range(10):
+               changed = False
+          
+               def replace(match):
+                   nonlocal changed
+          
+                   key = match.group(1)
+                   replacement = properties.get(key)
+          
+                   if replacement is None:
+                       return match.group(0)
+          
+                   changed = True
+                   return replacement
+          
+               resolved = pattern.sub(replace, value)
+          
+               if not changed:
+                   return resolved
+          
+               value = resolved
+          
+           return value
+          
+          
+          def repository_name_for_component(component_name):
+           return repositories_by_component.get(
+               component_name,
+               component_name,
+           )
+          
+          
+          def changelog_link(repository, version):
+           repo_name = repository_name_for_component(repository)
+          
+           return (
+               f"[Changelog]"
+               f"(https://github.com/{org}/{repo_name}"
+               f"/blob/v{version}/CHANGELOG.md)"
+           )
+          
+          
+          def clone(repo):
+           destination = tmp_repos / repo
+          
+           if destination.exists():
+               raise RuntimeError(
+                   f"Repository destination already exists: {destination}"
+               )
+          
+           print(f"Cloning {org}/{repo}...")
+          
+           # All jEAP repositories are public, so no authentication is needed.
+           run(
+               "git",
+               "clone",
+               "--depth",
+               "1",
+               "--branch",
+               "main",
+               f"https://github.com/{org}/{repo}.git",
+               str(destination),
+           )
+          
+          
+          # ------------------------------------------------------------------
+          # jEAP parent
+          # ------------------------------------------------------------------
+          
+          clone("jeap-spring-boot-parent")
+           
+          parent_project_version, _, _ = (
+           parse_pom_versions("jeap-spring-boot-parent")
+          )
+           
+          dependency_properties = collect_dependency_properties(
+           "jeap-spring-boot-parent"
+          )
+           
+          parent_version = trim_snapshot_suffix(
+           resolve_properties(
+               parent_project_version,
+               dependency_properties,
+           )
+          )
+            
+          if not parent_version:
+           raise RuntimeError(
+               "Failed to read jEAP parent version from "
+               "jeap-spring-boot-parent/pom.xml"
+           )
+          
+          print(f"jEAP parent version: {parent_version}")
+          
+          
+          # ------------------------------------------------------------------
+          # Product repositories
+          # ------------------------------------------------------------------
+          
+          versions_by_repo = {}
+          
+          for repo in product_repositories:
+           clone(repo)
+          
+           project_version, product_parent_version, properties = (
+               parse_pom_versions(repo)
+           )
+          
+           project_version = resolve_properties(
+               project_version,
+               properties,
+           )
+           product_parent_version = resolve_properties(
+               product_parent_version,
+               properties,
+           )
+          
+           if not project_version or not product_parent_version:
+               raise RuntimeError(
+                   f"Failed to read version data from {repo}/pom.xml"
+               )
+          
+           versions_by_repo[repo] = {
+               "version": project_version,
+               "parentVersion": product_parent_version,
+           }
+          
+          
+          # ------------------------------------------------------------------
+          # Generate Markdown
+          # ------------------------------------------------------------------
+          
+          library_rows = []
+          
+          for key, value in dependency_properties.items():
+           if (
+               key.startswith("jeap-")
+               and key.endswith(".version")
+               and "maven-plugin" not in key
+           ):
+               component = key[:-len(".version")]
+               repo_name = repository_name_for_component(component)
+          
+               resolved_value = resolve_properties(
+                   value,
+                   dependency_properties,
+               )
+          
+               library_rows.append(
+                   f"| {repo_name} | `{resolved_value}` | "
+                   f"{changelog_link(repo_name, resolved_value)} |"
+               )
+          
+          library_rows.sort()
+          
+          
+          def create_version_rows(included_dependencies):
+           rows = []
+          
+           for key, value in dependency_properties.items():
+               for dep in included_dependencies:
+                   if key == f"{dep}.version":
+                       resolved_value = resolve_properties(
+                           value,
+                           dependency_properties,
+                       )
+          
+                       rows.append(
+                           f"| {dep} | `{resolved_value}` |"
+                       )
+                       break
+          
+           rows.sort()
+           return rows
+          
+          
+          spring_rows = create_version_rows(
+           spring_dependencies
+          )
+          
+          third_party_rows = create_version_rows(
+           third_party_dependencies
+          )
+          
+          
+          product_rows = []
+          
+          for repo_name in sorted(versions_by_repo):
+           data = versions_by_repo[repo_name]
+          
+           product_rows.append(
+               f"| {repo_name} | "
+               f"`{data['version']}` | "
+               f"`{data['parentVersion']}` | "
+               f"{changelog_link(repo_name, data['version'])} |"
+           )
+          
+          
+          parent_changelog = changelog_link(
+           "jeap-spring-boot-parent",
+           parent_version,
+          )
+          
+          
+          lines = [
+           "# jEAP Version Overview",
+           "",
+           "## jEAP Parent",
+           "",
+           f"Current Version: `{parent_version}` ({parent_changelog})",
+           "",
+           "## jEAP Library Versions",
+           "",
+           "| Component | Current Version | Changelog |",
+           "| --- | --- | --- |",
+           *library_rows,
+           "",
+           "## Spring Versions",
+           "",
+           "Managed Versions of Spring dependencies:",
+           "",
+           "| Component | Version |",
+           "| --- | --- |",
+           *spring_rows,
+           "",
+           "## jEAP Products",
+           "",
+           "| Component | Current Version | Required jEAP Parent Version | Changelog |",
+           "| --- | --- | --- | --- |",
+           *product_rows,
+           "",
+           "## Managed 3rd Party Versions",
+           "",
+           "Managed Versions of selected 3rd party dependencies:",
+           "",
+           "| Component | Version |",
+           "| --- | --- |",
+           *third_party_rows,
+          ]
+          
+          
+          generated_file = workspace / "generated-jeap-versions.md"
+          
+          generated_file.write_text(
+           "\n".join(lines) + "\n",
+           encoding="utf-8",
+          )
+          
+          print(f"Generated markdown: {generated_file}")
+          print(
+           f"Products: {len(product_rows)}, "
+           f"jEAP libraries: {len(library_rows)}, "
+           f"Spring dependencies: {len(spring_rows)}, "
+           f"third-party dependencies: {len(third_party_rows)}"
+          )
+          PY
+
+      - name: Compare with current markdown
+        id: compare
+        shell: bash
+        run: |
+          set -euo pipefail
+          
+          target_file="${VERSION_MARKDOWN_PATH}"
+          
+          if [[ -f "$target_file" ]] &&
+             cmp -s "generated-jeap-versions.md" "$target_file"; then
+            echo "versions_changed=false" >> "$GITHUB_OUTPUT"
+            echo "No version changes detected."
+          else
+            echo "versions_changed=true" >> "$GITHUB_OUTPUT"
+            echo "Version changes detected."
+          fi
+
+      - name: Print generated markdown
+        shell: bash
+        run: |
+          set -euo pipefail
+          
+          cat -- "generated-jeap-versions.md"
+
+      - name: Publish markdown
+        if: steps.compare.outputs.versions_changed == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          
+          target_file="${VERSION_MARKDOWN_PATH}"
+          target_branch="${GITHUB_REF_NAME}"
+          
+          mkdir -p "$(dirname "$target_file")"
+          cp -- "generated-jeap-versions.md" "$target_file"
+          
+          git config user.name "jeap-bot"
+          git config user.email "jeap-community@bit.admin.ch"
+          
+          git add -- "$target_file"
+          
+          if git diff --cached --quiet; then
+            echo "No staged changes after copying generated file."
+            exit 0
+          fi
+          
+          git commit \
+            --message "chore: Update jEAP versions overview"
+          
+          git push origin "HEAD:${target_branch}"
+          
+          echo "Markdown published successfully."
+
+      - name: Cleanup
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          
+          rm -rf -- "_tmp_repos"
+          rm -f -- "generated-jeap-versions.md"
+
+#      - name: Trigger website deployment
+#        if: steps.compare.outputs.versions_changed == 'true' && env.markdown_published == 'true'
+#        shell: bash
+#        env:
+#          GH_TOKEN: ${{ steps.token.outputs.value }}
+#        run: |
+#          set -euo pipefail
+#          gh api "repos/${DEPLOY_WORKFLOW_REPO}/actions/workflows/${DEPLOY_WORKFLOW_FILE}/dispatches" \
+#            --method POST \
+#            --field ref=main
