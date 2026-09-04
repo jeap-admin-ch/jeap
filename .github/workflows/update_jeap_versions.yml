@@ -77,6 +77,7 @@ jobs:
           import os
           import re
           import subprocess
+          import urllib.request
           import xml.etree.ElementTree as ET
           from pathlib import Path
           
@@ -205,10 +206,6 @@ jobs:
            )
             
             
-          def trim_snapshot_suffix(version):
-           return version.split("-", 1)[0] if version else version
-           
-           
           def fetch_published_pom(group_id, artifact_id, version):
            group_path = group_id.replace(".", "/")
            url = (
@@ -216,9 +213,39 @@ jobs:
                f"{group_path}/{artifact_id}/{version}/"
                f"{artifact_id}-{version}.pom"
            )
-           return run_capture("curl", "-fsSL", url)
+
+           with urllib.request.urlopen(url, timeout=30) as response:
+               return response.read().decode("utf-8")
            
            
+          def resolve_properties(value, properties, source):
+           if not value:
+               return value
+
+           pattern = re.compile(r"\$\{([^}]+)\}")
+
+           for _ in range(10):
+               resolved = pattern.sub(
+                   lambda match: properties.get(
+                       match.group(1),
+                       match.group(0),
+                   ),
+                   value,
+               )
+
+               if resolved == value:
+                   break
+
+               value = resolved
+
+           if pattern.search(value):
+               raise RuntimeError(
+                   f"Unresolved Maven property in {source}: {value}"
+               )
+
+           return value
+
+
           def collect_parent_properties(parent_descriptor, seen=None):
            if seen is None:
                seen = set()
@@ -240,67 +267,81 @@ jobs:
            seen.add(parent_key)
            pom_xml = fetch_published_pom(*parent_key)
            parent_data = parse_pom_root(ET.fromstring(pom_xml))
-           
-           properties = collect_parent_properties(
+
+           parent_context = dict(parent_data["properties"])
+           parent_context.update(
                {
-                   "group_id": parent_data["parent_group_id"],
-                   "artifact_id": parent_data["parent_artifact_id"],
-                   "version": parent_data["parent_version"],
-               },
+                   "project.version": parent_key[2],
+                   "pom.version": parent_key[2],
+               }
+           )
+           inherited_parent = {
+               key: resolve_properties(
+                   parent_data[f"parent_{key}"],
+                   parent_context,
+                   f"{parent_key[1]} parent {key}",
+               )
+               for key in ("group_id", "artifact_id", "version")
+           }
+
+           properties = collect_parent_properties(
+               inherited_parent,
                seen,
            )
            properties.update(parent_data["properties"])
            return properties
            
            
-          def collect_dependency_properties(repo_name):
+          def collect_dependency_properties(
+           repo_name,
+           project_version,
+          ):
            parsed = parse_pom_file(tmp_repos / repo_name / "pom.xml")
-           parent_properties = collect_parent_properties(
+           local_properties = dict(parsed["properties"])
+           local_properties.update(
                {
-                   "group_id": parsed["parent_group_id"],
-                   "artifact_id": parsed["parent_artifact_id"],
-                   "version": parsed["parent_version"],
+                   "project.version": project_version,
+                   "pom.version": project_version,
                }
            )
+
+           parent_descriptor = {
+               key: resolve_properties(
+                   parsed[f"parent_{key}"],
+                   local_properties,
+                   f"{repo_name}/pom.xml parent {key}",
+               )
+               for key in ("group_id", "artifact_id", "version")
+           }
+
+           parent_properties = collect_parent_properties(
+               parent_descriptor
+           )
            parent_properties.update(parsed["properties"])
+           parent_properties.update(
+               {
+                   "project.version": project_version,
+                   "pom.version": project_version,
+                   "project.parent.version": parent_descriptor["version"],
+                   "parent.version": parent_descriptor["version"],
+               }
+           )
            return parent_properties
            
            
-          def resolve_properties(value, properties):
-           if not value:
-               return value
-          
-           pattern = re.compile(r"\$\{([^}]+)\}")
-          
-           for _ in range(10):
-               changed = False
-          
-               def replace(match):
-                   nonlocal changed
-          
-                   key = match.group(1)
-                   replacement = properties.get(key)
-          
-                   if replacement is None:
-                       return match.group(0)
-          
-                   changed = True
-                   return replacement
-          
-               resolved = pattern.sub(replace, value)
-          
-               if not changed:
-                   return resolved
-          
-               value = resolved
-          
-           return value
-          
-          
           def repository_name_for_component(component_name):
            return repositories_by_component.get(
                component_name,
                component_name,
+           )
+
+
+          def pom_release_version(version):
+           suffix = "-SNAPSHOT"
+           return (
+               version[:-len(suffix)]
+               if version.endswith(suffix)
+               else version
            )
           
           
@@ -314,7 +355,64 @@ jobs:
            )
           
           
-          def clone(repo):
+          def latest_release(repo):
+           remote = f"https://github.com/{org}/{repo}.git"
+           tags = run_capture(
+               "git",
+               "ls-remote",
+               "--refs",
+               "--tags",
+               remote,
+           )
+           tag_pattern = re.compile(
+               r"^v(\d+)\.(\d+)\.(\d+)"
+               r"(?:-([0-9A-Za-z][0-9A-Za-z.-]*))?$"
+           )
+           releases = []
+
+           for line in tags.splitlines():
+               tag = line.rsplit("/", 1)[-1]
+               match = tag_pattern.fullmatch(tag)
+
+               if not match:
+                   continue
+
+               prerelease = match.group(4)
+               prerelease_key = ()
+
+               if prerelease:
+                   prerelease_key = tuple(
+                       (0, int(part))
+                       if part.isdigit()
+                       else (1, part.lower())
+                       for part in re.split(r"[.-]", prerelease)
+                   )
+
+               releases.append(
+                   (
+                       (
+                           int(match.group(1)),
+                           int(match.group(2)),
+                           int(match.group(3)),
+                           1 if prerelease is None else 0,
+                           prerelease_key,
+                       ),
+                       tag,
+                       tag[1:],
+                   )
+               )
+
+           if not releases:
+               raise RuntimeError(
+                   f"No v<major>.<minor>.<patch> release tag found "
+                   f"for {org}/{repo}"
+               )
+
+           _, tag, version = max(releases)
+           return tag, version
+
+
+          def clone_latest_release(repo):
            destination = tmp_repos / repo
           
            if destination.exists():
@@ -322,47 +420,35 @@ jobs:
                    f"Repository destination already exists: {destination}"
                )
           
-           print(f"Cloning {org}/{repo}...")
-          
-           # All jEAP repositories are public, so no authentication is needed.
+           tag, version = latest_release(repo)
+           print(f"Cloning {org}/{repo} release {tag}...")
+
            run(
                "git",
                "clone",
                "--depth",
                "1",
                "--branch",
-               "main",
+               tag,
                f"https://github.com/{org}/{repo}.git",
                str(destination),
            )
+
+           return version
           
           
           # ------------------------------------------------------------------
           # jEAP parent
           # ------------------------------------------------------------------
           
-          clone("jeap-spring-boot-parent")
-           
-          parent_project_version, _, _ = (
-           parse_pom_versions("jeap-spring-boot-parent")
-          )
-           
-          dependency_properties = collect_dependency_properties(
+          parent_version = clone_latest_release(
            "jeap-spring-boot-parent"
           )
            
-          parent_version = trim_snapshot_suffix(
-           resolve_properties(
-               parent_project_version,
-               dependency_properties,
-           )
+          dependency_properties = collect_dependency_properties(
+           "jeap-spring-boot-parent",
+           parent_version,
           )
-            
-          if not parent_version:
-           raise RuntimeError(
-               "Failed to read jEAP parent version from "
-               "jeap-spring-boot-parent/pom.xml"
-           )
           
           print(f"jEAP parent version: {parent_version}")
           
@@ -374,28 +460,38 @@ jobs:
           versions_by_repo = {}
           
           for repo in product_repositories:
-           clone(repo)
+           project_version = clone_latest_release(repo)
           
-           project_version, product_parent_version, properties = (
+           pom_project_version, product_parent_version, _ = (
                parse_pom_versions(repo)
            )
           
-           project_version = trim_snapshot_suffix(
-               resolve_properties(
-                   project_version,
-                   properties,
-               )
-           )
-           product_parent_version = trim_snapshot_suffix(
-               resolve_properties(
-                   product_parent_version,
-                   properties,
-               )
+           properties = collect_dependency_properties(
+               repo,
+               project_version,
            )
           
-           if not project_version or not product_parent_version:
+           pom_project_version = resolve_properties(
+               pom_project_version,
+               properties,
+               f"{repo}/pom.xml project version",
+           )
+           product_parent_version = resolve_properties(
+               product_parent_version,
+               properties,
+               f"{repo}/pom.xml parent version",
+           )
+
+           if not product_parent_version:
                raise RuntimeError(
-                   f"Failed to read version data from {repo}/pom.xml"
+                   f"Missing parent version in {repo}/pom.xml"
+               )
+
+           if pom_release_version(pom_project_version) != project_version:
+               raise RuntimeError(
+                   f"Latest release tag v{project_version} does not match "
+                   f"the project version {pom_project_version!r} in "
+                   f"{repo}/pom.xml"
                )
           
            versions_by_repo[repo] = {
@@ -422,6 +518,7 @@ jobs:
                resolved_value = resolve_properties(
                    value,
                    dependency_properties,
+                   f"jEAP library property {key}",
                )
           
                library_rows.append(
@@ -441,6 +538,7 @@ jobs:
                        resolved_value = resolve_properties(
                            value,
                            dependency_properties,
+                           f"managed dependency property {key}",
                        )
           
                        rows.append(
