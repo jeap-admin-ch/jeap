@@ -9,7 +9,7 @@ on:
       version_markdown_path:
         description: Path of the generated version markdown file
         required: false
-        default: docs/jeap-version-overview_temp.md
+        default: docs/jeap-version-overview.md
         type: string
 
 concurrency:
@@ -25,7 +25,7 @@ jobs:
     timeout-minutes: 10
 
     env:
-      VERSION_MARKDOWN_PATH: ${{ inputs.version_markdown_path || 'docs/jeap-version-overview_temp.md' }}
+      VERSION_MARKDOWN_PATH: ${{ inputs.version_markdown_path || 'docs/jeap-version-overview.md' }}
       JEAP_ORG: jeap-admin-ch
 
       PRODUCT_REPOSITORIES_JSON: >-
