@@ -77,7 +77,7 @@ def parse_pom_root(root):
     )
 
     if properties_node is not None:
-        for child in list(properties_node):
+        for child in properties_node:
             key = child.tag.split("}")[-1]
             properties[key] = (child.text or "").strip()
 
@@ -291,7 +291,7 @@ def latest_release(org, repo):
 
     if not releases:
         raise RuntimeError(
-            f"No v<major>.<minor>.<patch> release tag found " f"for {org}/{repo}"
+            f"No v<major>.<minor>.<patch> release tag found for {org}/{repo}"
         )
 
     _, tag, version = max(releases)
