@@ -44,22 +44,22 @@ Managed Versions of Spring dependencies:
 
 | Component | Current Version | Required jEAP Parent Version | Changelog |
 | --- | --- | --- | --- |
-| jeap-archrepo-service |`12.7.1` |`40.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-archrepo-service/blob/v12.7.1/CHANGELOG.md) |
-| jeap-bptest-orchestrator |`16.8.0` |`40.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptest-orchestrator/blob/v16.8.0/CHANGELOG.md) |
-| jeap-bptestagent-api |`9.6.0` |`40.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptestagent-api/blob/v9.6.0/CHANGELOG.md) |
+| jeap-archrepo-service |`12.7.2` |`40.9.2` | [Changelog](https://github.com/jeap-admin-ch/jeap-archrepo-service/blob/v12.7.2/CHANGELOG.md) |
+| jeap-bptest-orchestrator |`16.9.0` |`40.9.2` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptest-orchestrator/blob/v16.9.0/CHANGELOG.md) |
+| jeap-bptestagent-api |`9.7.0` |`40.9.2` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptestagent-api/blob/v9.7.0/CHANGELOG.md) |
 | jeap-deploymentlog-service |`12.6.0` |`40.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-deploymentlog-service/blob/v12.6.0/CHANGELOG.md) |
 | jeap-doc-service |`1.2.0` |`40.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-doc-service/blob/v1.2.0/CHANGELOG.md) |
 | jeap-error-handling |`23.2.0` |`40.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-error-handling/blob/v23.2.0/CHANGELOG.md) |
-| jeap-governance-service |`8.7.0` |`40.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-governance-service/blob/v8.7.0/CHANGELOG.md) |
-| jeap-initializer |`9.6.0` |`40.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-initializer/blob/v9.6.0/CHANGELOG.md) |
-| jeap-message-contract-service |`11.6.0` |`40.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-contract-service/blob/v11.6.0/CHANGELOG.md) |
+| jeap-governance-service |`8.8.0` |`40.9.2` | [Changelog](https://github.com/jeap-admin-ch/jeap-governance-service/blob/v8.8.0/CHANGELOG.md) |
+| jeap-initializer |`9.7.0` |`40.9.2` | [Changelog](https://github.com/jeap-admin-ch/jeap-initializer/blob/v9.7.0/CHANGELOG.md) |
+| jeap-message-contract-service |`11.7.0` |`40.9.2` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-contract-service/blob/v11.7.0/CHANGELOG.md) |
 | jeap-message-exchange-service |`15.6.0` |`40.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-exchange-service/blob/v15.6.0/CHANGELOG.md) |
-| jeap-oauth-mock-server |`10.8.0` |`40.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-oauth-mock-server/blob/v10.8.0/CHANGELOG.md) |
+| jeap-oauth-mock-server |`10.9.0` |`40.9.2` | [Changelog](https://github.com/jeap-admin-ch/jeap-oauth-mock-server/blob/v10.9.0/CHANGELOG.md) |
 | jeap-opensearch-index-writer-service |`5.6.0` |`40.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-opensearch-index-writer-service/blob/v5.6.0/CHANGELOG.md) |
-| jeap-process-archive-reader |`8.6.0` |`40.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-reader/blob/v8.6.0/CHANGELOG.md) |
-| jeap-process-archive-service |`23.8.0` |`40.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-service/blob/v23.8.0/CHANGELOG.md) |
+| jeap-process-archive-reader |`8.7.0` |`40.9.2` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-reader/blob/v8.7.0/CHANGELOG.md) |
+| jeap-process-archive-service |`23.9.0` |`40.9.2` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-service/blob/v23.9.0/CHANGELOG.md) |
 | jeap-process-context-service |`27.3.1` |`40.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-context-service/blob/v27.3.1/CHANGELOG.md) |
-| jeap-reaction-observer-service |`10.2.0` |`40.8.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-reaction-observer-service/blob/v10.2.0/CHANGELOG.md) |
+| jeap-reaction-observer-service |`10.3.0` |`40.9.2` | [Changelog](https://github.com/jeap-admin-ch/jeap-reaction-observer-service/blob/v10.3.0/CHANGELOG.md) |
 
 ## Managed 3rd Party Versions
 Managed Versions of selected 3rd party dependencies:
