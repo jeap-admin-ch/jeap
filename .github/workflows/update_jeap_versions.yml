@@ -3,6 +3,7 @@ name: Update jEAP versions
 on:
   schedule:
     - cron: "0 8,12,16 * * 1-5"
+      timezone: "Europe/Zurich"
 
   workflow_dispatch:
     inputs:
