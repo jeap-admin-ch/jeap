@@ -18,6 +18,7 @@ import json
 import os
 import re
 import subprocess
+import sys
 import urllib.request
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -235,6 +236,19 @@ def pom_release_version(version):
     return version[: -len(suffix)] if version.endswith(suffix) else version
 
 
+def warn_about_release_mismatch(repo_name, tag_version, pom_version):
+    if not pom_version:
+        return
+
+    if pom_release_version(pom_version) != tag_version:
+        print(
+            "Warning: release tag v"
+            f"{tag_version} does not match the POM version {pom_version!r} in "
+            f"{repo_name}/pom.xml; using the tag as the source of truth.",
+            file=sys.stderr,
+        )
+
+
 def changelog_link(repository, version, org, repositories_by_component):
     repo_name = repository_name_for_component(repository, repositories_by_component)
 
@@ -415,12 +429,7 @@ def main():
         if not product_parent_version:
             raise RuntimeError(f"Missing parent version in {repo}/pom.xml")
 
-        if pom_release_version(pom_project_version) != project_version:
-            raise RuntimeError(
-                f"Latest release tag v{project_version} does not match "
-                f"the project version {pom_project_version!r} in "
-                f"{repo}/pom.xml"
-            )
+        warn_about_release_mismatch(repo, project_version, pom_project_version)
 
         versions_by_repo[repo] = {
             "version": project_version,
