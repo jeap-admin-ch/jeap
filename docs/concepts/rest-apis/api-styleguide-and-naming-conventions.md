@@ -13,7 +13,7 @@ This style guide follows the very detailed [RESTful Swiss API Guidelines](https:
 
 Compared with, for example, SOA or RPC interfaces, [REST](https://de.wikipedia.org/wiki/Representational_State_Transfer) interfaces focus much less on use-case-specific and specialized operations (for example `ListBusinessPartnersByCountry`). Instead, REST focuses on business data entities that are exposed as **resources**, identified via URIs, and manipulated through standardized CRUD-like methods using different representations and hypermedia. Standard HTTP methods are used for this.
 
-RESTful APIs are generally less use-case-specific, have weaker client/server coupling, and are better suited for an ecosystem of services in which a platform exposes APIs for building different business services. We apply RESTful web service principles to all microservices. This applies to **synchronous service communication via REST/HTTP**, not to asynchronous, event-driven communication via [Domain Events](todo).
+RESTful APIs are generally less use-case-specific, have weaker client/server coupling, and are better suited for an ecosystem of services in which a platform exposes APIs for building different business services. We apply RESTful web service principles to all microservices. This applies to **synchronous service communication via REST/HTTP**, not to asynchronous, event-driven communication via Domain Events (TODO Link in Messaging).
 
 For synchronous communication, we prefer REST-based APIs with JSON payloads; see the Swiss API Guidelines section on [JSON as a payload format](https://github.com/swiss/api-guidelines/blob/main/README.md#must-use-json-preferred-or-xml-as-payload-data-interchange-format-for-structured-data-167).
 
@@ -21,12 +21,12 @@ Synchronous means that the expected response time for a request is typically und
 
 ## 3. General
 
-- Security: see [Authentication for REST APIs](./todo)
+- Security: see Authentication for REST APIs (TODO Link in Security)
 - Versioning and evolution: see [Versioning for REST APIs](evolution-versioning.md)
 
 ## 4. REST Maturity Levels
 
-The original Confluence page contained a screenshot illustrating the REST maturity levels at this point.
+![richardson_maturity_model.png](richardson_maturity_model.png)
 
 ## 5. HTTP
 
@@ -36,20 +36,20 @@ The original Confluence page contained a screenshot illustrating the REST maturi
 
 Legend:
 
-| Recommended | Limited | Usually not recommended |
-| --- | --- | --- |
-| Yes | Limited, see details below | Usually not in normal cases, but potentially useful for specific use cases |
+| Recommended | Limited                    | Usually not recommended                                                    |
+|-------------|----------------------------|----------------------------------------------------------------------------|
+| Yes         | Limited, see details below | Usually not in normal cases, but potentially useful for specific use cases |
 
-| Method | Semantics | Recommended use | No state change or side effects allowed on the server side | Idempotent implementation required |
-| --- | --- | --- | --- | --- |
-| **`GET`** | Read resource | Yes | Yes | Yes |
-| **`POST` as GET-with-body** | Read resource (for complex requests whose query is sent in the body because `GET` has no body; document this in the interface's OpenAPI documentation) | Yes | Yes | Yes |
-| **`PUT`** | Replace or create a resource (*complete resource in the body*). Use create when the client determines the resource ID (for example a UUID). | Yes | No | Yes |
-| **`DELETE`** | Delete resource | Yes | No | Yes |
-| **`POST`** | Create resource (when the server determines the resource ID or when explicit create semantics are desired) | Limited, see [Post](#511-post) | No | No, but recommended |
-| **`PATCH`** | Update *parts* of a resource | Limited, see [Patch](#512-patch) | No | Yes |
-| **`HEAD`** | Like `GET`, but returns headers only | Usually not recommended | Yes | Yes |
-| **`OPTIONS`** | Inspect available methods | For [CORS](https://developer.mozilla.org/de/docs/Web/HTTP/CORS) | Yes | Yes |
+| Method                      | Semantics                                                                                                                                              | Recommended use                                                 | No state change or side effects allowed on the server side | Idempotent implementation required |
+|-----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|------------------------------------------------------------|------------------------------------|
+| **`GET`**                   | Read resource                                                                                                                                          | Yes                                                             | Yes                                                        | Yes                                |
+| **`POST` as GET-with-body** | Read resource (for complex requests whose query is sent in the body because `GET` has no body; document this in the interface's OpenAPI documentation) | Yes                                                             | Yes                                                        | Yes                                |
+| **`PUT`**                   | Replace or create a resource (*complete resource in the body*). Use create when the client determines the resource ID (for example a UUID).            | Yes                                                             | No                                                         | Yes                                |
+| **`DELETE`**                | Delete resource                                                                                                                                        | Yes                                                             | No                                                         | Yes                                |
+| **`POST`**                  | Create resource (when the server determines the resource ID or when explicit create semantics are desired)                                             | Limited, see [Post](#511-post)                                  | No                                                         | No, but recommended                |
+| **`PATCH`**                 | Update *parts* of a resource                                                                                                                           | Limited, see [Patch](#512-patch)                                | No                                                         | Yes                                |
+| **`HEAD`**                  | Like `GET`, but returns headers only                                                                                                                   | Usually not recommended                                         | Yes                                                        | Yes                                |
+| **`OPTIONS`**               | Inspect available methods                                                                                                                              | For [CORS](https://developer.mozilla.org/de/docs/Web/HTTP/CORS) | Yes                                                        | Yes                                |
 
 See also the Swiss API Guidelines section on [HTTP requests](https://github.com/swiss/api-guidelines/blob/main/README.md#7-rest-basics---http-requests).
 
@@ -84,54 +84,54 @@ Methods that are **purely read-only** (`GET`, `HEAD`, `POST` as GET-with-body, `
 
 Idempotency can be implemented as follows:
 
-| Method | Primary implementation: idempotency per resource | Possible implementation if needed: idempotency per request | Possible success status codes |
-| --- | --- | --- | --- |
-| `POST` | Use only when the resource ID is assigned on the server side | `Idempotency-Key` header with a request ID (for example a UUID) | `201 Created` |
-| `PUT` | Resource ID in the request path | `Idempotency-Key` header with a request ID (for example a UUID) | `200 OK`, `201 Created` |
-| `PATCH` | Resource ID in the request path | `Idempotency-Key` header with a request ID (for example a UUID) | `200 OK`, `204 No Content` |
-| `DELETE` | `200 OK` even if the resource has already been deleted or does not exist | – | `200 OK`, `204 No Content` |
+| Method   | Primary implementation: idempotency per resource                         | Possible implementation if needed: idempotency per request      | Possible success status codes |
+|----------|--------------------------------------------------------------------------|-----------------------------------------------------------------|-------------------------------|
+| `POST`   | Use only when the resource ID is assigned on the server side             | `Idempotency-Key` header with a request ID (for example a UUID) | `201 Created`                 |
+| `PUT`    | Resource ID in the request path                                          | `Idempotency-Key` header with a request ID (for example a UUID) | `200 OK`, `201 Created`       |
+| `PATCH`  | Resource ID in the request path                                          | `Idempotency-Key` header with a request ID (for example a UUID) | `200 OK`, `204 No Content`    |
+| `DELETE` | `200 OK` even if the resource has already been deleted or does not exist | –                                                               | `200 OK`, `204 No Content`    |
 
 **Note:** To avoid concurrent updates or to ensure the expected initial state before an update, the [ETag header together with `If-Match` / `If-None-Match`](https://github.com/swiss/api-guidelines?tab=readme-ov-file#may-support-etag-together-with-if-matchif-none-match-header-182) can be used. See also [Optimistic locking in RESTful APIs](https://opensource.zalando.com/restful-api-guidelines/#optimistic-locking) for details and options.
 
 ### 5.3. Headers Always Required When a Response Body Is Present
 
-| Header | Value | Description |
-| --- | --- | --- |
+| Header         | Value                                                      | Description                                                                                                                                                                                                         |
+|----------------|------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `Content-Type` | `application/json`, or a more specific MIME type if needed | Use `application/json` for JSON payloads and other payload types as needed, for example `text/plain`. To ensure correct processing on the client side, for example in browsers, the correct MIME type must be used. |
 
 ### 5.4. Status Codes
 
 Responses should return specific status codes and document them in the interface documentation. This applies both to success cases (`200 OK`, `201 Created`, and so on) and to error cases (`401 Unauthorized`, `503 Unavailable`, and so on).
 
-- When authentication and authorization are implemented with the jEAP library as described in [Authentication for REST APIs](todo), secured APIs already return correct response status codes for security-related exceptions (`401`, `403`, and so on).
+- When authentication and authorization are implemented with the jEAP library as described in Authentication for REST APIs (TODO Link in Security), secured APIs already return correct response status codes for security-related exceptions (`401`, `403`, and so on).
 - See the Swiss API Guidelines section on [common HTTP status codes](https://github.com/swiss/api-guidelines?tab=readme-ov-file#should-only-use-most-common-http-status-codes-150) for a list of status codes and the HTTP methods to which they apply.
 - For bulk requests (`207 Multi-Status`), see the Swiss API Guidelines section on [batch or bulk requests](https://github.com/swiss/api-guidelines?tab=readme-ov-file#must-use-code-207-for-batch-or-bulk-requests-152).
 - The official [IANA HTTP status code registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml) lists all status codes and links to the corresponding RFCs.
 
 #### 5.4.1. Status Code Categories
 
-| Range | Meaning |
-| --- | --- |
-| `2xx` | Successfully processed |
-| `3xx` | Redirects (less important for APIs, more relevant for websites) |
+| Range | Meaning                                                                                    |
+|-------|--------------------------------------------------------------------------------------------|
+| `2xx` | Successfully processed                                                                     |
+| `3xx` | Redirects (less important for APIs, more relevant for websites)                            |
 | `4xx` | The server classified the error as a client-side error; a retry is usually not appropriate |
-| `5xx` | An error occurred on the server side; a retry may succeed |
+| `5xx` | An error occurred on the server side; a retry may succeed                                  |
 
 #### 5.4.2. Most Important Status Codes
 
-| Code | Meaning | Method |
-| --- | --- | --- |
-| `200` | OK | `*` |
-| `201` | Created | `POST`, `PUT` |
-| `202` | Accepted (asynchronous processing) | `POST`, `PUT`, `PATCH`, `DELETE` |
-| `204` | No Content (OK, no response body) | `PUT`, `PATCH`, `DELETE` |
-| `301` | Moved Permanently (redirect via `Location` header) | `*` |
-| `400` | Bad Request | `*` |
-| `401` | Unauthorized (usually means authentication is required) | `*` |
-| `403` | Forbidden (usually missing authorization for the resource) | `*` |
-| `404` | Not Found | `*` |
+| Code  | Meaning                                                                                                                                                                      | Method                           |
+|-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------|
+| `200` | OK                                                                                                                                                                           | `*`                              |
+| `201` | Created                                                                                                                                                                      | `POST`, `PUT`                    |
+| `202` | Accepted (asynchronous processing)                                                                                                                                           | `POST`, `PUT`, `PATCH`, `DELETE` |
+| `204` | No Content (OK, no response body)                                                                                                                                            | `PUT`, `PATCH`, `DELETE`         |
+| `301` | Moved Permanently (redirect via `Location` header)                                                                                                                           | `*`                              |
+| `400` | Bad Request                                                                                                                                                                  | `*`                              |
+| `401` | Unauthorized (usually means authentication is required)                                                                                                                      | `*`                              |
+| `403` | Forbidden (usually missing authorization for the resource)                                                                                                                   | `*`                              |
+| `404` | Not Found                                                                                                                                                                    | `*`                              |
 | `409` | Conflict — the request cannot be completed because of a conflict, for example when two clients try to create the same resource or when concurrent, conflicting updates occur | `POST`, `PUT`, `PATCH`, `DELETE` |
-| `500` | Internal Server Error | `*` |
+| `500` | Internal Server Error                                                                                                                                                        | `*`                              |
 
 ### 5.5. Compression
 
@@ -179,17 +179,17 @@ See also the Swiss API Guidelines section on [REST basics - URLs](https://github
 
 #### 6.1.1. Examples of a Resource-Oriented API Structure
 
-| Path | Resource | Use-case examples | Negative example |
-| --- | --- | --- | --- |
-| `/customers` | Collection of all customers | Read with filtering: `GET /customers?name=Meier`<br/>Read all customers with paging: `GET /customers?page=2&size=10` |  |
-| `/customers/{id}` | One customer instance | Create or replace: `PUT /customers/{id}` |  |
-| `/customers/{id}/preferences` | Collection of all preferences of a specific customer |  |  |
-| `/process-instances/{id}` | One process instance | Start a process: `PUT /process-instances/{id}` | Starting a process via `POST /process-instances/start` is closer to RPC style than to a resource-oriented style |
-| `/error-events/{id}` |  | Create: `PUT /error-events/{id}`<br/>Retry (= state change): `PUT /error-events/{id}/status` or `PATCH /error-events/{id}` with JSON Patch for the status attribute | Retrying via `POST /error-events/{id}/retry` is closer to RPC style than to a resource-oriented style.<br/>Exception: if `/retries` is a collection of all retries that is extended, then `PUT /error-events/{event-id}/retries/{retry-id}` is preferable |
-| `/addresses` | Collection of all addresses |  |  |
-| `/addresses/{addr}` | One address instance | Delete: `DELETE /addresses/{addr}` |  |
-| `/border-crossings/{id}` | One border crossing instance |  |  |
-| `/refunds/123`<br/>`/refunds/123/status` |  | Read refund request: `GET /refunds/123`<br/>Read status: `GET /refunds/123/status`<br/>Write state transition: `POST /refunds/123/status` | A state transition via `POST /error-events/{id}/retry` is closer to RPC style than to a resource-oriented style |
+| Path                                     | Resource                                             | Use-case examples                                                                                                                                                   | Negative example                                                                                                                                                                                                                                          |
+|------------------------------------------|------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `/customers`                             | Collection of all customers                          | Read with filtering: `GET /customers?name=Meier`<br/>Read all customers with paging: `GET /customers?page=2&size=10`                                                |                                                                                                                                                                                                                                                           |
+| `/customers/{id}`                        | One customer instance                                | Create or replace: `PUT /customers/{id}`                                                                                                                            |                                                                                                                                                                                                                                                           |
+| `/customers/{id}/preferences`            | Collection of all preferences of a specific customer |                                                                                                                                                                     |                                                                                                                                                                                                                                                           |
+| `/process-instances/{id}`                | One process instance                                 | Start a process: `PUT /process-instances/{id}`                                                                                                                      | Starting a process via `POST /process-instances/start` is closer to RPC style than to a resource-oriented style                                                                                                                                           |
+| `/error-events/{id}`                     |                                                      | Create: `PUT /error-events/{id}`<br/>Retry (= state change): `PUT /error-events/{id}/status` or `PATCH /error-events/{id}` with JSON Patch for the status attribute | Retrying via `POST /error-events/{id}/retry` is closer to RPC style than to a resource-oriented style.<br/>Exception: if `/retries` is a collection of all retries that is extended, then `PUT /error-events/{event-id}/retries/{retry-id}` is preferable |
+| `/addresses`                             | Collection of all addresses                          |                                                                                                                                                                     |                                                                                                                                                                                                                                                           |
+| `/addresses/{addr}`                      | One address instance                                 | Delete: `DELETE /addresses/{addr}`                                                                                                                                  |                                                                                                                                                                                                                                                           |
+| `/border-crossings/{id}`                 | One border crossing instance                         |                                                                                                                                                                     |                                                                                                                                                                                                                                                           |
+| `/refunds/123`<br/>`/refunds/123/status` |                                                      | Read refund request: `GET /refunds/123`<br/>Read status: `GET /refunds/123/status`<br/>Write state transition: `POST /refunds/123/status`                           | A state transition via `POST /error-events/{id}/retry` is closer to RPC style than to a resource-oriented style                                                                                                                                           |
 
 ### 6.2. Granularity
 
