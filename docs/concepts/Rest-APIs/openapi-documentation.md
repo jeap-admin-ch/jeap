@@ -168,7 +168,7 @@ With the `jeap-spring-boot-swagger` starter, OpenAPI / Swagger can be integrated
 Dependency for `jeap-spring-boot-swagger-starter`:
 
 ```xml
-<-- Spring MVC-->
+<!-- Spring MVC -->
 <dependency>
 	<groupId>ch.admin.bit.jeap</groupId>
 	<artifactId>jeap-spring-boot-swagger-starter</artifactId>
