@@ -149,7 +149,7 @@ public class MessageDto {
 	private String receiver;
 
 	@Schema(
-		description = "The time when this message was send. Will be set by the server",
+        description = "The time when this message was sent. Will be set by the server",
 		readOnly = true,
 		example = "2020-04-23T14:50:05.648291+02:00")
 	private ZonedDateTime timeSend;
