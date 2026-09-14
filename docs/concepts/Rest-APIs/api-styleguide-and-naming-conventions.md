@@ -283,9 +283,9 @@ In all cases, paging must be documented in the interface documentation.
 
 // Example paging with paging support from Spring Data REST
 @GetMapping("/products")
-public ResponseEntity<Product> findProductsByName(@RequestParam("name") String name, Pageable pageable) {
+public ResponseEntity<Page<Product>> findProductsByName(@RequestParam("name") String name, Pageable pageable) {
     Page<Product> products = productRepository.findAllByName(name, pageable);
-    return products; // Response formatted as a Spring Data Page according to HAL
+    return ResponseEntity.ok(products); // Response formatted as a Spring Data Page according to HAL
 }
 
 
