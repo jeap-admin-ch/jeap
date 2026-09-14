@@ -27,7 +27,7 @@ The same content as Markdown, if you prefer to stay on GitHub:
 
 The building-block pages list every jEAP repository with a short description and a link to its source on GitHub.
 
-Contributing documentation? See [Documenting jEAP](docs/documenting-jeap.md) - how jEAP docs are written, structured, and published to the documentation site.
+Contributing documentation? See [Documenting jEAP](docs/concepts/documenting-jeap.md) - how jEAP docs are written, structured, and published to the documentation site.
 
 ## License
 
