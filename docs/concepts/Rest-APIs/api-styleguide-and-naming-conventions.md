@@ -184,7 +184,7 @@ See also the Swiss API Guidelines section on [REST basics - URLs](https://github
 | `/customers` | Collection of all customers | Read with filtering: `GET /customers?name=Meier`<br/>Read all customers with paging: `GET /customers?page=2&size=10` |  |
 | `/customers/{id}` | One customer instance | Create or replace: `PUT /customers/{id}` |  |
 | `/customers/{id}/preferences` | Collection of all preferences of a specific customer |  |  |
-| `/process-instances/{id}` | One process instance | Start a process: `PUT /process-instance/{id}` | Starting a process via `POST /process-instances/start` is closer to RPC style than to a resource-oriented style |
+| `/process-instances/{id}` | One process instance | Start a process: `PUT /process-instances/{id}` | Starting a process via `POST /process-instances/start` is closer to RPC style than to a resource-oriented style |
 | `/error-events/{id}` |  | Create: `PUT /error-events/{id}`<br/>Retry (= state change): `PUT /error-events/{id}/status` or `PATCH /error-events/{id}` with JSON Patch for the status attribute | Retrying via `POST /error-events/{id}/retry` is closer to RPC style than to a resource-oriented style.<br/>Exception: if `/retries` is a collection of all retries that is extended, then `PUT /error-events/{event-id}/retries/{retry-id}` is preferable |
 | `/addresses` | Collection of all addresses |  |  |
 | `/addresses/{addr}` | One address instance | Delete: `DELETE /addresses/{addr}` |  |
