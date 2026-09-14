@@ -6,7 +6,7 @@ REST APIs change over the course of an application's lifecycle, which can lead t
 
 ## Evolution Strategies for APIs
 
-When evolving APIs, the Blueprint Microservice follows the principle "evolve when possible, version when necessary". [Consumer Driven Contract Tests with Pact](todo) are used to ensure compatibility between consumer and provider. As long as all contracts are fulfilled, a REST API can be evolved freely. This means that even non-backwards-compatible changes can be carried out in two compatible steps (Expand / Migrate / Contract strategy, or parallel change strategy, see also [martinfowler.com](https://martinfowler.com/bliki/ParallelChange.html)). For example, if the return type of a field needs to change, this can be done as follows:
+When evolving APIs, the Blueprint Microservice follows the principle "evolve when possible, version when necessary". Consumer Driven Contract Tests with Pact (TODO Link in Testing) are used to ensure compatibility between consumer and provider. As long as all contracts are fulfilled, a REST API can be evolved freely. This means that even non-backwards-compatible changes can be carried out in two compatible steps (Expand / Migrate / Contract strategy, or parallel change strategy, see also [martinfowler.com](https://martinfowler.com/bliki/ParallelChange.html)). For example, if the return type of a field needs to change, this can be done as follows:
 
 - First, the existing interface is extended with a new return field of the new type, while the old field continues to be returned as well. Since all contracts are still fulfilled, this is a backwards-compatible change (**Expand**).
 - Then the consumers are adapted so that they only read the new field (**Migrate**). Consumers can be migrated independently of each other.
@@ -20,22 +20,22 @@ This is not always possible, however, and requires increased communication effor
 
 Different types of APIs impose different requirements on versioning:
 
-| Type | Coupled Internal APIs | Independent Internal APIs                                                                                                         | Cross-Application APIs                                                                 | Public APIs |
-|---|---|-----------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|---|
-| **Description** | REST API between two components of a business application that are deployed together | REST API between two or more components of a business application that are not deployed together                                  | REST API between two or more components of different business applications             | REST API called by third-party systems |
-| **Example** | API of a backend-for-frontend called by the Angular frontend | API provided to other microservices of the same business application                                                              | API provided to other applications                                                     | API for partners called through the API gateway |
-| **Lifecycle** | Consumer and provider are always deployed together | Consumer and provider are developed together but usually not deployed together                                                    | Consumer and provider are neither developed nor deployed together                      | No influence on the lifecycle of the partner applications |
-| **Communication paths** | Short | Short                                                                                                                             | Medium (needs e.g. coordination at PI planning)                                        | Long |
-| **Ensuring compatibility** | By the team | [Consumer Driven Contract Tests with Pact](todo)                                                                                  | [Consumer Driven Contract Tests with Pact](todo)                                       | Must be defined case by case, e.g. by a specification |
-| **Changes** | Can be changed freely | Usually through evolution. If non-backwards-compatible changes are made and downtime is not possible, use Expand/Migrate/Contract | Evolution possible as long as contracts are honored, otherwise Expand/Migrate/Contract | Must be defined case by case by the application |
-| **Versioning** | Not necessary | Only if you want to decouple deployments                                                                                          | Necessary if contracts are not honored                                                 | Usually necessary |
+| Type                       | Coupled Internal APIs                                                                | Independent Internal APIs                                                                                                         | Cross-Application APIs                                                                 | Public APIs                                               |
+|----------------------------|--------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|-----------------------------------------------------------|
+| **Description**            | REST API between two components of a business application that are deployed together | REST API between two or more components of a business application that are not deployed together                                  | REST API between two or more components of different business applications             | REST API called by third-party systems                    |
+| **Example**                | API of a backend-for-frontend called by the Angular frontend                         | API provided to other microservices of the same business application                                                              | API provided to other applications                                                     | API for partners called through the API gateway           |
+| **Lifecycle**              | Consumer and provider are always deployed together                                   | Consumer and provider are developed together but usually not deployed together                                                    | Consumer and provider are neither developed nor deployed together                      | No influence on the lifecycle of the partner applications |
+| **Communication paths**    | Short                                                                                | Short                                                                                                                             | Medium (needs e.g. coordination at PI planning)                                        | Long                                                      |
+| **Ensuring compatibility** | By the team                                                                          | Consumer Driven Contract Tests with Pact (TODO Link in Testing)                                                                   | Consumer Driven Contract Tests with Pact (TODO Link in Testing)                        | Must be defined case by case, e.g. by a specification     |
+| **Changes**                | Can be changed freely                                                                | Usually through evolution. If non-backwards-compatible changes are made and downtime is not possible, use Expand/Migrate/Contract | Evolution possible as long as contracts are honored, otherwise Expand/Migrate/Contract | Must be defined case by case by the application           |
+| **Versioning**             | Not necessary                                                                        | Only if you want to decouple deployments                                                                                          | Necessary if contracts are not honored                                                 | Usually necessary                                         |
 
 ## Responsibility of API Consumers
 
 For this to work, consumers of an API must follow these rules:
 
 - API consumers must be built robustly ("Be conservative in what you send, be liberal in what you accept", see also [Postel's Law](https://en.wikipedia.org/wiki/Robustness_principle)). Often, consumers are not interested in all fields of a response. In such cases, the consumer must not depend on fields it does not need.
-- The [Consumer Driven Contract Tests with Pact](todo) must be complete. A consumer must be able to handle every response that lies within the contract.
+- The Consumer Driven Contract Tests with Pact (TODO Link in Testing) must be complete. A consumer must be able to handle every response that lies within the contract.
 - With global versioning of a producer API, only one version may be consumed at a time.
 - When a consumed API is updated to a new version, it should be updated within a reasonable time frame (~1 PI).
 
@@ -43,10 +43,10 @@ For this to work, consumers of an API must follow these rules:
 
 There are two methods for API versioning. By default, **versioning on resources** should be used, but for individual services **global versioning** can also be useful. Within a single service, however, the two methods must not be mixed.
 
-| Type | Description | Example | Application |
-|---|---|---|---|
+| Type                        | Description                                                                                                                                                                                                          | Example                                | Application                                                                                                                                 |
+|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
 | **Versioning on Resources** | Each resource has its own version. Publishing a new version of a resource has no effect on the other resources. If a resource is removed, the interface is marked as deprecated without introducing a new interface. | `/api/resource/v3`<br/>`/api/other/v2` | Less effort for a new version. If a resource changes, only that resource needs to be versioned. Should therefore be used whenever possible. |
-| **Global Versioning** | The API has one version; every version contains all necessary resources. | `/api/v3/resource`<br/>`/api/v3/other` | When the resources themselves change between versions. |
+| **Global Versioning**       | The API has one version; every version contains all necessary resources.                                                                                                                                             | `/api/v3/resource`<br/>`/api/v3/other` | When the resources themselves change between versions.                                                                                      |
 
 In both cases, the following points apply:
 
@@ -65,7 +65,7 @@ An interface must be marked in the following ways:
 
 - The `deprecated` flag must be set in the OpenAPI / Swagger documentation.
 - The provider must set a [Sunset header](https://tools.ietf.org/html/rfc8594) in the HTTP response.
-- The version must be set to `deprecated` in the Pact Broker for [Consumer Driven Contract Tests with Pact](todo).
+- The version must be set to `deprecated` in the Pact Broker for Consumer Driven Contract Tests with Pact (TODO Link in Testing).
 
 ## Implementation in Java
 

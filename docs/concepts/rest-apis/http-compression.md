@@ -8,8 +8,8 @@ Microservices that generate large HTTP responses should compress the response da
 
 To enable compression on the server, set the following Spring Boot property:
 
-```java
-server.compression.enable = true
+```yaml
+server.compression.enabled: true
 ```
 
 [Additional configuration options](https://docs.spring.io/spring-boot/appendix/application-properties/index.html#appendix.application-properties.server) are available for specific use cases, such as:
