@@ -144,7 +144,7 @@ Compression must be enabled in Spring Boot via `server.compression.enable`.
 **application.yaml**
 
 ```yaml
-server.compression.enable: true
+server.compression.enabled: true
 ```
 
 ### 5.6. Caching
