@@ -11,8 +11,8 @@ this **umbrella repository** ([`jeap`](https://github.com/jeap-admin-ch/jeap)).
 Documentation for an individual building block is authored **with that building
 block**, in Markdown alongside its code. The public site at
 [jeap-admin-ch.github.io](https://jeap-admin-ch.github.io) is **assembled at build
-time** by combining this umbrella's `docs/` (placed at the site root) with the
-`docs/` directory of every other jEAP repository (see
+time** by combining this umbrella's `..` (placed at the site root) with the
+`..` directory of every other jEAP repository (see
 [Publishing](#publishing)). Write general docs here; write a building block's docs
 in its own repository — the site picks both up automatically.
 
@@ -21,13 +21,13 @@ in its own repository — the site picks both up automatically.
 Documentation is written in **English** and optimised to be read both by humans on
 GitHub / the doc site and by AI coding agents navigating the corpus.
 
-- **The `README.md` is short and context-sparing.** Its job is orientation: what the
-  building block is, the most important concepts, and links into `docs/` for the
+- **The `../../README.md` is short and context-sparing.** Its job is orientation: what the
+  building block is, the most important concepts, and links into `..` for the
   detail. Keep depth out of the README.
 - **Be context-sparing — do not rely solely on RAG.** A reader (human or agent)
   should be able to navigate to the right page and find a self-contained answer
   without loading the whole corpus.
-- **One article, one topic.** Each `docs/` page is focused on a single subject.
+- **One article, one topic.** Each `..` page is focused on a single subject.
     - Good: *Unit/Integration Testing of jEAP Security Authorization*
     - Bad: *jEAP Security Annotations and how to test them*
 - **Semantic file names so agents (and people) can find pages.** The path should
@@ -74,7 +74,7 @@ jEAP repositories.
 ### jEAP Umbrella repository
 
 Holds the cross-cutting overview, concepts and the building-block index — the
-material that is not specific to a single library. Its `docs/` is placed at the
+material that is not specific to a single library. Its `..` is placed at the
 **root** of the published site and provides the top-level sidebar.
 
 ```
@@ -96,7 +96,7 @@ docs/
 ### Source Code Repositiories
 
 For libraries, Spring Boot starters, re-usable microservices and examples, documentation lives in the library's own
-repository: a short README that links into a **flat** set of topic pages under `docs/`.
+repository: a short README that links into a **flat** set of topic pages under `..`.
 
 ```
 README.md                        # short: what it is, key concepts, link table into docs/
@@ -148,18 +148,18 @@ what the section covers and links into its pages, mirroring the
 `index.md` files come from two places:
 
 - **Authored by hand — in this umbrella repo.** Each curated category folder ships
-  its own `index.md`: `building-blocks/index.md` and one per subcategory
-  (`building-blocks/libraries/index.md`, `…/spring-boot-starters/index.md`, …). You
+  its own `index.md`: `../building-blocks/index.md` and one per subcategory
+  (`../building-blocks/libraries/index.md`, `…/spring-boot-starters/index.md`, …). You
   write and maintain these.
 - **Generated at publish time — for auto-discovered repo sections.** When a building
-  block's repo is pulled into the site, its **`README.md` becomes the `index.md` of
-  the repo's `docs/` section** (the landing page) — so the README *is* what a reader
+  block's repo is pulled into the site, its **`../../README.md` becomes the `index.md` of
+  the repo's `..` section** (the landing page) — so the README *is* what a reader
   sees when opening that building block's section. A repo therefore needs no
   hand-written `docs/index.md`. (See [Publishing](#publishing) and the
   [site repository README](https://github.com/jeap-admin-ch/jeap-admin-ch.github.io/blob/main/README.md)
   for the mechanics.)
 
-This is also why a library's own `docs/` is **flat** (`docs/<topic>.md`) with the
+This is also why a library's own `..` is **flat** (`docs/<topic>.md`) with the
 README as its entry point: the README already serves as the section landing page, so
 there is no need for a separate `docs/index.md`.
 
@@ -168,9 +168,9 @@ there is no need for a separate `docs/index.md`.
 The public site is built with **[Docusaurus 3](https://docusaurus.io/)** and deployed
 to GitHub Pages from the
 [`jeap-admin-ch.github.io`](https://github.com/jeap-admin-ch/jeap-admin-ch.github.io)
-repository, which holds the site shell only — the content under its `docs/` is
-**aggregated from the jEAP repositories at build time**: this umbrella's `docs/` at
-the site root, plus the `docs/` of every other repo that ships one, discovered
+repository, which holds the site shell only — the content under its `..` is
+**aggregated from the jEAP repositories at build time**: this umbrella's `..` at
+the site root, plus the `..` of every other repo that ships one, discovered
 automatically. The sidebar order and building-block categories are driven by this
 repo's [`_order`](https://github.com/jeap-admin-ch/jeap/blob/main/docs/_order) and
 [`_categories`](https://github.com/jeap-admin-ch/jeap/blob/main/docs/_categories)
@@ -186,10 +186,10 @@ flowchart LR
 
 What this means for you as an author:
 
-- **To publish a building block's docs**, give its repository a top-level `docs/`
+- **To publish a building block's docs**, give its repository a top-level `..`
   with Markdown pages and a README linking into them — the next site build picks it
   up. No change to the site repository is needed.
-- **To add or reorder general docs here**, add the file/folder under `docs/` and a
+- **To add or reorder general docs here**, add the file/folder under `..` and a
   line in [`_order`](https://github.com/jeap-admin-ch/jeap/blob/main/docs/_order).
 - **Broken internal links fail the build** (`onBrokenLinks: 'throw'`), so keep
   cross-repo links pointing at the public site / GitHub as described above.
@@ -200,12 +200,12 @@ and how to preview locally — see the site repository's
 
 ## See also
 
-- [What is jEAP?](what-is-jeap.md) — definition, principles, and the problems jEAP solves.
+- [What is jEAP?](../what-is-jeap.md) — definition, principles, and the problems jEAP solves.
 - [Naming Conventions](naming-conventions.md) — how deployables, message types, repositories and infrastructure are named.
-- [App Building Blocks](building-blocks/index.md) — the catalogue this documentation describes.
+- [App Building Blocks](../building-blocks/index.md) — the catalogue this documentation describes.
 - [`docs/_order`](https://github.com/jeap-admin-ch/jeap/blob/main/docs/_order) and [
   `docs/_categories`](https://github.com/jeap-admin-ch/jeap/blob/main/docs/_categories) — the sidebar/category
   manifests.
 - [jeap-admin-ch.github.io](https://github.com/jeap-admin-ch/jeap-admin-ch.github.io) — the site repository and full
   pipeline reference.
-- [jEAP version overview](jeap-version-overview.md) — the versions of jEAP libraries, starters, and products.
+- [jEAP version overview](../jeap-version-overview.md) — the versions of jEAP libraries, starters, and products.

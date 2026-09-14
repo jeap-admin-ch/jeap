@@ -87,4 +87,4 @@ PostgreSQL 15) — applied by `jeap-spring-boot-db-migration-starter` and
 ## See also
 
 - [Documenting jEAP](documenting-jeap.md) — how jEAP documentation is written and published.
-- [Using jEAP](using-jeap.md) — the Maven parents and dependency management.
+- [Using jEAP](../using-jeap.md) — the Maven parents and dependency management.
