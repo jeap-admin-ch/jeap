@@ -332,11 +332,11 @@ fields:
         "name": "ch.admin.bit.jeap.domainevent.avro.AvroDomainEventPublisher",
         "fields": [
           {
-            "name": "systemName",
+            "name": "system",
             "type": "string"
           },
           {
-            "name": "serviceName",
+            "name": "service",
             "type": "string"
           }
         ]
