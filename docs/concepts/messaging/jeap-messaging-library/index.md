@@ -224,7 +224,7 @@ public MyService(@Qualifier("aws") KafkaTemplate awsKafkaTemplate) {
 }
 
 // Consumer - Specific Cluster
-@KafkaListener(topics = Message.TypeDef.DEFAULT_TOPIC, containerFactory = "awsContainerFactory")
+@KafkaListener(topics = Message.TypeDef.DEFAULT_TOPIC, containerFactory = "awsKafkaListenerContainerFactory")
 void onMessage(Message message, Acknowledgement ack) {
   ...
 }
