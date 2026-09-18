@@ -185,7 +185,7 @@ package ch.admin.bit.jeap.jme.processarchive.service.provider;
 import ch.admin.bit.jeap.messaging.annotations.JeapMessageConsumerContractsByTemplates;
 
 @JeapMessageConsumerContractsByTemplates(appName = "my-custom-app-name")
-interface ProcessContextMessageContracts {
+interface ProcessArchiveMessageContracts {
 }
 ```
 
