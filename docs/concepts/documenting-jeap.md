@@ -44,20 +44,15 @@ GitHub / the doc site and by AI coding agents navigating the corpus.
   and in the generated HTML. (See [Linking](#linking).)
 - **HTTP links always point at public documentation** — the public doc site or the
   public GitHub repositories, never internal resources.
-- **Diagrams are written in [Mermaid](https://mermaid.js.org/)** — fenced
-  ` ```mermaid ` code blocks, rendered by the doc site. Prefer Mermaid over embedded
+- **Diagrams are written in [PlantUML](https://plantuml.com/)** — fenced
+  ` ```plantuml ` code blocks, rendered by the doc site. Prefer PlantUML over embedded
   images because:
-    - **Automated layout** — you describe nodes and edges, the renderer handles
-      positioning, so diagrams stay tidy as they evolve without manual pixel-pushing.
     - **In-place authoring in Markdown** — the diagram source lives in the `.md` file
       next to the prose, so it is version-controlled, diff-able and edited with the
       same tools as the text (no binary assets, no external diagram editor).
     - **Easily understood by AI agents** — the textual source is readable and
       editable by coding agents, which can neither parse nor modify an image.
 
-  When authoring locally in IntelliJ IDEA, the
-  [Mermaid plugin](https://plugins.jetbrains.com/plugin/20146-mermaid) previews these
-  blocks in the Markdown editor.
 - **Pages must be valid [MDX](https://mdxjs.com/).** Docusaurus renders every `.md`
   page as MDX, so the Markdown has to satisfy Docusaurus' MDX parser or the
   production build fails. In practice: a bare `<` is read as a JSX tag and `{ }` as a
