@@ -67,8 +67,6 @@ end note
 
 ### UI
 
-Example: `https://ref-jme-internal.bit.admin.ch/process-context/process/vault`
-
 ![Process Context Service UI example](pcs-ui-example.png)
 
 #### Deep Links
@@ -1426,7 +1424,7 @@ For example, the following request would query, on the JME Process Context Examp
 `2`:
 
 ```text
-GET https://dev-jme-internal.bit.admin.ch/jme-process-context-scs/api/snapshot/foobar?version=2
+GET https://<local-server>/jme-process-context-scs/api/snapshot/foobar?version=2
 ```
 
 Specifying the version is optional. Without a version, the latest available process snapshot

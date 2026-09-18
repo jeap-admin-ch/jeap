@@ -99,7 +99,7 @@ specified per message with the following attributes:
 | Attribute | Description | Optional | Example |
 | --- | --- | --- | --- |
 | archiveDataReferenceProvider | Fully qualified class name of the reference provider implementation | no | ch.admin.bit.jeap.jme.processarchive.service.provider.DiagramVersionCreatedArchiveDataReferenceProvider |
-| uri | URI of the record to be archived, with an `{id}` URI parameter for the reference id of the record to be archived, and, if applicable, also a `{version}` URI parameter for the version of the record to be archived, if this record is managed with archiving in mind. | no | `https://dev-jme-internal.bit.admin.ch/jme-process-archive-resource-service/api/diagrams/{id}/archival?version={version}` |
+| uri | URI of the record to be archived, with an `{id}` URI parameter for the reference id of the record to be archived, and, if applicable, also a `{version}` URI parameter for the version of the record to be archived, if this record is managed with archiving in mind. | no | |
 | oauthClientId | OAuth2 client ID from the Spring OAuth2 configuration used to obtain a token for accessing the record to be archived | yes* | jme-process-archive-resource-service<br/>\* = if not specified, the API is called without authentication, which in practice is uncommon |
 | correlationProvider | An implementation of a [MessageCorrelationProvider](https://github.com/jeap-admin-ch/jeap-process-archive-service/blob/main/jeap-process-archive-plugin-api/src/main/java/ch/admin/bit/jeap/processarchive/plugin/api/archivedata/MessageCorrelationProvider.java): supplies the value for the processId attribute of the archived record. Optional; the default implementation uses the processId attribute from the message. | yes | see example below |
 
