@@ -110,7 +110,7 @@ Here is a Java example for signing, with the performance-optimized AmazonCorrett
 public byte[] createSignature(byte[] bytesToSign, PrivateKey privateKey) throws Exception {
   Signature signature = Signature.getInstance("SHA256withRSA", AmazonCorrettoCryptoProvider.PROVIDER_NAME);
   signature.initSign(privateKey);
-  signature.update(bytes);
+  signature.update(bytesToSign);
 
   return signature.sign();
 }
