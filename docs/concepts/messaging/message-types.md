@@ -457,7 +457,7 @@ When using [`AvroDomainEventBuilder`](https://github.com/jeap-admin-ch/jeap-mess
 as the base class for the message builder that builds jEAP messages at runtime, the `MessageType`
 information in the jEAP message is automatically populated from the following sources:
 
-- `MessageType.type`
+- `MessageType.name`
   - Schema name (unqualified) of the message type (e.g. `JmeSomethingHappenedEvent`)
 - `MessageType.version` (in descending priority order):
   1. Version field on the generated Avro message Java class (if the message type was generated
