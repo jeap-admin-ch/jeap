@@ -45,7 +45,7 @@ GitHub / the doc site and by AI coding agents navigating the corpus.
 - **HTTP links always point at public documentation** — the public doc site or the
   public GitHub repositories, never internal resources.
 - **Diagrams are written in [PlantUML](https://plantuml.com/)** — fenced
-  ` ```startuml ` code blocks, rendered by the doc site. Prefer PlantUML over embedded
+  ` ```plantuml ` code blocks, rendered by the doc site. Prefer PlantUML over embedded
   images because:
     - **In-place authoring in Markdown** — the diagram source lives in the `.md` file
       next to the prose, so it is version-controlled, diff-able and edited with the
