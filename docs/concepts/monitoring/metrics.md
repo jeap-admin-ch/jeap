@@ -69,7 +69,7 @@ health_indicator_status{component="ssl"} 1.0
 The app name is exposed as a metric to correlate the CF app name with the Spring Boot app name:
 
 ```
-jeap_spring_app{name="my-app"}}
+jeap_spring_app{name="my-app"}
 ```
 
 ### Rest-Tracing
