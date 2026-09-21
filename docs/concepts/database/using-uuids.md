@@ -12,7 +12,7 @@
 - Traceability, since the ID is known from the start
 - More flexible processes, since the steps that generate an ID don't necessarily have to happen first
 
-### What are properties of UUIDs?
+### What are the properties of UUIDs?
 
 - Can be created in a distributed way without access to a central instance
 - Conditionally human-readable or communicable
