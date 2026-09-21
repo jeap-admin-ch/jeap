@@ -153,7 +153,7 @@ If this is not an option, you can enable the `UnhandledExceptionLoggingFilter` p
 `jeap-spring-boot-logging-starter` by adding the following configuration property to your service:
 
 ```yaml
-jeap.logging.rest.unhandled-exception-logging.enabled=true
+jeap.logging.rest.unhandled-exception-logging.enabled: true
 ```
 
 This will add a request filter to your filter chain that logs exceptions right before the traces in the MDC
