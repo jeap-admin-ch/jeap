@@ -4,7 +4,7 @@
 
 Logging refers to the automatic creation of a record (*log*) of software processes. Logging serves to record
 and trace error conditions. Logging is to be distinguished from
-monitoring (TODO Link) (monitoring the status of a service)
+[monitoring](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-starters/jeap-spring-boot-monitoring-starter) (monitoring the status of a service)
 and business logging (logging of business events).
 
 In a microservice application, each service generates its own log. Creating such a log is described in more
