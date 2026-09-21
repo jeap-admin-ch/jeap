@@ -37,13 +37,15 @@
     Type 1 UUIDs (time-based, but fractions of a second come first and the year last, so not sequential)
   - Partitioning is improved with Type 7 UUIDs, since these are sorted chronologically, e.g.:
 
-    ```java
+    ```xml
     <dependency>
       <groupId>com.fasterxml.uuid</groupId>
       <artifactId>java-uuid-generator</artifactId>
     </dependency>
+    ```
 
-    UUID timeBasedUuid = Generators.timeBasedEpochGenerator().generate()
+    ```java
+    UUID timeBasedUuid = Generators.timeBasedEpochGenerator().generate();
     ```
 
   - The problem is accentuated with JOINs across multiple tables, which are then all linked via UUID
