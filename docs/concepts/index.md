@@ -1,5 +1,6 @@
 # Concepts
 
+- [Database](database/index.md)
 - [Documenting jEAP](documenting-jeap.md)
 - [Logging](logging/index.md)
 - [Messaging](messaging/index.md)

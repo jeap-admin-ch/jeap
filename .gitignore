@@ -8,3 +8,4 @@
 .LSOverride
 .directory
 *.tmp
+/target/
