@@ -113,7 +113,7 @@ management.endpoints.enabled-by-default=false
 management.endpoint.info.enabled=true
 management.endpoint.health.enabled=true
 management.endpoint.prometheus.enabled=true
-management.endpoints.web.exposure.include=*
+management.endpoints.web.exposure.include=info,health,prometheus
 management.endpoints.jmx.exposure.exclude=*
 ```
 
