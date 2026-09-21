@@ -1,6 +1,7 @@
 # Concepts
 
 - [Documenting jEAP](documenting-jeap.md)
-- [Naming Conventions](naming-conventions.md)
+- [Logging](logging/index.md)
 - [Messaging](messaging/index.md)
+- [Naming Conventions](naming-conventions.md)
 - [Rest-APIs](rest-apis/index.md)
