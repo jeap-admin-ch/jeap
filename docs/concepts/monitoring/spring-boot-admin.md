@@ -100,9 +100,8 @@ spring:
         password: <<password of the spring boot admin server client user>>
         instance:
           metadata:
-            user:
-              name: <<username to access the client application's actuator endpoints>>
-              password: <<password to access the client application's actuator endpoints>>
+            user.name: <<username to access the client application's actuator endpoints>>
+            user.password: <<password to access the client application's actuator endpoints>>
 ```
 
 ### Spring Boot Admin Client Security
@@ -116,7 +115,7 @@ The Spring Boot Starter **jeap-spring-boot-monitoring-starter** (see
 essential for monitoring an application available with Basic-Auth protection. This feature is disabled by
 default for security reasons. It can be enabled and configured as follows:
 
-```yaml
+```properties
 # The following configuration belongs in application-dev.yml and application-ref.yml - never in application-prod.yml!
 
 # Enable endpoints for Spring Boot Admin (default: false)
