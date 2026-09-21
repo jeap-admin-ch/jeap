@@ -110,7 +110,7 @@ jeap:
     prometheus:
       password: "{bcrypt}${vcap.services.prometheus.credentials.prometheusPwd}"
     actuator:
-      password:"{bcrypt}${vcap.services.actuator.credentials.actuatorPwd}" 
+      password: "{bcrypt}${vcap.services.actuator.credentials.actuatorPwd}"
 ```
 
 The BCrypt password hash can be generated as follows:
