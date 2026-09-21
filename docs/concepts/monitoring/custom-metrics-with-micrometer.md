@@ -35,7 +35,7 @@ for example, defines a meter named `messages.sent` of type `Counter` in the Micr
 @Autowired
 MeterRegistry meterRegistry;
 ...
-Counter messagesSentCounter = registry.counter("messages.sent");
+Counter messagesSentCounter = meterRegistry.counter("messages.sent");
 ```
 
 For more detailed configuration of meters, their builders can be used:
