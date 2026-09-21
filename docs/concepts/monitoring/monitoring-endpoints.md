@@ -60,7 +60,7 @@ The Prometheus endpoint uses the Prometheus format; all other endpoints must ret
       "name":"jeap-microservice-examples-monitoring",
       "group":"ch.admin.bit.jeap",
       "time":"2019-09-30T11:44:03.448Z"
-   },
+   }
 }
 ```
 
