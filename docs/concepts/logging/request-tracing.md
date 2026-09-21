@@ -12,8 +12,7 @@ service logs who called what and how the service reacted.
 The `jeap-spring-boot-logging-starter` supports request tracing for HTTP calls. For every call, the
 following log statements are generated:
 
-> The structured JSON attributes are only logged if JSON logs are activated by having the Spring profile
-> "cloud" active. During local development, usually only the "message" attribute is logged.
+> The structured JSON attributes are logged when `jeap.logging.platform` is set to `cloudwatch` or `rhos`. With the default `consoletext` format, logs use a human-readable text layout instead.
 
 **Rest-Request Tracing**
 

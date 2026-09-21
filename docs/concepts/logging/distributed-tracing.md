@@ -96,12 +96,6 @@ management:
 Without the property set, traces are still produced and visible as `traceId`/`spanId` in MDC, but no spans
 leave the service. The configured URL must point to an OpenTelemetry collector.
 
-For AWS/Nivel, this endpoint points to the OTel sidecar container running alongside the service container in
-the same Fargate task.
-
-> For Nivel to expose an OTel collector endpoint in your task's sidecar, your task must be based on a Nivel
-> jEAP Blueprint version 4.26.0 or greater.
-
 ### Sampling
 
 Producing, transporting and storing a span has a cost. Sampling decides which traces are kept end to end.

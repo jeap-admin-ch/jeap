@@ -13,13 +13,9 @@ on different systems, error analysis using individual log files alone is very cu
 analyze and search all logs in a central location, a central logging infrastructure and
 [Distributed Tracing](distributed-tracing.md) are needed.
 
-## Logging on AWS
-
-See [AWS Logging](aws-logging.md).
 
 ## Topics
 
 - [Application Logs](application-logs.md)
-- [AWS Logging](aws-logging.md)
 - [Request Tracing](request-tracing.md)
 - [Distributed Tracing](distributed-tracing.md)
