@@ -165,10 +165,10 @@ format. Log entries should be a single-line JSON string containing at least the 
 {"app":"eets-manualtask-service","@timestamp":"2019-09-06T08:23:59.432+02:00", "logger":"s.d.s.w.r.o.CachingOperationNameGenerator", "level":"INFO",  "thread_name":"main",  "message":"test"}
 ```
 
-Additional fields can be added by Spring Cloud Sleuth (see [Distributed Tracing](distributed-tracing.md)) or
+Additional fields can be added by Micrometer Tracing/OpenTelemetry (see [Distributed Tracing](distributed-tracing.md)) or
 with StructuredArguments:
 
-**Example output (with Spring Cloud Sleuth)**
+**Example output (with Micrometer Tracing/OpenTelemetry)**
 
 ```js
 {"@timestamp":"2019-09-19T09:58:39.152+00:00","app":"jeap-example-log-receiver","logger":"c.a.j.e.l.r.RestExample","level":"INFO","thread_name":"http-nio-8080-exec-8","traceId":"4c22a312eddf78bc","spanId":"9947870202d65e02","spanExportable":"false","X-Span-Export":"false","X-B3-SpanId":"9947870202d65e02","X-B3-ParentSpanId":"4c22a312eddf78bc","X-B3-TraceId":"4c22a312eddf78bc","parentId":"4c22a312eddf78bc","message":"Received a rest call"}
