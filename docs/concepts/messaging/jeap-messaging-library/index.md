@@ -496,8 +496,8 @@ end note
 
 | Name | Mandatory | Default | Description | Example |
 | --- | --- | --- | --- | --- |
-| `jeap.messaging.authentication.publisher.signature-key` | N (Y if signature-certificate is set) | - | The private key used for signing. | `-----BEGIN PRIVATE KEY-----`<br/>`MIIEcDCCAlgCFFx88xf15M8AEghQtgqUwFlNyWTjMA0GCSqGSIb3DQEBCwUAMG8x`<br/>`....`<br/>`-----END PRIVATE KEY-----` |
-| `jeap.messaging.authentication.publisher.signature-certificate` | N (Y if signature-key is set) | - | The service's certificate (contains, among other things, the serial number). | `-----BEGIN CERTIFICATE-----`<br/>`MIIEcDCCAlgCFFx88xf15M8AEghQtgqUwFlNyWTjMA0GCSqGSIb3DQEBCwUAMG8x`<br/>`....`<br/>`-----END CERTIFICATE-----` |
+| `jeap.messaging.authentication.publisher.signature-key` | N (Y if signature-certificate is set) | - | The private key used for signing. | `-----BEGIN PRIVATE KEY-----`<br/><my-key><br/>`....`<br/>`-----END PRIVATE KEY-----` |
+| `jeap.messaging.authentication.publisher.signature-certificate` | N (Y if signature-key is set) | - | The service's certificate (contains, among other things, the serial number). | `-----BEGIN CERTIFICATE-----`<br/><my-key><br/>`....`<br/>`-----END CERTIFICATE-----` |
 
 **Subscriber**
 
@@ -518,7 +518,7 @@ certificate-chains:
     - chain:
       - |-
         -----BEGIN CERTIFICATE-----
-        MIIEcDCCAlgCFFx88xf15M8AEghQtgqUwFlNyWTjMA0GCSqGSIb3DQEBCwUAMG8x
+        my-certificate
         ....
         -----END CERTIFICATE-----
       - ${intermediate-certificate}
