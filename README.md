@@ -19,6 +19,7 @@ The same content as Markdown, if you prefer to stay on GitHub:
 
 - [What is jEAP?](docs/what-is-jeap.md) — definition, core principles, value, and the problems jEAP solves.
 - [Using jEAP](docs/using-jeap.md) — the Maven parents and dependency management.
+- [Concepts](docs/concepts/index.md) — cross-cutting guidance
 - [App Building Blocks](docs/building-blocks/index.md) — the libraries, starters and microservices you compose from:
   - [Libraries](docs/building-blocks/libraries/index.md)
   - [Spring Boot Starters](docs/building-blocks/spring-boot-starters/index.md)
