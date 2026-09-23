@@ -82,7 +82,7 @@ The response content can be customized by adding or removing attributes. This re
 
 The custom DTO must extend the `JeapCurrentUserDto` class, introducing new attributes while calling the superclass constructor. Existing attributes can be removed by setting them to `null`, except for the required `subject` attribute, which cannot be null.
 
-In this example, a new attribute `myCustomAttribut` is added, while `adminDirUid` and `pamsLoginLevel` are set to `null`, excluding them from the response.
+In this example, a new attribute `myCustomAttribute` is added, while `adminDirUid` and `pamsLoginLevel` are set to `null`, excluding them from the response.
 
 ```java
 @Data
