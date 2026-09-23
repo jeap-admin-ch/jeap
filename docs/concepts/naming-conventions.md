@@ -10,17 +10,14 @@ infrastructure resources (Keycloak realms/clients, database clusters, object-sto
 repositories/projects) is a platform concern and is documented with the respective platform, not
 here.
 
-> The concrete examples use placeholder agency and system names (`bazg`, `eets`, `vsp`, …);
-> substitute your own.
-
 ## Glossary
 
 | Term | Example | Meaning |
 |---|---|---|
 | `context` | `assessment`, `discrepancy` | A bounded context — typically the domain a microservice encapsulates. |
-| agency | `BAZG`, `BIT` | The organization (federal office) that owns the application. |
-| `system` | `EETS`, `VSP` | The business application. |
-| service | `eets-assessment-service` | A single microservice. |
+| agency | `BIT` | The organization (federal office) that owns the application. |
+| `system` | `MySystem` | The business application. |
+| service | `mysystem-assessment-service` | A single microservice. |
 
 ## Deployable elements
 
@@ -42,7 +39,7 @@ If no standardized type fits, propose a new one to the jEAP team rather than inv
 
 | Status | Element | Convention | Example | Rationale |
 |---|---|---|---|---|
-| MUST | Individually deployable / runnable elements | `<system>-<context>-<typeid>` — `system` matching `[a-z]+[a-z0-9_]*`, `context` matching `[a-z]+[a-z0-9-]*`, `typeid` from the table above | `eets-assessment-service`, `eets-assessment-ui`, `eets-manualtask-connector-service` | Attribution to the system; the kind of component is visible in the name. The name is also used as the Spring application name — the id under which the service appears in monitoring and distributed tracing. |
+| MUST | Individually deployable / runnable elements | `<system>-<context>-<typeid>` — `system` matching `[a-z]+[a-z0-9_]*`, `context` matching `[a-z]+[a-z0-9-]*`, `typeid` from the table above | `mysystem-assessment-service`, `mysystem-assessment-ui`, `mysystem-manualtask-connector-service` | Attribution to the system; the kind of component is visible in the name. The name is also used as the Spring application name — the id under which the service appears in monitoring and distributed tracing. |
 
 ## Message types
 
@@ -69,8 +66,7 @@ Topic naming is documented with the messaging library — see
 
 The consumer/provider names jEAP registers on the Pact Broker (used by the deployment pipeline's
 `can-i-deploy` checks and by the governance service) follow
-`{agency}-{spring.application.name}[_{apiName}]`, e.g. `bazg-agir-task-scs`,
-`bazg-agir-task-scs_apiA`.
+`{agency}-{spring.application.name}[_{apiName}]`, e.g. `bit-declaration-scs`.
 
 ## Commit messages
 

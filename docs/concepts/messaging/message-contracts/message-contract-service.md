@@ -241,7 +241,7 @@ Example:
       "schemaIncompatibilities": [
         {
           "incompatibilityType": "NAME_MISMATCH",
-          "message": "expected: ch.admin.ezv.activ.infrastructure.kafka.event.ZoneReferences",
+          "message": "expected: ch.admin.bit.reference.ZoneReferences",
           "location": "/fields/3/type/name"
         },
         {
@@ -251,13 +251,13 @@ Example:
         },
         {
           "incompatibilityType": "NAME_MISMATCH",
-          "message": "expected: ch.admin.ezv.activ.infrastructure.kafka.event.ZonePayload",
+          "message": "expected: ch.admin.bit.reference.ZonePayload",
           "location": "/fields/4/type/name"
         }
       ]
     }
   ],
-  "message": "App test-consumer-app:1.0 is consuming incompatible message type ActivZoneEnteredEvent:2.0.0 on topic test-topic\n- NAME_MISMATCH at /fields/3/type/name: expected: ch.admin.ezv.activ.infrastructure.kafka.event.ZoneReferences\n- READER_FIELD_MISSING_DEFAULT_VALUE at /fields/3/type/fields/0: journeyActivationRequestReference\n- NAME_MISMATCH at /fields/4/type/name: expected: ch.admin.ezv.activ.infrastructure.kafka.event.ZonePayload"
+  "message": "App test-consumer-app:1.0 is consuming incompatible message type ActivZoneEnteredEvent:2.0.0 on topic test-topic\n- NAME_MISMATCH at /fields/3/type/name: expected: ch.admin.bit.reference.ZoneReferences\n- READER_FIELD_MISSING_DEFAULT_VALUE at /fields/3/type/fields/0: journeyActivationRequestReference\n- NAME_MISMATCH at /fields/4/type/name: expected: ch.admin.bit.reference.ZonePayload"
 }
 ```
 

@@ -19,8 +19,8 @@ skinparam rectangle {
 skinparam component {
   BorderColor Black
 }
-rectangle "Agir\nTask-Management\nUI" as n9 #cfe2f3
-rectangle "Agir\nTask-Management\nService" as n5 #cfe2f3
+rectangle "Task-Management\nUI" as n9 #cfe2f3
+rectangle "Task-Management\nService" as n5 #cfe2f3
 () "Get Task Details /\nUpdate Task" as n10c
 actor "User" as n10
 rectangle "Error Handling UI" as n8 #cfe2f3

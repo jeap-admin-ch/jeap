@@ -128,7 +128,7 @@ actor "Business User" as businessUser
 package "Business Application" as businessApplication #F3F3F3 {
   component "Process Context Service" as processContextService #D9EAD3
   component "Error Handling Service" as errorHandlingService
-  component "Agir" as agir
+  component "TaskManagement" as taskManagement
   component "Keycloak Realm\nBusiness Application" as businessKeycloak
   component "Keycloak Realm\nShared Services" as sharedKeycloak
 }
@@ -157,11 +157,11 @@ processContextService --> errorHandlingService : Event retry\n(temporary errors)
 
 errorHandlingService --> processContextService : Events whose processing failed
 
-errorHandlingService --> agir : Manual task for permanent errors
+errorHandlingService --> taskManagement : Manual task for permanent errors
 
 sharedKeycloak --> errorHandlingService : Token validation
 
-sharedKeycloak --> agir : Token for Agir access
+sharedKeycloak --> taskManagement : Token for taskManagement access
 
 processContextService --> processArchiveService : Process snapshot
 
