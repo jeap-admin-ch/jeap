@@ -238,8 +238,8 @@ class OrderService {
 
     /** Create a new order unless an order with the given ID already exists */
     @Transactional
-    void createOrder(Order oder) {
-        if (!repository.orderExistsById(order.getId()) {
+    void createOrder(Order order) {
+        if (!repository.orderExistsById(order.getId())) {
             repository.save(order);
         }
     }
