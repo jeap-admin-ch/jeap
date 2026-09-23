@@ -112,6 +112,7 @@ public interface JeapCurrentUserCustomizer<T extends JeapCurrentUser> {
 Example of an implementation:
 
 ```java
+@org.springframework.stereotype.Component
 public class JmeCurrentUserCustomizer implements JeapCurrentUserCustomizer<JmeCurrentUserDto> {
 
     @Override
