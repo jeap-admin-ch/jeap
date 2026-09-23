@@ -11,7 +11,7 @@ Here are the attributes that are returned in the response by the endpoint. Only 
 | subject | sub |
 | name | name |
 | preferredUsername | preferred_username |
-| familyName | login_level |
+| familyName | family_name |
 | givenName | given_name |
 | locale | locale |
 | authenticationContextClassReference | ac |
