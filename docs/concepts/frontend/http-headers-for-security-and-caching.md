@@ -51,7 +51,7 @@ The best approach is to start the UI with the restrictive Content-Security-Polic
 | [`Strict-Transport-Security`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) | Forces HTTPS.<br/><br/>Per [Strict-Transport-Security](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security), this configuration is ignored as long as the website has only been used over HTTP. So for local tests with localhost, this configuration is ignored. | `max-age=16070400; includeSubDomains` |
 | [`X-Content-Type-Options`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options) | A marker used by the server to indicate that the MIME types specified in the Content-Type headers should be followed and not changed. | `nosniff` |
 | [`X-Frame-Options`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options) | Indicates whether a browser is allowed to render a page in a `<frame>`, `<iframe>`, `<embed>`, or `<object>`. Protects against clickjacking attacks. | `sameorigin` |
-| [`X-XSS-Protection`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection) | Legacy header to enable the browser's built-in protection against cross-site scripting. For current browsers, Content-Security-Policy is recommended instead. | `1; mode=block` |
+| [`X-XSS-Protection`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection) | Legacy header that is not emitted by `jeap-spring-boot-web-config-starter`; for current browsers, Content-Security-Policy is recommended instead. | *(not set by the starter)* |
 
 ### Caching
 
