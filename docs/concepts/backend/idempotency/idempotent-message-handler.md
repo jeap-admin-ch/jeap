@@ -2,7 +2,7 @@
 
 ## Overview
 
-To simplify the implementation of idempotent message processing, jEAP provides the Java annotation `@IdempotentMessageHandler`. It can ensure that a message handler method annotated with it processes a message successfully exactly once. This is achieved by recording successfully processed messages in a database, so that a message is not processed again if it has already been recorded in the database. Recurring messages are recognized based on their idempotence IDs and message types.
+To simplify the implementation of idempotent message processing, jEAP provides the Java annotation `@IdempotentMessageHandler`. Within the configured retention period, it can ensure that a message handler method executes successfully at most once for a given idempotence ID and message type. This is achieved by recording successfully processed messages in a database, so that a message is not processed again if it has already been recorded in the database. Recurring messages are recognized based on their idempotence IDs and message types.
 
 The `@IdempotentMessageHandler` annotation can relieve a microservice from having to extend its persistent business data with the idempotence IDs of processed messages.
 
