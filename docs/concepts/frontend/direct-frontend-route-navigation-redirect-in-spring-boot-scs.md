@@ -29,7 +29,7 @@ A possible solution is to:
 - Rely on Spring to apply all request mappings, and then fall back to finding a matching static resource.
 - If no static resource is found, try to determine if the request might be a direct frontend route navigation:
   - The request does not contain a dot, otherwise it is probably a file request such as `/my.css`.
-  - The request does not contain `/api/` or `/actuator/*`.
+  - The first path segment does not contain `api` or `actuator` (the default ignored root-path parts).
 - Serve the contents of `index.html` if we can assume a direct frontend route navigation.
 
 This is triggered by a `NoResourceFoundException`, and implemented inside a `@ControllerAdvice` / `ResponseEntityExceptionHandler`. If you have an existing `ResponseEntityExceptionHandler`, you can extend from the `FrontendRouteRedirectExceptionHandler` provided by jEAP. Otherwise, create a new instance of the advice as provided by the `jeap-spring-boot-application-starter`:
