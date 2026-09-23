@@ -152,7 +152,7 @@ format. Log entries should be a single-line JSON string containing at least the 
 
 | Name | Data type | Example | Description |
 | --- | --- | --- | --- |
-| `app` | String | `eets-manualtask-service` | Name of the application. The name should start with the system name (e.g. `eets-XXX`). |
+| `app` | String | `mysystem-manualtask-service` | Name of the application. The name should start with the system name (e.g. `mysystem-XXX`). |
 | `@timestamp` | Date and time in ISO 8601 format | `2019-09-06T08:23:59.432+02:00` | Time when the log entry was generated |
 | `logger` | String | `s.d.s.w.r.o.CachingOperationNameGenerator` | Name of the logger, usually the name of the class |
 | `thread_name` | String | `main` | The name of the thread |
@@ -162,7 +162,7 @@ format. Log entries should be a single-line JSON string containing at least the 
 **Example output (minimal)**
 
 ```js
-{"app":"eets-manualtask-service","@timestamp":"2019-09-06T08:23:59.432+02:00", "logger":"s.d.s.w.r.o.CachingOperationNameGenerator", "level":"INFO",  "thread_name":"main",  "message":"test"}
+{"app":"mysystem-manualtask-service","@timestamp":"2019-09-06T08:23:59.432+02:00", "logger":"s.d.s.w.r.o.CachingOperationNameGenerator", "level":"INFO",  "thread_name":"main",  "message":"test"}
 ```
 
 Additional fields can be added by Micrometer Tracing/OpenTelemetry (see [Distributed Tracing](distributed-tracing.md)) or

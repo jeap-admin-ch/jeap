@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Error Handling Service reads error messages (error events) from a business application's error topic and processes them (see also [Error Handling](index.md)). It can resend temporary errors to the application and, for permanent errors, create a manual task in Agir. Temporary errors that fail repeatedly are automatically converted into a permanent error. The Error Handling Service also provides a GUI that can be used to view current error messages and resend them manually. Every business application must set up its own Error Handling Service instance and extend it if desired.
+The Error Handling Service reads error messages (error events) from a business application's error topic and processes them (see also [Error Handling](index.md)). It can resend temporary errors to the application and, for permanent errors, create a manual task in a Task Management System. Temporary errors that fail repeatedly are automatically converted into a permanent error. The Error Handling Service also provides a GUI that can be used to view current error messages and resend them manually. Every business application must set up its own Error Handling Service instance and extend it if desired.
 
 ### Frontend
 
@@ -142,21 +142,21 @@ The following headers are set on resend:
 | `jeap_eh_target_service` | Name of the service that had the error while processing the event | Used in jeap-messaging to filter out messages intended for other services |
 | `jeap_eh_error_handling_service` | Name of the resending Error Handling Service | For debugging purposes |
 
-#### Agir Task Management Integration
+#### Task Management Integration
 
-> **Note:** For a local setup and tests of error handling, forwarding permanent errors to Agir can be suppressed (see configuration options below). The Error Handling Service will then only log calls to Agir instead of actually executing them. This means there is no need to spin up a separate Agir instance for local tests.
+> **Note:** For a local setup and tests of error handling, forwarding permanent errors to the task management system can be suppressed (see configuration options below). The Error Handling Service will then only log calls to the task management system instead of actually executing them. This means there is no need to spin up a separate task management system instance for local tests.
 
-To open a task in the Agir Task Management Service on error, the following properties must be defined:
+To open a task in the Task Management Service on error, the following properties must be defined:
 
 | Property | Meaning | Default |
 | --- | --- | --- |
-| `jeap.errorhandling.task-management.service.enabled` | Should the Agir Task Management Service be connected? | true |
-| `jeap.errorhandling.task-management.service.url` | URL of the Agir Task Management Service | - |
-| `jeap.errorhandling.task-management.service.client-id` | Client ID of the OAuth2 client in the Spring Security client-registration configuration that the Error Handling Service uses to authenticate against the Agir Task Management Service. The corresponding client configuration must of course also exist (see "Aufruf gesichertes REST-API aus Java", TODO link). | - |
+| `jeap.errorhandling.task-management.service.enabled` | Should the Task Management Service be connected? | true |
+| `jeap.errorhandling.task-management.service.url` | URL of the Task Management Service | - |
+| `jeap.errorhandling.task-management.service.client-id` | Client ID of the OAuth2 client in the Spring Security client-registration configuration that the Error Handling Service uses to authenticate against the Task Management Service. The corresponding client configuration must of course also exist (see "Aufruf gesichertes REST-API aus Java", TODO link). | - |
 
-The task type submitted to Agir is called "errorhandling".
+The task type submitted to the task management system is called "errorhandling".
 
-In addition, the Error Handling Service must be able to call Agir and therefore must be configured as a REST client. The specific configuration options (`spring.security.oauth2.client`) are described under "Aufruf gesichertes REST-API aus Java" (TODO Link). An example configuration of an OAuth client for Agir can look as follows:
+In addition, the Error Handling Service must be able to call the task management system and therefore must be configured as a REST client. The specific configuration options (`spring.security.oauth2.client`) are described under "Aufruf gesichertes REST-API aus Java" (TODO Link). An example configuration of an OAuth client for the task management system can look as follows:
 
 ```yaml
 spring:
@@ -165,13 +165,13 @@ spring:
       client:
         registration:
           jme-messaging-error-service:
-            client-id: "${vcap.services.agir.credentials.clientid}"     # From the client configuration on Agir's realm (tab "Credentials")
-            client-secret: "${vcap.services.agir.credentials.secret}"   # From the client configuration on Agir's realm (tab "Credentials")
+            client-id: "client-id"     # From the client configuration on the task management system's realm (tab "Credentials")
+            client-secret: "client-secret"   # From the client configuration on the task management system's realm (tab "Credentials")
             authorization-grant-type: "client_credentials"
-            provider: "agir-oauth2-provider"
+            provider: "task-management-oauth2-provider"
         provider:
-          agir-oauth2-provider:
-            issuer-uri: "https://ref-identity-pams.ezv.admin.ch/auth/realms/ezv-agir"  # Must be the Agir realm so that Agir accepts the token!
+           task-management-oauth2-provider:
+            issuer-uri: "<your-issuer-uri>"
 ```
 
 The task is defined by default via the `DefaultTaskFactory`, which can be configured with the following properties:
@@ -182,10 +182,10 @@ The task is defined by default via the `DefaultTaskFactory`, which can be config
 | `jeap.errorhandling.task-management.default-factory.priority` | Priority of the tasks | HIGH |
 | `jeap.errorhandling.task-management.default-factory.system` | System the tasks are assigned to | - |
 | `jeap.errorhandling.task-management.default-factory.timeToHandle` | Time a user has to handle the tasks | 1d |
-| `jeap.errorhandling.task-management.default-factory.domain` | Domain the task is assigned to in Agir *(from Error Handling Service version 5.1.0)* | error-handling |
+| `jeap.errorhandling.task-management.default-factory.domain` | Domain the task is assigned to in the task management system *(from Error Handling Service version 5.1.0)* | error-handling |
 | `jeap.errorhandling.task-management.default-factory.taskReferenceName` | Title of the link to the Error Handling Service *(from Error Handling Service version 5.1.0)* | Error Service |
 
-The task type and its display in Agir can be configured as follows *(from version 5.1.0 of the Error Handling Service)*:
+The task type and its display in the task management system can be configured as follows *(from version 5.1.0 of the Error Handling Service)*:
 
 ```yaml
 jeap.errorhandling.task-management.default-factory:
@@ -300,9 +300,9 @@ spring:
             client-id: "jme-messaging-error-service"
             client-secret: "secret"
             authorization-grant-type: "client_credentials"
-            provider: "agir-oauth2-provider"
+            provider: "task-management-oauth2-provider"
         provider:
-          agir-oauth2-provider:
+          task-management-oauth2-provider:
             issuer-uri: "${jeap.security.oauth2.resourceserver.authorization-server.issuer}"
 #The servlet path must be error-handling as this is defined in the error-handling UI
 server:
@@ -493,7 +493,7 @@ ch.admin.bit.jeap.jme.messaging.error.CustomResendingStrategy
 
 ## Example
 
-The [jme-messaging-example](https://github.com/jme-admin-ch/jme-messaging-example) integrates error handling. [jme-messaging-error-scs](https://github.com/jme-admin-ch/jme-messaging-example/tree/main/jme-messaging-error-scs) is the instance of the Error Handling Service in this example. [jme-messaging-error-scs/src/main/resources/application.yml](https://github.com/jme-admin-ch/jme-messaging-example/blob/main/jme-messaging-error-scs/src/main/resources/application.yml) is an example configuration for the Error Handling Service together with Agir.
+The [jme-messaging-example](https://github.com/jme-admin-ch/jme-messaging-example) integrates error handling. [jme-messaging-error-scs](https://github.com/jme-admin-ch/jme-messaging-example/tree/main/jme-messaging-error-scs) is the instance of the Error Handling Service in this example. [jme-messaging-error-scs/src/main/resources/application.yml](https://github.com/jme-admin-ch/jme-messaging-example/blob/main/jme-messaging-error-scs/src/main/resources/application.yml) is an example configuration for the Error Handling Service together with a task management system.
 
 ## Internals
 

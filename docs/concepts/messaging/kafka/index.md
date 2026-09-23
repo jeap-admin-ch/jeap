@@ -28,12 +28,12 @@ the message name>]` (all lowercase). The variables have the following meaning:
 
 | Variable | Description | Example |
 | --- | --- | --- |
-| `system` | Name of the business application publishing the events, in lowercase | `eets` |
+| `system` | Name of the business application publishing the events, in lowercase | `mysystem` |
 | `context` | The name of the bounded context within a business application (in the DDD sense, often corresponding to a microservice) that publishes the events. In lowercase, dash-separated if it has multiple parts. | `billing` |
-| `MessageName` without postfix | **DomainEvent**: the event name without the "Event" postfix, e.g. for the (Eets) *BillCreated*Event this is *billcreated*. This part of the name uses a short form of the event name, see [Naming Conventions – Domain events](../../naming-conventions.md#domain-events). **Command**: the command name without the "Command" postfix, e.g. for the (Eets) *CreateBillCommand* this is *createbill*. This part of the name uses a short form of the command name, see [Naming Conventions – Commands](../../naming-conventions.md#commands). | `billcreated` / `createbill` |
+| `MessageName` without postfix | **DomainEvent**: the event name without the "Event" postfix, e.g. for the (mysystem) *BillCreated*Event this is *billcreated*. This part of the name uses a short form of the event name, see [Naming Conventions – Domain events](../../naming-conventions.md#domain-events). **Command**: the command name without the "Command" postfix, e.g. for the (mysystem) *CreateBillCommand* this is *createbill*. This part of the name uses a short form of the command name, see [Naming Conventions – Commands](../../naming-conventions.md#commands). | `billcreated` / `createbill` |
 | Optional: version | If the event changes in a backward-incompatible way and a new topic is needed to separate the old and new version: version postfix from the event name (e.g. BillCreatedEventV2 → billcreated-v2) | `v2` |
 
-Thus **eets-billing-createbill** (topic with commands) and **eets-billing-billcreated** (topic with domain
+Thus **mysystem-billing-createbill** (topic with commands) and **mysystem-billing-billcreated** (topic with domain
 events) are both valid topic names.
 
 ### Mirrormaker and "internal" in topic names
