@@ -54,7 +54,7 @@ record SwimringReference {
 
 S3 can automatically version objects when they are stored and generates a long technical ID for each version of an object. Versioning can be switched on at the bucket level; it is disabled by default. Versioning must be enabled when it is required from a business perspective.
 
-- The technical S3 version ID of an object (a 1024-bit string) **must be mapped by the application to a business version number** (1, 2, 3, ...).
+- The technical S3 version ID of an object (an opaque string of up to 1,024 bytes) **must be mapped by the application to a business version number** (1, 2, 3, ...).
 - **When communicating via APIs and messages, the business version number must be used to reference a business object.**
 - The business version number must be stored in the S3 object metadata under the key `version`:
 
