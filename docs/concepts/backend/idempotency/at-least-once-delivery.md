@@ -129,7 +129,7 @@ end note
 @enduml
 ```
 
-The Act phase is critical. During this phase, the aggregate is updated in the database and, if required, follow-up events are published. The system is only consistent if either both or neither action was carried out. This is a **distributed transaction!**
+The Set State and Publish phases are critical. During these phases, the aggregate is updated in the database and, if required, follow-up events are published. The system is only consistent if either both or neither action was carried out. This is a **distributed transaction!**
 
 The question is which sequence is better. The reasons for the chosen sequence are:
 
