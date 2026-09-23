@@ -176,10 +176,12 @@ Message types are already prepared for idempotent processing: the `Message.Messa
 public void consume(final OrderCreatedEvent event, Acknowledgment ack) {
     // Example Step 1: Creating a persistent entity unless it has been created before, based on the idempotence ID in the event
     Optional<Order> existingOrder = repository.findByIdempotenceId(event.getIdentity().getIdempotenceId());
+    Order order;
     if (existingOrder.isEmpty()) {
-        Order newOrder = loadOrder(event.getReferences().getOrderReferences().getOrderId());
-        repository.save(newOrder);
+        order = loadOrder(event.getReferences().getOrderReferences().getOrderId());
+        repository.save(order);
     } else {
+        order = existingOrder.get();
         log.info("Consumed event, order entity already exists for idempotence ID" + event.getIdentity().getIdempotenceId());
     }
 
