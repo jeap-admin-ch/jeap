@@ -3,6 +3,7 @@
 - [Backend](backend/index.md)
 - [Database](database/index.md)
 - [Documenting jEAP](documenting-jeap.md)
+- [Frontend](frontend/index.md)
 - [Logging](logging/index.md)
 - [Messaging](messaging/index.md)
 - [Monitoring](monitoring/index.md)
