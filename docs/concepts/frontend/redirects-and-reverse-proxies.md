@@ -24,11 +24,11 @@ Proxy -> App : HTTP request\nHost: internal.app\nX-Forwarded-Host: external.com
 
 == Application response ==
 
-App --> Proxy : HTTP 302 response\nLocation: external.com/app
+App --> Proxy : HTTP 302 response\nLocation: https://external.com/app
 
 == Response to the client ==
 
-Proxy --> Client : HTTP 302 response\nLocation: external.com/app
+Proxy --> Client : HTTP 302 response\nLocation: https://external.com/app
 
 @enduml
 ```
