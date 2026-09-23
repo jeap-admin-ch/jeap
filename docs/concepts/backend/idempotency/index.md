@@ -191,7 +191,7 @@ public void consume(final OrderCreatedEvent event, Acknowledgment ack) {
     // Example Step 3: Publishing a follow-up event without being able to know whether it has been published before - the downstream consumer
     //                 needs to be idempotent and will be in a consistent state even when consuming the same event twice. Pass on the idempotence
     //                 ID from the original event to make sure a consistent idempotence ID is used in case the event is published more than once.
-    //                 See "Event Producer" below for how to imlpemention an event producer
+    //                 See "Message Producer" below for how to implement an event producer
     eventProducer.publishOrderValidatedEventSync(event.getIdentity().getIdempotenceId(), validationResult);
 
     // Acknowledge the event after successful processing. Ack on errors is handled by the error handler.
