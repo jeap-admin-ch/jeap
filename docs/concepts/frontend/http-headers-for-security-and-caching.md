@@ -94,7 +94,7 @@ In general:
 | `jeap.web.headers.accept-path-prefixes` | For which HTTP request path prefixes the security/caching headers should be added (unless a skip property matches).<br/><br/>**If not set, headers are added for all request paths (unless a skip property matches).** | *(empty)* → all paths accepted | |
 | `jeap.web.headers.accept-path-pattern` | For which HTTP request path pattern the security/caching headers should be added (unless a skip property matches). | *(empty)* | |
 | `jeap.web.headers.additional-content-sources` | Sources that are added to the `connect-src` and `frame-src` lists in `Content-Security-Policy`. | `${jeap.security.oauth2.resourceserver.authorization-server.issuer}` if present, otherwise empty | `https://my-host` |
-| `jeap.web.headers.content-security-policy` | Value for the Content-Security-Policy header. If empty, the default value documented above is used. | *(empty)* | `default-src: 'self'` |
+| `jeap.web.headers.content-security-policy` | Value for the Content-Security-Policy header. If empty, the default value documented above is used. | *(empty)* | `default-src 'self'` |
 | `jeap.web.headers.feature-policy` | Value for the Feature-Policy header. If empty, the default value documented above is used. Available starting with jeap-spring-boot-starters 17.40.1. | *(empty)* | `microphone 'none'; payment 'none'; camera 'none'` |
 | `jeap.web.headers.http-methods` | HTTP methods for which the filter is activated, i.e. for which headers may potentially be added. | `GET, HEAD` | |
 
