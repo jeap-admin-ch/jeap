@@ -282,7 +282,7 @@ class ExampleController {
     // Demonstrates idempotent request handling by checking for previous processing of the transmitted entity
     // using an ID supplied by the client
     @PostMapping("/order")
-    public void create(Order order) {
+    public void create(@RequestBody Order order)
         // The order service will only create a new order if the order with the given ID doesn't exist yet
         orderService.createOrder(order);
     }
