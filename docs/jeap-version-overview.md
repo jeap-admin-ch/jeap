@@ -45,20 +45,20 @@ Managed Versions of Spring dependencies:
 
 | Component | Current Version | Required jEAP Parent Version | Changelog |
 | --- | --- | --- | --- |
-| jeap-archrepo-service | `13.4.2` | `41.7.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-archrepo-service/blob/v13.4.2/CHANGELOG.md) |
-| jeap-bptest-orchestrator | `18.5.0` | `41.7.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptest-orchestrator/blob/v18.5.0/CHANGELOG.md) |
-| jeap-bptestagent-api | `10.4.0` | `41.7.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptestagent-api/blob/v10.4.0/CHANGELOG.md) |
-| jeap-deploymentlog-service | `16.4.0` | `41.7.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-deploymentlog-service/blob/v16.4.0/CHANGELOG.md) |
-| jeap-doc-service | `3.5.0` | `41.7.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-doc-service/blob/v3.5.0/CHANGELOG.md) |
+| jeap-archrepo-service | `13.5.0` | `41.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-archrepo-service/blob/v13.5.0/CHANGELOG.md) |
+| jeap-bptest-orchestrator | `18.6.0` | `41.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptest-orchestrator/blob/v18.6.0/CHANGELOG.md) |
+| jeap-bptestagent-api | `10.5.0` | `41.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptestagent-api/blob/v10.5.0/CHANGELOG.md) |
+| jeap-deploymentlog-service | `16.5.0` | `41.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-deploymentlog-service/blob/v16.5.0/CHANGELOG.md) |
+| jeap-doc-service | `3.6.0` | `41.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-doc-service/blob/v3.6.0/CHANGELOG.md) |
 | jeap-error-handling | `24.5.0` | `41.7.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-error-handling/blob/v24.5.0/CHANGELOG.md) |
-| jeap-governance-service | `9.3.0` | `41.7.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-governance-service/blob/v9.3.0/CHANGELOG.md) |
-| jeap-initializer | `10.4.0` | `41.7.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-initializer/blob/v10.4.0/CHANGELOG.md) |
-| jeap-message-contract-service | `12.5.0` | `41.7.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-contract-service/blob/v12.5.0/CHANGELOG.md) |
+| jeap-governance-service | `9.4.1` | `41.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-governance-service/blob/v9.4.1/CHANGELOG.md) |
+| jeap-initializer | `10.5.0` | `41.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-initializer/blob/v10.5.0/CHANGELOG.md) |
+| jeap-message-contract-service | `12.6.0` | `41.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-contract-service/blob/v12.6.0/CHANGELOG.md) |
 | jeap-message-exchange-service | `16.3.0` | `41.7.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-exchange-service/blob/v16.3.0/CHANGELOG.md) |
-| jeap-oauth-mock-server | `11.3.0` | `41.7.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-oauth-mock-server/blob/v11.3.0/CHANGELOG.md) |
+| jeap-oauth-mock-server | `11.4.0` | `41.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-oauth-mock-server/blob/v11.4.0/CHANGELOG.md) |
 | jeap-opensearch-index-writer-service | `6.4.0` | `41.7.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-opensearch-index-writer-service/blob/v6.4.0/CHANGELOG.md) |
-| jeap-process-archive-reader | `9.4.0` | `41.7.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-reader/blob/v9.4.0/CHANGELOG.md) |
-| jeap-process-archive-service | `24.3.0` | `41.7.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-service/blob/v24.3.0/CHANGELOG.md) |
+| jeap-process-archive-reader | `9.5.0` | `41.9.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-reader/blob/v9.5.0/CHANGELOG.md) |
+| jeap-process-archive-service | `24.4.0` | `41.7.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-archive-service/blob/v24.4.0/CHANGELOG.md) |
 | jeap-process-context-service | `28.3.0` | `41.7.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-process-context-service/blob/v28.3.0/CHANGELOG.md) |
 | jeap-reaction-observer-service | `12.4.0` | `41.7.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-reaction-observer-service/blob/v12.4.0/CHANGELOG.md) |
 
