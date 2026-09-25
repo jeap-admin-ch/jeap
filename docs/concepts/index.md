@@ -2,6 +2,7 @@
 
 - [Backend](backend/index.md)
 - [Config & Secrets Management](config-secrets-management/index.md)
+- [Continuous Delivery](continuous-delivery/index.md)
 - [Database](database/index.md)
 - [Documenting jEAP](documenting-jeap.md)
 - [Frontend](frontend/index.md)
