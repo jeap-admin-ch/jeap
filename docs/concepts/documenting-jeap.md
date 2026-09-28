@@ -11,8 +11,8 @@ this **umbrella repository** ([`jeap`](https://github.com/jeap-admin-ch/jeap)).
 Documentation for an individual building block is authored **with that building
 block**, in Markdown alongside its code. The public site at
 [jeap-admin-ch.github.io](https://jeap-admin-ch.github.io) is **assembled at build
-time** by combining this umbrella's `..` (placed at the site root) with the
-`..` directory of every other jEAP repository (see
+time** by combining this umbrella's `docs/` (placed at the site root) with the
+`docs/` directory of every other jEAP repository (see
 [Publishing](#publishing)). Write general docs here; write a building block's docs
 in its own repository — the site picks both up automatically.
 
@@ -22,12 +22,12 @@ Documentation is written in **English** and optimised to be read both by humans 
 GitHub / the doc site and by AI coding agents navigating the corpus.
 
 - **The `../../README.md` is short and context-sparing.** Its job is orientation: what the
-  building block is, the most important concepts, and links into `..` for the
+  building block is, the most important concepts, and links into `docs/` for the
   detail. Keep depth out of the README.
 - **Be context-sparing — do not rely solely on RAG.** A reader (human or agent)
   should be able to navigate to the right page and find a self-contained answer
   without loading the whole corpus.
-- **One article, one topic.** Each `..` page is focused on a single subject.
+- **One article, one topic.** Each `docs/` page is focused on a single subject.
     - Good: *Unit/Integration Testing of jEAP Security Authorization*
     - Bad: *jEAP Security Annotations and how to test them*
 - **Semantic file names so agents (and people) can find pages.** The path should
@@ -53,6 +53,15 @@ GitHub / the doc site and by AI coding agents navigating the corpus.
     - **Easily understood by AI agents** — the textual source is readable and
       editable by coding agents, which can neither parse nor modify an image.
 
+    **Exception — draw.io diagrams:** where a faithful rendering of a diagram
+    matters more than in-place authoring (e.g. an existing diagram migrated from
+    Confluence whose PlantUML rendition would lose its layout), keep the
+    [draw.io](https://www.drawio.com/) source `images/<name>.drawio` next to the
+    page and embed the SVG exported from it, `images/<name>.svg`, with the same base
+    name. Edit the `.drawio` file in draw.io, regenerate the SVG with
+    `scripts/export-drawio-diagrams.sh` (Docker required) and commit both files —
+    never edit the SVG by hand or commit an SVG without its source.
+
 - **Pages must be valid [MDX](https://mdxjs.com/).** Docusaurus renders every `.md`
   page as MDX, so the Markdown has to satisfy Docusaurus' MDX parser or the
   production build fails. In practice: a bare `<` is read as a JSX tag and `{ }` as a
@@ -69,7 +78,7 @@ jEAP repositories.
 ### jEAP Umbrella repository
 
 Holds the cross-cutting overview, concepts and the building-block index — the
-material that is not specific to a single library. Its `..` is placed at the
+material that is not specific to a single library. Its `docs/` is placed at the
 **root** of the published site and provides the top-level sidebar.
 
 ```
@@ -92,7 +101,7 @@ docs/
 ### Source Code Repositories
 
 For libraries, Spring Boot starters, re-usable microservices and examples, documentation lives in the library's own
-repository: a short README that links into a **flat** set of topic pages under `..`.
+repository: a short README that links into a **flat** set of topic pages under `docs/`.
 
 ```
 README.md                        # short: what it is, key concepts, link table into docs/
@@ -149,13 +158,13 @@ what the section covers and links into its pages, mirroring the
   write and maintain these.
 - **Generated at publish time — for auto-discovered repo sections.** When a building
   block's repo is pulled into the site, its **`../../README.md` becomes the `index.md` of
-  the repo's `..` section** (the landing page) — so the README *is* what a reader
+  the repo's `docs/` section** (the landing page) — so the README *is* what a reader
   sees when opening that building block's section. A repo therefore needs no
   hand-written `docs/index.md`. (See [Publishing](#publishing) and the
   [site repository README](https://github.com/jeap-admin-ch/jeap-admin-ch.github.io/blob/main/README.md)
   for the mechanics.)
 
-This is also why a library's own `..` is **flat** (`docs/<topic>.md`) with the
+This is also why a library's own `docs/` is **flat** (`docs/<topic>.md`) with the
 README as its entry point: the README already serves as the section landing page, so
 there is no need for a separate `docs/index.md`.
 
@@ -164,9 +173,9 @@ there is no need for a separate `docs/index.md`.
 The public site is built with **[Docusaurus 3](https://docusaurus.io/)** and deployed
 to GitHub Pages from the
 [`jeap-admin-ch.github.io`](https://github.com/jeap-admin-ch/jeap-admin-ch.github.io)
-repository, which holds the site shell only — the content under its `..` is
-**aggregated from the jEAP repositories at build time**: this umbrella's `..` at
-the site root, plus the `..` of every other repo that ships one, discovered
+repository, which holds the site shell only — the content under its `docs/` is
+**aggregated from the jEAP repositories at build time**: this umbrella's `docs/` at
+the site root, plus the `docs/` of every other repo that ships one, discovered
 automatically. The sidebar order and building-block categories are driven by this
 repo's [`_order`](https://github.com/jeap-admin-ch/jeap/blob/main/docs/_order) and
 [`_categories`](https://github.com/jeap-admin-ch/jeap/blob/main/docs/_categories)
@@ -182,11 +191,17 @@ flowchart LR
 
 What this means for you as an author:
 
-- **To publish a building block's docs**, give its repository a top-level `..`
+- **To publish a building block's docs**, give its repository a top-level `docs/`
   with Markdown pages and a README linking into them — the next site build picks it
   up. No change to the site repository is needed.
-- **To add or reorder general docs here**, add the file/folder under `..` and a
+- **To add or reorder general docs here**, add the file/folder under `docs/` and a
   line in [`_order`](https://github.com/jeap-admin-ch/jeap/blob/main/docs/_order).
+- **To order the pages inside a folder** (a topic folder here, or any folder of a
+  repo's `docs/`), ship an `_order` in that folder listing its pages and subfolders in
+  reading order — the same format as the top-level manifest, one direct child per
+  line. Unlisted entries follow alphabetically. A subfolder is labelled by the title
+  of its `index.md` unless the entry adds `| Label`. Keep the manifest in step with
+  the reading order the folder's `index.md` advocates.
 - **Broken internal links fail the build** (`onBrokenLinks: 'throw'`), so keep
   cross-repo links pointing at the public site / GitHub as described above.
 

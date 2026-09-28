@@ -9,6 +9,9 @@
 # jeap-admin-ch.github.io site repo, so the sidebar order lives here with the
 # content: to add a section, add its file/folder and a line below — no change
 # is needed in the site repo. (Docusaurus ignores this '_'-prefixed file.)
+#
+# The same format works in any nested folder: a folder that ships its own
+# _order orders its direct children.
 what-is-jeap
 using-jeap | Using jEAP
 jeap-version-overview

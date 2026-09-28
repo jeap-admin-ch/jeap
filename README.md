@@ -32,7 +32,7 @@ Contributing documentation? See [Documenting jEAP](docs/concepts/documenting-jea
 
 ## License
 
-This repository is Open Source Software licensed under the [Apache License 2.0](./LICENSE).
+This repository is Open Source Software licensed under the [Apache License 2.0](LICENSE).
 
 ## Building jEAP
 
@@ -43,7 +43,7 @@ See [Using jEAP — Building from source](docs/using-jeap/index.md#building-from
 ## Reporting Security Vulnerabilities
 
 If you would like to report a potential security issue in a jEAP repository, please follow the procedure described in
-[SECURITY.md](./SECURITY.md).
+[SECURITY.md](SECURITY.md).
 
 ## External contributions cannot be accepted currently
 
