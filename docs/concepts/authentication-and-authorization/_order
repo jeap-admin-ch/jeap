@@ -1,0 +1,10 @@
+# Sidebar order of this section, in the reading order the index page advocates
+# (consumed at publish time by the doc site's prepare-docs.sh, see documenting-jeap.md).
+oidc-in-the-blueprint-microservice
+role-concept
+protecting-rest-apis
+calling-secured-rest-apis-from-java
+testing
+authorization-servers
+tokens
+audience-restriction

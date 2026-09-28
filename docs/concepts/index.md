@@ -1,5 +1,6 @@
 # Concepts
 
+- [Authentication and authorization](authentication-and-authorization/index.md)
 - [Backend](backend/index.md)
 - [Config & Secrets Management](config-secrets-management/index.md)
 - [Continuous Delivery](continuous-delivery/index.md)
@@ -11,5 +12,4 @@
 - [Monitoring](monitoring/index.md)
 - [Naming Conventions](naming-conventions.md)
 - [Rest-APIs](rest-apis/index.md)
-- [Security](security/index.md)
 - [Testing](testing/index.md)
