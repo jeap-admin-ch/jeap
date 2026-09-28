@@ -18,7 +18,7 @@ The full documentation is published at [jeap-admin-ch.github.io/docs/what-is-jea
 The same content as Markdown, if you prefer to stay on GitHub:
 
 - [What is jEAP?](docs/what-is-jeap.md) — definition, core principles, value, and the problems jEAP solves.
-- [Using jEAP](docs/using-jeap.md) — the Maven parents and dependency management.
+- [Using jEAP](docs/using-jeap/index.md) — the Maven parents and dependency management.
 - [Concepts](docs/concepts/index.md) — cross-cutting guidance
 - [App Building Blocks](docs/building-blocks/index.md) — the libraries, starters and microservices you compose from:
   - [Libraries](docs/building-blocks/libraries/index.md)
@@ -38,7 +38,7 @@ This repository is Open Source Software licensed under the [Apache License 2.0](
 
 jEAP libraries build from source with the provided Apache Maven Wrapper (`./mvnw install`). Some libraries have
 additional requirements such as a specific Java version.
-See [Using jEAP — Building from source](docs/using-jeap.md#building-from-source) for details.
+See [Using jEAP — Building from source](docs/using-jeap/index.md#building-from-source) for details.
 
 ## Reporting Security Vulnerabilities
 

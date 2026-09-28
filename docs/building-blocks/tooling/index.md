@@ -42,4 +42,4 @@ products.
 ## Related
 
 - [App Building Blocks](../index.md) — overview of all categories.
-- [Using jEAP](../../using-jeap.md) — the [CLI](https://jeap-admin-ch.github.io/docs/building-blocks/tooling/jeap-cli/) and recipes support dependency and version migrations.
+- [Using jEAP](../../using-jeap/index.md) — the [CLI](https://jeap-admin-ch.github.io/docs/building-blocks/tooling/jeap-cli/) and recipes support dependency and version migrations.

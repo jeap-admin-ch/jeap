@@ -2,11 +2,11 @@
 
 Common questions about jEAP versions and how Maven dependency management works in a
 jEAP application. For the underlying model — the parent hierarchy and BOM-style
-dependency management — see [Using jEAP](using-jeap.md).
+dependency management — see [Using jEAP](index.md).
 
 ## How do I find out the latest jEAP versions?
 
-The [jEAP version overview](jeap-version-overview.md) lists the current versions of:
+The [jEAP version overview](../jeap-version-overview.md) lists the current versions of:
 
 - the jEAP parent
 - the jEAP libraries
@@ -19,13 +19,13 @@ It also lists the managed versions of Spring and selected third-party libraries
 
 Two options:
 
-- Check the [jEAP version overview](jeap-version-overview.md) regularly.
+- Check the [jEAP version overview](../jeap-version-overview.md) regularly.
 - Subscribe to the [jEAP blog](https://jeap-admin-ch.github.io/blog) — you also get the
   rest of the platform news.
 
 ## How are jEAP dependencies structured?
 
-[Using jEAP](using-jeap.md) explains the two-level Maven parent chain and the
+[Using jEAP](index.md) explains the two-level Maven parent chain and the
 dependency-management model.
 
 ## How does my project benefit from this structure?
@@ -97,12 +97,12 @@ example `jeap-error-handling-service-instance`). Use that instance parent for yo
 service instance: it brings in a compatible `jeap-spring-boot-parent` and manages the
 required dependency versions for you, so you no longer have to track the matching jEAP
 parent version by hand. See the getting-started guide of the respective
-[reusable microservice](building-blocks/reusable-microservices/index.md).
+[reusable microservice](../building-blocks/reusable-microservices/index.md).
 
 ## See also
 
-- [Using jEAP](using-jeap.md) — the Maven parents and the dependency-management model.
-- [jEAP version overview](jeap-version-overview.md) — current versions of the parent,
+- [Using jEAP](index.md) — the Maven parents and the dependency-management model.
+- [jEAP version overview](../jeap-version-overview.md) — current versions of the parent,
   libraries and products.
-- [App Building Blocks](building-blocks/index.md) — the libraries, starters and
+- [App Building Blocks](../building-blocks/index.md) — the libraries, starters and
   microservices you compose from.
