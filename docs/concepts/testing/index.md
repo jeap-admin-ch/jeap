@@ -17,5 +17,6 @@
 ## Topics
 
 - [Business Process Testautomation](business-process-testautomation/index.md)
+- [Consumer-Driven Contract Tests](consumer-driven-contract-tests/index.md)
 - [Interaction Tests](interaction-tests.md)
 - [Unit / Integration Testing with Kafka](unit-integration-testing-with-kafka.md)
