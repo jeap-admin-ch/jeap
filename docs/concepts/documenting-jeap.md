@@ -78,7 +78,6 @@ docs/
   _order                         # top-level sidebar order (see Publishing)
   _categories                    # building-block subcategory routing (see Publishing)
   what-is-jeap.md                # definition, principles, the problems jEAP solves
-  using-jeap.md                  # the Maven parents and dependency management
   building-blocks/
     index.md                     # category landing page
     libraries/index.md
@@ -86,9 +85,11 @@ docs/
     reusable-microservices/index.md
     tooling/index.md
   jeap-version-overview.md        # versions of jEAP libraries, starters, and products
+  using-jeap/
+    index.md                      # the Maven parents and dependency management
 ```
 
-### Source Code Repositiories
+### Source Code Repositories
 
 For libraries, Spring Boot starters, re-usable microservices and examples, documentation lives in the library's own
 repository: a short README that links into a **flat** set of topic pages under `..`.

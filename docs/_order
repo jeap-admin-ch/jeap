@@ -10,8 +10,7 @@
 # content: to add a section, add its file/folder and a line below — no change
 # is needed in the site repo. (Docusaurus ignores this '_'-prefixed file.)
 what-is-jeap
-using-jeap
-maven-dependencies-faq
+using-jeap | Using jEAP
 jeap-version-overview
 building-blocks | App Building Blocks
 concepts | Concepts

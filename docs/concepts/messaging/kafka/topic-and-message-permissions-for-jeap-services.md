@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Some [jEAP Reusable Microservices](../../../using-jeap.md)
+Some [jEAP Reusable Microservices](../../../using-jeap/index.md)
 and jEAP libraries — such as the
 System Behaviour Documentation (TODO Link) or
 [Error Handling](../error-handling/index.md) — produce or consume Kafka messages that are technical in

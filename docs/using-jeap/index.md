@@ -1,7 +1,7 @@
 # Using jEAP
 
 A jEAP application is a Spring Boot application that inherits the jEAP Maven parent and
-composes [building blocks](building-blocks/index.md). This page explains the parent hierarchy
+composes [building blocks](../building-blocks/index.md). This page explains the parent hierarchy
 and the dependency-management model that hold a jEAP application together.
 
 ## Parent hierarchy
@@ -127,11 +127,11 @@ jEAP libraries build with the Maven Wrapper provided in each repository:
 ```
 
 Individual libraries may have additional requirements (for example a specific Java
-version) — see the respective repository's `README.md` or `pom.xml`.
+version) — see the respective repository's `../../README.md` or `pom.xml`.
 
 ## Next steps
 
-- [App Building Blocks](building-blocks/index.md) — what to compose into your application.
-- [What is jEAP?](what-is-jeap.md) — principles and the problems jEAP solves.
+- [App Building Blocks](../building-blocks/index.md) — what to compose into your application.
+- [What is jEAP?](../what-is-jeap.md) — principles and the problems jEAP solves.
 - [jEAP and Maven Dependencies FAQ](maven-dependencies-faq.md) — common questions about
   jEAP versions and dependency management.

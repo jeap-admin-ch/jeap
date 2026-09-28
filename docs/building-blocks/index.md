@@ -23,6 +23,6 @@ following categories — start here and drill down into the category that fits y
 
 ## See also
 
-- [Using jEAP](../using-jeap.md) — how the parent and dependency management tie the building blocks together.
+- [Using jEAP](../using-jeap/index.md) — how the parent and dependency management tie the building blocks together.
 - [What is jEAP?](../what-is-jeap.md) — principles and the problems jEAP solves.
 - [jEAP version overview](../jeap-version-overview.md) — the versions of jEAP libraries, starters, and products.

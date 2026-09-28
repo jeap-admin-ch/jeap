@@ -17,7 +17,7 @@ reusable way, so that application teams can focus on their business logic.
 
 - **Convention over configuration.** Applications inherit a Maven parent that provides
   aligned dependency versions and sensible default configuration. See
-  [Using jEAP](using-jeap.md).
+  [Using jEAP](using-jeap/index.md).
 - **Reuse cross-functional concerns.** Each concern
   ([logging](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-starters/jeap-spring-boot-logging-starter),
   [monitoring](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-starters/jeap-spring-boot-monitoring-starter),
@@ -113,7 +113,7 @@ flowchart TD
 
 ## Next steps
 
-- [Using jEAP](using-jeap.md) — the parent POMs and dependency management.
+- [Using jEAP](using-jeap/index.md) — the parent POMs and dependency management.
 - [App Building Blocks](building-blocks/index.md) — the [libraries](building-blocks/libraries/index.md),
   [starters](building-blocks/spring-boot-starters/index.md) and
   [microservices](building-blocks/reusable-microservices/index.md) you compose from.
