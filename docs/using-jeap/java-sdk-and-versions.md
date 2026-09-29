@@ -7,12 +7,11 @@ defines the most important libraries used for that.
 
 ## Java
 
-Since version 10, Java has had a two-track release cycle. A new version is released
-every six months and is supported by Oracle until the next version is released. In
-addition, every three years a version is designated as a Long-Term Support (LTS)
-release; these versions receive security updates for four years. Applications can
-either track the latest Java version — which means adjusting the version every six
-months — or use only Long-Term Support versions.
+Since Java 9, a new Java feature release has been published every six months.
+Since Java 17, LTS releases have followed a two-year cadence. Support lifetimes
+and security-update periods depend on the JDK distribution and vendor, so applications
+should either track feature releases every six months or select an LTS distribution
+whose vendor support window meets their requirements.
 
 ### Java Styleguide
 
