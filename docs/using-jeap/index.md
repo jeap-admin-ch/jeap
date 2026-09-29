@@ -135,3 +135,5 @@ version) — see the respective repository's `../../README.md` or `pom.xml`.
 - [What is jEAP?](../what-is-jeap.md) — principles and the problems jEAP solves.
 - [jEAP and Maven Dependencies FAQ](maven-dependencies-faq.md) — common questions about
   jEAP versions and dependency management.
+- [Java SDK and Versions](java-sdk-and-versions.md) — Java version support, the Java 25
+  migration, and Spring Boot version alignment.
