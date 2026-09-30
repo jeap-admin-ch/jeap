@@ -1,9 +1,9 @@
 # Keycloak
 
-**Keycloak** is an open-source identity and access management (IAM) software by Red Hat. Keycloak can reliably
-protect applications and services with as little additional code as possible. It can perform authentication itself
+**Keycloak** is an open-source identity and access management (IAM) software by Red Hat. Keycloak protects
+applications and services reliably with minimal additional code. It can perform authentication itself
 or integrate existing identity providers. Out of the box it supports OAuth2/OpenID Connect and SAML, both
-towards applications and towards identity providers. In the Blueprint Microservice, Keycloak is used for
+for applications and for identity providers. In the Blueprint Microservice, Keycloak is used for
 authentication. Technical users in the system context are managed directly in
 Keycloak. To use Keycloak, a realm must be created on a Keycloak instance.
 
@@ -11,10 +11,10 @@ The following table lists some important Keycloak terms and concepts:
 
 | Name | Description |
 | --- | --- |
-| Realm | A separate configuration. Several realms can run on the same Keycloak instance but are otherwise completely separated. |
+| Realm | A self-contained configuration. Several realms can run on the same Keycloak instance but are otherwise completely separate. |
 | Client | An application in a realm. This can be an application that wants to access another one, an application the user logs in to, or an application that is only accessed. |
 | User | A user who can log in and access applications. |
-| Service Account | A special user that a client can use to access another application without an actual user. It is fixed to one client. → technical user |
+| Service Account | A special user that a client can use to access another application without an actual user. It is bound to one client. → technical user |
 | Role | A role that can be assigned to a user. Describes what the user may do on a system. There are realm roles that are valid on all clients, and there are client-specific roles. A client-specific role may only be used on that client. |
 | Identity Provider | An external system that can perform authentication and confirm the identity of users. |
 | Authentication Flows and States | Authentication in Keycloak is carried out by means of authentication states, which are grouped into authentication flows. For example, there is an authentication flow for the login with a browser, one for a logout, etc. More specialized login procedures can be integrated by means of custom flows. The [Keycloak documentation](https://www.keycloak.org/docs/latest/server_admin/#_authentication-flows) describes how authentication flows are configured. |
@@ -33,8 +33,8 @@ sensible.
 
 The clients should be configured such that they only issue tokens for a specific *audience*. An audience can be,
 for example, one or more microservices. A microservice must reject tokens that do not contain it as an audience.
-This way, the token of a client can only be used to access the resources the client needs, and not also to access
-other resources the user would additionally be authorized for.
+This way, the token of a client can only be used to access the resources the client needs, and not
+other resources the user would also be authorized for.
 
 See [Audience validation](../audience-restriction/audience-validation.md) for the configuration of the audience of a client.
 

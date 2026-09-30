@@ -8,8 +8,8 @@ OAuth2/OIDC-protected resources, several scenarios are possible under such circu
 will discuss some of these scenarios for the example of a system that runs microservices mainly in a public cloud but
 also has to run some microservices on-prem.
 
-**Note:** The diagrams on this page must not be understood as showing specific architectures advocated by jEAP. The
-diagrams are just meant to illustrate some possible cross-platform authentication scenarios. Also, the platforms
+**Note:** The diagrams on this page do not show specific architectures advocated by jEAP. They
+are just meant to illustrate some possible cross-platform authentication scenarios. Also, the platforms
 "on-prem" and "public cloud" are used just as examples in the diagrams.
 
 ## One or two authorization servers?
@@ -42,15 +42,15 @@ typical setup for this scenario.
 
 The resource R1 on-prem as well as the resource R2 in the public cloud trust the authorization server A in the public
 cloud. The client C in the public cloud authenticates against the authorization server A in the public cloud. In this
-setup the on-prem resource trusts the public cloud authorization server with its access management. This could be a
-problem if the reason why the resource is running on-prem were some security or governance concerns as the same
-concerns could also object to managing access to the resource in the public cloud. If this is the case, the following
+setup the on-prem resource entrusts its access management to the public cloud authorization server. This could be a
+problem if the resource runs on-prem because of security or governance concerns, as the same
+concerns might also rule out managing access to the resource in the public cloud. In that case, the following
 setup could fix the problem:
 
 ![Resource R1 on-prem trusts on-prem authorization server A1, resource R2 in the public cloud trusts public cloud authorization server A2; client C in the public cloud accesses R1 and R2 and authenticates against both A1 and A2](images/cross-platform-resource-on-prem-two-auth-servers.svg)
 
-Here, the on-prem resource R1 only trusts the on-prem authorization server A1 with its access management. Access to
-the resource R1 now only depends on things under on-prem control. However, in this setup the on-prem authorization
+Here, the on-prem resource R1 entrusts its access management only to the on-prem authorization server A1. Access to
+the resource R1 now depends only on components under on-prem control. However, in this setup the on-prem authorization
 server must be accessible by the system's public cloud microservices.
 
 See [Configuring different authorization servers](../calling-secured-rest-apis-from-java.md#configuring-different-authorization-servers)
@@ -60,26 +60,26 @@ resources of different systems (with each system protecting its own resources wi
 
 ## Moving a resource from one platform to another
 
-Let's assume one of the system's on-prem resources with access management on-prem is to be moved to the public cloud
-and we also want to move the resource's access management to the public cloud authorization server. If the resource R
-must stay constantly available without interruption during its transition from one platform to the other, the moved
+Let's assume one of the system's on-prem resources with on-prem access management is moved to the public cloud,
+and its access management is moved to the public cloud authorization server as well. If the resource R
+must stay available without interruption during its transition from one platform to the other, the moved
 resource R must temporarily accept tokens issued by the on-prem authorization server in addition to tokens issued by
-the public cloud authorization server. Otherwise, if the moved resource were only to accept tokens issued by the
-public cloud authorization server, this would interrupt its service for clients holding a still valid token issued
-previously by the on-prem authorization server.
+the public cloud authorization server. If the moved resource accepted only tokens issued by the
+public cloud authorization server, its service would be interrupted for clients still holding a valid token issued
+earlier by the on-prem authorization server.
 
 ![Moved resource R in the public cloud trusts authorization server A2 in the public cloud and, shown dotted as temporary, the on-prem authorization server A1; clients C1 on-prem and C2 in the public cloud access R and authenticate against A2 and temporarily against A1](images/cross-platform-moving-a-resource.svg)
 
 The moved resource R temporarily trusts both authorization servers, the "old" one on-prem (A1) and the "new" one in
 the cloud (A2). Therefore, the clients C1 and C2 can use tokens from both authorization servers to access the
-resource. We plan for the resource R to stop trusting the A1 authorization server after all of R's clients stopped
-fetching tokens from A1 and after the tokens that have been issued by A1 expired. After that the temporary
-relationships shown as dotted lines in the figure above will no longer exist. During the transition period duplicated
+resource. The plan is for the resource R to stop trusting the authorization server A1 once all of R's clients have stopped
+fetching tokens from A1 and all tokens issued by A1 have expired. After that, the temporary
+relationships shown as dotted lines in the figure above no longer exist. During the transition period, duplicate
 OAuth2/OIDC clients for accessing R are configured in A1 and A2.
 
 Temporarily accepting tokens from the "old" authorization server after the transition of the resource to the new
-platform and the "new" authorization server would e.g. not be required if the resource's URL would change with the
-transition. In this case, clients would simply access the moved resource under the new URL and would authenticate
+platform and the "new" authorization server would not be required if, for example, the resource's URL changed with the
+transition. In this case, clients would simply access the moved resource under the new URL and authenticate
 against the new authorization server.
 
 See [Configuring multiple authorization servers](../protecting-rest-apis/rest-api-authentication-and-authorization.md#configuring-multiple-authorization-servers)
@@ -87,16 +87,16 @@ for how to configure more than one trusted authorization server in a resource.
 
 ## UI clients
 
-jEAP recommends to build applications as self-contained systems or, if that is not possible, to apply the backend
-for frontend (BFF) pattern. In both cases, the UI of an application only accesses one backend. Therefore, the UI 
-usually also only has to authenticate against one authorization server, the one that manages access to its backend's
-resources. The UI's backend might have to access a resource that has its access managed by another authorization server.
-This however is of no concern to the UI.
+jEAP recommends building applications as self-contained systems or, if that is not possible, applying the backend
+for frontend (BFF) pattern. In both cases, the UI of an application accesses only one backend. Therefore, the UI
+usually also has to authenticate against only one authorization server, the one that manages access to its backend's
+resources. The UI's backend might have to access a resource whose access is managed by another authorization server.
+This, however, is of no concern to the UI.
 
-In the example below C1 is a UI client accessing the backend R1|C2 which trusts the authorization server A1 with its
-access management. At the same time, the backend R1|C2 has to access a resource R2 that trusts its access management
-to another authorization server A2. The UI client does not access R2 directly as access to R2 is encapsulated by
-R1|C2. Therefore, the UI client C1 does not have to trust the authorization server A2.
+In the example below, C1 is a UI client accessing the backend R1|C2, which entrusts its access management to the
+authorization server A1. At the same time, the backend R1|C2 has to access a resource R2 that entrusts its access
+management to another authorization server A2. The UI client does not access R2 directly, as access to R2 is
+encapsulated by R1|C2. Therefore, the UI client C1 does not have to trust the authorization server A2.
 
 ![UI client C1 on-prem accesses backend R1|C2 on-prem, both authenticating against and trusting on-prem authorization server A1; R1|C2 accesses resource R2 in the public cloud and authenticates against public cloud authorization server A2, which R2 trusts; client C3 in the public cloud accesses R2 and authenticates against A2](images/cross-platform-ui-client.svg)
 
@@ -115,7 +115,7 @@ first place.
 In the example above, C1 could be a UI client acting on behalf of a user authenticated against the authorization
 server A1. R1|C2 could be a backend-for-frontend resource R1 accessing another resource R2 on behalf of the user as
 client C2. R1|C2 would use the same token to access R2 as was used to access R1 (token propagation). The resource R2
-would have to trust the authorization server(s) which R1 trusts for its access management. This in addition to the
+would have to trust the authorization server(s) that R1 trusts for its access management, in addition to the
 authorization server A2 that manages access to R2 for other microservices like C3.
 
 To restrict propagation of tokens to intended use cases, the
@@ -125,7 +125,7 @@ usage to intended resources. See also [Audience validation](../audience-restrict
 ## Examples
 
 The [jme-security-example](https://github.com/jme-admin-ch/jme-security-example) shows
-examples for authentications using different authorization servers (Keycloak, mock server).
+examples of authentication with different authorization servers (Keycloak, mock server).
 
 ## Related
 

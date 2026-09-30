@@ -1,6 +1,6 @@
 # Tokens in the Blueprint Microservice
 
-The processes used in the Blueprint Microservice to authenticate and authorize users work with different kinds of
+Authentication and authorization in the Blueprint Microservice work with different kinds of
 tokens. The tokens differ in their content and purpose, but not in their structure: all tokens are signed
 *JSON Web Tokens* (*JWT*, or, since they are signed, also *JWS*).
 
@@ -18,7 +18,7 @@ are described in more detail below.
 ## JSON Web Token
 
 A JSON Web Token (JWT) is a string describing a JSON object that contains claims in the form of key-value pairs.
-JWTs in the Blueprint Microservice are signed (JWS) and consist of three parts separated by a dot each:
+JWTs in the Blueprint Microservice are signed (JWS) and consist of three parts separated by dots:
 
 - **Header** contains metadata
 - **Payload** contains the claims
@@ -43,8 +43,8 @@ of the authorization server.
 ## Access token
 
 An access token allows a client application to execute a specific operation on a specific resource on behalf of a
-user. As a concrete example, a web frontend (or a backend microservice) could be granted the permission by an access
-token to change data on a (further) microservice on behalf of a logged-in user. An access token contains all
+user. For example, an access token could grant a web frontend (or a backend microservice) the permission
+to change data on another microservice on behalf of a logged-in user. An access token contains all
 information (claims) a microservice (resource) needs to decide whether a certain operation may be executed or not.
 
 In the Blueprint Microservice a resource (microservice) can expect the claims described below in an access token.
@@ -98,18 +98,18 @@ contains a selected subset of these claims.
 
 ### Usage
 
-Access tokens serve authorization. In the Blueprint Microservice they are transmitted as *Bearer* tokens in the HTTP
+Access tokens are used for authorization. In the Blueprint Microservice they are transmitted as *Bearer* tokens in the HTTP
 *Authorization* header of a request to a REST resource, and the resource checks, mainly based on the `bproles` and
-`userroles` claims, whether a request can be permitted or not.
+`userroles` claims, whether the request is permitted.
 
 Access tokens are typically short-lived to limit the potential for misuse should an access token fall into the wrong
 hands.
 
 ### Token size
 
-Infrastructure and library components may restrict the maximum supported size of HTTP headers. Up to 8 KB should
-normally not be a problem for headers. Assuming a role identifier is 20 characters long on average, this would allow
-listing about 300 roles. If more roles are needed, corresponding tests and clarifications would have to be made (what
+Infrastructure and library components may restrict the maximum supported size of HTTP headers. Headers of up to 8 KB
+should normally not be a problem. Assuming a role identifier is 20 characters long on average, this would allow
+listing about 300 roles. If more roles are needed, this would have to be tested and clarified (what
 header sizes Spring allows, the network infrastructure, etc.). Browsers usually already support larger headers.
 
 If tokens become too large, the approaches discussed in
@@ -119,14 +119,14 @@ If tokens become too large, the approaches discussed in
 
 A refresh token allows a client application to obtain a new access token without having to ask the user again. A
 refresh token is only exchanged between the authorization server and the client application, in contrast to access
-tokens, which are additionally exchanged between the client application and resources. This allows choosing a long
-lifetime for refresh tokens compared to access tokens. A refresh token can, so to speak, bridge the short lifetime of
+tokens, which are additionally exchanged between the client application and resources. This allows choosing a longer
+lifetime for refresh tokens than for access tokens. A refresh token thus bridges the short lifetime of
 access tokens.
 
 Typically a refresh token is issued together with an access token. In this case the refresh token (despite its "long"
 lifetime) can usually be used only once, to prevent misuse should a refresh token fall into the wrong hands.
 
-The concrete content of a refresh token is generally irrelevant to the client application.
+The actual content of a refresh token is generally irrelevant to the client application.
 
 ### Usage
 
@@ -134,8 +134,8 @@ A refresh token is obtained together with an access token according to one of th
 is renewed according to the OAuth 2.0 refresh token flow.
 
 In the user context of the Blueprint Microservice, refresh tokens should not be used for web UIs. The browser is not a
-good place to store the usually long-lived refresh tokens. At most short-lived access tokens should be used in the
-browser. Therefore, in web UIs access tokens should be renewed exclusively by silent refresh, i.e. with renewed
+good place to store the usually long-lived refresh tokens. Only short-lived access tokens should be used in the
+browser. Therefore, web UIs should renew access tokens exclusively by silent refresh, i.e. with repeated
 authentication requests with the parameter `prompt=none`.
 
 The use of refresh tokens can, however, make sense in mobile apps, as such apps can protect secrets more reliably.
@@ -158,8 +158,8 @@ is therefore identical to the content of the access token.
 
 ### Usage
 
-In the Blueprint Microservice, on an authentication for the user context the authorization server issues an identity
-token (ID token) in addition to the access and refresh token. The authorization server also provides a *UserInfo*
+In the Blueprint Microservice, the authorization server issues an identity token (ID token) in addition to the
+access and refresh token when authenticating in the user context. The authorization server also provides a *UserInfo*
 endpoint (according to OpenID Connect) through which the same user information can additionally be queried.
 
 In the Blueprint Microservice the ID token also contains the `bproles` and `userroles` claims. The information from
@@ -170,10 +170,10 @@ access token exclusively.
 ## Integration
 
 In the Blueprint Microservice, tokens are typically issued by the authorization server [Keycloak](../authorization-servers/keycloak.md) or, for
-B2B purposes by a B2B gateway. In addition, the [OpenID Connect / OAuth2 mock server](../testing/oauth2-mock-server.md)
-is available, which is mainly used in local development or on the DEV environment.
+B2B purposes, by a B2B gateway. In addition, the [OpenID Connect / OAuth2 mock server](../testing/oauth2-mock-server.md)
+is available, which is mainly used in local development or in the DEV environment.
 
-The authorization of accesses to REST resources based on access tokens is supported by the jEAP Security Starter
+The authorization of access to REST resources based on access tokens is supported by the jEAP Security Starter
 library (see [Authentication and authorization for REST APIs](../protecting-rest-apis/rest-api-authentication-and-authorization.md)).
 
 ## Example tokens

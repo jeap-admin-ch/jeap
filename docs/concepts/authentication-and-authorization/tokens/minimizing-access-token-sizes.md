@@ -1,20 +1,19 @@
 # Minimizing access token sizes
 
 In HTTP requests from a client to a resource, access tokens usually are provided to the resource as bearer tokens in
-HTTP authentication headers. If a user is authorized to act on behalf of a lot of business partners, its access
-token's size might exceed limits established by applications or network components. This page describes technical
+HTTP authentication headers. If a user is authorized to act on behalf of many business partners, the user's access
+token might exceed size limits established by applications or network components. This page describes technical
 solutions to work around such limits.
 
 ## Access token for a specific business partner
 
-Often, a user authorized to act on behalf of a lot of business partners is carrying out work for just one of those
-business partners at a time. For such cases, the user could successfully carry out his work for a business partner
-with only an access token containing just the roles the user has been granted for this business partner. An access
-token with only the user's roles for one business partner would be much smaller than an access token containing all
+Often, a user authorized to act on behalf of many business partners works for just one of those
+business partners at a time. In such cases, an access token containing just the roles the user has been granted for
+this business partner is sufficient. Such an access token would be much smaller than an access token containing all
 the roles for all the business partners the user is authorized for.
 
 The jEAP Keycloak plugin provides a specific custom token mapper named "Scoped Businesspartner Access Token
-Mapper" which allows to restrict the business partner roles included in an access token to a given business partner.
+Mapper" which restricts the business partner roles included in an access token to a given business partner.
 The requested business partner has to be specified in an authentication request as the variable part of the dynamic
 Keycloak scope `bproles`.
 
@@ -37,9 +36,9 @@ the business partners a user has been authorized for:
 openid bproles:*
 ```
 
-This could allow an application to first identify the partners for which a user is authorized in order to let the
-user choose the partner for which to carry out work. After the user selected a partner, the application could request
-a token specific to this partner to effectively carry out the work.
+This could allow an application to first identify the partners for which a user is authorized and let the
+user choose the partner to work for. After the user has selected a partner, the application could request
+a token specific to this partner to actually carry out the work.
 
 Be aware that specifying "*" instead of a specific business partner id might result in a large access token.
 
@@ -92,7 +91,7 @@ missing, add it by clicking the "Add client scope" button.
 
 #### Interaction with other scopes and mappers
 
-If your Keycloak configuration configures other token mappers that also add business partner roles to a token,
+If your Keycloak configuration contains other token mappers that also add business partner roles to a token,
 they will be executed in addition to the "Scoped Businesspartner Access Token Mapper". If you only want business partner
 roles from the "Scoped Businesspartner Access Token Mapper" in your tokens, make sure no other mapper contributing
 business partner roles is active.
@@ -114,10 +113,10 @@ the project's [readme](https://github.com/jme-admin-ch/jme-security-example/blob
 
 ## Opaque/lightweight access tokens
 
-The OAuth2 standard does not mandate that an access token must be a JWT explicitly enumerating user authorizations.
+The OAuth2 standard does not require an access token to be a JWT that explicitly lists the user's authorizations.
 An access token can also just be an opaque string with only the authorization server knowing the authorizations
 attached to the token. The validity of such a token and the associated user authorizations can be queried at the
-authorization server's token introspection endpoint when providing the access token as a parameter. Access to the
+authorization server's token introspection endpoint by passing the access token as a parameter. Access to the
 token introspection endpoint is restricted to authenticated and authorized clients, specifically "confidential
 clients". The jEAP security library supports transparent token introspection. For details, see
 [Token introspection](token-introspection.md).
@@ -137,11 +136,11 @@ There are two ways to configure Keycloak to issue only lightweight access tokens
 - Apply a **client profile** containing the **executor** "**use-lightweight-access-token**" to a client via a
   **client policy** configured in the "Realm settings" in the "Client policies" tab.
 
-Lightweight access tokens allow the activation of token mappers on a client for the introspection endpoint but not for
+With lightweight access tokens, token mappers can be activated on a client for the introspection endpoint but not for
 access tokens. If the token mappers adding a user's authorizations (roles) are not activated on lightweight
-access tokens for a client, then access tokens issued to that client will contain only limited user information,
-in particular the tokens won't contain the user's authorizations. For users that are granted many roles this will
-significantly reduce token sizes, thus making its tokens lightweight.
+access tokens for a client, the access tokens issued to that client will contain only limited user information;
+in particular, they won't contain the user's authorizations. For users with many roles this
+significantly reduces the token size, which is what makes the tokens lightweight.
 
 If a client uses such a lightweight access token to authorize a request to a resource, the resource cannot directly
 derive the user's authorizations from the token. Instead, the resource must first query the Keycloak token
@@ -191,30 +190,30 @@ whether to request a lightweight access token or not.
 
 The jEAP Keycloak plugin provides a Jeap Roles Pruning Token Mapper which will
 remove the `userroles` and `bproles` claims from a token if the number of characters used by those claims exceeds a
-given limit. If the mapper pruned the roles, it will add the claim `roles_pruned_chars` which will contain the number
-of characters the pruned claims would have contained.
+given limit. If the mapper has pruned the roles, it adds the claim `roles_pruned_chars`, which contains the number
+of characters the pruned claims would have used.
 
-The Jeap Roles Pruning Token Mapper can be used to restrict the sizes of access tokens, as the sizes of those tokens
-usually are dominated by the number of roles a user has. If a user has more roles than should be fitted in an access
+The Jeap Roles Pruning Token Mapper can be used to restrict the size of access tokens, as the size of those tokens
+is usually dominated by the number of roles a user has. If a user has more roles than should fit in an access
 token, the Jeap Roles Pruning Token Mapper can be used to prune those roles from the token.
 
 If a client uses an access token that had its roles pruned by the Jeap Roles Pruning Token Mapper to authorize a
 request to a resource, the resource cannot directly derive the user's authorizations from the token. Instead, the
 resource must first query the Keycloak token introspection endpoint, providing the access token as a parameter to
-retrieve the user's authorizations. These additional queries will add increased latency to the resource's responses.
+retrieve the user's authorizations. These additional queries increase the latency of the resource's responses.
 
 ### Configuration
 
 The Jeap Roles Pruning Token Mapper has one configuration option: the maximum allowed accumulated number of characters
 in the `userroles` and `bproles` claims. The default configuration is 8000.
 
-It must be noted that this number does not directly translate to the maximum size added by the claims to a JWT token.
+Note that this number does not directly translate to the maximum size the claims add to a JWT.
 A JWT first uses UTF-8 encoding for characters and then applies a Base64 encoding. UTF-8 encoding will use more than
 one byte for non-ASCII characters, and Base64 encoding will add one third of the initial size to the encoded size.
 
 Therefore, the default limit of 8000 characters translates to 10666 bytes in the access token if the roles only use
 ASCII characters. If the roles also contain some non-ASCII characters, additional space will be used by these
-characters. A standard access token usually would be smaller than 2KB when the roles were excluded. Therefore, the
+characters. Without the roles, a standard access token is usually smaller than 2KB. Therefore, the
 default limit of 8000 characters for roles should result in tokens that are still noticeably smaller than 16KB even if
 some non-ASCII characters are used in roles. 16KB is the limit AWS puts on the size of an HTTP header field and
 therefore on access tokens that are transferred as bearer tokens.

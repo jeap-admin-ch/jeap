@@ -8,21 +8,21 @@ in Keycloak, and how to enable and debug it.
 ## OAuth 2.0 token introspection
 
 Token introspection allows a resource server (e.g. a microservice) to query an authorization server (e.g. Keycloak)
-about a token presented to it by a client. The response of the authorization server will include whether or not the
-token is currently active and what rights of access the token carries. Token introspection is an OAuth 2 extension
+about a token presented to it by a client. The authorization server's response states whether the
+token is currently active and which access rights it carries. Token introspection is an OAuth 2 extension
 specified in [RFC 7662](https://datatracker.ietf.org/doc/html/rfc7662).
 
 The two main purposes for a token introspection are
 
 - **checking the validity of a token**<br/>
   The authorization server is the final authority on the validity of the tokens it issued. A token might become
-  invalid before its declared lifetime has expired, i.e., when the authentication session it belongs to is
-  terminated, or if the token is explicitly revoked. If a resource needs to make absolutely sure a token is currently
+  invalid before its declared lifetime has expired, e.g., when the authentication session it belongs to is
+  terminated or when the token is explicitly revoked. If a resource needs to make absolutely sure a token is currently
   valid, it must introspect the token.
 - **determining the authorizations associated with a token**<br/>
   A token might be opaque or not contain all the data required by a resource to check the authorization of a client.
-  In such cases a resource will have to introspect the token to determine if the client is allowed to access the
-  resource or not.
+  In such cases a resource has to introspect the token to determine whether the client is allowed to access the
+  resource.
 
 Token introspection is restricted to authorized resources, i.e., resources known to the authorization server and
 allowed to access its [introspection endpoint](https://datatracker.ietf.org/doc/html/rfc7662#section-2). Typically,
@@ -40,9 +40,9 @@ Practical use cases for token introspection include:
 The jEAP Security library provides built-in support for the introspection of an access token. Depending on a
 configured *introspection mode*, the library will transparently introspect an access token if needed. If
 introspection takes place, the library will enrich the Spring Security `Authentication` with the authentication data
-provided by the introspection endpoint, given that the authorization server reported the introspected token to be
-active. If the token has been declared inactive by the authorization server, the jEAP Security library will throw an
-authentication exception which will result in the request to the resource server being denied.
+provided by the introspection endpoint, if the authorization server reported the introspected token as
+active. If the authorization server reports the token as inactive, the jEAP Security library throws an
+authentication exception and the request to the resource server is denied.
 
 ![Token introspection flow: the client accesses a resource of the microservice (resource server) with an access token as Bearer; jEAP Security inside Spring Security, in introspection mode, sends the access token to Keycloak (authorization server) for introspection, receives the introspection result (active? authentication data), builds the Authentication that @PreAuthorize checks, and returns the resource response (resource data or auth error) to the client](images/token-introspection-jeap-token-introspection.svg)
 
@@ -61,7 +61,7 @@ The jEAP Security library supports five different *introspection modes*:
 | **none** | No access token will be introspected. | yes |
 | **lightweight** | Only lightweight access tokens will be introspected, i.e. tokens that don't contain all the data. | |
 | **always** | All access tokens will be introspected. | |
-| **custom** | Access tokens will be introspected depending on a developer defined custom condition. | |
+| **custom** | Access tokens will be introspected depending on a developer-defined custom condition. | |
 | **explicit** | An access token will only be introspected when explicitly required. | |
 
 The following sections detail when to use which introspection mode.
@@ -83,21 +83,21 @@ These basic validity checks also apply to all other introspection modes.
 
 #### lightweight
 
-The introspection mode *lightweight* should be used when access tokens issued by an authorization server *can not*
-or *shall not* contain all the data needed by a resource.
+The introspection mode *lightweight* should be used when access tokens issued by an authorization server *cannot*
+or *should not* contain all the data needed by a resource.
 
 A typical use case would be that access tokens get too big to be passed as bearer tokens in the HTTP authorization
-header. This might happen if a user has a huge amount of roles that should be embedded in its access tokens. For such
+header. This might happen if a user has a large number of roles that should be embedded in their access tokens. For such
 cases, the jEAP Keycloak plugin provides the [Jeap Roles Pruning Token Mapper](#roles-pruning) that will replace
 the jEAP roles claims in an access token with a claim that indicates that the roles are missing from the token. For
 such tokens, the jEAP Security library (in the introspection mode *lightweight*) will transparently fetch the missing
-roles from the introspection endpoint. This approach allows to keep access tokens self-contained as long as all the
+roles from the introspection endpoint. This approach keeps access tokens self-contained as long as all the
 roles granted to a user don't take up too much space in the token. The additional HTTP request to the token
-introspection endpoint is only required for users with a lot of roles. Therefore, using the introspection mode
+introspection endpoint is only required for users with many roles. Therefore, using the introspection mode
 *lightweight* in combination with the Jeap Roles Pruning Token Mapper is a good fit for situations where only a small
-percentage of users has more roles than would be allowed by the access token size limit of a platform. In such
-situations only a small percentage of requests to a resource would need their tokens to be introspected on the
-authorization server and therefore the negative impacts of the introspection requests would only apply to this small
+percentage of users has more roles than the access token size limit of a platform allows. In such
+situations only a small percentage of the requests to a resource need their tokens introspected on the
+authorization server, and the negative impacts of the introspection requests are limited to this small
 percentage of the requests.
 
 Another use case would be that some sensitive information should be provided to a resource server but should not be
@@ -117,8 +117,8 @@ server in order to reject access tokens that have been revoked or that belong to
 such cases it is important to know the expected number of requests to the resource, as every request to the resource
 will also result in an additional request to the token introspection endpoint on the authorization server. Therefore,
 the sizing of the authorization server must reflect the expected load caused by the token introspection requests. In
-addition, it must be taken into account that the latency of requests to a resource is increased by the latency
-incurred when querying the authorization server's token introspection endpoint.
+addition, keep in mind that the latency of requests to a resource increases by the latency
+of the query to the authorization server's token introspection endpoint.
 
 #### custom
 
@@ -133,7 +133,7 @@ introspected and the introspection is only required by certain functionalities o
 
 A typical use case would be that only some functionality of a resource is especially sensitive and requires that the
 validity of a token is checked on the authorization server every time before the functionality is executed. For such
-cases, the jEAP Security library supports adding an annotation to a source code method that should only be executed
+cases, the jEAP Security library provides an annotation for methods that should only be executed
 after the validity of the provided access token has been successfully checked on the authorization server.
 
 ## Configuration of the token introspection in jEAP
@@ -143,10 +143,10 @@ property:
 
 | Property | Optional | Value |
 | --- | --- | --- |
-| **`jeap.security.oauth2.resourceserver.introspection.mode`** | yes | **`none`** → No access token will be introspected<br/>**`lightweight`** → Only lightweight access tokens will be introspected, i.e. tokens that don't contain all the data<br/>**`always`** → All access tokens will be introspected<br/>**`custom`** → Access tokens will be introspected depending on a developer defined custom condition<br/>**`explicit`** → An access token will only be introspected when explicitly required |
+| **`jeap.security.oauth2.resourceserver.introspection.mode`** | yes | **`none`** → No access token will be introspected<br/>**`lightweight`** → Only lightweight access tokens will be introspected, i.e. tokens that don't contain all the data<br/>**`always`** → All access tokens will be introspected<br/>**`custom`** → Access tokens will be introspected depending on a developer-defined custom condition<br/>**`explicit`** → An access token will only be introspected when explicitly required |
 
-Setting this property to `none` is the same as not configuring the property at all. For both cases no introspection
-will take place and no additional introspection related configuration needs to be provided.
+Setting this property to `none` is the same as not configuring the property at all. In both cases no introspection
+takes place and no additional introspection-related configuration is needed.
 
 For all other cases, additional introspection configuration must be provided for all configured authorization
 servers. The jEAP Security library will verify at startup that the appropriate configurations are in place.
@@ -163,9 +163,9 @@ For every authorization server the following introspection properties can be con
 
 | Property | Optional | Value |
 | --- | --- | --- |
-| **`introspection.client-id`** | no | Id of a confidential client configured on the authorization server (required to access the introspection endpoint)<br/>(see [Introspection clients](#introspection-clients)) |
+| **`introspection.client-id`** | no | ID of a confidential client configured on the authorization server (required to access the introspection endpoint)<br/>(see [Introspection clients](#introspection-clients)) |
 | **`introspection.client-secret`** | no | Secret of the client (required to access the introspection endpoint) |
-| **`introspection.uri`** | yes | URI of the token introspection endpoint on the authorization server.<br/>If not configured, will be derived from the issuer URL by default. |
+| **`introspection.uri`** | yes | URI of the token introspection endpoint on the authorization server.<br/>If not configured, it is derived from the issuer URL. |
 | **`introspection.connect-timeout-in-millis`** | yes | Connection timeout on token introspection requests in milliseconds. Defaults to 8000. |
 | **`introspection.read-timeout-in-millis`** | yes | Read timeout on token introspection requests in milliseconds. Defaults to 8000. |
 | **`introspection.mode`** | yes | Specify mode `none` to disable the introspection of the authorization server's tokens. Other introspection modes *cannot* be configured here. |
@@ -199,7 +199,7 @@ jeap:
 ### Custom introspection condition
 
 If (and only if) the introspection mode is configured to `custom`, jEAP Security will introspect a token depending on
-a developer defined custom condition. The custom condition must implement the interface
+a developer-defined custom condition. The custom condition must implement the interface
 `JeapJwtIntrospectionCondition` and must be provided to jEAP Security as a Spring bean.
 
 ```java
@@ -292,13 +292,13 @@ allowed to access its introspection endpoint. Typically, this means that such a 
 confidential client on the authorization server.
 
 In Keycloak, such a client doesn't need special scopes or roles. The client just has to be an OIDC/OAuth2 client
-configured with "Client authentication" "on"; there is no need to enable any authentication flow for the client.
+configured with "Client authentication" set to "on"; there is no need to enable any authentication flow for the client.
 "Client Authenticator" must be configured as "Client Id and Secret". Keycloak will then generate a secret which can be
 copied from the "Client Secret" field.
 
-As an introspection client does not need any other authorizations than to be able to access the token introspection
-endpoint, it is possible to use one client for all resources of a system for an authorization server. Still, to
-decouple the resources it might make sense to use a different introspection client for different resources of a
+As an introspection client needs no authorization other than access to the token introspection
+endpoint, one client can be used for all resources of a system on an authorization server. Still, to
+decouple the resources, it might make sense to use different introspection clients for different resources of a
 system.
 
 Since Keycloak 26.6.2, the introspection client's ID must additionally be present in the audience of the introspected
@@ -307,14 +307,14 @@ the recommended naming of introspection clients and the required audience config
 
 ### Roles pruning
 
-Roles pruning helps limiting the sizes of access tokens as those sizes usually are dominated by the number of roles a
+Roles pruning helps limit the size of access tokens, which is usually dominated by the number of roles a
 user has. jEAP provides a custom Keycloak token mapper, the
 [jEAP Roles Pruning Token Mapper](minimizing-access-token-sizes.md#jeap-roles-pruning-token-mapper), that can be used
-to prune roles from a token if a user has more roles than should be fitted in an access token.
+to prune roles from a token if a user has more roles than should fit in an access token.
 
 To enable roles pruning on a client, the "jEAP Roles Pruning Token Mapper" must be added to the client. The mapper
-has a configuration option to set the maximum allowed roles size. The option's name is "Maximum allowed accumulated
-roles characters" and has a default value of 8000.
+has a configuration option to set the maximum allowed roles size. The option is named "Maximum allowed accumulated
+roles characters" and defaults to 8000.
 
 The jEAP Roles Pruning Token Mapper must be activated as follows:
 
@@ -363,23 +363,23 @@ selected OAuth2 client configuration.
 
 ## How to debug the authorizations of users with introspected tokens
 
-A lightweight access token created by roles pruning will not list a user's roles. Therefore, given a user's access
-token it is no longer possible to debug the user's authorizations by just decoding the access token (JWT). How can the
+A lightweight access token created by roles pruning will not list a user's roles. Therefore, the user's
+authorizations can no longer be debugged by just decoding the access token (JWT). How can the
 authorizations associated with a lightweight access token be debugged then?
 
 - You can decode the ID token instead of the access token, if you have access to the user's ID token. Both tokens are
-  returned at the same time as response to the token request by Keycloak. The user's roles are only pruned from the
+  returned together in Keycloak's response to the token request. The user's roles are only pruned from the
   access token, not from the ID token.
 - You can call the token introspection endpoint with a user's access token and the credentials of the introspection
-  client. The response is a JSON that includes the user's roles as assigned by Keycloak.
+  client. The response is a JSON document that includes the user's roles as assigned by Keycloak.
 - You can enable the [jEAP current-user endpoint](../../frontend/current-user-endpoint.md) in your microservice and
-  call this endpoint with a user's access token. The response is a JSON that includes the user's roles as assigned in
+  call this endpoint with a user's access token. The response is a JSON document that includes the user's roles as assigned in
   the microservice's Spring Security authentication built by jEAP Security (roles are fetched from the access token
   or by introspection from Keycloak).
 - You can enable `jeap.security.oauth2.resourceserver.log.access-denied.debug` in addition to
   `jeap.security.oauth2.resourceserver.log.access-denied.enabled` (see
   [Authentication and authorization for REST APIs](../protecting-rest-apis/rest-api-authentication-and-authorization.md#configuration)).
-  This will log a user's roles on debug level if access to a resource is denied by jEAP Security.
+  This will log a user's roles at debug level if access to a resource is denied by jEAP Security.
 
 ## Further documentation
 

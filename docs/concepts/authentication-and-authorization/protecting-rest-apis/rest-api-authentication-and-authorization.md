@@ -11,12 +11,12 @@ with an **access token** issued by an authorization server. A microservice that 
   [Tokens in the Blueprint Microservice](../tokens/tokens-in-the-blueprint-microservice.md))
 - checking the authorization of the caller for the specific REST API call
 
-Protected APIs can no longer be called directly. To be able to test APIs nevertheless, an API client such as
+Protected APIs can no longer be called directly. To test them anyway, an API client such as
 Postman can be used with an access token obtained from the authorization server.
 
 ## Integration
 
-For Spring, the **Spring Security** library is available, which supports OAuth2 directly. The starter
+**Spring Security** supports OAuth2 directly. The starter
 **jeap-spring-boot-security-starter** implements OAuth2-based authorization according to the rules of the jEAP
 Blueprint Microservice.
 
@@ -33,7 +33,7 @@ a B2B Gateway etc.).
 
 The starter supports the Spring WebMvc stack.
 
-If a microservice has to offer APIs that are not to be protected with OAuth2 in addition to its OAuth2-protected
+If a microservice has to offer APIs that should not be protected with OAuth2 in addition to its OAuth2-protected
 APIs, these differently protected or unprotected APIs can be exposed with an additional, specific Spring Security
 filter chain (see [Spring Security configuration](spring-security-configuration.md)).
 
@@ -44,29 +44,29 @@ configured appropriately:
 
 | Property | Optional | Value |
 | --- | :---: | --- |
-| `jeap.security.oauth2.resourceserver.authorization-server.issuer` | yes | OAuth2 authorization server whose tokens the resource is to accept. This property configures an authorization server that issues tokens in the user and system contexts. The value is typically a URI pointing to the authorization server. |
-| `jeap.security.oauth2.resourceserver.authorization-server.jwk-set-uri` | yes | URI of the JWK set endpoint of the OAuth2 authorization server. If the authorization server is a Keycloak instance, this property does not have to be defined explicitly; it is then derived automatically from the configured issuer. Only to be configured together with `jeap.security.oauth2.resourceserver.authorization-server.issuer`. |
-| `jeap.security.oauth2.resourceserver.b2b-gateway.issuer` | yes | B2B gateway whose tokens the resource is to accept. This property configures an authorization server that issues tokens in the B2B context. |
-| `jeap.security.oauth2.resourceserver.b2b-gateway.jwk-set-uri` | yes | URI of the JWK set endpoint of the B2B gateway. Only to be configured together with `jeap.security.oauth2.resourceserver.b2b-gateway.issuer`. |
+| `jeap.security.oauth2.resourceserver.authorization-server.issuer` | yes | OAuth2 authorization server whose tokens the resource should accept. This property configures an authorization server that issues tokens in the user and system contexts. The value is typically a URI pointing to the authorization server. |
+| `jeap.security.oauth2.resourceserver.authorization-server.jwk-set-uri` | yes | URI of the JWK set endpoint of the OAuth2 authorization server. If the authorization server is a Keycloak instance, this property does not have to be defined explicitly; it is then derived automatically from the configured issuer. Configure only together with `jeap.security.oauth2.resourceserver.authorization-server.issuer`. |
+| `jeap.security.oauth2.resourceserver.b2b-gateway.issuer` | yes | B2B gateway whose tokens the resource should accept. This property configures an authorization server that issues tokens in the B2B context. |
+| `jeap.security.oauth2.resourceserver.b2b-gateway.jwk-set-uri` | yes | URI of the JWK set endpoint of the B2B gateway. Configure only together with `jeap.security.oauth2.resourceserver.b2b-gateway.issuer`. |
 | `jeap.security.oauth2.resourceserver.resource-id` | yes | ID of the OAuth2 resource. If this property is not set, the application name (`spring.application.name`) is used as the ID. The ID of the resource is needed for the check against the `aud` claim (audience) of tokens. |
 | `jeap.security.oauth2.resourceserver.system-name` | yes | Name of the business application (system) the microservice belongs to. This system name is used for the authorization against semantic roles, so that the system name does not have to be repeated in every authorization check. If this property is not set, semantic roles cannot be checked. |
 | `jeap.security.oauth2.resourceserver.log.authentication-failure.enabled` | yes | If this property is defined and set to `true`, certain information about authentication failures is logged at the info level. |
 | `jeap.security.oauth2.resourceserver.log.access-denied.enabled` | yes | If this property is defined and set to `true`, certain information about access-denied errors is logged at the info level. |
-| `jeap.security.oauth2.resourceserver.log.access-denied.debug` | yes | If this property is defined and set to `true`, the logged-in user and their permissions are additionally logged for a logged access-denied error. This logging takes place at the debug level. Information about the logged-in user and their permissions is usually sensitive or security-critical. Logging this information must therefore usually not be enabled, in particular not in production-like environments. |
+| `jeap.security.oauth2.resourceserver.log.access-denied.debug` | yes | If this property is defined and set to `true`, the logged-in user and their permissions are additionally logged for a logged access-denied error. This logging takes place at the debug level. Information about the logged-in user and their permissions is usually sensitive or security-critical. This logging must therefore usually remain disabled, in particular in production-like environments. |
 
 ### Configuring multiple authorization servers
 
 The `authorization-server` and `b2b-gateway` properties described above allow a simple configuration of one Keycloak
 authorization server and one B2B gateway. In addition (as of version 12.6.0 of jeap-spring-boot-security-starter), a
 more general configuration option is available through the `auth-servers` properties. They configure a list of
-authorization servers that the OAuth2 resource is to trust. The authorization servers in this list can be configured
+authorization servers that the OAuth2 resource should trust. The authorization servers in this list can be configured
 in addition to or as a replacement for the authorization servers under `authorization-server` and `b2b-gateway`. In
-the more general configuration, it can be configured per authorization server for which jEAP authentication contexts
-the server is allowed to issue tokens.
+the more general configuration, each authorization server can be configured with the jEAP authentication contexts
+for which it is allowed to issue tokens.
 
 | Property | Optional | Value |
 | --- | :---: | --- |
-| `jeap.security.oauth2.resourceserver.auth-servers[i].issuer`<br/>(i=0: first authorization server configuration, i=1: second authorization server configuration, ...) | yes | OAuth2 authorization server whose tokens the resource is to accept. The value is typically a URI pointing to the authorization server. |
+| `jeap.security.oauth2.resourceserver.auth-servers[i].issuer`<br/>(i=0: first authorization server configuration, i=1: second authorization server configuration, ...) | yes | OAuth2 authorization server whose tokens the resource should accept. The value is typically a URI pointing to the authorization server. |
 | `jeap.security.oauth2.resourceserver.auth-servers[i].jwk-set-uri` | yes | URI of the JWK set endpoint of the OAuth2 authorization server. If the authorization server is a Keycloak instance, this property does not have to be defined explicitly; it is then derived automatically from the configured issuer. |
 | `jeap.security.oauth2.resourceserver.auth-servers[i].authentication-contexts[j]`<br/>(j=0: first context, j=1: second context, ...) | yes | List of jEAP authentication contexts for which the OAuth2 authorization server is allowed to issue tokens. Supported values are `user`, `sys` and `b2b`. If the property is not specified, `user` and `sys` are configured implicitly. |
 
@@ -90,12 +90,12 @@ jeap:
 > server is configured (via `jeap.security.oauth2.resourceserver.authorization-server.issuer`,
 > `jeap.security.oauth2.resourceserver.b2b-gateway.issuer` or
 > `jeap.security.oauth2.resourceserver.auth-servers[0].issuer`), the starter activates a deny-all protection instead of
-> the OAuth2 resource server protection, which rejects all accesses to REST APIs. This does not apply to REST APIs
+> the OAuth2 resource server protection, which rejects all access to REST APIs. This does not apply to REST APIs
 > that are activated by other jEAP starters (e.g. the monitoring starter) or that are protected by a custom security
 > configuration with a priority higher than the minimal priority.
 
-> **Info:** It is recommended to configure the only authorization server or, in the case of multiple authorization
-> servers, the "main" authorization server via `jeap.security.oauth2.resourceserver.authorization-server.*`. This
+> **Info:** It is recommended to configure the authorization server, or the "main" one if there are several, via
+> `jeap.security.oauth2.resourceserver.authorization-server.*`. This
 > configuration is used by other jEAP starters (e.g. the Swagger starter) to automatically apply certain preconfigurations
 > for the developer's convenience. If the authorization servers of the resource are configured exclusively under
 > `jeap.security.oauth2.resourceserver.auth-servers`, these preconfigurations are omitted and the developer has to
@@ -164,8 +164,8 @@ The complete configurations can be found in the
 ### Customizing the AuthenticationEntryPoint and the AccessDeniedHandler
 
 It is possible to override the AuthenticationEntryPoint and the AccessDeniedHandler of the OAuth2 resource server
-configuration (as of version 12.6.0 of jeap-spring-boot-security-starter). To do so, only a custom bean of type
-`JeapOauth2ResourceAccessDeniedHandler` or of type `JeapOauth2ResourceAuthenticationEntryPoint` has to be defined.
+configuration (as of version 12.6.0 of jeap-spring-boot-security-starter). To do so, simply define a custom bean of type
+`JeapOauth2ResourceAccessDeniedHandler` or `JeapOauth2ResourceAuthenticationEntryPoint`.
 As a rule, these beans should follow the default behavior otherwise configured by Spring Boot (see
 `BearerTokenAuthenticationEntryPoint` and `BearerTokenAccessDeniedHandler`).
 
@@ -235,8 +235,8 @@ public class LoggingBearerTokenAccessDeniedHandler implements JeapOauth2Resource
 
 ### Customizing the MethodSecurityExpressionHandler
 
-`jeap-spring-boot-security-starter` configures its own instance of the `MethodSecurityExpressionHandler`. To allow
-applications to configure it further themselves if needed, the extension point
+`jeap-spring-boot-security-starter` configures its own instance of the `MethodSecurityExpressionHandler`. To let
+applications customize it further if needed, the extension point
 `JeapMethodSecurityExpressionHandlerCustomizer` is available. If an application provides a Spring bean implementing
 this interface, it is used for customizing the `MethodSecurityExpressionHandler` instance. The following code (see
 [MethodSecurityExpressionHandlerCustomizer.java](https://github.com/jme-admin-ch/jme-security-oauth2-example/blob/main/jme-security-oauth2-resource-authorities-service/src/main/java/ch/admin/bit/jeap/jme/security/oauth/resource/MethodSecurityExpressionHandlerCustomizer.java))
@@ -286,8 +286,8 @@ of interpreting and checking these roles in an access token:
 - as [semantic roles](../role-concept.md#semantic-roles)
 - as [authorities](../role-concept.md#authorities)
 
-Depending on the role model used, the different ways support different query options and place different
-requirements on the application. Details on the requirements, options and usage of the different ways are given on
+Each of these models supports different query options and places different
+requirements on the application. The requirements, options and usage of each model are described on
 the following pages:
 
 - [Authorization with simple roles](rest-api-authorization-with-simple-roles.md)
@@ -306,8 +306,8 @@ scheduling and event processing, because no security context exists there.
 With declarative authorization this is usually simple: the corresponding annotations can simply be placed in the REST
 layer. With programmatic authorization it can be more difficult, because, for example, elements of the security
 context have to be used to filter objects in the database. The REST layer should pass the necessary information on to
-the other layers, so that these do not have to access the security context directly. The same information can then
-also be set from other inputs.
+the other layers, so that they do not have to access the security context directly. The same information can then
+also be supplied from other inputs.
 
 Example of authorization in the REST layer:
 

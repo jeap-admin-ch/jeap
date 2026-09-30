@@ -24,7 +24,7 @@ Keycloak provides two temporary backward compatibility exceptions:
 | Server-wide | `--spi-login-protocol--openid-connect--allow-token-introspection-without-audience-check=true`; set to `false` (the default) or remove to disable the exception |
 | Introspecting client | **Clients → client → Advanced → OpenID Connect Compatibility Modes → Allow token introspection without audience check: On** |
 
-Either effective exception permits a missing audience membership, subject to the other introspection checks.
+Either exception, if effective, allows the introspection client's ID to be missing from the audience; the other introspection checks still apply.
 See the [provider configuration reference](https://www.keycloak.org/server/all-provider-config#_openid_connect).
 
 Since these options are already marked as deprecated, jEAP recommends migrating to the target configuration

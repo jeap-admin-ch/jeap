@@ -1,7 +1,7 @@
 # Authorization with simple roles
 
-The following sections describe the integration and use of the `jeap-spring-boot-security-starter` library for
-the case that an application authorizes user access against [simple roles](../role-concept.md#simple-roles).
+The following sections describe the integration and use of the `jeap-spring-boot-security-starter` library when
+an application authorizes user access against [simple roles](../role-concept.md#simple-roles).
 
 ## Integration
 
@@ -47,8 +47,8 @@ public Partner getPartner(String partnerId) {
 
 Not all permissions can be checked purely declaratively. Sometimes, for example, data has to be loaded first in
 order to check, based on the loaded data, whether a user may access it. The `jeap-spring-boot-security-starter`
-therefore also offers all the authorization check methods described above directly in program code by providing
-a Spring bean of type `ServletSimpleAuthorization` (WebMvc) that implements the methods.
+therefore also offers all the authorization check methods described above directly in program code through
+a Spring bean of type `ServletSimpleAuthorization` (WebMvc) that implements them.
 
 Example of programmatic authorization with WebMvc:
 
@@ -71,7 +71,7 @@ public Partner findPartner(...) {
 
 ## Business partner queries
 
-Sometimes it is necessary to know the concrete business partners for which the current user has a certain role,
+Sometimes it is necessary to know the actual business partners for which the current user has a certain role,
 for example to load only those objects from the database that belong to these partners. The following query
 method is available for this purpose:
 

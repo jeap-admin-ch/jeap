@@ -2,7 +2,7 @@
 
 The jEAP OAuth2 mock server provides a configurable OAuth2 / OpenID Connect server. The tokens it issues can be
 enriched with the desired roles, either through configuration (for microservices) or through a login form (for UIs).
-This makes it possible to test frontends and microservices that depend on token-based authorization locally or on
+This makes it possible to test frontends and microservices that depend on token-based authorization locally or in
 development environments without an authorization server.
 
 ## Structure
@@ -52,10 +52,10 @@ For detailed documentation on OAuth / OpenID Connect see
 
 1. Create an OAuth2 mock server in your own project following the template
    [jme-security-auth-scs](https://github.com/jme-admin-ch/jme-security-example/tree/main/jme-security-auth-scs)
-   and adapt the configuration as needed. The template shows the instantiation in a multi-module project. If the mock
-   server instance to be created is not part of a multi-module project, use `jeap-oauth-mock-server-instance` directly
-   as the Maven project parent, which, compared to the template above, makes the explicit declaration of the
-   `jeap-oauth-mock-server` dependency unnecessary.
+   and adapt the configuration as needed. The template shows the setup in a multi-module project. If the mock
+   server instance is not part of a multi-module project, use `jeap-oauth-mock-server-instance` directly
+   as the Maven project parent. Unlike in the template above, the `jeap-oauth-mock-server` dependency then does not
+   have to be declared explicitly.
 
    ```xml
    <parent>
@@ -66,10 +66,10 @@ For detailed documentation on OAuth / OpenID Connect see
    </parent>
    ```
 
-2. Start the mock server locally for local tests, for example by means of a run configuration in IntelliJ.
+2. Start the mock server locally for local tests, for example with a run configuration in IntelliJ.
 3. Configure the OAuth configuration of the microservices and the UI for the local profile (see below).
-4. If the mock server is to be used on a test environment as well, the `Jenkinsfile` and `manifest-example.yml` can be
-   adapted accordingly so that the service is deployed.
+4. If the mock server should also be used in a test environment, adapt the `Jenkinsfile` and `manifest-example.yml`
+   so that the service is deployed.
 
 ### Login form
 
@@ -87,10 +87,10 @@ For detailed documentation on OAuth / OpenID Connect see
 ### Clients
 
 - Clients must be configured. Either
-  - for microservice-to-microservice calls: client credentials OAuth flow, here at least a *client-id* and a
+  - for microservice-to-microservice calls: client credentials OAuth flow, for which at least a *client-id* and a
     *client-secret* must be configured
-  - for UIs: authorization code flow, here at least a *client-id* and a *registered-redirect-uri* are required. The
-    redirect URI must correspond to the URI under which the frontend application runs and which it sends to the OAuth
+  - for UIs: authorization code flow, for which at least a *client-id* and a *registered-redirect-uri* are required. The
+    redirect URI must match the URI under which the frontend application runs and which it sends to the OAuth
     server as the redirect URI for the redirect back to the application after the login (e.g. `http://localhost:4200/...`)
   - The business partner roles (`bproles`) and user roles (`userroles`) stored with the clients are
     - client credentials flow: the roles that are assigned to the client and delivered in the access token
@@ -154,11 +154,11 @@ oauth-mock-data:
 **Note:** This section applies to OAuth2 mock server versions 2.1.0 and later.
 
 By default, the OAuth2 mock server issues tokens according to the specification in
-[Tokens in the Blueprint Microservice](../tokens/tokens-in-the-blueprint-microservice.md). If the mock server is to be
-used with a client that expects a different token format, the content of the access / ID tokens can be defined as
-required in an instance of the mock server.
+[Tokens in the Blueprint Microservice](../tokens/tokens-in-the-blueprint-microservice.md). If the mock server is
+used with a client that expects a different token format, the content of the access / ID tokens can be customized
+in an instance of the mock server.
 
-To do so, only a bean implementing `OAuth2TokenCustomizer<JwtEncodingContext>` has to be provided. This is best done
+To do so, simply provide a bean implementing `OAuth2TokenCustomizer<JwtEncodingContext>`. This is best done
 by using `AbstractJwtTokenCustomizer` as the base class. For example:
 
 ```java
@@ -228,7 +228,7 @@ tokens. Instead, a new claim `roles_pruned_chars` is inserted, which states the 
 removed claims.
 
 The maximum permitted combined size (in characters) of the claims `userroles` and `bproles` in an access token can be
-configured on the application level with the optional property `roles-pruning-limit`. The default value is
+configured at the application level with the optional property `roles-pruning-limit`. The default value is
 **8000 characters**.
 
 ## Example configuration of the clients
@@ -287,7 +287,7 @@ jeap:
 ## Debug logging in the mock server
 
 If the logging already built into the mock server is not sufficient, the following log settings in the mock server
-(`application.yml`) can help with the analysis of OAuth issues:
+(`application.yml`) can help analyze OAuth issues:
 
 ```yaml
 logging.level.org.springframework.security.oauth2: DEBUG

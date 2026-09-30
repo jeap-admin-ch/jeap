@@ -35,7 +35,7 @@ different contexts.
 
 ## Interpretation of roles
 
-In principle, roles in the Blueprint Microservice are simply arbitrary strings without any requirements on their
+Roles in the Blueprint Microservice are simply arbitrary strings without any requirements on their
 structure or content. The Blueprint Microservice does, however, offer different models for interpreting roles when
 authorizing users. An application has to choose one of these models. The following sections describe the role models
 supported by jEAP and the corresponding way roles are checked for user authorization.
@@ -82,7 +82,7 @@ system_%tenant_@resource_#operation
 ```
 
 Starting with jEAP Security version 20.2.0, semantic roles may also be written in an alternative syntax. This is
-necessary, for example, when semantic roles are to be managed by an authorization server that does not allow the special
+necessary, for example, when semantic roles are managed by an authorization server that does not allow the special
 characters `%` and `#` in role names. The following naming pattern for semantic roles can be used as an alternative:
 
 ```text
@@ -144,12 +144,12 @@ If a user has the role `vacation_manager`, for example, authorities such as `vac
 `vacation_approve` could be derived from it and checked in the corresponding vacation management functions of the
 application.
 
-Authorities are in principle simple strings without specific restrictions. For an authorization, the authorities
+Authorities are simple strings without specific restrictions. For an authorization, the authorities
 present and the authorities required are simply compared one-to-one. The page
 [Authorization with authorities](protecting-rest-apis/rest-api-authorization-with-authorities.md) describes in detail how authorities
 are checked.
 
-> **Note:** Authorities can (currently) not be defined specifically for particular business partners; they always
+> **Note:** Authorities currently cannot be defined for specific business partners; they always
 > apply independently of business partners, i.e. for all business partners.
 
 ### Prerequisites for using authorities
@@ -158,7 +158,7 @@ To use authorities, the application must provide its own code that derives autho
 
 ### Granularity of authorities
 
-Since authorities are simple strings, they can in principle represent anything. Typically, however, they represent
+Since authorities are simple strings, they can represent anything. Typically, however, they represent
 fine-grained permissions.
 
 ## Related
