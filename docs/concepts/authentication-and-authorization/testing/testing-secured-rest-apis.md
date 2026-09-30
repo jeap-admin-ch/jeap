@@ -1,12 +1,12 @@
 # Testing secured REST APIs
 
 [Authentication and authorization for REST APIs](../protecting-rest-apis/rest-api-authentication-and-authorization.md) describes how access
-to REST APIs, and to the functions and data they provide, can be secured. At the center of this is the authentication
+to REST APIs, and to the functions and data they provide, can be secured. Central to this is the authentication
 and authorization of the user performing the access. This functionality can be activated in a Spring Boot project by
 adding the `jeap-spring-boot-security-starter`.
 
-This page shows how the correct implementation of the "authorization" aspect in a project can be verified with
-integration tests. It also shows how programmatic authorization checks can be mocked in unit tests.
+This page shows how to verify the correct implementation of the "authorization" aspect in a project with
+integration tests, and how to mock programmatic authorization checks in unit tests.
 
 ## Basics
 
@@ -18,7 +18,7 @@ functionality provided by the `jeap-spring-boot-security-starter` is based on th
 verify the correct authorization of an access to a function or to data, a `JeapAuthenticationToken` instance must
 therefore be available.
 
-Depending on which part of an application is to be tested, the `JeapAuthenticationToken` must be made available to
+Depending on which part of an application is tested, the `JeapAuthenticationToken` has to be made available to
 the tests in different ways. The following sections describe five different test use cases. The list is *not* meant to
 imply that a functionality under test should be verified with all five variants.
 
@@ -26,12 +26,12 @@ imply that a functionality under test should be verified with all five variants.
 
 ### Integration test on a REST controller
 
-For efficient integration tests on REST controllers, Spring Test provides specific functionality: **MockMvc** for
-WebMvc applications. It allows integration tests to be run on controllers without having to start a whole application
-server each time. MockMvc makes it possible to explicitly set the Spring Security `Authentication` with which a
-request is to be executed on the test requests.
+For efficient integration tests on REST controllers, Spring Test provides **MockMvc** for
+WebMvc applications. It runs integration tests on controllers without starting a whole application
+server each time. With MockMvc, the Spring Security `Authentication` with which a
+test request is executed can be set explicitly on the request.
 
-jEAP provides an example for testing an OAuth2 resource using [MockMvc](https://github.com/jme-admin-ch/jme-security-example/blob/main/jme-security-resource-service/src/test/java/ch/admin/bit/jeap/jme/security/oauth/resource/PartnerResourceMockMvcIT.java) directly. For those who prefer REST Assured, there is also
+jEAP provides an example of testing an OAuth2 resource using [MockMvc](https://github.com/jme-admin-ch/jme-security-example/blob/main/jme-security-resource-service/src/test/java/ch/admin/bit/jeap/jme/security/oauth/resource/PartnerResourceMockMvcIT.java) directly. For those who prefer REST Assured, there is also
 an example of how the tests can be written [in REST Assured syntax on top of MockMvc](https://github.com/jme-admin-ch/jme-security-example/blob/main/jme-security-resource-service/src/test/java/ch/admin/bit/jeap/jme/security/oauth/resource/PartnerResourceRestAssuredIT.java).
 
 > **Note:** In the Spring Boot application started for the test, the auto-configuration of the
@@ -42,14 +42,14 @@ an example of how the tests can be written [in REST Assured syntax on top of Moc
 > **Note:** The example above assumes that it is run with the test dependency `jeap-spring-boot-security-starter-test`
 > (see below). This dependency automatically configures a web security configuration with the highest priority that
 > simply lets all requests through. Since the tests add the `JeapAuthenticationToken` instances with which requests
-> are to be executed directly via MockMvc, no further authentication filters should be traversed in the web filter
+> are executed directly via MockMvc, no further authentication filters should be traversed in the web filter
 > chain.
 
 ### Integration test on a component
 
-If the correct implementation of the authorization is to be verified "in isolation" on a component without 
-executing the HTTP request processing chain, MockMvc (see previous section) is no longer applicable. Thus, the
-`JeapAuthenticationToken` with which the test call is to be executed must be provided to the Spring Security context
+To verify the authorization "in isolation" on a component, without
+executing the HTTP request processing chain, MockMvc (see previous section) cannot be used. The
+`JeapAuthenticationToken` for the test call must therefore be provided to the Spring Security context
 by other means.
 
 For this purpose, the module `jeap-spring-boot-security-starter-test` provides a JUnit 5 extension with
@@ -79,15 +79,15 @@ programmatic authorization check. The example uses test support classes from `je
 
 ### Spring Boot tests without security
 
-If the goal is only to test pure functionality, a cross-cutting concern such as security can unnecessarily
-complicate the tests to be written and distract from what is actually essential for a specific test. It can
+If the goal is only to test functionality, a cross-cutting concern such as security can unnecessarily
+complicate the tests and distract from what a specific test is actually about. It can
 therefore be legitimate to leave security aspects out of such tests. When using the
-`jeap-spring-boot-security-starter`, certain things have to be considered for this.
+`jeap-spring-boot-security-starter`, a few things have to be taken into account for this.
 
 If a Spring Boot test is executed, i.e. in particular a test with autoconfiguration enabled, and the
 `jeap-spring-boot-security-starter` is part of the project, a web security configuration protecting the REST
-endpoints from unauthorized access is activated automatically. To lift this protection for a test that is to be run
-without considering security aspects, the following has to be done:
+endpoints from unauthorized access is activated automatically. To lift this protection for a test that should run
+without security aspects, the following has to be done:
 
 - The configuration `DisableJeapSecurityStarterAutoConfiguration` from `jeap-spring-boot-security-starter-test` must be
   imported in the test.
@@ -100,13 +100,13 @@ This [test class](https://github.com/jme-admin-ch/jme-security-example/blob/main
 
 ### Spring Boot tests with full security
 
-If the OAuth2 resource part of the security chain is also to be traversed when testing a REST request, a valid OAuth2
-access token must be created for the request, and a JWKS endpoint must be available with which the signature of the
-access token can be verified. The configuration class
+If a test of a REST request should also pass through the OAuth2 resource part of the security chain, a valid OAuth2
+access token must be created for the request, and a JWKS endpoint must be available to verify the signature of the
+access token. The configuration class
 [JeapOAuth2IntegrationTestConfiguration](https://github.com/jeap-admin-ch/jeap-spring-boot-starters/blob/main/jeap-spring-boot-security-starter-test/src/main/java/ch/admin/bit/jeap/security/test/configuration/JeapOAuth2IntegrationTestConfiguration.java)
 from the module `jeap-spring-boot-security-starter-test` makes both easy.
 
-Concretely, the following has to be done in a test:
+Specifically, the following has to be done in a test:
 
 - The configuration `JeapOAuth2IntegrationTestConfiguration` must be imported in the test.
 - The following two OAuth2 resource properties must be overridden appropriately:
@@ -116,7 +116,7 @@ Concretely, the following has to be done in a test:
 - The access token must be passed as bearer authorization token in the header of the HTTP request to the protected
   resource.
 
-This [test class](https://github.com/jme-admin-ch/jme-security-example/blob/main/jme-security-resource-service/src/test/java/ch/admin/bit/jeap/jme/security/oauth/resource/PartnerResourceBootServerWithSecurityIT.java) gives examples of Spring Boot tests with full security. The example use
+This [test class](https://github.com/jme-admin-ch/jme-security-example/blob/main/jme-security-resource-service/src/test/java/ch/admin/bit/jeap/jme/security/oauth/resource/PartnerResourceBootServerWithSecurityIT.java) gives examples of Spring Boot tests with full security. The example uses
 [REST Assured](http://rest-assured.io/) to implement the tests on the REST endpoints.
 Setting the OAuth2 access token in the request is very simple: `given().auth().oauth2("the-token")...`
 
@@ -147,7 +147,7 @@ The following functionality is then available to the tests:
 
 The class
 [JeapAuthenticationTestTokenBuilder](https://github.com/jeap-admin-ch/jeap-spring-boot-starters/blob/main/jeap-spring-boot-security-starter-test/src/main/java/ch/admin/bit/jeap/security/test/resource/JeapAuthenticationTestTokenBuilder.java)
-implements a builder for the simple creation of `JeapAuthenticationToken` instances. Such tokens are the basis of
+implements a builder for easily creating `JeapAuthenticationToken` instances. Such tokens are the basis of
 both the declarative and the programmatic authorization queries of the resources protected by the
 `jeap-spring-boot-security-starter`.
 
@@ -190,14 +190,14 @@ provided by the `jeap-spring-boot-security-starter-test` can be imported in the 
 
 The class
 [JwsBuilder](https://github.com/jeap-admin-ch/jeap-spring-boot-starters/blob/main/jeap-spring-boot-security-starter-test/src/main/java/ch/admin/bit/jeap/security/test/jws/JwsBuilder.java)
-implements a builder for the simple creation of JWS tokens, i.e. *signed* JWT tokens. Users, applications and
-microservices usually have to authenticate themselves with such tokens towards a called microservice.
+implements a builder for easily creating JWS tokens, i.e. *signed* JWT tokens. Users, applications and
+microservices usually have to authenticate themselves to a called microservice with such tokens.
 
 With the `JwsBuilder`, both the roles and the user/system information of the JWS token to be created can be defined.
 The RSA key to be used for signing the token can be defined as well.
 
 The tokens created with the `JwsBuilder` can be set as bearer authorization token in the header of the HTTP request
-when testing OAuth2-protected REST endpoints, in order to identify towards the protected endpoint.
+when testing OAuth2-protected REST endpoints, in order to authenticate to the protected endpoint.
 
 ### MockJeapOAuth2RestClientBuilderFactory
 
@@ -213,15 +213,15 @@ be created with the `JwsBuilder`, for example.
 
 An OAuth2 resource protected with the `jeap-spring-boot-security-starter` must verify the signature of the access
 tokens sent to it. To do so, the resource obtains the public keys matching the private keys with which the
-authorization server signs the tokens it issues from a defined web endpoint of the authorization server. In order not
-to depend on an external authorization server for integration tests of an OAuth2-protected web endpoint, the class
+authorization server signs its tokens from a dedicated web endpoint of the authorization server. To avoid
+depending on an external authorization server in integration tests of an OAuth2-protected web endpoint, the class
 [ServletJwksEndpointMock](https://github.com/jeap-admin-ch/jeap-spring-boot-starters/blob/main/jeap-spring-boot-security-starter-test/src/main/java/ch/admin/bit/jeap/security/test/resource/jwks/ServletJwksEndpointMock.java)
-implements a local web endpoint with public keys using a REST controller, analogous to the mock server under the path
+implements such an endpoint locally as a REST controller serving public keys, under the same path as the mock server,
 `/.well-known/jwks.json`.
 
-For an OAuth2 resource protected with the `jeap-spring-boot-security-starter` to take the mock JWKS endpoint into
-account in a test, the corresponding OAuth2 resource configuration property
-`jeap.security.oauth2.resourceserver.authorization-server.jwk-set-uri` must of course also point to the mock JWKS
+For an OAuth2 resource protected with the `jeap-spring-boot-security-starter` to use the mock JWKS endpoint
+in a test, the OAuth2 resource configuration property
+`jeap.security.oauth2.resourceserver.authorization-server.jwk-set-uri` must also point to the mock JWKS
 endpoint.
 
 ### RSAKeyUtils
@@ -239,7 +239,7 @@ The
 [JwsBuilderFactory](https://github.com/jeap-admin-ch/jeap-spring-boot-starters/blob/main/jeap-spring-boot-security-starter-test/src/main/java/ch/admin/bit/jeap/security/test/jws/JwsBuilderFactory.java)
 implements a factory that creates `JwsBuilder` instances which obtain the key used for signing their tokens from a
 `TestKeyProvider` instance. When these classes are used in Spring Boot tests, the RSA key predefined in
-`jeap-spring-boot-security-starter-test` is used automatically. If required, an own key/keystore can be used through a
+`jeap-spring-boot-security-starter-test` is used automatically. If required, your own key/keystore can be used through a
 custom configuration of the
 [TestKeyProviderConfigurationProperties](https://github.com/jeap-admin-ch/jeap-spring-boot-starters/blob/main/jeap-spring-boot-security-starter-test/src/main/java/ch/admin/bit/jeap/security/test/jws/TestKeyProviderConfigurationProperties.java).
 
@@ -247,9 +247,8 @@ custom configuration of the
 
 The configuration
 [JeapOAuth2IntegrationTestConfiguration](https://github.com/jeap-admin-ch/jeap-spring-boot-starters/blob/main/jeap-spring-boot-security-starter-test/src/main/java/ch/admin/bit/jeap/security/test/configuration/JeapOAuth2IntegrationTestConfiguration.java)
-can be imported into a Spring Boot test to extend the loaded Spring context so that integration tests on
-OAuth2-protected resources, in which a call to the protected resource is to traverse the whole security stack, can be
-carried out easily.
+can be imported into a Spring Boot test to extend the loaded Spring context for integration tests on
+OAuth2-protected resources in which a call to the protected resource passes through the whole security stack.
 
 The `JeapOAuth2IntegrationTestConfiguration` provides a `TestKeyProvider`, a `JwsBuilderFactory`, a `JwksEndpoint`, a
 `MockJeapOAuth2RestClientBuilderFactory` and a `MockJeapOAuth2WebclientBuilderFactory`, all of which rely on the RSA

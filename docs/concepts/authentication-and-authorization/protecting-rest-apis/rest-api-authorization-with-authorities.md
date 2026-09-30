@@ -1,11 +1,11 @@
 # Authorization with authorities
 
-The following sections describe the integration and use of the `jeap-spring-boot-security-starter` library for
-the case that an application authorizes user access against [authorities](../role-concept.md#authorities).
+The following sections describe the integration and use of the `jeap-spring-boot-security-starter` library when
+an application authorizes user access against [authorities](../role-concept.md#authorities).
 
 ## Integration
 
-As a prerequisite for activating authorization with authorities, the first step is the basic integration of
+The first step for authorization with authorities is the basic integration of
 jEAP Security as described in
 [Authentication and authorization for REST APIs – Integration](rest-api-authentication-and-authorization.md#integration).
 Note the following:
@@ -36,8 +36,8 @@ public class ExampleAuthoritiesResolver implements AuthoritiesResolver {
 }
 ```
 
-As a concrete `GrantedAuthority` implementation, the Spring Security class `SimpleGrantedAuthority` can be
-used, for example, which is essentially a simple wrapper around a string.
+A suitable `GrantedAuthority` implementation is, for example, the Spring Security class `SimpleGrantedAuthority`,
+which is essentially a simple wrapper around a string.
 
 A concrete example of an `AuthoritiesResolver` is given in
 [jme-security-oauth2-resource-authorities-service](https://github.com/jme-admin-ch/jme-security-oauth2-example/blob/main/jme-security-oauth2-resource-authorities-service/src/main/java/ch/admin/bit/jeap/jme/security/oauth/resource/ExampleAuthoritiesResolver.java).
@@ -45,8 +45,8 @@ A concrete example of an `AuthoritiesResolver` is given in
 ## Authorization checks
 
 Authorities are a basic mechanism of Spring Security. To check the authorization of a user based on authorities,
-the means provided by Spring Security for this purpose are available. The following sections give examples of
-some of these means.
+the standard Spring Security mechanisms can be used. The following sections give examples of
+some of these mechanisms.
 
 ### Declarative authorization
 
@@ -68,8 +68,8 @@ public class ExampleResource {
 
 ### Querying the authorities of a user
 
-Sometimes the concrete permissions of a user have to be known, for example to search for objects in a database
-matching his permissions. For such cases, the authorities of a user can be obtained from his Spring Security
+Sometimes the actual permissions of a user have to be known, for example to search a database for objects
+matching these permissions. For such cases, the authorities of a user can be obtained from their Spring Security
 `Authentication`, for example as follows:
 
 ```java

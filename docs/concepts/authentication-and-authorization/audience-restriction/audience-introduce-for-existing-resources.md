@@ -96,7 +96,7 @@ validation can enable it while the migration of other resources is still ongoing
 Application teams inventory calls, deploy receiver and caller changes, and verify tokens and traffic.
 On managed platforms, coordinate realm changes, introspection-client provisioning and secret delivery
 with the platform team. The platform operator also coordinates removal of Keycloak compatibility
-exceptions. Record team readiness separately from platform enforcement.
+exceptions. Record when your team is ready separately from when the platform enforces the check.
 
 Use supported component versions containing the required features. The three local validation modes and
 the introspection client-ID fallback were introduced in **jEAP Security Starter 24.26.0**, managed from
@@ -144,7 +144,7 @@ jeap:
 
 Exercise calls and search resource-server logs for `strict-audience-validation=warn`. These warnings
 identify accepted `USER`/`SYS` tokens with missing or empty audiences. Use them to supplement the
-inventory, including callers that are easy to overlook. Keep resources already enforcing `on` at `on`.
+inventory, including callers that are easy to overlook. Keep resources that already enforce `on` at `on`.
 
 `warn` is not a general dry-run mode: it still rejects a nonempty audience without the resource's ID.
 This is why receiver configuration must be deployed before new audiences are issued.

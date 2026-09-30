@@ -1,7 +1,7 @@
 # Integrating different authorization servers
 
 The jEAP Security library relies on the OpenID Connect / OAuth2 standards for the authentication and authorization of
-users. Accordingly, the library is in principle compatible with authorization servers implementing these standards.
+users. Accordingly, the library is generally compatible with authorization servers implementing these standards.
 Within these standards, the jEAP Security library defines a specific [role concept](../role-concept.md) and a matching
 [structure of OAuth2 access tokens](../tokens/tokens-in-the-blueprint-microservice.md#access-token). Ideally, the authorization
 server in use can be configured to issue access tokens directly in the form expected by the jEAP Security library. As
@@ -14,7 +14,7 @@ successfully integrated with the jEAP Security library.
 
 ## Transforming access tokens with claim set converters
 
-jEAP Security allows configuring one claim set converter each for a configured authorization server or a configured
+jEAP Security allows configuring one claim set converter per configured authorization server or
 B2B gateway. With a claim set converter, the claims of an access token can be adapted for further processing by
 Spring Security. The adaptations take place *after* the signature of the access token has been validated.
 
@@ -39,7 +39,7 @@ A claim set converter for the tokens of an authorization server or B2B gateway i
 
 ### Implementing your own claim set converter
 
-A claim set converter is a normal Spring converter that maps a claim set to a claim set again:
+A claim set converter is a normal Spring converter that maps a claim set to another claim set:
 
 ```java
 @Component("eiamClaimSetConverter")

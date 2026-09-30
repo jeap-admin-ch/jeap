@@ -1,7 +1,7 @@
 # Authorization with semantic roles
 
-The following sections describe the integration and use of the `jeap-spring-boot-security-starter` library for
-the case that an application authorizes user access against [semantic roles](../role-concept.md#semantic-roles).
+The following sections describe the integration and use of the `jeap-spring-boot-security-starter` library when
+an application authorizes user access against [semantic roles](../role-concept.md#semantic-roles).
 
 ## Integration
 
@@ -23,8 +23,8 @@ To check the authorization of a user based on semantic roles, the following quer
 | `hasRoleForAllPartners` | Does the user have a role for all business partners, i.e. independently of a business partner? (`userroles`) |
 | `getPartnersForRole` | For which business partners does the user have the role? (`bproles`) |
 
-These query methods allow the role to be specified by naming the individual elements of a semantic role, whereby
-not all elements have to be specified. In that case, only the specified elements are checked for authorization.
+In these query methods, the role is specified by naming its individual elements. Not all elements have to
+be specified; only the specified elements are then checked for authorization.
 The following patterns are typically available:
 
 | Pattern | Explanation |
@@ -38,7 +38,7 @@ The following patterns are typically available:
 An example illustrates the query methods and their patterns. Let us assume:
 
 - An **employee** of a freight forwarder may read customs declarations in the application `freight` for the
-  partner companies "12345" and "9999". His access token therefore contains the claim
+  partner companies "12345" and "9999". Their access token therefore contains the claim
   `"bproles": { "12345": ["freight_@declaration_#read"], "9999": ["freight_@declaration_#read"] }`.
 - The technical user of the **microservice** "Billing" may create, read, modify and delete the
   customs declarations of all business partners. Its access token therefore contains the claim
@@ -86,8 +86,8 @@ public Partner getPartner(String partnerId) {
 
 Not all permissions can be checked purely declaratively. Sometimes, for example, data has to be loaded first in
 order to check, based on the loaded data, whether a user may access it. The `jeap-spring-boot-security-starter`
-therefore also offers all the authorization check methods described above directly in program code by
-instantiating a Spring bean of type `ServletSemanticAuthorization` that implements the methods.
+therefore also offers all the authorization check methods described above directly in program code through
+a Spring bean of type `ServletSemanticAuthorization` that implements them.
 
 Example of programmatic authorization:
 
@@ -110,14 +110,14 @@ public Partner findPartner(...) {
 
 ### Role queries
 
-Sometimes it is necessary to know the concrete permissions of the current user, for example to load all objects
+Sometimes it is necessary to know the actual permissions of the current user, for example to load all objects
 from the database that the user has access to. The following query methods are available for this purpose:
 
 | Query method | Explanation |
 | --- | --- |
-| `getAllRoles(operation)` | All roles of the user that authorize him for the given operation. |
-| `getAllRolesForPartner(operation, partner)` | All roles of the user that authorize him for the given operation on behalf of the given business partner. Also includes all roles the user has for the given operation independently of a business partner (i.e. for all business partners). |
-| `getAllRolesForAllPartners(operation)` | All roles of the user that authorize him for the given operation independently of a business partner (i.e. for all business partners). |
+| `getAllRoles(operation)` | All roles of the user that authorize them for the given operation. |
+| `getAllRolesForPartner(operation, partner)` | All roles of the user that authorize them for the given operation on behalf of the given business partner. Also includes all roles the user has for the given operation independently of a business partner (i.e. for all business partners). |
+| `getAllRolesForAllPartners(operation)` | All roles of the user that authorize them for the given operation independently of a business partner (i.e. for all business partners). |
 
 > **Note:** Since wildcards are allowed in semantic roles, be prepared for one of the returned roles to contain
 > wildcards.
@@ -140,7 +140,7 @@ private List<Task> getTasksForAllAllowedTenants() {
 
 ## Business partner queries
 
-Sometimes it is necessary to know the concrete business partners for which the current user has a certain
+Sometimes it is necessary to know the actual business partners for which the current user has a certain
 permission, for example to load only those objects from the database that belong to these partners. The
 following query methods are available for this purpose:
 

@@ -89,8 +89,8 @@ then use **Add → Default** or **Add → Optional**:
 | Default | The audience is included without an explicit scope request. Omitting it from the request cannot deselect it. |
 | Optional | The client must name the scope when obtaining a token to include this audience. |
 
-Assign only the resources the client needs. Optional selection may be fixed in application
-configuration or determined at runtime; it is not inherently dynamic. A Default scope may also be
+Assign only the resources the client needs. Whether an Optional scope is requested can be fixed in the application
+configuration or decided at runtime; Optional does not by itself mean dynamic. A Default scope may also be
 requested explicitly, for example in a Spring client registration, to document the expected
 assignment. See [Selecting audiences](audience-selection.md) for examples and the limits of that check.
 
