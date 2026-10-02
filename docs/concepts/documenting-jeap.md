@@ -62,6 +62,21 @@ GitHub / the doc site and by AI coding agents navigating the corpus.
     `scripts/export-drawio-diagrams.sh` (Docker required) and commit both files —
     never edit the SVG by hand or commit an SVG without its source.
 
+    **This is enforced, in every pipeline that publishes documentation.** A source
+    committed after its image fails the build, naming the diagram: the assumption is
+    that the author forgot to export, and without the check the page would go on
+    showing the old picture indefinitely. The sources themselves are never published —
+    only the SVG reaches the site, because a `.drawio` is nothing a reader could open.
+
+    A file counts as the source of an image when, in the same folder, there is an
+    image whose base name it extends and its own extension is not one the site
+    publishes — so both `<name>.drawio` and the older `<name>.drawio.xml` pair up with
+    `<name>.svg`, while a `report.pdf` next to a `report.svg` stays an asset of its
+    own. The rule is about the name rather than a list of tools, so the convention
+    works for any diagram editor. The dates come from git, not from file modification
+    times: a checkout writes every file at the same moment, so an mtime comparison
+    would pass by luck.
+
 - **Pages must be valid [MDX](https://mdxjs.com/).** Docusaurus renders every `.md`
   page as MDX, so the Markdown has to satisfy Docusaurus' MDX parser or the
   production build fails. In practice: a bare `<` is read as a JSX tag and `{ }` as a
