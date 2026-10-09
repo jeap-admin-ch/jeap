@@ -94,7 +94,7 @@ domain event always contains the following data:
 |  | variant | Variant of the type. The variant can be set by business applications to distinguish events with the same type from a business perspective. | N | - |  |
 | DomainEventIdentity |  | Identity of the event |  |  |  |
 |  | eventId (alias for id) | Unique ID of the event notification | Y | Random (UUID) | Global |
-|  | idempotenceId | If the same event is published multiple times (at-least-once delivery), this ID must always have the same value. See Guidelines and examples for implementing idempotent behavior (TODO Link) | Y | - | Event type |
+|  | idempotenceId | If the same event is published multiple times (at-least-once delivery), this ID must always have the same value. See Guidelines and examples for implementing [idempotent behavior](../backend/idempotency/index.md) | Y | - | Event type |
 |  | created | Point in time at which the domain event occurred. Transmitted as a Unix timestamp in milliseconds, in UTC. | Y | Current timestamp |  |
 | MessageUser |  | User who caused the event | N |  |  |
 |  | id | ID of the user | N |  |  |
@@ -130,7 +130,7 @@ to the `DomainEvent` but contains slightly different types and fields.
 |  | variant | Variant of the type. The variant can be set by business applications to distinguish commands with the same type from a business perspective. | N | - |  |
 | MessageIdentity |  | Identity of the message |  |  |  |
 |  | id | Unique ID of the message | Y | Random (UUID) | Global |
-|  | idempotenceId | If the same message is published multiple times (at-least-once delivery), this ID must always have the same value. See Guidelines and examples for implementing idempotent behavior (TODO Link) | Y | - | Message type |
+|  | idempotenceId | If the same message is published multiple times (at-least-once delivery), this ID must always have the same value. See Guidelines and examples for implementing [idempotent behavior](../backend/idempotency/index.md) | Y | - | Message type |
 |  | created | Point in time at which the message was published. Transmitted as a Unix timestamp in milliseconds, in UTC. | Y | Current timestamp |  |
 | MessageUser |  | User who triggered the command | N |  |  |
 |  | id | ID of the user | N |  |  |

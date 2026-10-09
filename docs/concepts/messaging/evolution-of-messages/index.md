@@ -209,7 +209,7 @@ The message is replaced by a new message type (→ new major version). The repla
 | Migrate | - | Switch to new EventType | Switch to new CommandType | - |
 | Contract | Remove old EventType | - | - | Remove support for old CommandType |
 
-For more details see: Strategie EMC Message Replacement (TODO Link).
+For more details, see [Strategy: EMC Message Replacement](../../continuous-delivery/expand-migrate-contract.md#strategy-emc-message-replacement).
 
 ### EMC Message Evolution
 

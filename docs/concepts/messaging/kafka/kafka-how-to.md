@@ -29,7 +29,7 @@
    [jme-messaging-example](https://github.com/jme-admin-ch/jme-messaging-example/blob/main/jme-messaging-receiverpublisher-service/src/main/resources/application.yml)
    repository.
 10. Develop and test the event-driven service, both locally and on dev.
-    - Follow the guidelines & examples for implementing idempotent behavior (TODO Link).
+    - Follow the guidelines & examples for implementing [idempotent behavior](../../backend/idempotency/index.md).
 11. Once the event schema is stable, merge the branch in the
     [Message Type Registry](../message-type-registry/index.md) into master via a pull request.
 

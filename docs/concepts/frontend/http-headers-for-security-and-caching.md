@@ -9,11 +9,9 @@ Examples of this are:
 - `Content-Security-Policy`: controls from which URLs, e.g., scripts may be loaded, iframes embedded, or APIs called.
 - `Cache-Control`: tells the browser whether and for how long resources should be cached.
 
-The page Http Headers (TODO Link) in the Frontend Development area contains a very good overview and documentation of the headers to be set.
-
 In Spring Boot, by default only Spring Security sets some corresponding headers (e.g. no caching for secured resources). See the Spring Security reference documentation at [https://docs.spring.io/spring-security/reference/features/exploits/headers.html](https://docs.spring.io/spring-security/reference/features/exploits/headers.html).
 
-To give Spring Boot backends an easy way to get secure, configurable defaults for HTTP headers, the **`jeap-spring-boot-web-config-starter`** is available starting with jeap-parent 17.3.0. It uses web filters to set headers for security (TODO Link) and caching (TODO Link), and supports both servlet containers.
+To give Spring Boot backends an easy way to get secure, configurable defaults for HTTP headers, the **`jeap-spring-boot-web-config-starter`** is available starting with jeap-parent 17.3.0. It uses web filters to set headers for security and caching, and supports both servlet containers.
 
 :::warning
 The starter makes certain assumptions about the structure of the API in its defaults (e.g. the headers are added for everything that isn't located under `/api`). It's primarily intended for SCS based on the jEAP Blueprint Microservice (a microservice with a frontend).

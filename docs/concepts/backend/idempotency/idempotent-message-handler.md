@@ -52,7 +52,7 @@ If the `shedlock` table already exists, e.g. because the Transactional Outbox is
 
 The idempotent message handler implementation uses JPA and declares the entities it needs via `@EntityScan`. If the application in which `@IdempotentMessageHandler` is to be used also uses JPA but doesn't declare a specific `@EntityScan` itself, the application's `SpringBootApplication` class must additionally be annotated with `@EntityScan`, to replicate Spring Boot's default behavior when no explicit entity declaration is present.
 
-In the database, the message type without the major version (e.g. **JmeDeclarationCreatedEvent** without **V2**) is stored as the idempotence context. This ensures idempotency across all major versions of a message, since all major versions of a message type share one idempotence context. This creates the prerequisite for expanding the publisher first before subscribers migrate individually, as part of Expand-Migrate-Contract (TODO Link).
+In the database, the message type without the major version (e.g. **JmeDeclarationCreatedEvent** without **V2**) is stored as the idempotence context. This ensures idempotency across all major versions of a message, since all major versions of a message type share one idempotence context. This creates the prerequisite for expanding the publisher first before subscribers migrate individually, as part of [Expand-Migrate-Contract](../../continuous-delivery/expand-migrate-contract.md).
 
 Examples:
 

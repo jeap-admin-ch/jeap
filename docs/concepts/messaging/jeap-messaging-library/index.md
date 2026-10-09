@@ -374,7 +374,7 @@ For AWS Glue, `NONE` is likewise used, resp. no compatibility check is activated
 ### Encrypting Messages
 
 Since version 4.9.0, the jEAP Messaging Library supports encrypting messages, based on the
-jEAP Crypto library (TODO Link). For this, the application must
+[jEAP Crypto library](../../../building-blocks/libraries/index.md). For this, the application must
 configure a `KeyIdCryptoService` instance from jEAP Crypto in the jEAP Kafka message serializer and deserializer
 implementations. The `jeap-messaging-infrastructure-kafka` library does this automatically if such an instance is
 available as a Spring bean. Such a bean can, for example, be provided via the `jeap-crypto-vault-starter` (together
