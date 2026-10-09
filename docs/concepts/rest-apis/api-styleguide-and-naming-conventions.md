@@ -13,7 +13,7 @@ This style guide follows the very detailed [RESTful Swiss API Guidelines](https:
 
 Compared with, for example, SOA or RPC interfaces, [REST](https://de.wikipedia.org/wiki/Representational_State_Transfer) interfaces focus much less on use-case-specific and specialized operations (for example `ListBusinessPartnersByCountry`). Instead, REST focuses on business data entities that are exposed as **resources**, identified via URIs, and manipulated through standardized CRUD-like methods using different representations and hypermedia. Standard HTTP methods are used for this.
 
-RESTful APIs are generally less use-case-specific, have weaker client/server coupling, and are better suited for an ecosystem of services in which a platform exposes APIs for building different business services. We apply RESTful web service principles to all microservices. This applies to **synchronous service communication via REST/HTTP**, not to asynchronous, event-driven communication via Domain Events (TODO Link in Messaging).
+RESTful APIs are generally less use-case-specific, have weaker client/server coupling, and are better suited for an ecosystem of services in which a platform exposes APIs for building different business services. We apply RESTful web service principles to all microservices. This applies to **synchronous service communication via REST/HTTP**, not to asynchronous, event-driven communication via [Messages](../messaging/message-types.md).
 
 For synchronous communication, we prefer REST-based APIs with JSON payloads; see the Swiss API Guidelines section on [JSON as a payload format](https://github.com/swiss/api-guidelines/blob/main/README.md#must-use-json-preferred-or-xml-as-payload-data-interchange-format-for-structured-data-167).
 
@@ -21,7 +21,7 @@ Synchronous means that the expected response time for a request is typically und
 
 ## 3. General
 
-- Security: see Authentication for REST APIs (TODO Link in Security)
+- Security: see [Authentication for REST APIs](../authentication-and-authorization/protecting-rest-apis/index.md)
 - Versioning and evolution: see [Versioning for REST APIs](evolution-versioning.md)
 
 ## 4. REST Maturity Levels
@@ -103,7 +103,7 @@ Idempotency can be implemented as follows:
 
 Responses should return specific status codes and document them in the interface documentation. This applies both to success cases (`200 OK`, `201 Created`, and so on) and to error cases (`401 Unauthorized`, `503 Unavailable`, and so on).
 
-- When authentication and authorization are implemented with the jEAP library as described in Authentication for REST APIs (TODO Link in Security), secured APIs already return correct response status codes for security-related exceptions (`401`, `403`, and so on).
+- When authentication and authorization are implemented with the jEAP library as described in [Authentication for REST APIs](../authentication-and-authorization/protecting-rest-apis/index.md), secured APIs already return correct response status codes for security-related exceptions (`401`, `403`, and so on).
 - See the Swiss API Guidelines section on [common HTTP status codes](https://github.com/swiss/api-guidelines?tab=readme-ov-file#should-only-use-most-common-http-status-codes-150) for a list of status codes and the HTTP methods to which they apply.
 - For bulk requests (`207 Multi-Status`), see the Swiss API Guidelines section on [batch or bulk requests](https://github.com/swiss/api-guidelines?tab=readme-ov-file#must-use-code-207-for-batch-or-bulk-requests-152).
 - The official [IANA HTTP status code registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml) lists all status codes and links to the corresponding RFCs.
