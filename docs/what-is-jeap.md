@@ -108,7 +108,8 @@ flowchart TD
     App["Your Spring Boot application"] --> Parent["jeap-spring-boot-parent<br/>(dependency management)"]
     App --> Starters["Spring Boot Starters"]
     App --> Libraries["Libraries"]
-    Services["Reusable Microservices<br/>(deployed alongside)"] --- App
+    PlatformServices["jEAP platform services<br/>(installed for the whole system)"] --- App
+    JeapServices["jEAP microservices<br/>(installed per Fachanwendung)"] --- App
 ```
 
 ## Next steps
