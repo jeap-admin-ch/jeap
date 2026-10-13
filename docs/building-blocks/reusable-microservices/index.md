@@ -5,9 +5,9 @@ that you run as its own service. The common usage model is to **depend on the te
 then add specific configuration** (and, for some, plugin implementations). They have
 different deployment scopes:
 
-- **jEAP platform services** are installed once for the whole system and provide shared
+- **jEAP platform services** are installed once for the whole platform and provide shared
   platform capabilities.
-- **jEAP microservices** are installed per *Fachanwendung* (business application).
+- **jEAP microservices** are installed per system (business application).
 
 For libraries you add inside your own service, see [Libraries](../libraries/index.md).
 
