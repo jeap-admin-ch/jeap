@@ -12,7 +12,7 @@ Motivation: many small, simple tests instead of a few large, complex end-to-end 
 
 ## Test Scope
 
-![Compatibility vs Interaction](interaction-tests-compatibility-vs-interaction.png)
+![Compatibility vs Interaction](interaction-tests-compatibility-vs-interaction.svg)
 
 ## Use Cases
 

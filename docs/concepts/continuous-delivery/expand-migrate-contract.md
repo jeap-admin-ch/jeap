@@ -29,11 +29,11 @@ The following illustrates the procedure for the typical interface types. The pro
 
 ### REST API
 
-![Expand - Migrate - Contract for a REST API](expand-migrate-contract-rest-api.png)
+![Expand - Migrate - Contract for a REST API](expand-migrate-contract-rest-api.svg)
 
 ### Command
 
-![Expand - Migrate - Contract for a Command](expand-migrate-contract-command.png)
+![Expand - Migrate - Contract for a Command](expand-migrate-contract-command.svg)
 
 1. Not Avro-compatible:
     - New major version of the Command
@@ -42,7 +42,7 @@ The following illustrates the procedure for the typical interface types. The pro
 
 ### Event
 
-![Expand - Migrate - Contract for an Event](expand-migrate-contract-event.png)
+![Expand - Migrate - Contract for an Event](expand-migrate-contract-event.svg)
 
 1. Not Avro-compatible:
     - New major version of the Event

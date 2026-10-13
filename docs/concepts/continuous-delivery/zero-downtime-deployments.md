@@ -12,7 +12,7 @@ Two typical examples:
 
 The frontend and backend of an SCS are typically integrated via a REST API. For an SCS, the frontend and backend form a single deployment unit. This means the frontend and backend are deployed at the same time. However, since multiple instances are active simultaneously, a combination of old and new is still unavoidable during the deployment. As a result, a seemingly simple extension can turn into a breaking change!
 
-![Deployment of an SCS](zero-downtime-deployment-of-scs.png)
+![Deployment of an SCS](zero-downtime-deployment-of-scs.svg)
 
 | Step | Description |
 | --- | --- |
@@ -48,7 +48,7 @@ Not backward-compatible, and therefore critical, are:
 
 The procedure for a non-backward-compatible change (e.g. changing the data type of a column) is illustrated below.
 
-![Rolling update with schema migration](zero-downtime-schema-migration.png)
+![Rolling update with schema migration](zero-downtime-schema-migration.svg)
 
 | # | Comment | Rollback |
 | --- | --- | --- |

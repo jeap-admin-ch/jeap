@@ -6,7 +6,7 @@ The automated business process tests (Business Process Tests) are intended to te
 
 ## Architecture Overview
 
-![Architecture Overview](architecture-overview.png)
+![Architecture Overview](architecture-overview.svg)
 
 ### Component Responsibilities
 
