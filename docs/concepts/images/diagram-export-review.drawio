@@ -1,0 +1,25 @@
+<mxfile host="app.diagrams.net" version="24.7.17">
+  <diagram name="diagram-export-review" id="diagram-export-review">
+    <mxGraphModel dx="800" dy="400" grid="1" page="1" pageWidth="800" pageHeight="400">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="author" value="Author exports SVG" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="pipeline" value="Pipeline checks v1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="300" y="80" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="site" value="Readers see SVG" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="560" y="80" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="first" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="author" target="pipeline">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="second" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="pipeline" target="site">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
