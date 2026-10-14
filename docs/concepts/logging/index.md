@@ -19,3 +19,4 @@ analyze and search all logs in a central location, a central logging infrastruct
 - [Application Logs](application-logs.md)
 - [Request Tracing](request-tracing.md)
 - [Distributed Tracing](distributed-tracing.md)
+- [Log Deep Links](log-deep-links.md)

@@ -9,7 +9,7 @@
 3. Define the [Type Descriptor](../message-type-registry/index.md) and
    [Avro Schema](../message-type-registry/index.md), and publish them on a feature branch in the
    [Message Type Registry](../message-type-registry/index.md).
-4. Set up an [Error Handling Service](../error-handling/error-handling-service.md).
+4. Set up an [Error Handling Service](https://jeap-admin-ch.github.io/docs/building-blocks/reusable-microservices/jeap-error-handling/architecture).
    - Don't forget to request the roles needed to authorize the service.
 5. Add the [Jeap Messaging Library](../jeap-messaging-library/index.md) as a dependency to the service, and
    add the generated message types as a dependency as described in "Usage of Message Types in Java" (see
