@@ -45,12 +45,12 @@ Managed Versions of Spring dependencies:
 
 | Component | Current Version | Required jEAP Parent Version | Changelog |
 | --- | --- | --- | --- |
-| jeap-archrepo-service | `15.14.0` | `41.21.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-archrepo-service/blob/v15.14.0/CHANGELOG.md) |
+| jeap-archrepo-service | `16.1.0` | `41.21.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-archrepo-service/blob/v16.1.0/CHANGELOG.md) |
 | jeap-bptest-orchestrator | `18.15.0` | `41.21.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptest-orchestrator/blob/v18.15.0/CHANGELOG.md) |
 | jeap-bptestagent-api | `10.13.0` | `41.21.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptestagent-api/blob/v10.13.0/CHANGELOG.md) |
 | jeap-deploymentlog-service | `16.18.0` | `41.21.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-deploymentlog-service/blob/v16.18.0/CHANGELOG.md) |
-| jeap-doc-service | `3.15.0` | `41.21.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-doc-service/blob/v3.15.0/CHANGELOG.md) |
-| jeap-error-handling | `25.8.0` | `41.21.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-error-handling/blob/v25.8.0/CHANGELOG.md) |
+| jeap-doc-service | `3.16.0` | `41.21.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-doc-service/blob/v3.16.0/CHANGELOG.md) |
+| jeap-error-handling | `25.8.2` | `41.21.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-error-handling/blob/v25.8.2/CHANGELOG.md) |
 | jeap-governance-service | `9.12.0` | `41.21.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-governance-service/blob/v9.12.0/CHANGELOG.md) |
 | jeap-initializer | `10.13.0` | `41.21.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-initializer/blob/v10.13.0/CHANGELOG.md) |
 | jeap-message-contract-service | `12.15.0` | `41.21.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-message-contract-service/blob/v12.15.0/CHANGELOG.md) |
