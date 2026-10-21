@@ -45,10 +45,10 @@ Managed Versions of Spring dependencies:
 
 | Component | Current Version | Required jEAP Parent Version | Changelog |
 | --- | --- | --- | --- |
-| jeap-archrepo-service | `16.1.0` | `41.21.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-archrepo-service/blob/v16.1.0/CHANGELOG.md) |
+| jeap-archrepo-service | `16.1.1` | `41.21.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-archrepo-service/blob/v16.1.1/CHANGELOG.md) |
 | jeap-bptest-orchestrator | `18.15.0` | `41.21.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptest-orchestrator/blob/v18.15.0/CHANGELOG.md) |
 | jeap-bptestagent-api | `10.13.0` | `41.21.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-bptestagent-api/blob/v10.13.0/CHANGELOG.md) |
-| jeap-deploymentlog-service | `16.18.0` | `41.21.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-deploymentlog-service/blob/v16.18.0/CHANGELOG.md) |
+| jeap-deploymentlog-service | `16.19.0` | `41.21.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-deploymentlog-service/blob/v16.19.0/CHANGELOG.md) |
 | jeap-doc-service | `3.16.0` | `41.21.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-doc-service/blob/v3.16.0/CHANGELOG.md) |
 | jeap-error-handling | `25.8.2` | `41.21.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-error-handling/blob/v25.8.2/CHANGELOG.md) |
 | jeap-governance-service | `9.12.0` | `41.21.0` | [Changelog](https://github.com/jeap-admin-ch/jeap-governance-service/blob/v9.12.0/CHANGELOG.md) |
