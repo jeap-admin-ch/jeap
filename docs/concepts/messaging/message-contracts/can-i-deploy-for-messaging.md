@@ -13,36 +13,7 @@ Can-I-Deploy means, for messaging:
     - This means the producer either uses the same schema, or one that is compatible with the reader schema — e.g. that all mandatory fields in the reader schema are also written by the writer.
     - Details: see [Evolution of Messages](../evolution-of-messages/index.md) (how it works)
 
-```plantuml
-@startuml
-skinparam linetype ortho
-skinparam nodesep 40
-skinparam ranksep 30
-skinparam rectangle {
-  BorderColor Black
-}
-skinparam component {
-  BorderColor Black
-}
-rectangle "Producer" as n0
-rectangle "Consumer" as n2
-rectangle "Writer\nSchema" as n4
-rectangle "Reader\nSchema" as n5
-rectangle "Topic" as n1
-rectangle "Can-I-Deploy:\n'Reader Schema' can-read 'Writer Schema'" as n3
-
-n0 --> n1
-n1 --> n2
-n3 -[dashed]-> n4
-n3 -[dashed]-> n5
-
-n0 -[hidden]-> n2
-n2 -[hidden]-> n4
-n4 -[hidden]-> n5
-n5 -[hidden]-> n1
-n1 -[hidden]-> n3
-@enduml
-```
+![Can I Deploy for messaging](can-i-deploy-for-messaging.svg)
 
 The prerequisites for this are:
 

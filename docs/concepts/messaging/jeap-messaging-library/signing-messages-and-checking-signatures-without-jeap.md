@@ -6,67 +6,7 @@ An application can act as a publisher and/or as a subscriber of a jEAP message. 
 specifically the value and the key, with its private key, while the subscriber validates the signature with the
 public key from the publisher's certificate.
 
-```plantuml
-@startuml
-title Messaging Signature – Publisher and Subscriber
-
-left to right direction
-
-skinparam shadowing false
-skinparam componentStyle rectangle
-skinparam defaultTextAlignment center
-
-package "Publisher" as publisher {
-  component "Certificate\nCN=jme-abc-service\nSerial Nr=12345\n<public key>" as publisherCertificate #D9EAD3
-  component "Private Key" as privateKey #D9EAD3
-  component "Message Publisher" as messagePublisher #CFE2F3
-}
-
-component "Kafka Record" as kafkaRecord #E2E2E2 {
-  component "Headers\njeap-sign: badbeef\njeap-sign-key: deadbeef\nj-cert: 12345" as headers #E2E2E2
-  component "Key" as recordKey #E2E2E2
-  component "Value\nPublisher=jme-abc-service" as recordValue #E2E2E2
-}
-
-package "Subscriber" as subscriber {
-  component "Message Subscriber" as messageSubscriber #CFE2F3
-
-  component "Certificate\nCN=jme-abc-service\nSerial Nr=12345\n<public key>" as subscriberCertificate #D9EAD3
-  component "Intermediate Certificate\n<public key>" as intermediateCertificate
-  component "Root Certificate\n<public key>" as rootCertificate
-}
-
-messagePublisher --> kafkaRecord : publishes
-kafkaRecord --> messageSubscriber : consumes
-
-publisherCertificate ..> privateKey : key pair
-
-messagePublisher --> headers : signs message
-messagePublisher --> recordKey : SHA256withRSA(private key)
-messagePublisher --> recordValue : SHA256withRSA(private key)
-
-headers --> recordKey
-headers --> recordValue
-
-messageSubscriber ..> subscriberCertificate : validates against
-subscriberCertificate --> intermediateCertificate : signed by
-intermediateCertificate --> rootCertificate : signed by
-
-note right of messagePublisher
-  Signs the message and sets headers:
-  - SHA256withRSA(key)
-  - SHA256withRSA(value)
-end note
-
-note left of messageSubscriber
-  Validates:
-  - Signature
-  - CN (Publisher)
-  - Certificate validity
-end note
-
-@enduml
-```
+![Messaging Signature Publisher Subscriber](messaging-signature-publisher-subscriber.svg)
 
 The **jEAP Messaging Library fully supports this** since [jeap-messaging](https://github.com/jeap-admin-ch/jeap-messaging)
 version 8.21.0 and [jeap-spring-boot-parent](https://github.com/jeap-admin-ch/jeap-spring-boot-parent) 26.28.0. See

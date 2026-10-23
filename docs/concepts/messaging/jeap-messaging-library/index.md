@@ -7,50 +7,7 @@ The **[jEAP Messaging Library](https://github.com/jeap-admin-ch/jeap-messaging)*
 receive [messages](../index.md) via [Kafka](../kafka/index.md) quickly and easily. It is based on
 [Spring for Apache Kafka](https://docs.spring.io/spring-kafka/reference/html/).
 
-```plantuml
-@startuml
-skinparam linetype ortho
-skinparam nodesep 30
-skinparam ranksep 30
-skinparam rectangle {
-  BorderColor Black
-}
-skinparam frame {
-  BorderColor Black
-  BackgroundColor #dbe9f6
-}
-
-frame "jeap" as jeap {
-  rectangle "messaging-model" as n7
-  rectangle "messaging-infrastructure" as n8
-  rectangle "messaging-avro-maven-plugin" as n6
-  rectangle "messaging-avro" as n1
-  rectangle "messaging-infrastructure-kafka" as n2
-}
-
-frame "system" as system {
-  rectangle "event-definition /\ncommand-definition" as n0
-  rectangle "kafka-configuration" as n3
-}
-
-rectangle "microservice" as n9
-rectangle "microservice" as n4
-rectangle "microservice" as n5
-
-n8 -[dashed]-> n7
-n1 -[dashed]-> n7
-n6 -[dashed]-> n1
-n2 -[dashed]-> n1
-n0 -[dashed]-> n1 : only compile
-n3 -[dashed]-> n2
-n9 -[dashed]-> n0
-n4 -[dashed]-> n0
-n5 -[dashed]-> n0
-n9 -[dashed]-> n3 : only runtime
-n4 -[dashed]-> n3
-n5 -[dashed]-> n3
-@enduml
-```
+![Messaging Library Overview](messaging-library.svg)
 
 To use the jEAP Messaging Library, three layers of code are required:
 
@@ -417,69 +374,7 @@ signature on receipt.
 
 The process looks as follows:
 
-```plantuml
-@startuml
-title jEAP Messaging Signature
-
-left to right direction
-
-skinparam shadowing false
-skinparam componentStyle rectangle
-skinparam defaultTextAlignment center
-
-component "Publisher" as publisher #E2E2E2
-component "Subscriber" as subscriber #E2E2E2
-
-component "jEAP Messaging" as publisherMessaging #F9CB9C
-component "jEAP Messaging" as subscriberMessaging #F9CB9C
-
-component "Message\nwith Signature" as signedMessage #F9CB9C
-
-component "Secrets Management" as secretsManagement #E2E2E2
-component "Config Provider" as configProvider #E2E2E2
-
-component "Private Key" as privateKey #9FC5E8
-component "Certificate\npublicKey\npublisher" as certificate #9FC5E8
-
-component "Messaging Trust Config\n(Optional)" as messagingTrustConfig #9FC5E8
-component "TrustedPublisher\npublisher\nmessageType" as trustedPublisher #9FC5E8
-component "UnsignedMessageType\nmessageType" as unsignedMessageType #9FC5E8
-
-component "KafkaRecordHeader\nSignature" as signatureHeader #9FC5E8
-component "jeap-sign\njeap-sign-key\njeap-cert" as signatureHeaders #9FC5E8
-
-component "Automated Secrets Management Process" as secretsProcess #FFFFFF
-
-publisher --> publisherMessaging : uses
-publisherMessaging --> signedMessage : publishes
-signedMessage --> subscriberMessaging : delivered
-subscriberMessaging --> subscriber : consumes
-
-publisher --> secretsManagement : getPrivateKey()
-secretsManagement --> privateKey
-
-subscriber --> configProvider : getCertificate(certReference)
-configProvider --> certificate : provides certificate
-secretsManagement --> certificate : manages certificate
-
-publisherMessaging --> signatureHeader : adds header
-signatureHeader --> signatureHeaders : contains
-
-subscriberMessaging ..> messagingTrustConfig : optional trust configuration
-messagingTrustConfig --> trustedPublisher
-messagingTrustConfig --> unsignedMessageType
-
-secretsManagement --> secretsProcess : createSecret()
-configProvider --> secretsProcess : publish Certificate
-
-note right of messagingTrustConfig
-  TrustedPublisher and
-  UnsignedMessageType define
-  the subscriber trust rules.
-end note
-
-@enduml
-```
+![jEAP Messaging Signature](jeap-messaging-signature.svg)
 
 | Step | Description |
 | --- | --- |
