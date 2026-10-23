@@ -70,7 +70,7 @@ GitHub / the doc site and by AI coding agents navigating the corpus.
 
     A file counts as the source of an image when, in the same folder, there is an
     image whose base name it extends and its own extension is not one the site
-    publishes — so both `<name>.drawio` and the older `<name>.drawio.xml` pair up with
+    publishes — so `<name>.drawio` pairs up with
     `<name>.svg`, while a `report.pdf` next to a `report.svg` stays an asset of its
     own. The rule is about the name rather than a list of tools, so the convention
     works for any diagram editor. The dates come from git, not from file modification

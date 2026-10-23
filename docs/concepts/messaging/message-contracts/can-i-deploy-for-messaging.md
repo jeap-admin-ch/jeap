@@ -2,7 +2,7 @@
 
 By Can-I-Deploy we mean the automatic **check of the prerequisites for a deployment to an environment**. This prevents a component from being deployed that is not compatible with the components already installed on that environment. This page describes what Can-I-Deploy means for messaging specifically — i.e. the schema-compatibility check of a message schema against an environment.
 
-![Introduction: producer and consumer versions exchanging messages over a topic, with a can-I-deploy check gating deployment](intro-can-i-deploy.png)
+![Introduction: producer and consumer versions exchanging messages over a topic, with a can-I-deploy check gating deployment](intro-can-i-deploy.svg)
 
 ## What does Can-I-Deploy mean for messages?
 
@@ -61,7 +61,7 @@ To perform a can-I-deploy check for a message consumer/producer (jEAP microservi
 3. A can-I-deploy check (schema compatibility check) must be performed via the [Message Contract Service](message-contract-service.md) before the deployment
 4. The deployment of the microservice version must be recorded on the [Message Contract Service](message-contract-service.md) by the deployment pipeline
 
-![Full flow from message-type definition and contract declaration, through build-time upload and can-I-deploy checks, to deployment recording](messaging-contract-flow.png)
+![Full flow from message-type definition and contract declaration, through build-time upload and can-I-deploy checks, to deployment recording](messaging-contract-flow.svg)
 
 ## See also
 

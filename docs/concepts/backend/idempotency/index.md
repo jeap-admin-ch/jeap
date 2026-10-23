@@ -12,7 +12,7 @@ When communicating in a distributed system over the network, a client **cannot**
 - The request reached the service, but no response came back from the service.
 - The service processed the request, but the response was lost.
 
-![Client/service error scenarios](client-service-error-scenarios.png)
+![Client/service error scenarios](client-service-error-scenarios.svg)
 
 One option (after a timeout or error) would be to ask the service whether it has processed the request. However, the more common approach is to call the service again (retry). For this, the service must be implemented so that it can correctly handle repeated calls → **the implementation of the service function must be idempotent.**
 
