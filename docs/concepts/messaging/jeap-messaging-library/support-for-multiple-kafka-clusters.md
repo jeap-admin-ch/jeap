@@ -27,22 +27,22 @@ skinparam packageStyle rectangle
 skinparam defaultTextAlignment center
 
 package "jEAP-based Spring Boot Service" as springBootService #E2E2E2 {
-  component "Spring Kafka Beans\nCluster 1\n@Primary\n@Qualifier(\"bit\")" as springKafkaBeansBit #C9DAF8
-  component "Spring Kafka Beans\nCluster 2\n@Qualifier(\"aws\")" as springKafkaBeansAws #D9EAD3
+  component "Spring Kafka Beans\nCluster 1\n@Primary\n@Qualifier("cluster1")" as springKafkaBeansCluster1 #C9DAF8
+  component "Spring Kafka Beans\nCluster 2\n@Qualifier("cluster2")" as springKafkaBeansCluster2 #D9EAD3
 }
 
-package "Kafka Cluster 1\nExample name: \"bit\"\nDefault cluster" as kafkaCluster1 #FFFFFF {
+package "Kafka Cluster 1\nExample name: "cluster1"\nDefault cluster" as kafkaCluster1 #FFFFFF {
   component "Kafka Cluster 1" as kafka1 #C9DAF8
   database "Schema\nRegistry" as schemaRegistry1 #C9DAF8
 }
 
-package "Kafka Cluster 2\nExample name: \"aws\"" as kafkaCluster2 #FFFFFF {
+package "Kafka Cluster 2\nExample name: "cluster2"" as kafkaCluster2 #FFFFFF {
   component "Kafka Cluster 2" as kafka2 #D9EAD3
   database "Schema\nRegistry" as schemaRegistry2 #D9EAD3
 }
 
-springKafkaBeansBit --> kafkaCluster1 : Produce / Consume
-springKafkaBeansAws --> kafkaCluster2 : Produce / Consume
+springKafkaBeansCluster1 --> kafkaCluster1 : Produce / Consume
+springKafkaBeansCluster2 --> kafkaCluster2 : Produce / Consume
 
 kafka1 ..> schemaRegistry1
 kafka2 ..> schemaRegistry2
@@ -64,7 +64,7 @@ jeap:
       system-name: example
       cluster:
         # Cluster configuration 1
-        bit:
+        cluster1:
           bootstrap-servers: "https://example-kafka:1234"
           schema-registry-url: "https://example-registry:1234"
           username: example-user
@@ -144,95 +144,7 @@ support for jEAP Messaging.
 
 This graph shows the most relevant Spring beans that are relevant for cluster-specific producers and consumers:
 
-```plantuml
-@startuml
-title Spring Kafka Beans per Cluster
-
-left to right direction
-
-skinparam shadowing false
-skinparam componentStyle rectangle
-skinparam packageStyle rectangle
-skinparam defaultTextAlignment center
-
-package "jEAP-based Spring Boot Service" as springBootService #E2E2E2 {
-  package "Spring Kafka Beans Cluster 1\nName: \"bit\" – Default Cluster\n@Primary @Qualifier(\"bit\")" as cluster1 #C9DAF8 {
-    component "TransactionalOutbox" as transactionalOutbox1
-    component "KafkaTemplate" as kafkaTemplate1
-    component "KafkaConsumerFactory" as kafkaConsumerFactory1
-    component "KafkaProducerFactory" as kafkaProducerFactory1
-    component "KafkaAvroSerdeProvider" as kafkaAvroSerdeProvider1
-    component "KafkaAdmin" as kafkaAdmin1
-    component "KafkaListenerContainerFactory" as kafkaListenerContainerFactory1
-    component "KafkaTransactionManager" as kafkaTransactionManager1
-    component "KafkaSaslAuthProperties" as kafkaSaslAuthProperties1
-  }
-
-  package "Spring Kafka Beans Cluster 2\nName: \"aws\"\n@Qualifier(\"aws\")" as cluster2 #D9EAD3 {
-    component "TransactionalOutbox" as transactionalOutbox2
-    component "KafkaTemplate" as kafkaTemplate2
-    component "KafkaConsumerFactory" as kafkaConsumerFactory2
-    component "KafkaProducerFactory" as kafkaProducerFactory2
-    component "KafkaAvroSerdeProvider" as kafkaAvroSerdeProvider2
-    component "KafkaAdmin" as kafkaAdmin2
-    component "KafkaListenerContainerFactory" as kafkaListenerContainerFactory2
-    component "KafkaTransactionManager" as kafkaTransactionManager2
-    component "AwsMskKafkaAuthProperties" as awsMskKafkaAuthProperties2
-  }
-
-  component "KafkaConfiguration" as kafkaConfiguration #E2E2E2
-  component "KafkaProperties" as kafkaProperties #E2E2E2
-  component "CommonErrorHandler" as commonErrorHandler #E2E2E2
-}
-
-' Cluster 1 bean relationships
-transactionalOutbox1 --> kafkaTemplate1
-kafkaTemplate1 --> kafkaProducerFactory1
-kafkaConsumerFactory1 --> kafkaAvroSerdeProvider1
-kafkaConsumerFactory1 --> kafkaConfiguration
-kafkaConsumerFactory1 --> kafkaAdmin1
-kafkaConsumerFactory1 --> kafkaTransactionManager1
-kafkaConsumerFactory1 --> kafkaSaslAuthProperties1
-kafkaProducerFactory1 --> kafkaAvroSerdeProvider1
-kafkaProducerFactory1 --> kafkaConfiguration
-kafkaProducerFactory1 --> kafkaProperties
-kafkaTemplate1 --> commonErrorHandler
-commonErrorHandler --> kafkaTemplate1
-kafkaListenerContainerFactory1 --> kafkaConsumerFactory1
-kafkaListenerContainerFactory1 --> kafkaAdmin1
-kafkaListenerContainerFactory1 --> kafkaTransactionManager1
-
-' Cluster 2 bean relationships
-transactionalOutbox2 --> kafkaTemplate2
-kafkaTemplate2 --> kafkaProducerFactory2
-kafkaConsumerFactory2 --> kafkaAvroSerdeProvider2
-kafkaConsumerFactory2 --> kafkaConfiguration
-kafkaConsumerFactory2 --> kafkaAdmin2
-kafkaConsumerFactory2 --> kafkaTransactionManager2
-kafkaConsumerFactory2 --> awsMskKafkaAuthProperties2
-kafkaProducerFactory2 --> kafkaAvroSerdeProvider2
-kafkaProducerFactory2 --> kafkaConfiguration
-kafkaProducerFactory2 --> kafkaProperties
-kafkaTemplate2 --> commonErrorHandler
-commonErrorHandler --> kafkaTemplate2
-kafkaListenerContainerFactory2 --> kafkaConsumerFactory2
-kafkaListenerContainerFactory2 --> kafkaAdmin2
-kafkaListenerContainerFactory2 --> kafkaTransactionManager2
-
-note bottom of springBootService
-  Beans marked @Primary for a specific cluster when
-  default-producer-cluster-override=true is configured
-  for that cluster:
-
-  - KafkaTemplate
-  - KafkaProducerFactory
-  - SenderOptions
-  - ReactiveKafkaProducerTemplate
-  - TransactionalOutbox and internal outbox beans
-end note
-
-@enduml
-```
+![Spring Kafka Beans for Multiple Clusters](spring-kafka-beans-per-cluster.svg)
 
 ## See also
 

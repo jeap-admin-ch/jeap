@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="confluence.bit.admin.ch">
+  <diagram id="QqpfufBhy6XJVfQ_sCg2" name="Page-1">
+    <mxGraphModel dx="2046" dy="1174" grid="1" gridSize="10" guides="0" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="cfnW8S0zzew6" parent="0" value="Layer 0" />
+        <mxCell id="2" edge="1" parent="cfnW8S0zzew6" source="39" style="shape=filledEdge;strokeWidth=2;strokeColor=#999999;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=e431a3cf-73b3-4006-a622-a3809fa5db85;edgeStyle=orthogonalEdgeStyle;" target="37">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="888.57861328125" y="340" />
+              <mxPoint x="888.57861328125" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3" edge="1" parent="cfnW8S0zzew6" source="39" style="shape=filledEdge;strokeWidth=2;strokeColor=#999999;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=cc9d6aba-627d-4ef3-9cea-ac1003a38c9c;edgeStyle=orthogonalEdgeStyle;" target="38">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="971.42138671875" y="340" />
+              <mxPoint x="971.42138671875" y="570" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4" edge="1" parent="cfnW8S0zzew6" source="18" style="shape=filledEdge;strokeWidth=2;strokeColor=#999999;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=0d357a47-1606-49e5-94eb-1a4d7267d42b;edgeStyle=orthogonalEdgeStyle;" target="17">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="348.5786437988281" y="340" />
+              <mxPoint x="348.5786437988281" y="570" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5" edge="1" parent="cfnW8S0zzew6" source="18" style="shape=filledEdge;strokeWidth=2;strokeColor=#999999;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=a18e7dc1-4794-451b-9958-766a87372838;edgeStyle=orthogonalEdgeStyle;" target="16">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="431.4213562011719" y="340" />
+              <mxPoint x="431.4213562011719" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6" parent="cfnW8S0zzew6" style="shape=rect;shadow=0;strokeWidth=1;fillColor=none;pointerEvents=0;strokeColor=#000000;opacity=100.0;dashed=1;fixDash=1;dashPattern=8.0 8.0;html=1;nl2Br=0;verticalAlign=top;align=left;spacingLeft=6.990291;spacingRight=6;spacingTop=1.0;spacingBottom=8;whiteSpace=wrap;gliffyId=169;" value="&lt;div style=&#39;width: 508.0194px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;left&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial;text-decoration:none; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;Spring Kafka Beans Cluster 1 (Name: &amp;#34;bit&amp;#34;, Default Cluster)&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial;text-decoration:none; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;&lt;br /&gt;&lt;span style=&quot;font-weight:bold; line-height: normal;&quot;&gt;&amp;#64;Primary* &amp;#64;Qualifier(&amp;#34;bit&amp;#34;)&lt;/span&gt;&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="470" width="510" x="10" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="7" parent="cfnW8S0zzew6" style="shape=rect;shadow=0;strokeWidth=1;fillColor=none;pointerEvents=0;strokeColor=#000000;opacity=100.0;dashed=1;fixDash=1;dashPattern=8.0 8.0;html=1;nl2Br=0;verticalAlign=top;align=right;spacingLeft=6.0;spacingRight=6;spacingTop=1.0;spacingBottom=8;whiteSpace=wrap;gliffyId=175;" value="&lt;div style=&#39;width: 498.05826px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;right&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial;text-decoration:none; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;Spring Kafka Beans Cluster 2 (Name: &amp;#34;aws&amp;#34;)&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div align=&quot;right&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial;text-decoration:none; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;&lt;br /&gt;&lt;span style=&quot;font-weight:bold; line-height: normal;&quot;&gt;&amp;#64;Qualifier(&amp;#34;aws&amp;#34;)&lt;/span&gt;&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="470" width="500" x="800" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="8" parent="cfnW8S0zzew6" style="shape=rect;rounded=1;arcSize=15;absoluteArcSize=1;shadow=0;strokeWidth=2;fillColor=#e2e2e2;strokeColor=#333333;opacity=100.0;html=1;nl2Br=0;verticalAlign=top;align=center;spacingLeft=12.285714;spacingRight=6;spacingTop=1.0;spacingBottom=8;whiteSpace=wrap;gliffyId=4;" value="&lt;div style=&#39;width: 427.42856px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;jEAP-based Spring Boot Service&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="440" x="440" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="9" edge="1" parent="cfnW8S0zzew6" source="6" style="shape=filledEdge;strokeWidth=2;strokeColor=#1155cc;fillColor=none;startArrow=open;startFill=0;startSize=6;endArrow=none;endFill=0;endSize=6;rounded=1;gliffyId=205;exitX=0.7071067690849304;exitY=0.0;exitPerimeter=0;entryX=0.5;entryY=1.0;entryPerimeter=0;" target="10">
+          <mxGeometry height="2" relative="1" width="48" as="geometry">
+            <Array as="points">
+              <mxPoint x="370.6243896484375" y="180" />
+              <mxPoint x="554" y="100" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="10" parent="cfnW8S0zzew6" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#c9daf8;strokeColor=#333333;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=4.0;spacingRight=0;whiteSpace=wrap;gliffyId=263;" value="&lt;div style=&#39;width: 192.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial;text-decoration:none; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;Spring Kafka Beans &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot; line-height: normal;&quot;&gt;Cluster 1&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="454" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="11" parent="cfnW8S0zzew6" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#d9ead3;strokeColor=#333333;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=4.0;spacingRight=0;whiteSpace=wrap;gliffyId=9898580f-100c-4541-82d5-c8744c3d326e;" value="&lt;div style=&#39;width: 192.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial;text-decoration:none; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;Spring Kafka Beans &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot; line-height: normal;&quot;&gt;Cluster 2&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="664" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="12" edge="1" parent="cfnW8S0zzew6" source="7" style="shape=filledEdge;strokeWidth=2;strokeColor=#38761d;fillColor=none;startArrow=open;startFill=0;startSize=6;endArrow=none;endFill=0;endSize=6;rounded=1;gliffyId=2047b441-ee0b-4037-b0bc-3a96b59f3584;exitX=0.2928932309150696;exitY=0.0;exitPerimeter=0;entryX=0.5;entryY=1.0;entryPerimeter=0;" target="11">
+          <mxGeometry height="2" relative="1" width="48" as="geometry">
+            <Array as="points">
+              <mxPoint x="946.4465942382812" y="180" />
+              <mxPoint x="763.9999389648438" y="100" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="13" parent="cfnW8S0zzew6" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#c9daf8;strokeColor=#333333;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=4.0;spacingRight=0;whiteSpace=wrap;gliffyId=5f70e23d-e6a3-4fde-b1b9-b31a8146f330;" value="&lt;div style=&#39;width: 192.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;KafkaListenerContainerFactory&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="30" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="14" parent="cfnW8S0zzew6" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#c9daf8;strokeColor=#333333;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=4.0;spacingRight=0;whiteSpace=wrap;gliffyId=be8328b4-0b7f-497d-b82c-f4ff951e463f;" value="&lt;div style=&#39;width: 192.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;KafkaAdmin&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="30" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="15" parent="cfnW8S0zzew6" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#c9daf8;strokeColor=#333333;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=4.0;spacingRight=0;whiteSpace=wrap;gliffyId=a3c94143-79fd-43ef-bf58-367cad80380c;" value="&lt;div style=&#39;width: 192.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;KafkaTransactionManager&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="30" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="16" parent="cfnW8S0zzew6" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#c9daf8;strokeColor=#333333;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=4.0;spacingRight=0;whiteSpace=wrap;gliffyId=93ccff22-d0c1-4424-8e93-2e1e34bd8634;" value="&lt;div style=&#39;width: 192.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;KafkaConsumerFactory&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="290" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="17" parent="cfnW8S0zzew6" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#c9daf8;strokeColor=#333333;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=4.0;spacingRight=0;whiteSpace=wrap;gliffyId=e4410bce-029a-486c-939f-59c2d460b597;" value="&lt;div style=&#39;width: 192.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;KafkaProducerFactory&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="290" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="18" parent="cfnW8S0zzew6" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#c9daf8;strokeColor=#333333;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=4.0;spacingRight=0;whiteSpace=wrap;gliffyId=07ef6113-dbb0-408c-a023-4b6d271b9315;" value="&lt;div style=&#39;width: 192.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;KafkaTemplate&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="290" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="19" parent="cfnW8S0zzew6" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#c9daf8;strokeColor=#333333;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=4.0;spacingRight=0;whiteSpace=wrap;gliffyId=e3c6fc5b-e849-4f5c-b7f2-a467ccbfc718;" value="&lt;div style=&#39;width: 192.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;KafkaAvroSerdeProvider&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="290" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="20" parent="cfnW8S0zzew6" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#c9daf8;strokeColor=#333333;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=4.0;spacingRight=0;whiteSpace=wrap;gliffyId=2213be0c-d2c2-44f7-9b93-2c03e0dbf93f;" value="&lt;div style=&#39;width: 192.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial; line-height: normal;&quot;&gt;KafkaSaslAuthProperties&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="290" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="21" parent="cfnW8S0zzew6" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#c9daf8;strokeColor=#333333;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=4.0;spacingRight=0;whiteSpace=wrap;gliffyId=2573b57a-d5b1-4730-b2d6-da74b48bf019;" value="&lt;div style=&#39;width: 192.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial; line-height: normal;&quot;&gt;TransactionalOutbox&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="290" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="22" parent="cfnW8S0zzew6" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#d9ead3;strokeColor=#333333;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=4.0;spacingRight=0;whiteSpace=wrap;gliffyId=ef98145a-b25f-4cd6-8db2-c40606b7c5c7;" value="&lt;div style=&#39;width: 192.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial; line-height: normal;&quot;&gt;AwsMskKafkaAuthProperties&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="830" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="23" edge="1" parent="cfnW8S0zzew6" source="13" style="shape=filledEdge;strokeWidth=2;strokeColor=#000000;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=794bd2a7-9213-456f-9f2f-aec518511a69;edgeStyle=orthogonalEdgeStyle;" target="16">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="230" y="455" />
+              <mxPoint x="290" y="455" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="24" edge="1" parent="cfnW8S0zzew6" source="17" style="shape=filledEdge;strokeWidth=2;strokeColor=#000000;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=e4ea7c89-a981-494f-b291-b8e6fb536c8e;edgeStyle=orthogonalEdgeStyle;" target="19">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="390" y="570" />
+              <mxPoint x="390" y="550" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="25" edge="1" parent="cfnW8S0zzew6" source="13" style="shape=filledEdge;strokeWidth=2;strokeColor=#000000;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=22716b19-367b-4480-a3b2-47bc9a2214d0;exitX=1.0;exitY=0.2928932309150696;exitPerimeter=0;entryX=0.0;entryY=0.5;entryPerimeter=0;" target="18">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="230" y="444.6446533203125" />
+              <mxPoint x="290" y="315" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="26" edge="1" parent="cfnW8S0zzew6" source="13" style="shape=filledEdge;strokeWidth=2;strokeColor=#000000;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=b850773b-c761-4070-b5dd-91c571bcfaf2;edgeStyle=orthogonalEdgeStyle;" target="14">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="130" y="430" />
+              <mxPoint x="130" y="410" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="27" edge="1" parent="cfnW8S0zzew6" source="16" style="shape=filledEdge;strokeWidth=2;strokeColor=#000000;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=2e528c29-62f7-47d3-ae62-94f031d22b41;edgeStyle=orthogonalEdgeStyle;" target="19">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="390" y="480" />
+              <mxPoint x="390" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="28" edge="1" parent="cfnW8S0zzew6" source="13" style="shape=filledEdge;strokeWidth=2;strokeColor=#000000;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=50c81c3f-1091-43ef-ac6b-4a88fc14269f;edgeStyle=orthogonalEdgeStyle;" target="15">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="130" y="480" />
+              <mxPoint x="130" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="29" parent="cfnW8S0zzew6" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#e2e2e2;strokeColor=#333333;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=4.0;spacingRight=0;whiteSpace=wrap;gliffyId=aefae930-8055-4cf6-9936-6da3d87b6f03;" value="&lt;div style=&#39;width: 192.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial; line-height: normal;&quot;&gt;KafkaConfiguration&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="560" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="30" edge="1" parent="cfnW8S0zzew6" source="29" style="shape=filledEdge;strokeWidth=2;strokeColor=#000000;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=56a58eb2-1132-457d-9c66-df7dcfc36ba5;exitX=1.1102230246251565E-16;exitY=0.2928932309150696;exitPerimeter=0;entryX=1.0;entryY=0.5;entryPerimeter=0;" target="20">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="560" y="444.6446533203125" />
+              <mxPoint x="490" y="385" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="31" edge="1" parent="cfnW8S0zzew6" source="17" style="shape=filledEdge;strokeWidth=2;strokeColor=#000000;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=bca664fb-ba43-4014-a9e7-98c0b1bfb753;exitX=1.0;exitY=0.5;exitPerimeter=0;entryX=0.0;entryY=0.7071067690849304;entryPerimeter=0;" target="29">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="490" y="595" />
+              <mxPoint x="560" y="465.3553466796875" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32" edge="1" parent="cfnW8S0zzew6" source="16" style="shape=filledEdge;strokeWidth=2;strokeColor=#000000;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=08b5f379-b5af-4712-a2db-f56f6e5bffc1;edgeStyle=orthogonalEdgeStyle;" target="29">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="490" y="455" />
+              <mxPoint x="560" y="455" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="33" edge="1" parent="cfnW8S0zzew6" source="21" style="shape=filledEdge;strokeWidth=2;strokeColor=#000000;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=82d8ffdd-aff9-4558-8292-c4a860cedd88;edgeStyle=orthogonalEdgeStyle;" target="18">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="390" y="270" />
+              <mxPoint x="390" y="290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="34" parent="cfnW8S0zzew6" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#d9ead3;strokeColor=#333333;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=4.0;spacingRight=0;whiteSpace=wrap;gliffyId=a71acf88-8853-44df-9818-22831404eadc;" value="&lt;div style=&#39;width: 192.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;KafkaListenerContainerFactory&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="1080" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="35" parent="cfnW8S0zzew6" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#d9ead3;strokeColor=#333333;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=4.0;spacingRight=0;whiteSpace=wrap;gliffyId=316ace5f-70e9-4eb1-a35f-d3d0875ebbd4;" value="&lt;div style=&#39;width: 192.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;KafkaAdmin&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="1080" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="36" parent="cfnW8S0zzew6" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#d9ead3;strokeColor=#333333;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=4.0;spacingRight=0;whiteSpace=wrap;gliffyId=34492215-b817-405c-8030-2be3f1773c40;" value="&lt;div style=&#39;width: 192.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;KafkaTransactionManager&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="1080" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="37" parent="cfnW8S0zzew6" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#d9ead3;strokeColor=#333333;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=4.0;spacingRight=0;whiteSpace=wrap;gliffyId=dd232994-6995-4c23-a6f2-fdb2116fd41b;" value="&lt;div style=&#39;width: 192.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;KafkaConsumerFactory&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="830" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="38" parent="cfnW8S0zzew6" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#d9ead3;strokeColor=#333333;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=4.0;spacingRight=0;whiteSpace=wrap;gliffyId=b16e9e77-0977-4863-92d8-265907fa0242;" value="&lt;div style=&#39;width: 192.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;KafkaProducerFactory&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="830" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="39" parent="cfnW8S0zzew6" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#d9ead3;strokeColor=#333333;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=4.0;spacingRight=0;whiteSpace=wrap;gliffyId=22e86711-3ed9-4287-9bd6-e445eacfcc7b;" value="&lt;div style=&#39;width: 192.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;KafkaTemplate&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="830" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="40" parent="cfnW8S0zzew6" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#d9ead3;strokeColor=#333333;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=4.0;spacingRight=0;whiteSpace=wrap;gliffyId=31ddc470-1c12-4b06-b0f9-b415dc3b6a57;" value="&lt;div style=&#39;width: 192.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;KafkaAvroSerdeProvider&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="830" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="41" parent="cfnW8S0zzew6" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#d9ead3;strokeColor=#333333;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=4.0;spacingRight=0;whiteSpace=wrap;gliffyId=eee044b2-51c3-47a7-8184-9dae84f4aaf3;" value="&lt;div style=&#39;width: 192.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial; line-height: normal;&quot;&gt;TransactionalOutbox&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="830" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="42" edge="1" parent="cfnW8S0zzew6" source="34" style="shape=filledEdge;strokeWidth=2;strokeColor=#000000;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=c8c1d5de-6f94-47dd-b0df-8bcbd61d980d;edgeStyle=orthogonalEdgeStyle;" target="37">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="1080" y="455" />
+              <mxPoint x="1030" y="455" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="43" edge="1" parent="cfnW8S0zzew6" source="38" style="shape=filledEdge;strokeWidth=2;strokeColor=#000000;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=07a01fd0-2622-45a5-be51-284cd456a21d;edgeStyle=orthogonalEdgeStyle;" target="40">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="930" y="570" />
+              <mxPoint x="930" y="550" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="44" edge="1" parent="cfnW8S0zzew6" source="34" style="shape=filledEdge;strokeWidth=2;strokeColor=#000000;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=700e9cfc-47db-4d11-8ba8-7ba6bf3ce455;exitX=1.1102230246251565E-16;exitY=0.2928932309150696;exitPerimeter=0;entryX=1.0;entryY=0.5;entryPerimeter=0;" target="39">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="1080" y="444.6446533203125" />
+              <mxPoint x="1030" y="315" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="45" edge="1" parent="cfnW8S0zzew6" source="34" style="shape=filledEdge;strokeWidth=2;strokeColor=#000000;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=81def536-b496-42c5-aa0b-740b7dbf4a7b;edgeStyle=orthogonalEdgeStyle;" target="35">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="1180" y="430" />
+              <mxPoint x="1180" y="410" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="46" edge="1" parent="cfnW8S0zzew6" source="37" style="shape=filledEdge;strokeWidth=2;strokeColor=#000000;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=9d9daed1-3535-44ad-b2fc-2efe20f0ce12;edgeStyle=orthogonalEdgeStyle;" target="40">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="930" y="480" />
+              <mxPoint x="930" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="47" edge="1" parent="cfnW8S0zzew6" source="34" style="shape=filledEdge;strokeWidth=2;strokeColor=#000000;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=ff458ca9-552a-420c-a7c3-847aabbd7563;edgeStyle=orthogonalEdgeStyle;" target="36">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="1180" y="480" />
+              <mxPoint x="1180" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="48" edge="1" parent="cfnW8S0zzew6" source="41" style="shape=filledEdge;strokeWidth=2;strokeColor=#000000;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=da99bf2b-d5d8-4b22-930e-0a5836ca8039;edgeStyle=orthogonalEdgeStyle;" target="39">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="930" y="270" />
+              <mxPoint x="930" y="290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="49" edge="1" parent="cfnW8S0zzew6" source="29" style="shape=filledEdge;strokeWidth=2;strokeColor=#000000;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=126d4fd8-ba4a-46bd-80e3-7a3c947c914b;exitX=1.0;exitY=0.2928932309150696;exitPerimeter=0;entryX=0.0;entryY=0.5;entryPerimeter=0;" target="22">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="760" y="444.6446533203125" />
+              <mxPoint x="830" y="385" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="50" edge="1" parent="cfnW8S0zzew6" source="37" style="shape=filledEdge;strokeWidth=2;strokeColor=#000000;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=92f39ab0-b540-4d4d-bcaa-c615bfacf8f5;edgeStyle=orthogonalEdgeStyle;" target="29">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="830" y="455" />
+              <mxPoint x="760" y="455" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="51" edge="1" parent="cfnW8S0zzew6" source="38" style="shape=filledEdge;strokeWidth=2;strokeColor=#000000;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=8399e5b2-0edf-416a-8977-8126a1c1e245;exitX=0.0;exitY=0.5;exitPerimeter=0;entryX=1.0;entryY=0.7071067690849304;entryPerimeter=0;" target="29">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="830" y="595" />
+              <mxPoint x="760" y="465.3553466796875" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="52" parent="cfnW8S0zzew6" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#e2e2e2;strokeColor=#333333;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=4.0;spacingRight=0;whiteSpace=wrap;gliffyId=675f0d94-d484-47b3-a00d-d3636d2ff550;" value="&lt;div style=&#39;width: 192.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial; line-height: normal;&quot;&gt;KafkaProperties&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="560" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="53" edge="1" parent="cfnW8S0zzew6" source="29" style="shape=filledEdge;strokeWidth=2;strokeColor=#000000;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=6d89f86c-bf74-43d5-ab8c-393eb10e5de4;edgeStyle=orthogonalEdgeStyle;" target="52">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="660" y="480" />
+              <mxPoint x="660" y="530" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="54" parent="cfnW8S0zzew6" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#e2e2e2;strokeColor=#333333;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=4.0;spacingRight=0;whiteSpace=wrap;gliffyId=1b648d0a-4e5c-41da-8124-fbd3a29bbbdf;" value="&lt;div style=&#39;width: 192.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial; line-height: normal;&quot;&gt;CommonErrorHandler&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="560" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="55" edge="1" parent="cfnW8S0zzew6" source="54" style="shape=filledEdge;strokeWidth=2;strokeColor=#000000;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=0a3093c5-bd42-4ac4-9923-9739f80dee76;edgeStyle=orthogonalEdgeStyle;" target="18">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="560" y="315" />
+              <mxPoint x="490" y="315" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="56" edge="1" parent="cfnW8S0zzew6" source="54" style="shape=filledEdge;strokeWidth=2;strokeColor=#000000;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=4c6a80e4-872c-49d0-84ec-42cddce4b63a;edgeStyle=orthogonalEdgeStyle;" target="39">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="760" y="315" />
+              <mxPoint x="830" y="315" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="57" edge="1" parent="cfnW8S0zzew6" source="18" style="shape=filledEdge;strokeWidth=2;strokeColor=#999999;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=5ce20444-6b75-4ef7-a3c2-b06749adfe6a;exitX=1.1102230246251565E-16;exitY=0.2928932309150696;exitPerimeter=0;entryX=0.7071067690849304;entryY=0.0;entryPerimeter=0;" target="14">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="290" y="304.6446533203125" />
+              <mxPoint x="171.42135620117188" y="360" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="58" edge="1" parent="cfnW8S0zzew6" source="39" style="shape=filledEdge;strokeWidth=2;strokeColor=#999999;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=open;endFill=0;endSize=6;rounded=0;gliffyId=a2dacc65-f8ac-4817-a630-295c00be1b65;exitX=1.0;exitY=0.2928932309150696;exitPerimeter=0;entryX=0.2928932309150696;entryY=0.0;entryPerimeter=0;" target="35">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="1030" y="304.6446533203125" />
+              <mxPoint x="1138.57861328125" y="360" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="59" parent="cfnW8S0zzew6" style="text;html=1;nl2Br=0;html=1;nl2Br=0;verticalAlign=middle;align=left;spacingLeft=0.0;spacingRight=0;whiteSpace=wrap;gliffyId=4fa606ac-acd6-4fde-b3a6-40fc4f4be49d;" value="&lt;div style=&#39;width: 790.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;left&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial;text-decoration:none; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;* The following Beans are marked &lt;span style=&quot;font-weight:bold; line-height: normal;&quot;&gt;&amp;#64;Primary&lt;/span&gt; for a specific cluster if &lt;span style=&quot;font-family:Courier; line-height: normal;&quot;&gt;default-producer-cluster-override&amp;#61;true&lt;/span&gt; is set for that cluster:&lt;br /&gt;- KafkaTemplate&lt;br /&gt;- KafkaProducerFactory&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial;text-decoration:none; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;- SenderOptions&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial;text-decoration:none; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;- ReactiveKafkaProducerTemplate&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;span style=&quot;font-size:12px;font-family:Arial;text-decoration:none; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration:none; line-height: normal;&quot;&gt;- TransactionalOutbox (&amp;#43;internal Outbox-Beans)&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="84" width="790" x="10" y="680" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
