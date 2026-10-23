@@ -2,7 +2,7 @@
 
 ## Overview
 
-![Compatibility vs Interaction](compatibility-vs-interaction.png)
+![Compatibility vs Interaction](compatibility-vs-interaction.svg)
 
 ## Test Types
 

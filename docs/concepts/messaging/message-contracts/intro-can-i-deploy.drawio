@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="confluence.bit.admin.ch">
+  <diagram id="EkV5YgyAFXcRdNX9Qxs1" name="Page-1">
+    <mxGraphModel dx="2046" dy="1174" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="ueMmJLo02520" parent="0" value="Layer 0" />
+        <mxCell id="2" parent="ueMmJLo02520" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#FFFFFF;strokeColor=#333333;opacity=100.0;html=1;nl2Br=0;verticalLabelPosition=top;verticalAlign=bottom;align=center;spacingLeft=10.0;spacingRight=6;whiteSpace=wrap;gliffyId=2;" value="&lt;div style=&#39;width: 192.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-family:Arial;text-decoration:none;font-size:12px; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration: none; line-height: 14px;&quot;&gt;Topic&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="20" width="200" x="40" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="3" parent="ueMmJLo02520" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#e2e2e2;strokeColor=#333333;opacity=100.0;gliffyId=5;" vertex="1">
+          <mxGeometry height="20" width="20" x="40" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="4" parent="ueMmJLo02520" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#e2e2e2;strokeColor=#333333;opacity=100.0;gliffyId=8;" vertex="1">
+          <mxGeometry height="20" width="20" x="80" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="5" parent="ueMmJLo02520" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#e2e2e2;strokeColor=#333333;opacity=100.0;gliffyId=9;" vertex="1">
+          <mxGeometry height="20" width="20" x="200" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="6" parent="ueMmJLo02520" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#e2e2e2;strokeColor=#333333;opacity=100.0;gliffyId=10;" vertex="1">
+          <mxGeometry height="20" width="20" x="160" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="7" parent="ueMmJLo02520" style="shape=rect;shadow=0;strokeWidth=2;fillColor=#e2e2e2;strokeColor=#333333;opacity=100.0;gliffyId=11;" vertex="1">
+          <mxGeometry height="20" width="20" x="120" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="8" edge="1" parent="ueMmJLo02520" source="11" style="shape=filledEdge;strokeWidth=1;strokeColor=#000000;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=block;endFill=1;endSize=6;rounded=0;gliffyId=21;exitX=0.5;exitY=0.0;exitPerimeter=0;entryX=0.9449999928474426;entryY=1.0;entryPerimeter=0;" target="2">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="230" y="260" />
+              <mxPoint x="229" y="190" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9" edge="1" parent="ueMmJLo02520" style="shape=filledEdge;strokeWidth=1;strokeColor=#000000;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=block;endFill=1;endSize=6;rounded=0;gliffyId=43;entryX=0.5;entryY=1.0;entryPerimeter=0;" target="12">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="110" />
+            </Array>
+            <mxPoint x="228" y="170" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="10" edge="1" parent="ueMmJLo02520" source="5" style="shape=filledEdge;strokeWidth=1;strokeColor=#000000;fillColor=none;startArrow=none;startFill=0;startSize=6;endArrow=block;endFill=1;endSize=6;rounded=0;gliffyId=44;exitX=0.5;exitY=0.0;exitPerimeter=0;entryX=0.5;entryY=1.0;entryPerimeter=0;" target="13">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points">
+              <mxPoint x="210" y="170" />
+              <mxPoint x="150" y="110" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="11" parent="ueMmJLo02520" style="shape=ext;symbol0=component;symbol0Width=20;symbol0Height=20;symbol0Align=right;symbol0VerticalAlign=top;symbol0Spacing=4;symbol0ArcSpacing=0.25;jettyWidth=8;jettyHeight=4;shadow=0;strokeWidth=2;fillColor=#FFFFFF;strokeColor=#000000;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=2.0;spacingRight=0;whiteSpace=wrap;gliffyId=37;" value="&lt;div style=&#39;width: 116.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-family:Arial;text-decoration:none;font-size:12px; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration: none; line-height: 14px;&quot;&gt;producer-app:v1&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="120" x="170" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="12" parent="ueMmJLo02520" style="shape=ext;symbol0=component;symbol0Width=20;symbol0Height=20;symbol0Align=right;symbol0VerticalAlign=top;symbol0Spacing=4;symbol0ArcSpacing=0.25;jettyWidth=8;jettyHeight=4;shadow=0;strokeWidth=2;fillColor=#FFFFFF;strokeColor=#000000;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=2.0;spacingRight=0;whiteSpace=wrap;gliffyId=39;" value="&lt;div style=&#39;width: 116.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-family:Arial;text-decoration:none;font-size:12px; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration: none; line-height: 14px;&quot;&gt;other-consumer-app:v1&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="120" x="240" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="13" parent="ueMmJLo02520" style="shape=ext;symbol0=component;symbol0Width=20;symbol0Height=20;symbol0Align=right;symbol0VerticalAlign=top;symbol0Spacing=4;symbol0ArcSpacing=0.25;jettyWidth=8;jettyHeight=4;shadow=0;strokeWidth=2;fillColor=#FFFFFF;strokeColor=#000000;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=2.0;spacingRight=0;whiteSpace=wrap;gliffyId=41;" value="&lt;div style=&#39;width: 116.0px;height:auto;word-break: break-word;line-height:1em;&#39;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-family:Arial;text-decoration:none;font-size:12px; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration: none; line-height: 14px;&quot;&gt;consumer-app:v2&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="120" x="90" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="14" parent="ueMmJLo02520" style="shape=note;size=10;shadow=0;strokeWidth=2;fillColor=#fff2cc;strokeColor=#000000;opacity=100.0;html=1;nl2Br=0;verticalAlign=middle;align=center;spacingLeft=13.666667;spacingRight=0;whiteSpace=wrap;gliffyId=50;" value="&lt;div style=&quot;width: 382.66666px;height:auto;word-break: break-word;line-height:1em;&quot;&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-family: Arial; text-decoration: none; font-size: 12px; font-weight: bold; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration: none; line-height: 14px;&quot;&gt;can-I-deploy?&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div align=&quot;center&quot;&gt;&lt;span style=&quot;font-family: Arial; text-decoration: none; font-size: 12px; line-height: 0;&quot;&gt;&lt;span style=&quot;text-decoration: none; line-height: 14px;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div align=&quot;center&quot;&gt;&lt;div style=&quot;color: inherit&quot;&gt;&lt;p&gt;The question is answered &lt;b&gt;positively&lt;/b&gt; if all components use &lt;b&gt;schemas that are compatible with one another&lt;/b&gt; for producing and consuming records on the topic in Avro format.&lt;/p&gt;&lt;p&gt;If a component has integrated &lt;b&gt;schema changes&lt;/b&gt; (e.g., a new message type version) and these are not compatible with a participant on the topic, the &lt;b&gt;deployment is denied.&lt;/b&gt;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="160" width="410" x="420" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="15" parent="ueMmJLo02520" style="text;html=1;nl2Br=0;html=1;nl2Br=0;verticalAlign=middle;align=left;spacingLeft=0.0;spacingRight=0;whiteSpace=wrap;gliffyId=53;" value="&lt;div style=&quot;width: 150.0px;height:auto;word-break: break-word;line-height:1em;&quot;&gt;&lt;div align=&quot;left&quot;&gt;&lt;span style=&quot;font-family: Arial; font-size: 12px; line-height: 0;&quot;&gt;&lt;span style=&quot;line-height: 14px;&quot;&gt;Environment: PROD&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="14" width="150" x="25" y="10" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
