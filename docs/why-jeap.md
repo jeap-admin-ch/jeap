@@ -42,7 +42,7 @@ is actually spent:
   [DB schemas](/docs/building-blocks/libraries/jeap-db-schema-publisher) and deployments
   are published automatically to the architecture repository.
 - **Automates Governance.**
-  [jEAP governance service](/docs/building-blocks/libraries/jeap-governance) automatically checks for compliance with predefined rules.
+  [jEAP governance service](/docs/building-blocks/reusable-microservices/jeap-governance-service) automatically checks for compliance with predefined rules.
 - **Cloud portability.** Business logic stays platform-agnostic, providing a proven
   cloud-exit strategy and low-effort migration between cloud and on-premises platforms.
 - **Developer mobility.** Shared conventions and tooling let developers move between teams;
