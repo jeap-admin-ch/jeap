@@ -12,8 +12,11 @@
 #
 # The same format works in any nested folder: a folder that ships its own
 # _order orders its direct children.
+#
+# If a page has a frontmatter the _order is ignored. Add a sidebar_position: N to
+# the frontmatter to define the order.
+#
 what-is-jeap
-using-jeap | Using jEAP
 jeap-version-overview
 building-blocks | App Building Blocks
 concepts | Concepts

@@ -38,7 +38,7 @@ reusable way, so that application teams can focus on their business logic.
   [secrets management](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-starters/jeap-spring-boot-vault-starter),
   [object storage](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-starters/jeap-spring-boot-object-storage-starter),
   [TLS](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-tls-starter/), and more.
-- **First-class support for event-driven architecture** EDA a first-class, well-supported
+- **First-class support for event-driven architecture.** EDA is a first-class, well-supported
   capability in jEAP: [asynchronous messaging](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-messaging/) is
   built on Apache Kafka and Avro, with reliable delivery via the
   [Transactional Outbox pattern](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-messaging-outbox/) and ordered
@@ -46,36 +46,8 @@ reusable way, so that application teams can focus on their business logic.
 
 ## Value proposition
 
-Building on jEAP means the reusable, cross-functional aspects of an enterprise
-application are already solved, tested and maintained. Teams compose their service from
-[building blocks](building-blocks/index.md) and inherit a curated, version-aligned dependency
-tree instead of assembling and maintaining the plumbing themselves.
-
-jEAP follows a principle of **standardization without restriction**: rather than hiding
-Spring Boot behind its own abstraction, it complements it — teams keep the full power of
-the underlying framework while gaining aligned defaults for the mandatory and technically
-demanding non-functional requirements. It builds on established open-source solutions and
-adds building blocks only where they are missing.
-
-The value extends well beyond initial development, where most of an application's effort
-is actually spent:
-
-- **Faster, safer delivery.** Opinionated CI/CD, automated regression testing and
-  [feature-flag-based releases](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-starters/jeap-spring-boot-featureflag-starter)
-  shorten the path from commit to production.
-- **Secure and compliant by default.**
-  [Zero-trust messaging](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-messaging/),
-  [data-at-rest encryption](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-crypto/) and
-  automated governance checks make compliance largely a by-product of using the platform.
-- **Self-documenting applications.**
-  [OpenAPI specs](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-starters/jeap-spring-boot-swagger-starter),
-  message and consumer contracts,
-  [DB schemas](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-db-schema-publisher/) and deployments
-  are published automatically to the architecture repository.
-- **Cloud portability.** Business logic stays platform-agnostic, providing a proven
-  cloud-exit strategy and low-effort migration between cloud and on-premises platforms.
-- **Developer mobility.** Shared conventions and tooling let developers move between teams;
-  jEAP is used by different organizations across several Swiss federal administrations.
+See [Why jEAP?](why-jeap.md) for why you would want to
+build on jEAP.
 
 ## Problems jEAP solves
 
