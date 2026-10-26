@@ -17,6 +17,7 @@
 # the frontmatter to define the order.
 #
 what-is-jeap
+using-jeap | Using jEAP
 jeap-version-overview
 building-blocks | App Building Blocks
 concepts | Concepts
