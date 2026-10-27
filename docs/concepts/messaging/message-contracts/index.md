@@ -17,6 +17,8 @@ Message Contracts are **declared** using **annotations** in the microservice tha
 
 At **runtime**, a **Kafka client interceptor** validates, when a message type is consumed or produced, whether the microservice has declared a contract for it. If not, the consume/produce operation is not permitted.
 
+Big picture: message types, declarative contracts, can-I-deploy:
+
 ![Big picture: message types, declarative contracts, can-I-deploy](big-picture-message-types-contracts-can-i-deploy.png)
 
 *(Slide from an internal presentation on Message Contracts and can-I-deploy; some labels are in German.)*
@@ -83,6 +85,8 @@ The [JME Messaging Example](https://github.com/jme-admin-ch/jme-messaging-exampl
 ### Message Contract Annotation Processor
 
 The Message Contract Annotation Processor from the module [jeap-messaging-contract-annotation-processor](https://github.com/jeap-admin-ch/jeap-messaging/tree/main/jeap-messaging-contract-annotation-processor) processes the annotations at build time as a plugin in the Java compiler, and generates a contract file in JSON format from them. This is automatically uploaded to the Message Contract Service by the jEAP Microservice Build Pipeline (see also [Can-I-Deploy for Messaging](can-i-deploy-for-messaging.md)).
+
+The path from a Maven dependency, through the annotation processor, to the generated contract file: 
 
 ![The path from a Maven dependency, through the annotation processor, to the generated contract file](dependency-to-contract-file-path.png)
 
