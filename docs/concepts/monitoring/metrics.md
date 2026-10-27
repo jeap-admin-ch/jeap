@@ -232,6 +232,5 @@ The Prometheus endpoint can be reached at
 
 ## Further documentation
 
-- [Metrics with Spring, Anleitung IBM Cloud](https://cloud.ibm.com/docs/java?topic=java-spring-metrics)
 - [Metrics, Spring Boot Documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-metrics.html)
-- [Micrometer Concepts, Micrometer Documentation](https://micrometer.io/docs/concepts)
+- [Micrometer Concepts, Micrometer Documentation](https://docs.micrometer.io/micrometer/reference/concepts.html)

@@ -178,6 +178,6 @@ See also [Jeap Messaging Library](../messaging/jeap-messaging-library/index.md#h
 ## Further documentation
 
 - [Spring boot actuator: Production-ready features, Spring Boot Documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready.html)
-- [Micrometer Prometheus](https://micrometer.io/docs/registry/prometheus)
+- [Micrometer Prometheus](https://docs.micrometer.io/micrometer/reference/implementations/prometheus.html)
 - [Spring und Micrometer, baeldung.com](https://www.baeldung.com/micrometer)
 - [Custom Health Check in Spring Boot Actuator, amithp.com](https://www.amitph.com/custom-health-check-spring-boot-actuator/)

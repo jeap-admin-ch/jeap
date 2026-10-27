@@ -162,7 +162,7 @@ Micrometer produces the metric `http_server_requests_duration_seconds` for Prome
 ### Meter Filters
 
 A meter registry can be configured with
-[meter filters](https://micrometer.io/docs/concepts#_meter_filters). Through these,
+[meter filters](https://docs.micrometer.io/micrometer/reference/concepts/meter-filters.html). Through these,
 
 - meters can be excluded
 - meters can be transformed (e.g. renamed, tags added/removed, etc.)
@@ -185,5 +185,5 @@ The comments in the code explain the defined metrics.
 
 ## Further documentation
 
-- [Micrometer Concepts](https://micrometer.io/docs/concepts)
+- [Micrometer Concepts](https://docs.micrometer.io/micrometer/reference/concepts.html)
 - [Spring Boot Custom Metrics](https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html#actuator.metrics.registering-custom)

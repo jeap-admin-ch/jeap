@@ -9,7 +9,7 @@ Concrete configuration properties and defaults belong to the component implement
 | Component | Responsibility | Documentation |
 | --- | --- | --- |
 | Frontend service navigation | Display portal navigation and reflect portal session state. Applications using Oblique integrate its service-navigation component into their header. | The frontend component and application configuration. |
-| Identity provider | Authenticate the user and participate in the configured login/logout flow. | [Keycloak](../authentication-and-authorization/authorization-servers/keycloak.md); when using PAMS as an identity provider, [jeap-keycloak-pams](https://github.com/jeap-admin-ch/jeap-keycloak-pams). |
+| Identity provider | Authenticate the user and participate in the configured login/logout flow. | [Keycloak](../authentication-and-authorization/authorization-servers/keycloak.md); when using PAMS as an identity provider, `jeap-keycloak-pams` (BIT-internal, not part of the public jEAP distribution). |
 | Backend API | Authenticate requests and enforce access to resources. | [REST API authentication and authorization](../authentication-and-authorization/protecting-rest-apis/rest-api-authentication-and-authorization.md). |
 
 Configure these parts together: a frontend session indicator does not replace API authentication or

@@ -5,7 +5,7 @@
 The **[jEAP Messaging Library](https://github.com/jeap-admin-ch/jeap-messaging)** is a library for working with
 [message types](../message-types.md) and other messages in Spring Boot. It allows microservices to send and
 receive [messages](../index.md) via [Kafka](../kafka/index.md) quickly and easily. It is based on
-[Spring for Apache Kafka](https://docs.spring.io/spring-kafka/reference/html/).
+[Spring for Apache Kafka](https://docs.spring.io/spring-kafka/reference/).
 
 ![Messaging Library Overview](messaging-library.svg)
 
@@ -500,8 +500,8 @@ the jeap-messaging repository.
   one Kafka cluster.
 - [Signing Messages and Checking Signatures Without jEAP](signing-messages-and-checking-signatures-without-jeap.md) —
   implementing message signing without the jEAP Messaging Library.
-- [Spring for Apache Kafka documentation](https://docs.spring.io/spring-kafka/reference/html/)
-- [Spring AMQP documentation](https://docs.spring.io/spring-amqp/docs/current/reference/html/)
-- [Avro IDL documentation](https://avro.apache.org/docs/current/idl.html)
+- [Spring for Apache Kafka documentation](https://docs.spring.io/spring-kafka/reference/)
+- [Spring AMQP documentation](https://docs.spring.io/spring-amqp/reference/)
+- [Avro IDL documentation](https://avro.apache.org/docs/1.11.1/idl-language/)
 - [Avro schema documentation](http://avro.apache.org/docs/1.9.1/)
 - [Avro protocol documentation](https://avro.apache.org/docs/1.8.1/spec.html#Protocol+Declaration)

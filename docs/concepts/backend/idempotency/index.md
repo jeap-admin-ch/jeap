@@ -317,4 +317,4 @@ class ExampleController {
 
 - Styleguide and Naming Convention for REST APIs
 - Kafka How-To
-- [https://docs.spring.io/spring-kafka/docs/current/reference/html/](https://docs.spring.io/spring-kafka/docs/current/reference/html/)
+- [Spring Kafka](https://docs.spring.io/spring-kafka/reference/)
