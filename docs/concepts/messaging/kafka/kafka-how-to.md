@@ -110,7 +110,7 @@ When using the jEAP Messaging Library, two configuration options are set that af
 are committed:
 
 - `enable.auto.commit = false` (Kafka client, [https://kafka.apache.org/documentation/#enable.auto.commit](https://kafka.apache.org/documentation/#enable.auto.commit))
-- `AckMode = MANUAL` (Spring Kafka, [https://docs.spring.io/spring-kafka/reference/html/#committing-offsets](https://docs.spring.io/spring-kafka/reference/html/#committing-offsets))
+- `AckMode = MANUAL` (Spring Kafka, [https://docs.spring.io/spring-kafka/reference/kafka/receiving-messages/message-listener-container.html#committing-offsets](https://docs.spring.io/spring-kafka/reference/kafka/receiving-messages/message-listener-container.html#committing-offsets))
 
 In addition, an error handler is installed which ensures that events are never lost: on processing failures
 in the consumer, the record is published to the error topic and handled by the Error Handling Service.
