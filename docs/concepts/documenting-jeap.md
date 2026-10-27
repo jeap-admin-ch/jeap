@@ -77,13 +77,12 @@ GitHub / the doc site and by AI coding agents navigating the corpus.
     times: a checkout writes every file at the same moment, so an mtime comparison
     would pass by luck.
 
-- **Pages must be valid [MDX](https://mdxjs.com/).** Docusaurus renders every `.md`
-  page as MDX, so the Markdown has to satisfy Docusaurus' MDX parser or the
-  production build fails. In practice: a bare `<` is read as a JSX tag and `{ }` as a
-  JS expression — escape them or wrap them in backticks when you mean them literally
-  (e.g. write `` `<topic>` `` or `` `${var}` ``), and make sure any inline HTML tags
-  are closed/balanced. The pages still render as plain Markdown on GitHub, so this
-  only constrains a few special characters.
+- **Pages are plain Markdown.** The site parses every `.md` page as CommonMark with
+  the GitHub extensions (tables, task lists, ...), the way GitHub renders it, so a
+  page that reads correctly on GitHub reads the same on the site. Only a page that
+  needs React components is written as `.mdx`; such a page is parsed as
+  [MDX](https://mdxjs.com/), where a bare `<` is read as a JSX tag and `{ }` as a JS
+  expression and have to be escaped when meant literally.
 
 ## Repository layouts
 
