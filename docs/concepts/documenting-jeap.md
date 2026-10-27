@@ -77,12 +77,9 @@ GitHub / the doc site and by AI coding agents navigating the corpus.
     times: a checkout writes every file at the same moment, so an mtime comparison
     would pass by luck.
 
-- **Pages are plain Markdown.** The site parses every `.md` page as CommonMark with
-  the GitHub extensions (tables, task lists, ...), the way GitHub renders it, so a
-  page that reads correctly on GitHub reads the same on the site. Only a page that
-  needs React components is written as `.mdx`; such a page is parsed as
-  [MDX](https://mdxjs.com/), where a bare `<` is read as a JSX tag and `{ }` as a JS
-  expression and have to be escaped when meant literally.
+- **Pages are written in Markdown only.** Every page is a `.md` file. The site parses
+  it as CommonMark with the GitHub extensions (tables, task lists, ...), the way GitHub
+  renders it, so a page that reads correctly on GitHub reads the same on the site.
 
 ## Repository layouts
 
