@@ -1,37 +1,8 @@
-# Kafka How-To
+# Kafka — topics, keys and registries reference
 
-## Step-by-step integration of Kafka into a service / business application
-
-1. Define [Message Types](../message-types.md) according to the business requirements.
-2. Order Kafka topics from the
-   party responsible for the cluster (usually one topic per event, though several events per topic are
-   possible), following the [Naming Conventions](index.md#topic-names).
-3. Define the [Type Descriptor](../message-type-registry/index.md) and
-   [Avro Schema](../message-type-registry/index.md), and publish them on a feature branch in the
-   [Message Type Registry](../message-type-registry/index.md).
-4. Set up an [Error Handling Service](https://jeap-admin-ch.github.io/docs/building-blocks/reusable-microservices/jeap-error-handling/architecture).
-   - Don't forget to request the roles needed to authorize the service.
-5. Add the [Jeap Messaging Library](../jeap-messaging-library/index.md) as a dependency to the service, and
-   add the generated message types as a dependency as described in "Usage of Message Types in Java" (see
-   [Jeap Messaging Library](../jeap-messaging-library/index.md)).
-6. Import the Kafka cluster certificates and the schema registry's root certificate into the truststore (see
-   the instructions below).
-7. Declare the consumer/producer message contract for the microservice using annotations, as described under
-   [Message Contracts](../message-contracts/index.md).
-8. Implement the
-   [producer](https://github.com/jme-admin-ch/jme-messaging-example/blob/main/jme-messaging-common-lib/src/main/java/ch/admin/bit/jeap/jme/messaging/common/infrastructure/KafkaEventPublisher.java)
-   /
-   [consumer](https://github.com/jme-admin-ch/jme-messaging-example/blob/main/jme-messaging-common-lib/src/main/java/ch/admin/bit/jeap/jme/messaging/common/infrastructure/KafkaEventConsumer.java)
-   following the [example](https://github.com/jme-admin-ch/jme-messaging-example), applying the Idempotent
-   Receiver pattern on the consumer side (see the instructions below).
-9. Define the Kafka configuration in the service, following the example in
-   `jme-messaging-receiver-service/src/main/resources/application-ref.yml` in the
-   [jme-messaging-example](https://github.com/jme-admin-ch/jme-messaging-example/blob/main/jme-messaging-receiverpublisher-service/src/main/resources/application.yml)
-   repository.
-10. Develop and test the event-driven service, both locally and on dev.
-    - Follow the guidelines & examples for implementing [idempotent behavior](../../backend/idempotency/index.md).
-11. Once the event schema is stable, merge the branch in the
-    [Message Type Registry](../message-type-registry/index.md) into master via a pull request.
+> **Looking for the integration checklist?** See
+> [How to: integrate Kafka into a service](../../../how-tos/messaging/integrate-kafka-into-a-service.md).
+> This page covers the reference material below: topic/key settings and the registry relationship.
 
 ## Topics, events & keys
 
@@ -96,65 +67,8 @@ for details.
 
 The [jme-messaging-example](https://github.com/jme-admin-ch/jme-messaging-example) repository shows
 consumer/producer configuration and implementation using the
-[Jeap Messaging Library](../jeap-messaging-library/index.md).
-
-### Local development with Kafka
-
-Kafka can be started locally — see the Docker Compose file in
-[jme-messaging-example](https://github.com/jme-admin-ch/jme-messaging-example/blob/main/docker/docker-compose.yml),
-also reproduced under [Kafka – Starting Kafka locally](index.md#starting-kafka-locally).
-
-## Acknowledge / commit
-
-When using the jEAP Messaging Library, two configuration options are set that affect how consumed records
-are committed:
-
-- `enable.auto.commit = false` (Kafka client, [https://kafka.apache.org/documentation/#enable.auto.commit](https://kafka.apache.org/documentation/#enable.auto.commit))
-- `AckMode = MANUAL` (Spring Kafka, [https://docs.spring.io/spring-kafka/reference/kafka/receiving-messages/message-listener-container.html#committing-offsets](https://docs.spring.io/spring-kafka/reference/kafka/receiving-messages/message-listener-container.html#committing-offsets))
-
-In addition, an error handler is installed which ensures that events are never lost: on processing failures
-in the consumer, the record is published to the error topic and handled by the Error Handling Service.
-
-Records must therefore **always** be committed (via `Acknowledgment.acknowledge()` in Spring Kafka), whether
-processed successfully or handled by the error handler. The acknowledge call must happen at the very end of
-event processing, otherwise there is a risk that events get acknowledged even though they were not processed
-successfully!
-
-```java
-@KafkaListener(topics = {TopicConfiguration.NAME})
-public void consume(final JmeDeclarationCreatedEvent event, Acknowledgment ack) {
-    log.debug("Received event {}", event.getIdentity().getEventId());
-    // ... processing ...
-
-    ack.acknowledge();
-    log.debug("Acknowledged event {}", event.getIdentity().getEventId());
-}
-```
-
-## Idempotent consumer
-
-Given the way we use Kafka, there is an at-least-once guarantee that produced records are consumed. This
-means it is entirely possible for a consumer to receive a record (and hence a domain event) more than once.
-Consumers must therefore be implemented idempotently — duplicate events must not cause errors or unexpected
-state changes.
-
-For this, the identity part of the [Message Types](../message-types.md) provides an `idempotenceId`. This
-can, for example, be persisted as an attribute of an entity created as a result of the event, so that it can
-be determined whether an event has already been processed:
-
-```java
-    @KafkaListener(topics = {TopicConfiguration.NAME})
-    public void consume(final JmeDeclarationCreatedEvent event, Acknowledgment ack) {
-        log.debug("Received event {}", event.getIdentity().getEventId());
-        if (repository.containsOrderWithIdempotenceId(event.getIdentity().getIdempotenceId()) {
-            log.debug("Received duplicate event with idempotenceId {}, ignoring", event.getIdentity().getIdempotenceId());
-            ack.acknowledge();
-            return;
-        }
-        ...
-        ack.acknowledge();
-    }
-```
+[Jeap Messaging Library](../jeap-messaging-library/index.md). For local development with Kafka, see
+[How to: integrate Kafka into a service](../../../how-tos/messaging/integrate-kafka-into-a-service.md#local-development-with-kafka).
 
 ## Relationship between Message Type Registry and Kafka Schema Registry
 

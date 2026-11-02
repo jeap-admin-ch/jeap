@@ -40,47 +40,11 @@ Four annotations are available for declaring Message Contracts:
 
 These annotations are part of `jeap-messaging` and can be imported from there via the `jeap-messaging-contract-annotations` module. This dependency is not explicitly required, since it is brought in as part of the generated Message Type JAR dependency.
 
-The annotations can be placed anywhere **in the microservice**, e.g. on the Spring Boot application class, or in a module that encapsulates the Kafka integration. The microservice's name is automatically determined from the `spring.application.name` property in the `.yaml`/`.properties` files.
+The annotations can be placed anywhere **in the microservice**, e.g. on the Spring Boot application class, or in a module that encapsulates the Kafka integration. The microservice's name is automatically determined from the `spring.application.name` property in the `.yaml`/`.properties` files. The annotation must reference the generated `TypeRef` inner class of the message type, e.g. `JmeCreateDeclarationCommand.TypeRef`.
 
-The annotation must reference the generated `TypeRef` inner class of the message type, e.g. `JmeCreateDeclarationCommand.TypeRef`. How the Java classes for message types are imported is described under [Usage of Message Types in Java](../jeap-messaging-library/index.md).
-
-```java
-import ch.admin.bit.jeap.messaging.annotations.JeapMessageProducerContract;
-import ch.admin.bit.jeap.messaging.annotations.JeapMessageProducerContracts;
-import ch.admin.bit.jeap.messaging.annotations.JeapMessageConsumerContract;
-import ch.admin.bit.jeap.messaging.annotations.JeapMessageConsumerContracts;
-import ch.admin.bit.jme.messagetype.createdeclarationcommand.JmeCreateDeclarationCommand;
-import ch.admin.bit.jme.messagetype.declarationcreatedevent.JmeDeclarationCreatedEvent;
-
-@JeapMessageProducerContract(JmeCreateDeclarationCommand.TypeRef.class)
-@JeapMessageProducerContracts({
-  JmeCreateDeclarationCommand.TypeRef.class,
-  JmeDeclarationCreatedEvent.TypeRef.class
-})
-@JeapMessageConsumerContract(
-  value = JmeCreateDeclarationCommand.TypeRef.class,
-  // If the default topic for the message type is not used (e.g. for shared events), the topic can be specified explicitly.
-  // This is only possible on the two *Contract annotations. Multiple topics can also be declared as an array.
-  topic = {"my-topic", "my-topic-2"}
-)
-@JeapMessageConsumerContracts({
-  JmeCreateDeclarationCommand.TypeRef.class,
-  JmeDeclarationCreatedEvent.TypeRef.class,
-  // All four annotations can additionally define a custom app name.
-  // Normally the name is derived from the Spring Boot app name in the .yaml/.properties files.
-  appName = "my-custom-app-name"
-})
-@SpringBootApplication
-public class Application {
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args).getEnvironment();
-    }
-}
-```
-
-An automated migration is available for migrating the contract declarations from the Message Type Registry to annotation-based contracts.
-
-The [JME Messaging Example](https://github.com/jme-admin-ch/jme-messaging-example) also shows the use of Message Contracts.
+**For the full declaration syntax and code example, see
+[jeap-messaging — Message contracts](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-messaging/message-contracts).**
+For the PCS/PAS template-based variant, see [below](#message-contract-template-annotation).
 
 ### Message Contract Annotation Processor
 
@@ -130,6 +94,8 @@ Consumed messages can be created automatically via the `@JeapMessageConsumerCont
 The annotation is part of `jeap-messaging` and can be imported via the `jeap-messaging-contract-annotations` module. This dependency is not explicitly required, since it is brought in as part of the generated Message Type JAR dependency.
 
 The annotation must be placed inside the Process Context Service or Process Archive Service, since the template files are located within these microservices. The required template files are always located under `classpath:resources/processarchive` in the PAS, and under `classpath:resources/process/templates` in the PCS. The microservice's name is automatically determined from `spring.application.name` in the `.yaml`/`.properties` files, or can be set explicitly in the annotation.
+
+**For the annotation's code example, see [Example PCS](#example-pcs) and [Example PAS](#example-pas) below.**
 
 ### Configuration of the Annotation Processor {#template-annotation-processor-configuration}
 

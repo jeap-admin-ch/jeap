@@ -50,37 +50,12 @@ For detailed documentation on OAuth / OpenID Connect see
 
 ## Usage
 
-1. Create an OAuth2 mock server in your own project following the template
-   [jme-security-auth-scs](https://github.com/jme-admin-ch/jme-security-example/tree/main/jme-security-auth-scs)
-   and adapt the configuration as needed. The template shows the setup in a multi-module project. If the mock
-   server instance is not part of a multi-module project, use `jeap-oauth-mock-server-instance` directly
-   as the Maven project parent. Unlike in the template above, the `jeap-oauth-mock-server` dependency then does not
-   have to be declared explicitly.
-
-   ```xml
-   <parent>
-       <groupId>ch.admin.bit.jeap</groupId>
-       <artifactId>jeap-oauth-mock-server-instance</artifactId>
-       <version>use-the-latest-version-here</version>
-       <relativePath/> <!-- lookup parent from repository -->
-   </parent>
-   ```
-
-2. Start the mock server locally for local tests, for example with a run configuration in IntelliJ.
-3. Configure the OAuth configuration of the microservices and the UI for the local profile (see below).
-4. If the mock server should also be used in a test environment, adapt the `Jenkinsfile` and `manifest-example.yml`
-   so that the service is deployed.
+**See [jeap-oauth-mock-server — Getting started](https://jeap-admin-ch.github.io/docs/building-blocks/reusable-microservices/jeap-oauth-mock-server/getting-started)**
+for the step-by-step setup.
 
 ### Login form
 
 ![Login form of the jEAP OAuth2 mock server](images/oauth2-mock-server-login-form.png)
-
-## Out of scope
-
-- Limitation: after a deployment, the mock server can only redirect to frontends that are reachable via **https**.
-  This means that either a local mock server must be used for local tests as well, or the UI must be exposed locally
-  under an https URI.
-- No support (yet) for logout or silent refresh from the UI.
 
 ## Example configuration of the mock server
 

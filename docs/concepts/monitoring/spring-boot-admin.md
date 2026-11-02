@@ -80,56 +80,14 @@ spring.boot.admin.client.password=secret
 
 ### Integrating applications as a Spring Boot Admin Client
 
-For an application to automatically register with the Spring Boot Admin Server for monitoring, the
-dependency **spring-boot-admin-starter-client** must be added to the application, and the following must be
-configured:
-
-- The URL of the Spring Boot Admin Server that the application wants to be monitored by
-- The credentials of the user with which the application should log in to the Spring Boot Admin Server
-- The credentials with which the Spring Boot Admin Server should access the application's Actuator endpoints
-
-**Spring Boot Admin Client configuration**
-
-```yaml
-spring:
-  boot:
-    admin:
-      client:
-        url: https://<<route to the spring boot admin server>>
-        username: <<username of the spring boot admin server client user>>
-        password: <<password of the spring boot admin server client user>>
-        instance:
-          metadata:
-            user.name: <<username to access the client application's actuator endpoints>>
-            user.password: <<password to access the client application's actuator endpoints>>
-```
+**See [jeap-spring-boot-monitoring-starter](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-starters/jeap-spring-boot-monitoring-starter)**
+for the client dependency/configuration and exposing the Actuator endpoints it needs.
 
 ### Spring Boot Admin Client Security
 
 A Spring Boot Admin Client must grant the Spring Boot Admin Server access to its Actuator endpoints. It is
 essential to keep in mind that these endpoints can in principle expose sensitive data (see the section
 [Security](spring-boot-admin-actuators.md#security)). The Actuator endpoints must be protected accordingly.
-
-The Spring Boot Starter **jeap-spring-boot-monitoring-starter** (see
-[Monitoring Endpoints](monitoring-endpoints.md#integration)) offers a way to make the Actuator endpoints
-essential for monitoring an application available with Basic-Auth protection. This feature is disabled by
-default for security reasons. It can be enabled and configured as follows:
-
-```properties
-# The following configuration belongs in application-dev.yml and application-ref.yml - never in application-prod.yml!
-
-# Enable endpoints for Spring Boot Admin (default: false)
-jeap.monitor.actuator.enable-admin-endpoints=true
-
-# Username/password for the actuator user who receives the ACTUATOR role and thus access to the admin endpoints
-jeap.monitor.actuator.user=actuator
-jeap.monitor.actuator.password={bcrypt}<your-hash-here>
-
-# Additional endpoints for the application that the user with the ACTUATOR role is allowed to access
-jeap.monitor.actuator.additional-permitted-endpoints=\
-    org.springframework.boot.actuate.autoconfigure.condition.ConditionsReportEndpoint, \
-    org.springframework.boot.actuate.cache.CachesEndpoint
-```
 
 If the property `jeap.monitor.actuator.enable-admin-endpoints` is set to `true`, a predefined set of
 monitoring endpoints is activated and made accessible for the user with the ACTUATOR role. This predefined

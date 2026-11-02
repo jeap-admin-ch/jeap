@@ -13,10 +13,4 @@ Parent POMs, Spring Boot starters, the jEAP CLI, and build/release tooling.
   - [Set up npm trusted publishing](https://jeap-admin-ch.github.io/docs/building-blocks/tooling/jeap-frontend-license-checker/npm-publishing-setup) for this package (one-time maintainer setup).
 - [Set up npm trusted publishing for jeap-jwe-client](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-jwe-client/npm-publishing-setup) (one-time maintainer setup).
 - [Add a custom project contributor to jeap-initializer](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-initializer/extending) — including via auto-configuration for packages outside component scanning.
-
-## Known gaps — no how-to exists yet
-
-See [`doc-refactoring-plan.md`](https://github.com/jeap-admin-ch/jeap/blob/main/doc-refactoring-plan.md)
-for the full list and status. Notably missing: a consumer-facing "upgrading to a new major parent
-version" guide, a standalone "add a version-pin exception" how-to, and an end-to-end
-"author an initializer template from scratch" walkthrough.
+- [Use feature flags](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-starters/jeap-spring-boot-featureflag-starter) — add the Togglz-based starter, define and check flags, write a custom activation strategy.

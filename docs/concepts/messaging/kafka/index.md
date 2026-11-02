@@ -10,7 +10,7 @@ processing data streams. Within the Blueprint Microservice, Kafka acts as the ce
 
 ### Getting started
 
-See [Kafka How-To](kafka-how-to.md).
+See [How to: integrate Kafka into a service](../../../how-tos/messaging/integrate-kafka-into-a-service.md).
 
 ### Kafka configuration
 
@@ -60,11 +60,10 @@ events) are both valid topic names.
 > [https://docs.confluent.io/current/control-center/installation/licenses.html](https://docs.confluent.io/current/control-center/installation/licenses.html)
 > for detailed license terms.
 
-The following Docker Compose file can be used to start a local cluster including a local schema registry.
+For a Docker Compose file to start a local cluster including a local schema registry, see
+[How to: integrate Kafka into a service — Local development with Kafka](../../../how-tos/messaging/integrate-kafka-into-a-service.md#local-development-with-kafka).
 If the [Jeap Messaging Library](../jeap-messaging-library/index.md) is used, this cluster can be reached
-with the default settings (from
-[`docker/docker-compose.yml`](https://github.com/jme-admin-ch/jme-messaging-example/blob/main/docker/docker-compose.yml)
-in [jme-messaging-example](https://github.com/jme-admin-ch/jme-messaging-example)).
+with the default settings.
 
 The Confluent Control Center can be reached at [localhost:9021](http://localhost:9021/).
 

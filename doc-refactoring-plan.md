@@ -14,9 +14,70 @@ predominantly task-oriented steps toward one goal, without being padded with ref
 
 This document records, per page, what the audit found and what would need to happen to get the rest of
 the corpus into the same state: extracting a clean how-to out of a mixed page, writing a how-to that
-doesn't exist at all, or a plain documentation-hygiene fix. **Nothing in this plan has been executed
-beyond the how-tos index itself** (this branch touches only this repo — `jeap`). Each row below becomes
-a candidate follow-up ticket, to be created and approved individually.
+doesn't exist at all, or a plain documentation-hygiene fix. Each row below becomes a candidate follow-up
+ticket, to be created and approved individually.
+
+**Placement rule:** a how-to belongs in its building block's own repo unless there is a good reason it
+doesn't have one — it genuinely spans several building blocks (e.g. Kafka integration: `jeap-messaging` +
+the Message Type Registry + the Error Handling Service), or it covers something no repo owns (e.g.
+Keycloak admin-console configuration). Everything else moves to the owning repo rather than growing a
+second copy in `jeap`.
+
+## Extraction progress across repos
+
+Branches exist on `jeap`, `jeap-messaging`, `jeap-spring-boot-starters` and `jeap-internal-spring-boot-parent`
+(all `feature/JEAP-7611-how-tos`, none committed yet). 16 of the ~118 mixed/gap rows below have been
+extracted or merged so far:
+
+- **Stayed in `jeap`** (multi-building-block or no owning repo): the flagship Kafka-integration merge —
+  `jeap`'s and `jeap-messaging`'s two drifted `kafka-how-to.md` copies combined into one canonical
+  `docs/how-tos/messaging/integrate-kafka-into-a-service.md` — plus EMC Message Evolution, token
+  introspection enable/debug, the Keycloak introspection-client steps, and the audience-restriction
+  migration guide (all Keycloak-admin-console-adjacent, no owning repo).
+- **Moved to `jeap-messaging`**: the idempotent message handler, declaring message contracts, multi-cluster
+  Kafka configuration and self-message EMC evolution were each single-`jeap-messaging`-feature content
+  that had been duplicated into `jeap`. The duplicate `jeap` pages were deleted; the corresponding
+  `jeap-messaging` docs (`idempotent-message-handler.md`, `message-contracts.md`, `configuration.md`,
+  `message-evolution.md`) were enriched with anything `jeap`'s copy had that theirs didn't (the
+  bean-injection table and Lombok caveat for multi-cluster; the full before/after schema and rollout steps
+  for self-messages); `jeap`'s own concept pages now link out to them instead.
+- **Moved to `jeap-spring-boot-starters`**: feature flags and monitoring endpoints / Spring Boot Admin
+  registration, same pattern — the `jeap` duplicates were deleted, and `docs/jeap-spring-boot-featureflag-starter.md`
+  (custom activation strategy) / `docs/jeap-spring-boot-monitoring-starter.md` (password generation,
+  build-info, Spring Boot Admin registration) were enriched with the missing procedural detail.
+- **Added to `jeap-internal-spring-boot-parent`, deliberately not yet linked from `jeap`**: 4 new pages
+  covering what was bundled in `jeap-pact-integration-details.md` (setting a pacticipant's main branch,
+  overriding consumer version selectors, running/debugging provider tests in IntelliJ, fixing mock-server
+  connection issues), linked from that repo's README and from its existing `pact-broker.md`. **`jeap`'s
+  copy was deliberately left untouched** — see "Rollout independence" below.
+
+### Rollout independence
+
+Each repo's branch must be mergeable/deployable on its own, in any order, without the jEAP site build
+breaking (cross-repo doc links are validated at site-build time — see [Publishing](https://github.com/jeap-admin-ch/jeap/blob/main/docs/concepts/documenting-jeap.md#publishing)).
+Concretely: **`jeap` must never link to a page or anchor that is new in this refactoring and doesn't yet
+exist on another repo's default branch.** Two cases came up:
+
+- A link can safely drop a **new anchor** and fall back to the bare page when the page itself already
+  existed (done for Spring Boot Admin registration → links to `jeap-spring-boot-monitoring-starter`
+  without the new `#registering-with-spring-boot-admin` fragment).
+- A link to a **brand-new page** has no safe fallback. For the 4 Pact how-tos, `jeap`'s side of the split
+  (trimming `jeap-pact-integration-details.md` and adding the links) was **reverted** — the page is back
+  to its original, pre-session content. The new pages in `jeap-internal-spring-boot-parent` ship
+  independently either way; `jeap`'s trim-and-link edit is a **follow-up**, to be applied only once that
+  repo's branch is live.
+
+The other moves (idempotent handler, message contracts, multi-cluster config, self-message evolution,
+feature flags, monitoring endpoints) were checked and are safe as-is: every link/anchor they use already
+existed on the target repo's default branch before this session (the branches only added prose *under*
+those existing headings, never introduced the heading itself).
+- **Not extracted, duplicate resolved the same way**: the OAuth2 mock-server "create an instance" steps and
+  the Business Process Test orchestrator build steps each turned out to have a single clear owning
+  building block (`jeap-oauth-mock-server`, `jeap-bptest-orchestrator`) whose own getting-started already
+  covered the same ground — no `jeap` copy was ever kept; the corresponding `jeap/docs/concepts/**`
+  sections point at the component repo's page.
+
+The remaining ~103 rows are unchanged from the audit.
 
 ## Status legend
 
@@ -30,15 +91,18 @@ a candidate follow-up ticket, to be created and approved individually.
 
 ## Summary
 
-| Area | Indexed ✅ | Split needed 🔶 | Gaps ❌ | Housekeeping 🧹 |
-|---|---|---|---|---|
-| `jeap` (this repo) `docs/concepts/**` | 6 | 23 | 7 | 0 |
-| `jeap-messaging` | 4 | 7 | 2 | 0 |
-| Libraries (12 other repos) | 11 | 13 | 10 | 0 |
-| Spring Boot Starters & Parents (11 repos) | 11 | ~30 (incl. 14 per-module starter pages) | 7 | 0 |
-| Reusable Microservices (14 repos) | 17 | 13 | 9 | 2 |
-| Tooling & Registries (13 repos) | 7 | 9 | 0 | 2 |
-| **Total** | **~56** | **~95** | **~35** | **4** |
+| Area | Indexed ✅ | Extracted/moved ✅ (these branches) | Split needed 🔶 | Gaps ❌ | Housekeeping 🧹 |
+|---|---|---|---|---|---|
+| `jeap` (this repo) `docs/concepts/**` | 6 | 5 (stayed here) + 6 (moved out, see below) | 9 | 7 | 0 |
+| `jeap-messaging` | 4 | 4 (received from `jeap`: idempotent handler, message contracts, multi-cluster config, self-message evolution) | 7 | 2 | 0 |
+| `jeap-spring-boot-starters` | 11 | 2 (received from `jeap`: feature flags, monitoring endpoints + Spring Boot Admin) | ~30 (incl. 14 per-module starter pages) | 7 | 0 |
+| Libraries (11 other repos) | 11 | 0 | 13 | 10 | 0 |
+| Reusable Microservices (14 repos) | 17 | 0 | 13 | 9 | 2 |
+| Tooling & Registries (13 repos) | 7 | 0 | 9 | 0 | 2 |
+| **Total** | **~56** | **17** | **~81** | **~35** | **4** |
+
+(The 6 "moved out" rows from `jeap` are counted again under their new home, so they're not double-counted
+in the total.)
 
 Four repos (`jeap-renovate-presets`, `jeap-python-pipeline-lib`, `jeap-central-publishing-maven-plugin`,
 `jeap-license-template`) have no `docs/` at all yet — out of scope for extraction (nothing to extract),
@@ -51,8 +115,8 @@ noted for the repo owners.
 | Page | Verdict | Action needed | Status |
 |---|---|---|---|
 | `authentication-and-authorization/audience-restriction/audience-configuration-in-keycloak.md` | Clean how-to | — | ✅ Indexed (Security) |
-| `authentication-and-authorization/audience-restriction/audience-for-token-introspection-on-keycloak.md` | Mixed | Extract: create the introspection client in Keycloak. Leave behind: Keycloak compatibility-options explanation. | 🔶 |
-| `authentication-and-authorization/audience-restriction/audience-introduce-for-existing-resources.md` | Mixed | Extract: the numbered migration procedure (inventory → identifiers → deploy receivers → issue audiences → align callers → verify → enforce). Leave behind: goal-selection guidance, troubleshooting tables. | 🔶 |
+| `authentication-and-authorization/audience-restriction/audience-for-token-introspection-on-keycloak.md` | Mixed | Extract: create the introspection client in Keycloak. Leave behind: Keycloak compatibility-options explanation. | ✅ Extracted → [configure-keycloak-introspection-client.md](docs/how-tos/security/configure-keycloak-introspection-client.md) |
+| `authentication-and-authorization/audience-restriction/audience-introduce-for-existing-resources.md` | Mixed | Extract: the numbered migration procedure (inventory → identifiers → deploy receivers → issue audiences → align callers → verify → enforce). Leave behind: goal-selection guidance, troubleshooting tables. | ✅ Extracted (whole page relocated) → [migrate-to-audience-restriction.md](docs/how-tos/security/migrate-to-audience-restriction.md); original path kept as a redirect stub |
 | `authentication-and-authorization/audience-restriction/audience-naming.md` | Explanation/Reference | None — not a how-to despite the filename. | ⚪ |
 | `authentication-and-authorization/authorization-servers/authorizing-keycloak-clients-for-consuming-applications-resources.md` | Explanation | None — not a how-to despite the filename. | ⚪ |
 | `authentication-and-authorization/authorization-servers/integrating-different-authorization-servers.md` | Mixed | Extract: implement a custom claim-set converter. Leave behind: claim-set-converter concept + config reference. | 🔶 |
@@ -61,34 +125,34 @@ noted for the repo owners.
 | `authentication-and-authorization/protecting-rest-apis/rest-api-authorization-with-authorities.md` | Mixed | Extract: declarative/programmatic integration steps. Leave behind: `AuthoritiesResolver` API reference. | 🔶 |
 | `authentication-and-authorization/protecting-rest-apis/rest-api-authorization-with-semantic-roles.md` | Mixed | Extract: the integration step. Leave behind: query-method reference table. | 🔶 |
 | `authentication-and-authorization/protecting-rest-apis/rest-api-authorization-with-simple-roles.md` | Mixed | Same pattern as semantic-roles. | 🔶 |
-| `authentication-and-authorization/testing/oauth2-mock-server.md` | Mixed | Extract: the 4-step "Usage" setup. Leave behind: config/example reference. (Note: a same-purpose how-to is already indexed from the `jeap-oauth-mock-server` repo itself — check for overlap/duplication before extracting.) | 🔶 |
+| `authentication-and-authorization/testing/oauth2-mock-server.md` | Mixed | Extract: the 4-step "Usage" setup. Leave behind: config/example reference. | ⚪ Not extracted — **confirmed duplicate** of `jeap-oauth-mock-server/docs/getting-started.md` (already indexed). Per the building-block placement rule, `jeap-oauth-mock-server` is the single clear owner; this page's "Usage" section now points there directly instead of carrying its own copy. |
 | `authentication-and-authorization/testing/testing-secured-rest-apis.md` | Mixed | Split: the 5 test-use-case recipes into standalone how-tos. Leave behind: test-support class reference. | 🔶 |
 | `authentication-and-authorization/tokens/minimizing-access-token-sizes.md` | Mixed | Split: each sub-task (dynamic scopes, lightweight tokens, roles pruning) into its own how-to. | 🔶 |
-| `authentication-and-authorization/tokens/token-introspection.md` | Mixed | Extract: "How to enable jEAP token introspection" and "How to debug..." as standalone how-tos. Leave behind: introspection-mode/metrics/config reference. | 🔶 |
-| `backend/idempotency/idempotent-message-handler.md` | Mixed | Extract: integration→usage flow (dependency, DDL, annotation). Leave behind: config-property reference, advice-order internals. **Check for duplication/drift against `jeap-messaging/docs/idempotent-message-handler.md`** (same topic documented in both repos). | 🔶 |
-| `config-secrets-management/feature-flags.md` | Mixed | Extract: config/integration/usage steps + custom activation-strategy example. Leave behind: motivation essay, naming-convention reference. | 🔶 |
-| `continuous-delivery/expand-migrate-contract.md` | Mixed | Extract: the 4-step EMC Message Evolution procedure. Leave behind: strategy-selection/motivation discussion, replacement-strategy table. | 🔶 |
+| `authentication-and-authorization/tokens/token-introspection.md` | Mixed | Extract: "How to enable jEAP token introspection" and "How to debug..." as standalone how-tos. Leave behind: introspection-mode/metrics/config reference. | ✅ Extracted → [enable-and-debug-token-introspection.md](docs/how-tos/security/enable-and-debug-token-introspection.md) |
+| `backend/idempotency/idempotent-message-handler.md` | Mixed, duplicate | **Confirmed duplicate of `jeap-messaging/docs/idempotent-message-handler.md`.** | ✅ Moved — single building block (`jeap-messaging`). `jeap`'s copy trimmed to a pointer; `jeap-messaging`'s copy was already complete, no changes needed there. |
+| `config-secrets-management/feature-flags.md` | Mixed, duplicate | Single building block (`jeap-spring-boot-starters`, featureflag starter). | ✅ Moved → `jeap-spring-boot-starters/docs/jeap-spring-boot-featureflag-starter.md`, enriched with the custom-activation-strategy how-to. `jeap`'s copy trimmed to a pointer. |
+| `continuous-delivery/expand-migrate-contract.md` | Mixed | Extract: the 4-step EMC Message Evolution procedure. Leave behind: strategy-selection/motivation discussion, replacement-strategy table. | ✅ Extracted → [apply-emc-message-evolution.md](docs/how-tos/messaging/apply-emc-message-evolution.md) |
 | `continuous-delivery/zero-downtime-deployments.md` | Explanation | None — not a how-to despite the filename (describes what happens, not what the reader does). | ⚪ |
 | `database/postgresql-with-spring-and-flyway.md` | Clean how-to | — | ✅ Indexed (Backend & Data) |
 | `frontend/current-user-endpoint.md` | Mixed | Extract: enable/customize steps. Leave behind: attribute reference table. | 🔶 |
 | `frontend/direct-frontend-route-navigation-redirect-in-spring-boot-scs.md` | Mixed | Extract: the concrete code fix. Shorten: the "Context"/"Problem" lead-in. | 🔶 |
 | `logging/distributed-tracing.md` | Mixed | Extract: integration/config steps. Leave behind: Overview/Instrumentation/Custom Spans explanation. | 🔶 |
 | `logging/log-deep-links.md` | Clean how-to | — | ✅ Indexed (Architecture & Observability) |
-| `messaging/evolution-of-messages/index.md` | Mixed | Extract: the embedded "EMC when Consuming Events Produced in the Same Microservice" procedure as a standalone how-to. Leave behind: compatibility-rules reference/explanation. | 🔶 |
+| `messaging/evolution-of-messages/index.md` | Mixed, single-building-block procedure embedded | The "EMC when Consuming Events Produced in the Same Microservice" procedure is pure `jeap-messaging` mechanics. | ✅ Moved — expanded into `jeap-messaging/docs/message-evolution.md`'s "Self-messages" section (was a 3-sentence pointer, now the full before/after schema + rollout steps). `jeap`'s page trimmed to a pointer; compatibility-rules reference/explanation stays. |
 | `messaging/jeap-messaging-library/signing-messages-and-checking-signatures-without-jeap.md` | Clean how-to | — | ✅ Indexed (Security) |
-| `messaging/jeap-messaging-library/support-for-multiple-kafka-clusters.md` | Mixed | Extract: the config example as how-to. Leave behind: bean-naming reference, autoconfiguration internals. **Also fix:** the page's own example module path could not be verified against the current `jme-messaging-example` repo — doc drift, fix regardless of the split. | 🔶 |
+| `messaging/jeap-messaging-library/support-for-multiple-kafka-clusters.md` | Mixed, single-building-block config duplicated | The config example is pure `jeap-messaging` mechanics; `jeap-messaging/docs/configuration.md` already had the YAML but not the bean-injection table or Lombok caveat. **Also:** the page's own example module path could not be verified against the current `jme-messaging-example` repo — doc drift, left as-is, not independently fixed. | ✅ Moved — `jeap-messaging/docs/configuration.md`'s "Clusters" section enriched with the bean-injection table and Lombok caveat. `jeap`'s page trimmed to the diagram + autoconfiguration-internals explanation + a pointer. |
 | `messaging/jeap-messaging-library/index.md` | Mixed/sprawling | No single how-to to extract; consider narrowing this page's scope (it currently reads as a full library reference). | 🔶 |
-| `messaging/kafka/kafka-how-to.md` | Mixed, **duplicated** | Extract the clean 11-step integration checklist as the canonical Kafka how-to — **pick one owning repo** (recommend `jeap-messaging`, closer to the code) and delete the losing duplicate (see `jeap-messaging/docs/kafka-how-to.md` below — same page, already drifted: different docker-compose examples, different wording). Leave behind / fold into `kafka-consumer-producer-topic-configuration.md`: the topic-settings reference and partition/replication explanation. | 🔶 |
-| `messaging/kafka/index.md` | Mixed | Fold "Starting Kafka locally" into the canonical Kafka how-to above. Leave behind: topic-naming reference. | 🔶 |
-| `messaging/message-contracts/index.md` | Mixed | Extract: the annotation-usage-with-code task. Leave behind/split out: goals/runtime-validation explanation, the two annotation-processor configuration sections. **Check for duplication/drift against `jeap-messaging/docs/message-contracts.md`.** | 🔶 |
+| `messaging/kafka/kafka-how-to.md` | Mixed, **duplicated** | Extract the clean 11-step integration checklist as the canonical Kafka how-to — **pick one owning repo** (recommend `jeap-messaging`, closer to the code) and delete the losing duplicate (see `jeap-messaging/docs/kafka-how-to.md` below — same page, already drifted: different docker-compose examples, different wording). Leave behind / fold into `kafka-consumer-producer-topic-configuration.md`: the topic-settings reference and partition/replication explanation. | ✅ Extracted & merged → [integrate-kafka-into-a-service.md](docs/how-tos/messaging/integrate-kafka-into-a-service.md), combining both repos' checklists and the better (KRaft) docker-compose example. This repo's page is now reference-only. `jeap-messaging`'s own copy still needs trimming to point here — separate repo, follow-up ticket. |
+| `messaging/kafka/index.md` | Mixed | Fold "Starting Kafka locally" into the canonical Kafka how-to above. Leave behind: topic-naming reference. | ✅ Extracted |
+| `messaging/message-contracts/index.md` | Mixed, duplicate | **Confirmed duplicate** of the core annotation syntax in `jeap-messaging/docs/message-contracts.md`, which was already complete there. | ✅ Moved — the "Declaring Message Contracts" section now points to `jeap-messaging`'s page; no changes needed there. The PCS/PAS template-annotation example (`@JeapMessageConsumerContractsByTemplates`) stayed here, since `jeap-messaging`'s own docs explicitly call PCS/PAS "out of scope" and this content is genuinely about configuring those two reusable microservices, not the library in general. |
 | `messaging/message-type-registry/installing-message-types-locally.md` | Clean how-to | — | ✅ Indexed (Messaging) |
-| `monitoring/monitoring-endpoints.md` | Mixed | Extract: setup steps (dependency, password, build-info, security override). Leave behind: endpoint reference table. | 🔶 |
-| `monitoring/spring-boot-admin.md` | Mixed | Extract: server-setup/client-registration/actuator-security steps. Leave behind: verbatim properties-file reference. | 🔶 |
+| `monitoring/monitoring-endpoints.md` | Mixed, duplicate | Single building block (`jeap-spring-boot-starters`, monitoring starter). | ✅ Moved → `jeap-spring-boot-starters/docs/jeap-spring-boot-monitoring-starter.md`, enriched with the password-generation command and build-info Maven snippet it was missing. `jeap`'s copy trimmed to a pointer. |
+| `monitoring/spring-boot-admin.md` | Mixed, duplicate | Client-registration steps are `jeap-spring-boot-monitoring-starter`-specific (server setup is third-party, nothing jEAP-specific to extract there). | ✅ Moved → new "Registering with Spring Boot Admin" section in `jeap-spring-boot-starters/docs/jeap-spring-boot-monitoring-starter.md`. `jeap`'s copy trimmed to a pointer. |
 | `rest-apis/http-compression.md` | Clean how-to | — | ✅ Indexed (REST APIs & Web) |
 | `rest-apis/openapi-documentation.md` | Mixed | Extract: the Integration section steps. Leave behind: OpenAPI object/tag/operation/schema property reference tables. | 🔶 |
-| `testing/business-process-testautomation/index.md` | Mixed | Extract: the "Build your own Orchestrator" 1–6 step procedure. Leave behind: goal/architecture/component-responsibility explanation. | 🔶 |
+| `testing/business-process-testautomation/index.md` | Mixed | Extract: the "Build your own Orchestrator" 1–6 step procedure. Leave behind: goal/architecture/component-responsibility explanation. | ⚪ Not extracted — **confirmed duplicate** of `jeap-bptest-orchestrator`'s own getting-started (already indexed). Per the building-block placement rule, `jeap-bptest-orchestrator` is the single clear owner; this section now points there directly instead of carrying its own copy. |
 | `testing/consumer-driven-contract-tests/index.md` | Mixed | Extract: "Create Consumer/Provider Tests" steps as how-to(s). Leave behind: motivation/big-picture/provider-states explanation. | 🔶 |
-| `testing/consumer-driven-contract-tests/jeap-pact-integration-details.md` | Mixed bundle | Split into 4 standalone how-tos: pin the main branch via the Pact CLI; override consumer version selectors for a breaking change; debug a provider test in IntelliJ; fix mock-server "broken pipe" issues. Leave behind: Pact Broker/Environments/Branches explanation. | 🔶 |
+| `testing/consumer-driven-contract-tests/jeap-pact-integration-details.md` | Mixed bundle, single-building-block procedures | The 4 bundled recipes (main branch via Pact CLI, overriding consumer version selectors, debugging in IntelliJ, fixing mock-server connection issues) are all about overriding/using `jeap-internal-spring-boot-parent`'s own Pact preconfiguration. | 🟡 Half done — the 4 pages exist in `jeap-internal-spring-boot-parent/docs/` (`pact-main-branch.md`, `pact-consumer-version-selectors.md`, `pact-provider-tests-in-intellij.md`, `pact-mock-server-connection-issues.md`), linked from its README and `pact-broker.md`, and can ship on their own. **`jeap`'s page is untouched on purpose** — trimming it and linking out must wait until that repo's branch is live, or `jeap`'s site build would reference pages that don't exist yet. Follow-up: once merged, trim `jeap`'s copy the same way as the other moved rows. |
 | `testing/interaction-tests.md` | Explanation (misleading title) | This page itself **is** the gap — it reads like "how to write an interaction test" but has zero implementation steps. Either add them here or point to where they actually live. | ❌ |
 | `testing/unit-integration-testing-with-kafka.md` | Mixed/cookbook | The 7-item "General Recommendations" list is a cookbook of independent techniques, not one task — keep as a reference cookbook rather than forcing a single how-to. Split out the unrelated mock-config/base-class topics into their own reference page. | 🔶 |
 

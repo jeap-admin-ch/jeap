@@ -86,79 +86,14 @@ provide the Prometheus endpoint. **Spring Security** can also secure the Prometh
 These dependencies can most easily be pulled in with the Spring Boot Starter
 **jeap-spring-boot-monitoring-starter**. This configures the endpoints, including Basic-Auth.
 
-**Dependency for jeap-spring-boot-monitoring-starter**
-
-```xml
-<dependency>
-    <groupId>ch.admin.bit.jeap</groupId>
-    <artifactId>jeap-spring-boot-monitoring-starter</artifactId>
-</dependency>
-```
-
-### Password
-
-In addition, the password for the Prometheus endpoint (and optionally for the health endpoint) must be
-defined. The username defaults to "prometheus" but can also be overridden with the property
-`jeap.monitor.prometheus.user` (respectively "actuator" for `jeap.monitor.actuator.user`). As additional
-protection, the password can e.g. be encrypted with bcrypt:
-
-**Password for the Prometheus endpoint**
-
-```yaml
-jeap:
-  monitor:
-    prometheus:
-      password: "{bcrypt}${vcap.services.prometheus.credentials.prometheusPwd}"
-    actuator:
-      password: "{bcrypt}${vcap.services.actuator.credentials.actuatorPwd}"
-```
-
-The BCrypt password hash can be generated as follows:
-
-```bash
-$ sudo apt-get install apache2-utils
-$ htpasswd -nBC 10 ""  | tr -d ':'
-New password: 
-Re-type new password: 
-$2y$10$fNLaT95EZyYZeU2Xb5zR.Oes8U.ykPJXiQXj.q/a.WZ.FgeDLks/u
-```
-
-### Build Info
-
-Finally, the build information must be stored at compile time so that it can be retrieved via the info
-endpoint. This can be done with the **spring-boot-maven-plugin** in `pom.xml`:
-
-**Generating build information in pom.xml**
-
-```xml
-<build>
-    <plugins>
-        <plugin>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-            <executions>
-                <execution>
-                    <goals>
-                        <goal>build-info</goal>
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
-    </plugins>
-</build>
-```
+**For adding the dependency, setting the Prometheus/actuator password, generating build info and overriding
+the default security, see
+[jeap-spring-boot-monitoring-starter](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-starters/jeap-spring-boot-monitoring-starter).**
 
 With Spring Actuator, further endpoints can also be defined (see the Spring Boot Actuator API
 documentation). In addition, custom metrics for the Prometheus endpoint (see [Metrics](metrics.md)) and
 additional info (e.g. feature flags) for the info endpoint (see [Information](information.md)) can also be
 defined.
-
-### Spring Security Configuration
-
-The `jeap-spring-boot-monitoring-starter` comes with its own Spring Security configuration to protect the
-Prometheus endpoint. This only applies to the path `/actuator/prometheus` and overrides other configurations
-for that path. This can be overridden by setting the property `jeap.monitor.prometheus.secure` to `false` or
-by activating the `disableprometheussecurity` profile.
 
 ## Example
 

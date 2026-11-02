@@ -336,50 +336,15 @@ There are two main options to add the mapper to a client:
 
 Will be added with JEAP-5473.
 
-## How to enable jEAP token introspection
+## How to enable and debug jEAP token introspection
 
-Follow these general steps to enable jEAP token introspection on a resource server (microservice):
+**See [How to: enable and debug jEAP token introspection](../../../how-tos/security/enable-and-debug-token-introspection.md)**
+for the step-by-step procedure (selecting a mode, configuring Keycloak and the resource server) and for how
+to debug a user's authorizations when they were fetched by introspection rather than carried in the token.
 
-1. Select the jEAP Security library [introspection mode](#introspection-modes) that supports your resource server's
-   use case
-2. [Configure your Keycloak](#configuration-of-the-token-introspection-in-keycloak) realm to support the selected
-   introspection mode
-3. [Configure your resource server](#configuration-of-the-token-introspection-in-jeap) with the selected
-   introspection mode and the required introspection client configuration parameters
-
-## Example
-
-The [jme-security-example](https://github.com/jme-admin-ch/jme-security-example)
-demonstrates how to configure lightweight access token introspection in a project. It uses the
-[jeap-oauth-mock-server](https://github.com/jeap-admin-ch/jeap-oauth-mock-server) (see
-[OpenID Connect / OAuth2 mock server](../testing/oauth2-mock-server.md)) as authorization server. The
-[jme-security-example-resource-service](https://github.com/jme-admin-ch/jme-security-example/tree/main/jme-security-resource-service)
-implements an endpoint `/api/introspected-roles` which expects to be called with a Bearer token and then returns the
-roles that were not directly included in the token but have been transparently fetched by the
-`jeap-spring-boot-security-starter` library from the authorization server's token introspection endpoint. The
-[jme-security-example-client-service](https://github.com/jme-admin-ch/jme-security-example/tree/main/jme-security-client-service)
-provides the same endpoint, but as a public endpoint that calls the protected endpoint with a Bearer token using a
-selected OAuth2 client configuration.
-
-## How to debug the authorizations of users with introspected tokens
-
-A lightweight access token created by roles pruning will not list a user's roles. Therefore, the user's
-authorizations can no longer be debugged by just decoding the access token (JWT). How can the
-authorizations associated with a lightweight access token be debugged then?
-
-- You can decode the ID token instead of the access token, if you have access to the user's ID token. Both tokens are
-  returned together in Keycloak's response to the token request. The user's roles are only pruned from the
-  access token, not from the ID token.
-- You can call the token introspection endpoint with a user's access token and the credentials of the introspection
-  client. The response is a JSON document that includes the user's roles as assigned by Keycloak.
-- You can enable the [jEAP current-user endpoint](../../frontend/current-user-endpoint.md) in your microservice and
-  call this endpoint with a user's access token. The response is a JSON document that includes the user's roles as assigned in
-  the microservice's Spring Security authentication built by jEAP Security (roles are fetched from the access token
-  or by introspection from Keycloak).
-- You can enable `jeap.security.oauth2.resourceserver.log.access-denied.debug` in addition to
-  `jeap.security.oauth2.resourceserver.log.access-denied.enabled` (see
-  [Authentication and authorization for REST APIs](../protecting-rest-apis/rest-api-authentication-and-authorization.md#configuration)).
-  This will log a user's roles at debug level if access to a resource is denied by jEAP Security.
+The [jme-security-example](https://github.com/jme-admin-ch/jme-security-example) demonstrates lightweight
+access token introspection end to end, including an `/api/introspected-roles` endpoint that returns the
+roles fetched transparently by introspection.
 
 ## Further documentation
 

@@ -57,16 +57,10 @@ For a discussion of the recommended migration strategies, see [Evolution of Mess
 
 ### EMC Message Evolution
 
-With this strategy, incompatible changes are split into several smaller, compatible steps. Each step is zero-downtime and without breaking changes. This approach is preferred according to [Evolution of Messages](../messaging/evolution-of-messages/index.md). The procedure is as follows:
+With this strategy, incompatible changes are split into several smaller, compatible steps. Each step is zero-downtime and without breaking changes. This approach is preferred according to [Evolution of Messages](../messaging/evolution-of-messages/index.md).
 
-1. Expand: a compatible change is made to the Avro schema (e.g. adding a new optional attribute) and a new minor/patch version of the message type is published
-2. Migrate: all consumers/producers migrate to the first new version by updating the version of the Maven dependency for the message type
-3. Migrate/Contract: a further compatible change is made to the Avro schema (e.g. removing an old, no-longer-needed attribute) and a second new minor/patch version of the message type is published
-4. Contract: all consumers/producers migrate to the second new version by updating the version of the Maven dependency for the message type
-
-> Both changes are Avro-schema-compatible between reader and writer—one change in BACKWARD mode, the other in FORWARD mode. Because these migration steps use different compatibility modes, the **Kafka Schema Registry subject** must use compatibility mode `NONE`; this must not be confused with the compatibility mode declared for a message type version.
->
-> See [Evolution of Messages](../messaging/evolution-of-messages/index.md)
+**For the step-by-step procedure, see
+[How to: apply EMC Message Evolution to a Kafka message type](../../how-tos/messaging/apply-emc-message-evolution.md).**
 
 ### Strategy: EMC Message Replacement
 
