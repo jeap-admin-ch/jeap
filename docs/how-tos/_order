@@ -1,0 +1,9 @@
+# Sidebar order for the How-Tos subcategories. See docs/_order for the format.
+
+security | Security
+messaging | Messaging
+rest-apis-and-web | REST APIs & Web
+backend-and-data | Backend & Data
+architecture-and-observability | Architecture & Observability
+testing | Testing
+platform-and-tooling | Platform & Tooling
