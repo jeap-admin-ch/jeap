@@ -11,9 +11,3 @@ Databases, schema migrations, and OpenSearch.
   - [Expose a SearchItemsProvider endpoint](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-opensearch-searchitem-api/getting-started) for the jEAP OpenSearch Index Writer to call.
   - [Set up an OpenSearch Index Type Registry project](https://jeap-admin-ch.github.io/docs/building-blocks/tooling/jeap-opensearch-index-type-registry-maven-plugin/getting-started) end to end.
   - [Build and run an OpenSearch Index Writer Service instance](https://jeap-admin-ch.github.io/docs/building-blocks/reusable-microservices/jeap-opensearch-index-writer-service/getting-started).
-
-## Known gaps — no how-to exists yet
-
-See [`doc-refactoring-plan.md`](https://github.com/jeap-admin-ch/jeap/blob/main/doc-refactoring-plan.md)
-for the full list and status. Notably missing: a walkthrough for an index-type major-version migration
-with backfill (only a short list buried inside a reference-heavy page today).
