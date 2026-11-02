@@ -19,7 +19,7 @@ resources.
 | [Selecting audiences](audience-selection.md) | How to select audiences in access tokens for the resources a client needs to access |
 | [Configuring audiences in Keycloak](audience-configuration-in-keycloak.md) | Configuring Keycloak client scopes and audience mappers to include intended resource servers in access-token audiences |
 | [Token introspection on Keycloak](audience-for-token-introspection-on-keycloak.md) | Keycloak's requirement for introspection client IDs to appear in token audiences, with client configuration and compatibility options |
-| [Migrating existing resource access to audience validation](audience-introduce-for-existing-resources.md) | Step-by-step introduction of access-token audiences in existing systems, supporting Keycloak introspection checks and strict jEAP resource-server validation |
+| [How to: migrate existing resource access to audience validation](../../../how-tos/security/migrate-to-audience-restriction.md) | Step-by-step introduction of access-token audiences in existing systems, supporting Keycloak introspection checks and strict jEAP resource-server validation |
 
 ## Related
 

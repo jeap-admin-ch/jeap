@@ -13,7 +13,7 @@ this approach with role-driven **Audience Resolve** mappers that add unintended 
 
 The following steps use the Keycloak 26.7 Admin Console terminology. They configure audiences
 for existing calling clients; retain their existing authentication and grant settings. For a live
-system, follow the [migration guide](audience-introduce-for-existing-resources.md) to choose the affected
+system, follow the [migration guide](../../../how-tos/security/migrate-to-audience-restriction.md) to choose the affected
 clients and resources and deploy receivers before assigning new scopes.
 
 If your platform manages realms declaratively, apply the same scope, mapper and assignment settings
@@ -134,4 +134,4 @@ audiences remain. Evaluation previews do not replace these integration checks.
 - [Naming audiences](audience-naming.md) — choose resource identifiers.
 - [Audience selection](audience-selection.md) — request the configured scopes.
 - [Keycloak introspection](audience-for-token-introspection-on-keycloak.md) — configure introspection clients.
-- [Migrating existing resource access to audience validation](audience-introduce-for-existing-resources.md) — follow a process to enable Keycloak introspection audience compatibility, strict audience validation, or both.
+- [How to: migrate existing resource access to audience validation](../../../how-tos/security/migrate-to-audience-restriction.md) — follow a process to enable Keycloak introspection audience compatibility, strict audience validation, or both.
