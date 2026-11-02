@@ -98,4 +98,4 @@ Indicators (though Keycloak 26.7 added experimental support).
 - [Naming audiences](audience-naming.md) — choose resource identifiers.
 - [Keycloak configuration](audience-configuration-in-keycloak.md) — assign scopes and audience mappers.
 - [Security Client Starter](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-starters/jeap-spring-boot-security-client-starter#building-a-restclient) — build clients for token acquisition or forwarding.
-- [Migrating existing resource access to audience validation](audience-introduce-for-existing-resources.md) — choose the scope, coordinate callers and recipients, and enable validations.
+- [How to: migrate existing resource access to audience validation](../../../how-tos/security/migrate-to-audience-restriction.md) — choose the scope, coordinate callers and recipients, and enable validations.

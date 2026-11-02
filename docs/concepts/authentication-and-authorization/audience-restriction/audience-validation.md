@@ -50,7 +50,7 @@ the jEAP audience validator in every mode; other token checks remain.
 
 The current default is `off`; `on` will become the default in a future release. Therefore, existing applications
 should migrate to support the strict mode. Follow the
-[migration guide](audience-introduce-for-existing-resources.md#goal-require-audience-restriction-throughout-the-system)
+[migration guide](../../../how-tos/security/migrate-to-audience-restriction.md#goal-require-audience-restriction-throughout-the-system)
 to assess a whole system and enable strict validation incrementally.
 
 For new applications, configure the intended audience and enable strict validation:
@@ -80,12 +80,12 @@ Using the resource ID as the introspection client ID satisfies both checks with 
 Keycloak currently provides options to disable this additional introspection client audience check, but
 those are already marked as deprecated. Therefore, existing applications that use token introspection
 should migrate to support the additional introspection audience check. Follow the
-[introspection goal in the migration guide](audience-introduce-for-existing-resources.md#goal-support-keycloaks-introspection-audience-check)
+[introspection goal in the migration guide](../../../how-tos/security/migrate-to-audience-restriction.md#goal-support-keycloaks-introspection-audience-check)
 to assess a whole system and to satisfy Keycloak's introspection client validation.
 
 ## Migrating an existing system
 
-The [migration guide](audience-introduce-for-existing-resources.md) provides one rollout procedure for
+The [migration guide](../../../how-tos/security/migrate-to-audience-restriction.md) provides one rollout procedure for
 both goals, the strict audience validation in resource servers and the support of Keycloak's introspection
 client audience validation. Start by choosing the scope: the introspection goal covers the inspected token
 flows and any other recipients affected by their new audiences; system-wide strict validation requires assessing all
@@ -103,5 +103,5 @@ reuse the same identifiers, mappings and verified token flows for both migration
 - [Configuring audiences in Keycloak](audience-configuration-in-keycloak.md) — issue the intended audiences in Keycloak.
 - [Selecting audiences](audience-selection.md) — choose scopes through server or client configuration.
 - [Token introspection on Keycloak](audience-for-token-introspection-on-keycloak.md) — configure the token introspection client audience check.
-- [Migrating existing resource access to audience validation](audience-introduce-for-existing-resources.md) — choose the scope and follow the rollout through to enforcement.
+- [How to: migrate existing resource access to audience validation](../../../how-tos/security/migrate-to-audience-restriction.md) — choose the scope and follow the rollout through to enforcement.
 - [Security Starter reference](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-starters/jeap-spring-boot-security-starter#audience-validation) — look up properties and defaults.
