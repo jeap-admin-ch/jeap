@@ -60,6 +60,7 @@ build on jEAP.
 | Client-side encryption of data-at-rest                        | [jeap-crypto](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-crypto/)                          |
 | Transparent JWE encryption of HTTP API payloads               | [jeap-spring-boot-jwe-starter](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-jwe-starter/) |
 | Certificate-based AWS credentials (IAM Roles Anywhere)        | [jeap-spring-boot-roles-anywhere-starter](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-roles-anywhere-starter/) |
+| Exposing service tools to AI agents (MCP)                     | [jeap-spring-boot-mcp-starter](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-mcp-starter/) |
 | Real-time server→client events (SSE)                          | [jeap-server-sent-events](https://jeap-admin-ch.github.io/docs/building-blocks/libraries/jeap-server-sent-events/)  |
 | Search / OpenSearch indexing & querying                       | [jeap-opensearch-* building blocks](building-blocks/libraries/index.md)                   |
 | Application setup, logging, monitoring, security, persistence | [Spring Boot Starters](building-blocks/spring-boot-starters/index.md)                           |
