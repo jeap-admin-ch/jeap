@@ -5,15 +5,11 @@ an application authorizes user access against [authorities](../role-concept.md#a
 
 ## Integration
 
-The first step for authorization with authorities is the basic integration of
-jEAP Security as described in
-[Authentication and authorization for REST APIs – Integration](rest-api-authentication-and-authorization.md#integration).
-Note the following:
+For the integration steps, see
+[How to: authorize REST API access with authorities](../../../how-tos/security/authorize-rest-apis-with-authorities.md).
+This page describes the `AuthoritiesResolver` API used by that integration.
 
-> **Note:** The configuration property `jeap.security.oauth2.resourceserver.system-name` must not be set when
-> authorizing with authorities, as it would otherwise activate authorization with semantic roles.
-
-In a second step, the code that derives authorities from roles has to be integrated into the application. For
+The code that derives authorities from roles has to be integrated into the application. For
 this, the application has to provide a Spring bean of type `AuthoritiesResolver`. If no custom
 `AuthoritiesResolver` is defined, a `DefaultAuthoritiesResolver` is used, which simply creates an authority for
 each role by prefixing the role with `ROLE_`.
@@ -45,44 +41,11 @@ A concrete example of an `AuthoritiesResolver` is given in
 ## Authorization checks
 
 Authorities are a basic mechanism of Spring Security. To check the authorization of a user based on authorities,
-the standard Spring Security mechanisms can be used. The following sections give examples of
-some of these mechanisms.
+the standard Spring Security mechanisms can be used.
 
-### Declarative authorization
-
-Authorities can be checked in the
-[SpEL](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#expressions) expressions of
-the `@PreAuthorize` and `@PostAuthorize` annotations using the `hasAuthority` method:
-
-```java
-@RestController
-public class ExampleResource {
-
-	@GetMapping("/example")
-	@PreAuthorize("hasAuthority('example:read')")
-	public String hello() {
-		return "Hello World";
-	}
-}
-```
-
-### Querying the authorities of a user
-
-Sometimes the actual permissions of a user have to be known, for example to search a database for objects
-matching these permissions. For such cases, the authorities of a user can be obtained from their Spring Security
-`Authentication`, for example as follows:
-
-```java
-@RestController
-public class ExampleResource {
-
-	@GetMapping("/example")
-	public String hello(Authentication authentication) {
-       	Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-		...
-	}
-}
-```
+**See [How to: authorize REST API access with authorities](../../../how-tos/security/authorize-rest-apis-with-authorities.md)**
+for how to check authorities declaratively with `@PreAuthorize`/`@PostAuthorize` and programmatically from the
+`Authentication`.
 
 ## Examples
 
@@ -104,3 +67,4 @@ described above.
 - [Role concept in the Blueprint Microservice](../role-concept.md) — understand simple roles, semantic roles and authorities.
 - [Authorization with simple roles](rest-api-authorization-with-simple-roles.md) — authorize against roles compared one-to-one as strings.
 - [Authorization with semantic roles](rest-api-authorization-with-semantic-roles.md) — authorize against roles composed of system, tenant, resource and operation.
+- [How to: authorize REST API access with authorities](../../../how-tos/security/authorize-rest-apis-with-authorities.md) — the integration and authorization-check steps.

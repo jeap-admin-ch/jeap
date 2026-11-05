@@ -43,82 +43,11 @@ If code bypasses these Spring-managed components, for example by manually creati
 clients, automatic trace creation and context propagation may not work. In such cases, custom instrumentation
 should be added using Micrometer's `ObservationRegistry`, `@Observed`, etc.
 
-## Integration
+## Integration and Configuration
 
-Add the jEAP monitoring starter to your service:
-
-```xml
-<dependency>
-    <groupId>ch.admin.bit.jeap</groupId>
-    <artifactId>jeap-spring-boot-monitoring-starter</artifactId>
-</dependency>
-```
-
-With the starter on the classpath the service is instrumented end to end for tracing:
-
-- Incoming HTTP requests open a *server span*, picking up an existing trace id from the `traceparent` (or
-  `B3`) header or generating a new one if there is none.
-- Outbound HTTP calls open a *client span* and propagate the trace context (`traceparent`/`B3`) to the next
-  service.
-- Incoming Kafka messages open a consumer span, adopting the trace context carried in the record headers
-  (`traceparent`/`B3`), or starting a new trace if none is present.
-- Outgoing Kafka messages open a producer span and inject the trace context (`traceparent`/`B3`) into the
-  record headers so the consuming service continues the same trace.
-- Trace and span ids are added to the MDC for the duration of the active span scope (for an HTTP request or
-  while a Kafka message is being processed) so every log line written in scope carries them.
-- A Micrometer `Tracer` bean is exposed for creating custom spans.
-
-The service must declare its name via `spring.application.name`. This is the name shown in the tracing
-backend.
-
-```yaml
-spring:
-  application:
-    name: my-service
-```
-
-## Configuration
-
-### Activating trace export
-
-By default, the starter generates spans and writes their ids into the MDC, but it does not export them
-anywhere. Export is activated by pointing Spring Boot at an OTLP HTTP endpoint:
-
-```yaml
-management:
-  opentelemetry:
-    tracing:
-      export:
-        otlp:
-          endpoint: http://localhost:4318/v1/traces
-```
-
-Without the property set, traces are still produced and visible as `traceId`/`spanId` in MDC, but no spans
-leave the service. The configured URL must point to an OpenTelemetry collector.
-
-### Sampling
-
-Producing, transporting and storing a span has a cost. Sampling decides which traces are kept end to end.
-Spring Boot exposes a single probability property:
-
-```yaml
-management:
-  tracing:
-    sampling:
-      probability: 0.1   # default — keep 10% of traces
-```
-
-The decision is taken at the *root* of a trace and propagated downstream as part of the trace context. A
-sampled-in trace therefore stays sampled-in across every service hop, and a sampled-out trace stays out.
-
-A few practical notes:
-
-- Pick the probability so the resulting trace volume fits the tracing backend's capacity. Production
-  services typically leave the Spring Boot default in place or sample even lower.
-- For request flows that must always be investigable (errors, slow paths, business-critical operations),
-  prefer always-on instrumentation in the service itself over raising the sample rate globally.
-- The jEAP example services may use `probability: 1.0` so every demo call shows up in Grafana. This is
-  appropriate *only for demos and debugging*, not for production.
+**See [How to: enable distributed tracing](../../how-tos/architecture-and-observability/enable-distributed-tracing.md)**
+for adding the jEAP monitoring starter, declaring the service name, activating trace export and configuring
+sampling.
 
 ## Custom Spans
 
@@ -167,3 +96,7 @@ which demonstrates tracing with the `jeap-spring-boot-monitor-starter`. The exam
 Please consult the section *Tracing Example* in the project's
 [readme](https://github.com/jme-admin-ch/jme-monitor-example/blob/main/README.md) and the documentation on
 the example code for details.
+
+## Related
+
+- [How to: enable distributed tracing](../../how-tos/architecture-and-observability/enable-distributed-tracing.md) — add the monitoring starter and configure trace export and sampling.

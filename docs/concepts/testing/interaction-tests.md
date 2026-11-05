@@ -10,6 +10,16 @@ Important:
 
 Motivation: many small, simple tests instead of a few large, complex end-to-end tests.
 
+:::info
+This page explains the concept and scope of interaction tests. There is no dedicated step-by-step
+how-to for writing one. The closest concrete, documented building blocks for implementing a test in this
+shape — an embedded-Kafka base class, a Kafka test listener, WireMock as the provider mock, and Awaitility
+to wait for the expected interaction — are covered in
+[jEAP Test Support for Kafka](kafka-test-support.md) and
+[Unit / Integration Testing with Kafka](unit-integration-testing-with-kafka.md), whose example code is in
+fact built around testing exactly this kind of request/command/event interaction.
+:::
+
 ## Test Scope
 
 ![Compatibility vs Interaction](interaction-tests-compatibility-vs-interaction.svg)
@@ -169,3 +179,8 @@ n6 -[bold]-> n8
 n8 -[bold]-> n0
 @enduml
 ```
+
+## Related
+
+- [jEAP Test Support for Kafka](kafka-test-support.md) — the base class, test listener and mocking support an interaction test typically builds on.
+- [Unit / Integration Testing with Kafka](unit-integration-testing-with-kafka.md) — example code that implements this request/command/event interaction shape end-to-end.

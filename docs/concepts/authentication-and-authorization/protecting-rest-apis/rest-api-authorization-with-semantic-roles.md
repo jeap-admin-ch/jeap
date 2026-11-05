@@ -5,12 +5,10 @@ an application authorizes user access against [semantic roles](../role-concept.m
 
 ## Integration
 
-Authorization with semantic roles is activated as described in
-[Authentication and authorization for REST APIs – Integration](rest-api-authentication-and-authorization.md#integration).
-However, note the following:
-
-> **Note:** The configuration property `jeap.security.oauth2.resourceserver.system-name` must be set for
-> authorization with semantic roles.
+For the integration steps, see
+[How to: authorize REST API access with roles](../../../how-tos/security/authorize-rest-apis-with-roles.md#steps-authorize-with-semantic-roles).
+In short, the configuration property `jeap.security.oauth2.resourceserver.system-name` must be set for
+authorization with semantic roles.
 
 ## Authorization checks
 
@@ -62,51 +60,11 @@ system:
 | `hasRoleForAllPartners('declaration', 'read')` | ❌ | ✅ | ❌ |
 | `hasRoleForAllPartners('billing', 'read')` | ❌ | ❌ | ❌ |
 
-### Declarative authorization
+### Checking roles declaratively or programmatically
 
-The authorization check methods described above are available in the
-[SpEL](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#expressions) expressions of
-the `@PreAuthorize` and `@PostAuthorize` annotations of Spring Security (MVC and WebFlux):
-
-```java
-@PreAuthorize("hasRole('resource', 'operation')")
-public Data getData(...) {
-...
-
-@PreAuthorize("hasRoleForPartner('resource', 'operation', #partnerId)")
-public Partner getPartner(String partnerId) {
-...
-```
-
-> **Note:** Unfortunately, IntelliJ cannot recognize these additional methods. Auto-completion etc. is therefore not
-> available inside the SpEL string (see the
-> [bug report in IntelliJ](https://youtrack.jetbrains.com/issue/IDEA-167762#focus=streamItem-27-3283942-0-0)).
-
-### Programmatic authorization
-
-Not all permissions can be checked purely declaratively. Sometimes, for example, data has to be loaded first in
-order to check, based on the loaded data, whether a user may access it. The `jeap-spring-boot-security-starter`
-therefore also offers all the authorization check methods described above directly in program code through
-a Spring bean of type `ServletSemanticAuthorization` that implements them.
-
-Example of programmatic authorization:
-
-```java
-import ch.admin.bit.jeap.security.resource.semanticAuthentication.ServletSemanticAuthorization;
-...
-
-private ServletSemanticAuthorization jeapAuthorization;
-...
-
-public Partner findPartner(...) {
-	Partner partner = ...
-	//Throw an exception if the user is not allowed to access the partner
-	if (!jeapAuthorization.hasRoleForPartner("resource", "operation", partner.getPartnerId())) {
-		throw new AccessDeniedException("Missing role for partner with id '" + partner.getPartnerId());
-	}
-	return partner;
-}
-```
+**See [How to: authorize REST API access with roles](../../../how-tos/security/authorize-rest-apis-with-roles.md#steps-authorize-with-semantic-roles)**
+for how to check the query methods above declaratively with `@PreAuthorize`/`@PostAuthorize`, or
+programmatically through the `ServletSemanticAuthorization` Spring bean.
 
 ### Role queries
 
@@ -167,3 +125,4 @@ contains a resource that gives examples of both declarative and programmatic aut
 - [Role concept in the Blueprint Microservice](../role-concept.md) — understand simple roles, semantic roles and authorities.
 - [Authorization with simple roles](rest-api-authorization-with-simple-roles.md) — authorize against roles compared one-to-one as strings.
 - [Authorization with authorities](rest-api-authorization-with-authorities.md) — derive fine-grained authorities from roles.
+- [How to: authorize REST API access with roles](../../../how-tos/security/authorize-rest-apis-with-roles.md) — the integration and authorization-check steps.
