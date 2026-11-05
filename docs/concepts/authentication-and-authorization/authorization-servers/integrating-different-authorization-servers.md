@@ -39,88 +39,12 @@ A claim set converter for the tokens of an authorization server or B2B gateway i
 
 ### Implementing your own claim set converter
 
-A claim set converter is a normal Spring converter that maps a claim set to another claim set:
+A claim set converter is a normal Spring converter that maps a claim set to another claim set. The
+implementation must be exposed as a Spring bean and is then activated with the configuration properties
+described above by naming the converter bean.
 
-```java
-@Component("eiamClaimSetConverter")
-public class EiamClaimSetConverter implements Converter<Map<String, Object>, Map<String, Object>> {
-
-    @Override
-    public Map<String, Object> convert(Map<String, Object> source) {
-        // implementation of the converter
-    }
-
-}
-```
-
-A claim set converter implementation must be exposed as a Spring bean. The implementation can then be activated with
-the configuration properties described above by naming the converter bean (`eiamClaimSetConverter` in the example
-above).
-
-The following code shows an example claim set converter implementation
-([EiamClaimSetConverter.java](https://github.com/jeap-admin-ch/jeap-spring-boot-starters/blob/main/jeap-spring-boot-security-starter/src/main/java/ch/admin/bit/jeap/security/resource/claimsetconverter/EiamClaimSetConverter.java)
-in the repository [jeap-spring-boot-starters](https://github.com/jeap-admin-ch/jeap-spring-boot-starters)). The implementation adapts the claims of an access token issued by
-an authorization server (called eIAM) to jEAP Security by
-- renaming the `role` claim to `userroles`
-- renaming the `userExtId` claim to `ext_id`
-- mapping the `language` claim to the `locale` claim
-- setting the `ctx` claim to `USER` (assuming the authorization server eIAM only manages users (no systems))
-
-```java
-package ch.admin.bit.jeap.security.resource.claimsetconverter;
-
-import org.springframework.lang.NonNull;
-
-import java.util.HashMap;
-import java.util.Map;
-
-public class EiamClaimSetConverter extends AbstractClaimSetConverter {
-
-    @Override
-    public Map<String, Object> doConvert(@NonNull Map<String, Object> claims) {
-        Map<String, Object> mappedClaims = new HashMap<>(claims);
-        renameClaim("role", "userroles", mappedClaims);
-        renameClaim("userExtId", "ext_id", mappedClaims);
-        mapClaim("language", "locale", mappedClaims,
-                language -> language.toString().toUpperCase());
-        mappedClaims.put("ctx", "USER");
-        return mappedClaims;
-    }
-
-}
-```
-
-The following configuration shows an example of activating this claim set converter
-([application-local.yml](https://github.com/jme-admin-ch/jme-security-oauth2-example/blob/main/jme-security-oauth2-resource-authorities-service/src/main/resources/application-local.yml)
-in the repository [jme-security-oauth2-example](https://github.com/jme-admin-ch/jme-security-oauth2-example)):
-
-```yaml
-jeap:
-  security:
-    oauth2:
-      resourceserver:
-        authorization-server:
-          issuer: "http://localhost:8081/jme-security-oauth2-auth-scs"
-          jwk-set-uri: "${jeap.security.oauth2.resourceserver.authorization-server.issuer}/.well-known/jwks.json"
-          claim-set-converter-name: eiamClaimSetConverter
-```
-
-When using the `auth-servers` configuration option, configure a claim set converter name separately on each list entry.
-Each entry can reference a different converter bean, or several entries can reference the same bean:
-
-```yaml
-jeap:
-  security:
-    oauth2:
-      resourceserver:
-        auth-servers:
-          - issuer: https://issuer-one.example.ch
-            jwk-set-uri: https://issuer-one.example.ch/jwks
-            claim-set-converter-name: firstClaimSetConverter
-          - issuer: https://issuer-two.example.ch
-            jwk-set-uri: https://issuer-two.example.ch/jwks
-            claim-set-converter-name: secondClaimSetConverter
-```
+**See [How to: implement a custom claim set converter](../../../how-tos/security/implement-custom-claim-set-converter.md)**
+for the implementation steps, a worked example (`EiamClaimSetConverter`), and how to activate it.
 
 ## Related
 
@@ -130,3 +54,4 @@ jeap:
 - [Authentication and authorization for REST APIs](../protecting-rest-apis/rest-api-authentication-and-authorization.md) — configuring authorization servers and B2B gateways in the jEAP Security Starter.
 - [Keycloak](keycloak.md) — the authorization server whose tokens jEAP Security processes without a converter.
 - [OpenID Connect / OAuth2 mock server](../testing/oauth2-mock-server.md) — issuing tokens in local development.
+- [How to: implement a custom claim set converter](../../../how-tos/security/implement-custom-claim-set-converter.md) — implement and activate a claim set converter.

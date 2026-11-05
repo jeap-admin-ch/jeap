@@ -8,9 +8,31 @@ Authentication, tokens, roles, TLS, encryption, signing, and testing security.
 - [Create a Keycloak introspection client for a resource](configure-keycloak-introspection-client.md) — the dedicated-client pattern Keycloak 26.6.2+ requires for its introspection audience check.
 - [Migrate existing resource access to audience validation](migrate-to-audience-restriction.md) — the full rollout for an existing system: introspection compatibility, strict enforcement, or both.
 
+## Authorization servers
+
+- [Implement a custom claim set converter](implement-custom-claim-set-converter.md) — adapt an authorization server's or B2B gateway's access-token claims into the format jEAP Security expects.
+
+## Protecting and calling REST APIs
+
+- [Customize REST API authentication entry points, access-denied handling and method security](customize-rest-api-authentication-entry-points.md) — override the `AuthenticationEntryPoint`, `AccessDeniedHandler` or `MethodSecurityExpressionHandler` of `jeap-spring-boot-security-starter`.
+- [Authorize REST API access with roles](authorize-rest-apis-with-roles.md) — check simple or semantic roles declaratively with `@PreAuthorize`/`@PostAuthorize`, or programmatically.
+- [Authorize REST API access with authorities](authorize-rest-apis-with-authorities.md) — derive and check fine-grained, application-local authorities from a user's roles.
+- [Call a secured REST API from Java](call-a-secured-rest-api-from-java.md) — add the client starter, configure an OAuth2 client, and create a `RestClient` for the system context or token propagation.
+
+## Testing secured REST APIs
+
+- [Test a REST controller with MockMvc](test-a-rest-controller-with-mockmvc.md) — set the authentication explicitly on the request without starting a full application server.
+- [Test a component with a given authentication](test-a-component-with-a-given-authentication.md) — verify authorization in isolation with `@WithAuthentication`, without going through the HTTP request processing chain.
+- [Test programmatic authorization checks in a unit test](test-programmatic-authorization-checks-in-a-unit-test.md) — mock a `JeapAuthenticationToken` outside a Spring application context.
+- [Disable security in a Spring Boot test](disable-security-in-a-spring-boot-test.md) — lift the security starter's auto-activated web security for a test that only verifies functionality.
+- [Test a REST endpoint with full OAuth2 security](test-a-rest-endpoint-with-full-oauth2-security.md) — pass a real access token through the whole resource security chain.
+
 ## Tokens
 
 - [Enable and debug jEAP token introspection](enable-and-debug-token-introspection.md) — pick an introspection mode, configure Keycloak and the resource server, and debug a user's authorizations when they're fetched by introspection.
+- [Use dynamic OAuth2 scopes](use-dynamic-oauth2-scopes.md) — restrict the business partner roles in a token to one partner, all partners, or none, via Keycloak's `bproles` scope.
+- [Use lightweight access tokens](use-lightweight-access-tokens.md) — control which claims a Keycloak lightweight access token carries, and how a client requests one.
+- [Prune roles from access tokens](prune-roles-from-access-tokens.md) — cap token size with the Jeap Roles Pruning Token Mapper when a user has too many roles to fit.
 
 ## Encryption & signing
 

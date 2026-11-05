@@ -52,75 +52,10 @@ The following is a complete example of a JSON response:
 }
 ```
 
-## Configuration
+## Enabling and Customizing the Endpoint
 
-By default, this endpoint is not active. To activate this endpoint, the following property must be configured:
-
-```yaml
-jeap:
-  security:
-    oauth2:
-      current-user-endpoint:
-        enabled: true
-```
-
-By default, this endpoint is accessible via the designated path **/api/current-user**.
-
-It is possible to configure another path with the following property:
-
-```yaml
-jeap:
-  security:
-    oauth2:
-      current-user-endpoint:
-        path: /api/custom-path
-```
-
-## Customization
-
-The response content can be customized by adding or removing attributes. This requires defining a new DTO and a Customizer to create it.
-
-The custom DTO must extend the `JeapCurrentUserDto` class, introducing new attributes while calling the superclass constructor. Existing attributes can be removed by setting them to `null`, except for the required `subject` attribute, which cannot be null.
-
-In this example, a new attribute `myCustomAttribute` is added, while `adminDirUid` and `pamsLoginLevel` are set to `null`, excluding them from the response.
-
-```java
-@Data
-public class JmeCurrentUserDto extends JeapCurrentUserDto {
-
-    String myCustomAttribut;
-
-    public JmeCurrentUserDto(JeapCurrentUser jeapCurrentUser, String myCustomAttribut) {
-        super(jeapCurrentUser);
-        this.myCustomAttribut= myCustomAttribut;
-		setAdminDirUid(null);
-        setPamsLoginLevel(null);
-    }
-}
-```
-
-This DTO can be constructed in the Customizer class. This class must implement the `JeapCurrentUserCustomizer` interface and be instantiated as a Spring bean.
-
-```java
-public interface JeapCurrentUserCustomizer<T extends JeapCurrentUser> {
-
-    T customize(JeapCurrentUser jeapCurrentUser);
-
-}
-```
-
-Example of an implementation:
-
-```java
-@org.springframework.stereotype.Component
-public class JmeCurrentUserCustomizer implements JeapCurrentUserCustomizer<JmeCurrentUserDto> {
-
-    @Override
-    public JmeCurrentUserDto customize(JeapCurrentUser jeapCurrentUser) {
-        return new JmeCurrentUserDto(jeapCurrentUser, "fooBar");
-    }
-}
-```
+**See [How to: enable and customize the current-user endpoint](../../how-tos/rest-apis-and-web/enable-and-customize-current-user-endpoint.md)**
+for the steps to activate the endpoint, configure a custom path, and customize the response attributes.
 
 ## Examples
 

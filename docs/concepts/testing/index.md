@@ -20,3 +20,4 @@
 - [Consumer-Driven Contract Tests](consumer-driven-contract-tests/index.md)
 - [Interaction Tests](interaction-tests.md)
 - [Unit / Integration Testing with Kafka](unit-integration-testing-with-kafka.md)
+- [jEAP Test Support for Kafka](kafka-test-support.md)

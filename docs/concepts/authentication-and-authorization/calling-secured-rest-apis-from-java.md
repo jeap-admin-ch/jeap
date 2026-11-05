@@ -50,12 +50,8 @@ A protected resource is accessed with the Spring **RestClient**. The Spring **Re
 
 The Spring RestClient provides a convenient builder for creating its instances. With the **JeapOAuth2RestClientBuilderFactory**, the jEAP Security Starter provides a factory that creates specially pre-configured client builder instances. The builder can then be configured further as needed, e.g. by setting a base URL, before the desired client instance is created.
 
-Example: creating a RestClient builder
-
-```java
-RestClient.Builder oAuth2RestClientBuilder = jeapOAuth2RestClientBuilderFactory.createForClientId("default");
-RestClient oAuth2RestClient = oAuth2RestClientBuilder.baseUrl(url).build();
-```
+**See [How to: call a secured REST API from Java](../../how-tos/security/call-a-secured-rest-api-from-java.md)**
+for a worked example of creating and using a client instance, in both the system context and for token propagation.
 
 Currently, three factory methods for RestClient builder instances are available:
 
@@ -67,29 +63,9 @@ Currently, three factory methods for RestClient builder instances are available:
 
 ## Examples
 
-### System context
-
-An example project for authentication in the system context is available at [jme-security-client-service](https://github.com/jme-admin-ch/jme-security-example/tree/main/jme-security-client-service). The project
-implements an unprotected REST API that simply delegates incoming requests to the protected REST API of the corresponding
-resource examples (see [Authentication and authorization for REST APIs](protecting-rest-apis/rest-api-authentication-and-authorization.md#examples)). The example contains the following components:
-
-- **PartnerController:** Calls the OAuth2-protected REST endpoint of the resource example. It uses a RestClient instance created with the JeapOAuth2RestClientBuilderFactory. In a local deployment, it is reachable at [http://localhost:8090/jme-security-client-service/api/partners](http://localhost:8090/jme-security-client-service/api/partners).
-- **InfoController:** Calls the REST endpoint of the resource example that is protected with basic authentication. It uses a RestClient instance created with the standard RestClient builder. In a local deployment, it is reachable at [http://localhost:8090/jme-security-client-service/api/info](http://localhost:8090/jme-security-client-service/api/info).
-- **OtherSystemController:** Calls the OAuth2-protected REST endpoint using a second authorization server at [http://localhost:8280](http://localhost:8280). This simulates calling a service of another business application. It uses a RestClient instance created with the JeapOAuth2RestClientBuilderFactory *with a different client ID* ("jeap-microservice-examples-oauth-client-other-system"). In a local deployment, it is reachable at [http://localhost:8090/jme-security-client-service/api/othersystem](http://localhost:8090/jme-security-client-service/api/othersystem).
-
-The example requires an authorization server with a matching configuration. Locally and in the DEV environment, an instance of the [OAuth2 mock server](testing/oauth2-mock-server.md) is used for this; other environments usually provide a [Keycloak](authorization-servers/keycloak.md) server. In general, the authorization server must be configured to issue tokens for the system context that contain the roles required to access the OAuth2-protected REST endpoints of the resource example projects (see [Authentication and authorization for REST APIs](protecting-rest-apis/rest-api-authentication-and-authorization.md#examples)).
-
-### Token propagation
-
-Token propagation describes the case where a microservice uses the access token it was called with to call another microservice. The second microservice is then accessed with the permissions of the access token received by the first microservice. Depending on the origin, this token may have been issued for different contexts. The figure below shows how access tokens from the system, user and B2B contexts can be used to call a microservice, and how this microservice can then use these tokens to access another microservice. The token propagation is marked with a red rectangle in the figure.
-
-![Big picture of token propagation: access tokens from the system, user and B2B contexts are passed on by a microservice to another microservice](images/calling-secured-rest-apis-token-propagation-big-picture.svg)
-
-An example demonstrating authentication with token propagation is available: The example microservice [jme-security-clientresource-service](https://github.com/jme-admin-ch/jme-security-example/tree/main/jme-security-clientresource-service) acts both as an OAuth2 resource and as an OAuth2 client at the same time. As an OAuth2 resource, the example microservice supports the same API as the resource example from [Authentication and authorization for REST APIs](protecting-rest-apis/rest-api-authentication-and-authorization.md#examples). As an OAuth2 client, it can access this resource example. The example microservice runs locally on port 8082.
-
-The idea is that the token propagation example projects can be placed transparently between a client for the system context (see above) and a resource from [Authentication and authorization for REST APIs](protecting-rest-apis/rest-api-authentication-and-authorization.md#examples). To this end, the token propagation example microservice forwards all requests of the client example microservice directly to the resource example microservice. In doing so, the token propagation example microservice uses differently configured client instances for different endpoints and thus demonstrates use cases for each of the three factory methods of the JeapOAuth2RestClientBuilderFactory, in particular also for token propagation.
-
-To establish the call chain client example microservice → token propagation example microservice → resource example microservice, add the request parameter `target=clientresource` to the call of the client example microservice. Locally, for example, call [http://localhost:8090/jme-security-client-service/api/partners?target=clientresource](http://localhost:8090/jme-security-client-service/api/partners?target=clientresource) instead of [http://localhost:8090/jme-security-client-service/api/partners](http://localhost:8090/jme-security-client-service/api/partners). The client example microservice will then call the token propagation example microservice instead of the resource example microservice.
+**See [How to: call a secured REST API from Java](../../how-tos/security/call-a-secured-rest-api-from-java.md)**
+for worked examples of calling a secured REST API from Java, both with the microservice's own access token
+(system context) and with a token propagated from an incoming request.
 
 ## Further documentation
 
@@ -105,3 +81,4 @@ To establish the call chain client example microservice → token propagation ex
 - [Cross-platform authentication](authorization-servers/cross-platform-authentication.md) — token propagation across platforms.
 - [OpenID Connect / OAuth2 mock server](testing/oauth2-mock-server.md) — local authorization server for development.
 - [Keycloak](authorization-servers/keycloak.md) — the authorization server used in the target environments.
+- [How to: call a secured REST API from Java](../../how-tos/security/call-a-secured-rest-api-from-java.md) — create and use a client instance, for the system context and for token propagation.

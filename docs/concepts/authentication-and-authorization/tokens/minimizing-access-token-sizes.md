@@ -17,99 +17,9 @@ Mapper" which restricts the business partner roles included in an access token t
 The requested business partner has to be specified in an authentication request as the variable part of the dynamic
 Keycloak scope `bproles`.
 
-To request an access token that only contains the user's business partner roles for the partner with the id
-`123-abcd-987-ef`, the authentication request would have to specify (at least) the following authentication scope:
-
-```text
-openid bproles:123-abcd-987-ef
-```
-
-Additional scope parameters like `profile`, `address`, etc. can be provided as well in the usual way, i.e. by adding
-them to the space separated list.
-
-### Access token for all business partners
-
-The "*" can be used as variable part of the dynamic `bproles` scope to request a token that includes the roles of all
-the business partners a user has been authorized for:
-
-```text
-openid bproles:*
-```
-
-This could allow an application to first identify the partners for which a user is authorized and let the
-user choose the partner to work for. After the user has selected a partner, the application could request
-a token specific to this partner to actually carry out the work.
-
-Be aware that specifying "*" instead of a specific business partner id might result in a large access token.
-
-### Access token without business partner roles
-
-If the dynamic `bproles` scope is not specified in the authentication request, the "Scoped Businesspartner
-Access Token Mapper" will not include any business partner roles in the token:
-
-```text
-openid
-```
-
-### Configuration
-
-#### Enable dynamic scopes
-
-To be able to use the dynamic scope `bproles`, the (currently experimental) Keycloak feature "dynamic scopes" has to
-be enabled for the Keycloak instance running the jEAP Keycloak plugin, e.g. by starting Keycloak with the following
-option:
-
-```text
---features=dynamic-scopes
-```
-
-#### Configure the dynamic scope `bproles`
-
-Keycloak only accepts authentication requests with known scopes. Therefore, the scope `bproles` must be configured as
-a dynamic scope in the Keycloak realms which should support the use of the "Scoped Businesspartner Access Token
-Mapper".
-
-In the realm menu on the left side select "Client scopes" and then press the button "Create client scope" to add the
-scope "bproles" as an optional dynamic scope to the realm:
-
-![Keycloak client scope "bproles" with "Dynamic scope" switched on, type "Optional" and "Include in token scope" switched on](images/keycloak-bproles-dynamic-scope-settings.png)
-
-Make sure "Include in token scope" is set to "on". In the tab "Mappers" of the newly created `bproles` scope, press
-the button "Add mapper" and select "By configuration" and then select the "Scoped Businesspartner Access Token
-Mapper" from the list. Name your mapper instance and activate it at least for "Add to access token".
-
-![Mapper details of the "Scoped Businesspartner Access Token Mapper" with "Add to access token" switched on](images/keycloak-scoped-businesspartner-access-token-mapper.png)
-
-#### Configure the client
-
-In the realm menu on the left side select "Clients" and then the tab "Client list". From the client list, select the
-client to be configured for using the dynamic `bproles` scope and select the tab "Client scopes". Make sure the
-`bproles` scope is listed under "Assigned client scopes" with "Assigned type" "Optional". If the `bproles` scope is
-missing, add it by clicking the "Add client scope" button.
-
-![Client scopes tab of a Keycloak client with the "bproles" scope assigned as type "Optional"](images/keycloak-client-scopes-bproles-optional.png)
-
-#### Interaction with other scopes and mappers
-
-If your Keycloak configuration contains other token mappers that also add business partner roles to a token,
-they will be executed in addition to the "Scoped Businesspartner Access Token Mapper". If you only want business partner
-roles from the "Scoped Businesspartner Access Token Mapper" in your tokens, make sure no other mapper contributing
-business partner roles is active.
-
-### Example
-
-The [jEAP security example project](https://github.com/jme-admin-ch/jme-security-example)
-gives examples for
-
-- configuring the [jEAP OAuth2 mock server](../testing/oauth2-mock-server.md#dynamic-scope-bproles) to support the dynamic scope
-  `bproles`
-- configuring Java clients to request an access token restricted to a certain business partner by specifying the
-  corresponding `bproles` scope
-- configuring a UI client to request an access token restricted to a certain business partner by specifying the
-  corresponding `bproles` scope
-
-For details, see the section "Restricting business partner roles in tokens using the dynamic scope 'bproles:*'" in
-the project's [readme](https://github.com/jme-admin-ch/jme-security-example/blob/main/README.md).
+**See [How to: restrict business partner roles in a token with the dynamic scope `bproles`](../../../how-tos/security/use-dynamic-oauth2-scopes.md)**
+for requesting a token scoped to one partner, to all partners, or without partner roles, and for the required
+Keycloak configuration.
 
 ## Opaque/lightweight access tokens
 
@@ -129,19 +39,6 @@ token*" switch. Keycloak version 24 officially introduced **lightweight access t
 mapper switch "**Add to lightweight access token**" explicitly determines whether a mapper adds information to a
 lightweight access token or not. By default, this switch is off for most standard mappers.
 
-There are two ways to configure Keycloak to issue only lightweight access tokens for a client:
-
-- In a specific client's configuration, navigate to the "Advanced" tab in the "Advanced Settings" section and set the
-  option "**Always use lightweight access token**" to "on".
-- Apply a **client profile** containing the **executor** "**use-lightweight-access-token**" to a client via a
-  **client policy** configured in the "Realm settings" in the "Client policies" tab.
-
-With lightweight access tokens, token mappers can be activated on a client for the introspection endpoint but not for
-access tokens. If the token mappers adding a user's authorizations (roles) are not activated on lightweight
-access tokens for a client, the access tokens issued to that client will contain only limited user information;
-in particular, they won't contain the user's authorizations. For users with many roles this
-significantly reduces the token size, which is what makes the tokens lightweight.
-
 If a client uses such a lightweight access token to authorize a request to a resource, the resource cannot directly
 derive the user's authorizations from the token. Instead, the resource must first query the Keycloak token
 introspection endpoint, providing the token as a parameter to retrieve the user's authorizations. These additional
@@ -150,41 +47,8 @@ Other potential costs include increased latency for resource responses due to in
 Security library can [cache introspection results](token-introspection.md#caching-of-introspection-results) in the
 resource to reduce these costs.
 
-### Configuration
-
-#### Enable required mappers on lightweight tokens
-
-By default, most token mappers do not contribute to lightweight access tokens. Consequently, lightweight access tokens
-contain only minimal information by default, which is the intended purpose.
-
-If you require specific information to be included in lightweight access tokens (e.g. subject, given name, family name,
-locale, certain IDs, etc.), you must enable the "Add to lightweight access token" switch on the mappers that provide this information.
-Mappers that contribute user information are typically located in the default scope `profile`.
-
-The jEAP security library for backend services validates whether an issuer is authorized to authenticate clients in a
-specific context. Therefore, the `ctx` claim must be included in a token if the token is going to be processed by the
-jEAP security library.
-
-#### Configure a client profile for lightweight tokens
-
-A flexible approach to leveraging Keycloak's lightweight token feature is to allow clients to decide whether they need
-a lightweight access token or not. This can be implemented with the following steps:
-
-- Create a new *optional* scope `lightweight-access-token`.
-  - Set the option "Include in token scope" to `on`.
-- Create a new client profile `lightweight-access-token-profile`.
-  - Add the executor `use-lightweight-access-token` to the profile.
-- Create a new client policy `lightweight-access-token-policy`.
-  - Add a condition of type `client-scopes` to the policy.
-    - Configure the `expected scopes` option with the `lightweight-access-token` scope as an *optional* scope.
-  - Add the profile `lightweight-access-token-profile` to the policy.
-- Add the scope `lightweight-access-token` as *optional* scope to the client that should be able to fetch a
-  lightweight access token.
-- When making an authentication request to Keycloak with the client, include the scope `lightweight-access-token` in
-  the request's `scope` parameter.
-
-By including or excluding the `lightweight-access-token` scope in an authentication request, the client can choose
-whether to request a lightweight access token or not.
+**See [How to: use lightweight access tokens with Keycloak](../../../how-tos/security/use-lightweight-access-tokens.md)**
+for enabling mappers on lightweight tokens and configuring a client to issue them.
 
 ## Jeap Roles Pruning Token Mapper
 
@@ -202,21 +66,8 @@ request to a resource, the resource cannot directly derive the user's authorizat
 resource must first query the Keycloak token introspection endpoint, providing the access token as a parameter to
 retrieve the user's authorizations. These additional queries increase the latency of the resource's responses.
 
-### Configuration
-
-The Jeap Roles Pruning Token Mapper has one configuration option: the maximum allowed accumulated number of characters
-in the `userroles` and `bproles` claims. The default configuration is 8000.
-
-Note that this number does not directly translate to the maximum size the claims add to a JWT.
-A JWT first uses UTF-8 encoding for characters and then applies a Base64 encoding. UTF-8 encoding will use more than
-one byte for non-ASCII characters, and Base64 encoding will add one third of the initial size to the encoded size.
-
-Therefore, the default limit of 8000 characters translates to 10666 bytes in the access token if the roles only use
-ASCII characters. If the roles also contain some non-ASCII characters, additional space will be used by these
-characters. Without the roles, a standard access token is usually smaller than 2KB. Therefore, the
-default limit of 8000 characters for roles should result in tokens that are still noticeably smaller than 16KB even if
-some non-ASCII characters are used in roles. 16KB is the limit AWS puts on the size of an HTTP header field and
-therefore on access tokens that are transferred as bearer tokens.
+**See [How to: prune roles from access tokens with the Jeap Roles Pruning Token Mapper](../../../how-tos/security/prune-roles-from-access-tokens.md)**
+for adding the mapper to a client and sizing its character limit.
 
 ## Access token compression
 
@@ -237,3 +88,6 @@ compression, switching from HTTP/1.1 to HTTP/2 could address issues caused by ex
 - [Token introspection](token-introspection.md) — resolving pruned or lightweight tokens at the authorization server.
 - [Keycloak](../authorization-servers/keycloak.md) — about the Keycloak authorization server.
 - [OpenID Connect / OAuth2 mock server](../testing/oauth2-mock-server.md) — dynamic scope support in the mock server.
+- [How to: use dynamic OAuth2 scopes](../../../how-tos/security/use-dynamic-oauth2-scopes.md) — restrict business partner roles in a token to one partner, all partners, or none.
+- [How to: use lightweight access tokens](../../../how-tos/security/use-lightweight-access-tokens.md) — issue Keycloak lightweight access tokens.
+- [How to: prune roles from access tokens](../../../how-tos/security/prune-roles-from-access-tokens.md) — cap token size with the Jeap Roles Pruning Token Mapper.

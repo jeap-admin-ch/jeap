@@ -4,6 +4,7 @@ Tracking and understanding what runs where: the architecture repository, deploym
 tracking, governance, and logging.
 
 - [Construct a working log deep link](../../concepts/logging/log-deep-links.md) — build a Splunk/CloudWatch link that jumps straight to the relevant log entries.
+- [Enable distributed tracing](enable-distributed-tracing.md) — add the jEAP monitoring starter and configure trace export and sampling probability.
 - [Expose monitoring endpoints](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-starters/jeap-spring-boot-monitoring-starter) — add the monitoring starter, set the Prometheus/actuator password, generate build info.
 - [Register a service with Spring Boot Admin](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-starters/jeap-spring-boot-monitoring-starter) — client configuration and exposing the Actuator endpoints it needs.
 - [Embed an Architecture Repository instance](https://jeap-admin-ch.github.io/docs/building-blocks/reusable-microservices/jeap-archrepo-service/getting-started) in a system, and verify it with a first import.
