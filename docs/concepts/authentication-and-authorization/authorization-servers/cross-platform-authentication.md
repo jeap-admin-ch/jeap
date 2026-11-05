@@ -102,9 +102,9 @@ encapsulated by R1|C2. Therefore, the UI client C1 does not have to trust the au
 
 ## Token propagation
 
-With [token propagation](../calling-secured-rest-apis-from-java.md#token-propagation),
+With [token propagation](../../../how-tos/security/call-a-secured-rest-api-from-java.md#example-token-propagation),
 a microservice of a system does not fetch its own token from an authorization server to access a resource but
-instead uses a token that was [passed along in a request](../calling-secured-rest-apis-from-java.md#token-propagation)
+instead uses a token that was [passed along in a request](../../../how-tos/security/call-a-secured-rest-api-from-java.md#example-token-propagation)
 to the microservice. When a system uses more than one authorization server and the system's microservices make use of
 token propagation, determining the authorization server(s) a resource should trust might not be straightforward as
 the client accessing the resource is not the one that obtained the access token from an authorization server in the
