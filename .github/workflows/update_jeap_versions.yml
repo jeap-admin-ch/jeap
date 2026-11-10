@@ -22,8 +22,9 @@ concurrency:
   group: update-jeap-versions
   cancel-in-progress: true
 
+# Writes go through tokens of the jeap-workflows GitHub App (see the steps below), so GITHUB_TOKEN only reads.
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   update-versions:
@@ -49,6 +50,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
 
       - name: Validate configuration
         shell: bash
@@ -96,10 +99,23 @@ jobs:
             echo "Version changes detected."
           fi
 
+      # Changes to main need a pull request. The jeap-workflows App may bypass that rule, which GITHUB_TOKEN cannot,
+      # so the overview is pushed with an App token, limited to this repository and to its contents.
+      - name: Create GitHub App token for this repository
+        id: repo-token
+        if: steps.compare.outputs.versions_changed == 'true'
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        with:
+          app-id: ${{ secrets.BOT_APP_ID }}
+          private-key: ${{ secrets.BOT_APP_PRIVATE_KEY }}
+          permission-contents: write
+
       - name: Publish markdown
         id: publish
         if: steps.compare.outputs.versions_changed == 'true'
         shell: bash
+        env:
+          TOKEN: ${{ steps.repo-token.outputs.token }}
         run: |
           set -euo pipefail
           
@@ -123,7 +139,8 @@ jobs:
           git commit \
             --message "chore: Update jEAP versions overview"
           
-          git push origin "HEAD:${target_branch}"
+          # The checkout does not keep credentials, so only the push gets the token.
+          git push "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:refs/heads/${target_branch}"
           echo "markdown_published=true" >> "$GITHUB_OUTPUT"
           
           echo "Markdown published successfully."
