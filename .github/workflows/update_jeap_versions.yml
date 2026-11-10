@@ -12,6 +12,11 @@ on:
         required: false
         default: docs/jeap-version-overview.md
         type: string
+      force_website_deployment:
+        description: Trigger the website deployment even if the version overview did not change
+        required: false
+        default: false
+        type: boolean
 
 concurrency:
   group: update-jeap-versions
@@ -123,19 +128,28 @@ jobs:
           
           echo "Markdown published successfully."
 
+      # GITHUB_TOKEN cannot start a workflow in another repository, so the jeap-workflows GitHub App creates a token
+      # for this. It is limited to the website repository and to dispatching workflows, and it is revoked when the job
+      # ends.
+      - name: Create GitHub App token for the website repository
+        id: website-token
+        if: steps.publish.outputs.markdown_published == 'true' || inputs.force_website_deployment
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        with:
+          app-id: ${{ secrets.BOT_APP_ID }}
+          private-key: ${{ secrets.BOT_APP_PRIVATE_KEY }}
+          owner: jeap-admin-ch
+          repositories: jeap-admin-ch.github.io
+          permission-actions: write
+
       - name: Trigger website deployment
-        if: steps.publish.outputs.markdown_published == 'true'
+        if: steps.website-token.outcome == 'success'
         shell: bash
         env:
-          GH_TOKEN: ${{ secrets.JEAP_TRIGGER_WEBSITE_DEPLOYMENT }}
+          GH_TOKEN: ${{ steps.website-token.outputs.token }}
         run: |
           set -euo pipefail
-          
-          if [[ -z "${GH_TOKEN}" ]]; then
-            echo "::error::Missing secret JEAP_TRIGGER_WEBSITE_DEPLOYMENT"
-            exit 1
-          fi
-          
+
           gh api "repos/jeap-admin-ch/jeap-admin-ch.github.io/actions/workflows/deploy.yml/dispatches" \
             --method POST \
             --field ref=main
@@ -148,3 +162,111 @@ jobs:
           
           rm -rf -- "_tmp_repos"
           rm -f -- "generated-jeap-versions.md"
+
+  # The workflow runs unattended on a schedule, so a failing run is only noticed if someone is told about it. Same
+  # notification as deploy.yml and link-check.yml in jeap-admin-ch.github.io, and like them it needs the secret
+  # MS_TEAMS_WEBHOOK.
+  notify-ms-teams:
+    needs: update-versions
+    if: always() && needs.update-versions.result == 'failure'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    # Only to read which step failed.
+    permissions:
+      actions: read
+
+    steps:
+      - name: Notify Microsoft Teams of the failed run
+        shell: bash
+        env:
+          MS_TEAMS_WEBHOOK: ${{ secrets.MS_TEAMS_WEBHOOK }}
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          RUN_ID: ${{ github.run_id }}
+          RUN_ATTEMPT: ${{ github.run_attempt }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          WORKFLOW: ${{ github.workflow }}
+          BRANCH: ${{ github.ref_name }}
+          EVENT: ${{ github.event_name }}
+          ACTOR: ${{ github.actor }}
+        run: |
+          set -euo pipefail
+
+          if [[ -z "${MS_TEAMS_WEBHOOK}" ]]; then
+            echo "::warning::MS_TEAMS_WEBHOOK is not configured, no Teams notification sent"
+            exit 0
+          fi
+
+          # The failed step tells apart e.g. a rejected push from a failed website trigger.
+          failed_steps="$(gh api "repos/${REPOSITORY}/actions/runs/${RUN_ID}/attempts/${RUN_ATTEMPT}/jobs" \
+            --jq '[.jobs[] | select(.conclusion == "failure") | .steps[] | select(.conclusion == "failure") | .name] | join(", ")' \
+            || true)"
+
+          payload="$(jq -n \
+            --arg workflow "${WORKFLOW}" \
+            --arg repository "${REPOSITORY}" \
+            --arg failedSteps "${failed_steps:-unknown, see the run}" \
+            --arg branch "${BRANCH}" \
+            --arg event "${EVENT}" \
+            --arg actor "${ACTOR}" \
+            --arg runId "${RUN_ID}" \
+            --arg runUrl "${RUN_URL}" \
+            '{
+              type: "message",
+              attachments: [
+                {
+                  contentType: "application/vnd.microsoft.card.adaptive",
+                  content: {
+                    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+                    type: "AdaptiveCard",
+                    version: "1.4",
+                    body: [
+                      {
+                        type: "TextBlock",
+                        text: "GitHub Actions",
+                        weight: "Bolder",
+                        size: "Medium"
+                      },
+                      {
+                        type: "TextBlock",
+                        text: ("🔴 " + $workflow + " • " + $repository),
+                        weight: "Bolder",
+                        size: "Large",
+                        wrap: true
+                      },
+                      {
+                        type: "FactSet",
+                        facts: [
+                          { title: "Status", value: "🔴 Failed" },
+                          { title: "Failed step", value: $failedSteps },
+                          { title: "Branch", value: $branch },
+                          { title: "Trigger", value: $event },
+                          { title: "Triggered by", value: $actor },
+                          { title: "Run", value: ("#" + $runId) }
+                        ]
+                      }
+                    ],
+                    actions: [
+                      {
+                        type: "Action.OpenUrl",
+                        title: "View GitHub Actions run",
+                        url: $runUrl
+                      }
+                    ]
+                  }
+                }
+              ]
+            }')"
+
+          http_code="$(curl --silent --show-error \
+            --output /dev/null \
+            --write-out '%{http_code}' \
+            -H 'Content-Type: application/json' \
+            --data-binary "${payload}" \
+            "${MS_TEAMS_WEBHOOK}")"
+
+          if (( http_code < 200 || http_code >= 300 )); then
+            echo "::error::Teams notification failed (HTTP status ${http_code})"
+            exit 1
+          fi
