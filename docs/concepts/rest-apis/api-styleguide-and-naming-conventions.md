@@ -341,7 +341,7 @@ Error responses should return a structured, documented error object as JSON. It 
 
 Error responses must be signaled with an appropriate HTTP status code (`4xx`, `5xx`) and not only in the response body.
 
-Example format (corresponding to the default format of Spring Boot; see [DefaultErrorAttributes](https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/web/servlet/error/DefaultErrorAttributes.html)):
+Example format (corresponding to the default format of Spring Boot; see [DefaultErrorAttributes](https://docs.spring.io/spring-boot/api/java/org/springframework/boot/webmvc/error/DefaultErrorAttributes.html)):
 
 **Error response**
 
