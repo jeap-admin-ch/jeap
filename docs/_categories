@@ -87,6 +87,7 @@ jeap-renovate-presets                            = tool
 jeap-python-pipeline-lib                         = tool
 jeap-truststore-maven-plugin                     = tool
 jeap-central-publishing-maven-plugin             = tool
+jeap-deployed-files-maven-extension              = tool
 jeap-opensearch-index-type-registry-maven-plugin = tool
 jeap-rewrite-recipes                             = tool
 jeap-license-template                            = tool
