@@ -13,12 +13,13 @@ type registries.
 | [jeap-renovate-presets](https://jeap-admin-ch.github.io/docs/building-blocks/tooling/jeap-renovate-presets/) | Composable [Renovate](https://docs.renovatebot.com/) presets for jEAP-based projects, standardizing grouping, approval, versioning, changelog and automerge behaviour for Maven, Docker, npm and GitHub Actions dependencies. | [GitHub](https://github.com/jeap-admin-ch/jeap-renovate-presets) |
 | [jeap-python-pipeline-lib](https://jeap-admin-ch.github.io/docs/building-blocks/tooling/jeap-python-pipeline-lib/) | Reusable Python modules for CI/CD pipeline operations in a jEAP context (ECS deployment checks, Deployment Log, Pact, message contracts, test orchestration). | [GitHub](https://github.com/jeap-admin-ch/jeap-python-pipeline-lib) |
 
-## Maven plugins
+## Maven plugins and extensions
 
-| Plugin | Purpose | Source |
+| Plugin or extension | Purpose | Source |
 |---|---|---|
 | [jeap-truststore-maven-plugin](https://jeap-admin-ch.github.io/docs/building-blocks/tooling/jeap-truststore-maven-plugin/) | Generates Java trust stores, simplifying certificate management. | [GitHub](https://github.com/jeap-admin-ch/jeap-truststore-maven-plugin) |
 | [jeap-central-publishing-maven-plugin](https://jeap-admin-ch.github.io/docs/building-blocks/tooling/jeap-central-publishing-maven-plugin/) | Fork of Sonatype's `central-publishing-maven-plugin` that patches HTTP client creation to respect HTTP proxy system properties. Used to publish jEAP artifacts to Maven Central from behind a proxy. | [GitHub](https://github.com/jeap-admin-ch/jeap-central-publishing-maven-plugin) |
+| [jeap-deployed-files-maven-extension](https://jeap-admin-ch.github.io/docs/building-blocks/tooling/jeap-deployed-files-maven-extension/) | Maven core extension that records every file a build deploys (artifacts, POMs, signatures, `maven-metadata.xml`) with repository, path, size and SHA-1, and writes the list as JSON. Used by the jEAP pipeline to copy exactly the published files to further repositories. | [GitHub](https://github.com/jeap-admin-ch/jeap-deployed-files-maven-extension) |
 | [jeap-opensearch-index-type-registry-maven-plugin](https://jeap-admin-ch.github.io/docs/building-blocks/tooling/jeap-opensearch-index-type-registry-maven-plugin/) | Manages an OpenSearch Index Type Registry: validates registry structure and mapping schemas, enforces immutability of existing mappings, and generates per-index-type artifacts (typed Java records, `IndexType` singletons, mapping files). | [GitHub](https://github.com/jeap-admin-ch/jeap-opensearch-index-type-registry-maven-plugin) |
 
 ## Auxiliary

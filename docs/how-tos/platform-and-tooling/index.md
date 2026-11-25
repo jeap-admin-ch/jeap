@@ -7,6 +7,7 @@ Parent POMs, Spring Boot starters, the jEAP CLI, and build/release tooling.
 - [Wire up a new jEAP service with the core starters](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-starters/getting-started) (security, monitoring, logging).
 - [Import AppConfig configuration and Secrets Manager secrets](https://jeap-admin-ch.github.io/docs/building-blocks/spring-boot-starters/jeap-spring-boot-config-aws-starter/getting-started) via the AWS config starter.
 - [Generate environment-specific truststores](https://jeap-admin-ch.github.io/docs/building-blocks/tooling/jeap-truststore-maven-plugin/getting-started) from a certificate repository, including offline builds.
+- [Record the files a Maven build deploys and use the list in a delivery pipeline](https://jeap-admin-ch.github.io/docs/building-blocks/tooling/jeap-deployed-files-maven-extension/pipeline-how-to) (jeap-deployed-files-maven-extension), for example to copy a release to a second repository.
 - [Build the jEAP CLI from source](https://jeap-admin-ch.github.io/docs/building-blocks/tooling/jeap-cli/building) — Hotspot JAR or native GraalVM binary.
 - Keep frontend licenses in order ([jeap-frontend-license-checker](https://jeap-admin-ch.github.io/docs/building-blocks/tooling/jeap-frontend-license-checker/getting-started)) — install, wire up scripts, run it, declare exceptions.
   - [Migrate from the legacy license checker](https://jeap-admin-ch.github.io/docs/building-blocks/tooling/jeap-frontend-license-checker/migration).
