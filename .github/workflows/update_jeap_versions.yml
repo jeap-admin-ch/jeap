@@ -76,11 +76,37 @@ jobs:
 
           echo "Target file: $target_file"
 
+      # jEAP POMs come from Git tags, but the Spring Boot BOM is only published on Maven Central, which rate-limits
+      # the shared GitHub runners. A released POM never changes, so downloaded POMs are kept in the Actions cache and
+      # Central is only asked again when a new version shows up. The key never matches exactly, so the newest cache
+      # entry is restored through the prefix.
+      - name: Restore third-party POM cache
+        id: pom-cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .pom-cache
+          key: third-party-poms-${{ github.run_id }}
+          restore-keys: third-party-poms-
+
       - name: Fetch versions and generate markdown
         shell: bash
+        env:
+          POM_CACHE_DIR: .pom-cache
         run: |
           set -euo pipefail
           python3 scripts/generate_jeap_versions.py
+
+      # The key is the hash of the cached files, so the cache is only saved when a POM was added. It is also saved
+      # when a later step fails, so a downloaded POM is not lost.
+      - name: Save third-party POM cache
+        if: >-
+          always()
+          && hashFiles('.pom-cache/**') != ''
+          && steps.pom-cache.outputs.cache-matched-key != format('third-party-poms-{0}', hashFiles('.pom-cache/**'))
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .pom-cache
+          key: third-party-poms-${{ hashFiles('.pom-cache/**') }}
 
       - name: Compare with current markdown
         id: compare

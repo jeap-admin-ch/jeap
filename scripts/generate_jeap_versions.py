@@ -6,6 +6,12 @@ configured product repositories, resolves their Maven versions/properties,
 and writes a Markdown summary to ``generated-jeap-versions.md`` in the
 workspace directory.
 
+Parent POMs of jEAP itself are read from the Git tag of their release, so the
+script does not depend on jEAP being published to Maven Central. Other parent
+POMs (Spring Boot) are downloaded from Maven Central once and kept in
+``POM_CACHE_DIR``, which the workflow persists in the GitHub Actions cache,
+because a released POM never changes and Central rate-limits shared runners.
+
 It is invoked by the "Fetch versions and generate markdown" step of the
 ``update_jeap_versions.yml`` GitHub Actions workflow, which provides the
 required configuration via environment variables (see ``load_config``
@@ -19,9 +25,21 @@ import os
 import re
 import subprocess
 import sys
+import time
+import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
 from pathlib import Path
+
+JEAP_GROUP_ID = "ch.admin.bit.jeap"
+MAVEN_CENTRAL_URL = "https://repo.maven.apache.org/maven2"
+# Maven Central asks tools to identify themselves instead of sending a generic
+# default User-Agent.
+USER_AGENT = "jeap-version-overview/1.0 (+https://github.com/jeap-admin-ch/jeap)"
+# Maven Central advises against repeated retries, so a rate-limited download is
+# retried at most once, and only if the response says when to come back. Longer
+# waits would not fit into the job timeout.
+MAX_RETRY_AFTER_SECONDS = 120
 
 
 def run(*args, cwd=None):
@@ -111,16 +129,132 @@ def parse_pom_versions(repo_name, tmp_repos):
     )
 
 
-def fetch_published_pom(group_id, artifact_id, version):
-    group_path = group_id.replace(".", "/")
+def download_from_central(group_id, artifact_id, version):
     url = (
-        "https://repo.maven.apache.org/maven2/"
-        f"{group_path}/{artifact_id}/{version}/"
+        f"{MAVEN_CENTRAL_URL}/"
+        f"{group_id.replace('.', '/')}/{artifact_id}/{version}/"
         f"{artifact_id}-{version}.pom"
     )
+    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
 
-    with urllib.request.urlopen(url, timeout=30) as response:
-        return response.read().decode("utf-8")
+    for attempt in (1, 2):
+        try:
+            with urllib.request.urlopen(request, timeout=30) as response:
+                return response.read().decode("utf-8")
+        except urllib.error.HTTPError as error:
+            retry_after = (error.headers.get("Retry-After") or "").strip()
+            retryable = error.code == 429 or error.code >= 500
+
+            if (
+                attempt == 2
+                or not retryable
+                or not retry_after.isdigit()
+                or int(retry_after) > MAX_RETRY_AFTER_SECONDS
+            ):
+                raise
+
+            print(
+                f"HTTP {error.code} for {url}, retrying once in {retry_after} s",
+                file=sys.stderr,
+            )
+            time.sleep(int(retry_after))
+
+    raise AssertionError("unreachable")
+
+
+class PomSource:
+    """Provides the POMs of parent artifacts, each fetched at most once per run.
+
+    jEAP POMs come from the release tag of their GitHub repository. Their
+    properties are the same as in the published POM; only <version> differs
+    (the tag still has the -SNAPSHOT version), and the callers take the version
+    from the parent reference instead.
+    """
+
+    def __init__(self, org, tmp_repos, repositories_by_component, cache_dir):
+        self.org = org
+        self.tmp_repos = tmp_repos
+        self.repositories_by_component = repositories_by_component
+        self.cache_dir = cache_dir
+        self._poms = {}
+
+    def fetch(self, group_id, artifact_id, version):
+        key = (group_id, artifact_id, version)
+
+        if key not in self._poms:
+            if group_id == JEAP_GROUP_ID:
+                self._poms[key] = self._from_git_tag(artifact_id, version)
+            else:
+                self._poms[key] = self._from_cache_or_central(
+                    group_id, artifact_id, version
+                )
+
+        return self._poms[key]
+
+    def _from_git_tag(self, artifact_id, version):
+        repo = repository_name_for_component(
+            artifact_id, self.repositories_by_component
+        )
+        destination = self.tmp_repos / f"{repo}@{version}"
+        print(
+            f"POM {JEAP_GROUP_ID}:{artifact_id}:{version}: "
+            f"git tag v{version} of {self.org}/{repo}"
+        )
+
+        run(
+            "git",
+            "-c",
+            "advice.detachedHead=false",
+            "clone",
+            "--quiet",
+            "--depth",
+            "1",
+            "--branch",
+            f"v{version}",
+            f"https://github.com/{self.org}/{repo}.git",
+            str(destination),
+        )
+
+        pom_xml = (destination / "pom.xml").read_text(encoding="utf-8")
+        root_artifact_id = parse_pom_root(ET.fromstring(pom_xml))["artifact_id"]
+
+        if root_artifact_id != artifact_id:
+            raise RuntimeError(
+                f"{JEAP_GROUP_ID}:{artifact_id} is not the root POM of "
+                f"{self.org}/{repo} (found {root_artifact_id!r}); map the "
+                "artifact to its repository in REPOSITORIES_BY_COMPONENT_JSON"
+            )
+
+        return pom_xml
+
+    def _from_cache_or_central(self, group_id, artifact_id, version):
+        coordinates = f"{group_id}:{artifact_id}:{version}"
+        cached = None
+
+        if self.cache_dir is not None:
+            cached = (
+                self.cache_dir.joinpath(*group_id.split("."))
+                / artifact_id
+                / version
+                / f"{artifact_id}-{version}.pom"
+            )
+
+            if cached.is_file():
+                print(f"POM {coordinates}: cache")
+                return cached.read_text(encoding="utf-8")
+
+        print(f"POM {coordinates}: Maven Central")
+        pom_xml = download_from_central(group_id, artifact_id, version)
+
+        if cached is not None:
+            # Parse before caching, so a broken download is not kept for later runs.
+            ET.fromstring(pom_xml)
+            cached.parent.mkdir(parents=True, exist_ok=True)
+            partial = cached.with_name(cached.name + ".part")
+            partial.write_text(pom_xml, encoding="utf-8")
+            partial.replace(cached)
+
+        return pom_xml
 
 
 def resolve_properties(value, properties, source):
@@ -149,7 +283,7 @@ def resolve_properties(value, properties, source):
     return value
 
 
-def collect_parent_properties(parent_descriptor, seen=None):
+def collect_parent_properties(parent_descriptor, pom_source, seen=None):
     if seen is None:
         seen = set()
 
@@ -165,7 +299,7 @@ def collect_parent_properties(parent_descriptor, seen=None):
         raise RuntimeError("Detected cyclic parent POM reference: " f"{parent_key}")
 
     seen.add(parent_key)
-    pom_xml = fetch_published_pom(*parent_key)
+    pom_xml = pom_source.fetch(*parent_key)
     parent_data = parse_pom_root(ET.fromstring(pom_xml))
 
     parent_context = dict(parent_data["properties"])
@@ -186,13 +320,16 @@ def collect_parent_properties(parent_descriptor, seen=None):
 
     properties = collect_parent_properties(
         inherited_parent,
+        pom_source,
         seen,
     )
     properties.update(parent_data["properties"])
     return properties
 
 
-def collect_dependency_properties(repo_name, project_version, tmp_repos):
+def collect_dependency_properties(
+    repo_name, project_version, tmp_repos, pom_source
+):
     parsed = parse_pom_file(tmp_repos / repo_name / "pom.xml")
     local_properties = dict(parsed["properties"])
     local_properties.update(
@@ -211,7 +348,7 @@ def collect_dependency_properties(repo_name, project_version, tmp_repos):
         for key in ("group_id", "artifact_id", "version")
     }
 
-    parent_properties = collect_parent_properties(parent_descriptor)
+    parent_properties = collect_parent_properties(parent_descriptor, pom_source)
     parent_properties.update(parsed["properties"])
     parent_properties.update(
         {
@@ -367,6 +504,11 @@ def load_config():
         "repositories_by_component": json.loads(
             os.environ["REPOSITORIES_BY_COMPONENT_JSON"]
         ),
+        "pom_cache_dir": (
+            Path(os.environ["POM_CACHE_DIR"])
+            if os.environ.get("POM_CACHE_DIR")
+            else None
+        ),
     }
 
 
@@ -382,6 +524,10 @@ def main():
     tmp_repos = workspace / "_tmp_repos"
     tmp_repos.mkdir(exist_ok=True)
 
+    pom_source = PomSource(
+        org, tmp_repos, repositories_by_component, config["pom_cache_dir"]
+    )
+
     # ------------------------------------------------------------------
     # jEAP parent
     # ------------------------------------------------------------------
@@ -392,6 +538,7 @@ def main():
         "jeap-spring-boot-parent",
         parent_version,
         tmp_repos,
+        pom_source,
     )
 
     print(f"jEAP parent version: {parent_version}")
@@ -409,22 +556,26 @@ def main():
             repo, tmp_repos
         )
 
-        properties = collect_dependency_properties(
-            repo,
-            project_version,
-            tmp_repos,
-        )
+        # The parent chain is only needed to resolve properties in the two
+        # versions, so it is not fetched for products with literal versions.
+        if "${" in pom_project_version or "${" in product_parent_version:
+            properties = collect_dependency_properties(
+                repo,
+                project_version,
+                tmp_repos,
+                pom_source,
+            )
 
-        pom_project_version = resolve_properties(
-            pom_project_version,
-            properties,
-            f"{repo}/pom.xml project version",
-        )
-        product_parent_version = resolve_properties(
-            product_parent_version,
-            properties,
-            f"{repo}/pom.xml parent version",
-        )
+            pom_project_version = resolve_properties(
+                pom_project_version,
+                properties,
+                f"{repo}/pom.xml project version",
+            )
+            product_parent_version = resolve_properties(
+                product_parent_version,
+                properties,
+                f"{repo}/pom.xml parent version",
+            )
 
         if not product_parent_version:
             raise RuntimeError(f"Missing parent version in {repo}/pom.xml")
