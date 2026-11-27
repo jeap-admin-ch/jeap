@@ -9,3 +9,6 @@
 .directory
 *.tmp
 /target/
+
+# Third-party POMs cached by the update_jeap_versions workflow
+/.pom-cache/
